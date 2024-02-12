@@ -1,0 +1,30 @@
+.header {
+    position: absolute;
+    top: 0;
+    width: 80%;
+    padding: 0 10%;
+    background: #343434;
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-container {
+        width: 30%;
+    }
+
+    .logo {
+        width: 100%;
+    }
+
+    .bar {
+        display: flex;
+
+        a {
+            padding: .25em;
+            margin-left: 2em;
+            color: white;
+        }
+    }
+}
