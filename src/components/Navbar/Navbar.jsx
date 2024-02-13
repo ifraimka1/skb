@@ -10,18 +10,18 @@ function Navbar() {
                 <img src={logo} className="logo" alt="SCB logo"/>
             </div>
             <div className="bar">
-                <a href="">
+                <Link to={`/`}>
                     ГЛАВНАЯ
-                </a>
-                <a href="">
+                </Link>
+                <Link to={`/aboutus`}>
                     О НАС
-                </a>
-                <a href="">
+                </Link>
+                <Link to={`/labs`}>
                     ЛАБОРАТОРИИ
-                </a>
-                <a href="">
+                </Link>
+                <Link to={`/projects`}>
                     ПРОЕКТЫ
-                </a>
+                </Link>
                 <Link to={`/contact`}>
                     КОНТАКТЫ
                 </Link>
