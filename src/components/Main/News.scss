@@ -1,0 +1,20 @@
+.news {
+    .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+
+        .el {
+            width: 350px;
+            margin-bottom: 1em;
+
+            .pic {
+                width: 100%;
+                aspect-ratio: 1;
+                border-radius: 8px;
+                margin-bottom: .5em;
+                background-color: #D9D9D9;
+            }
+        }
+    }
+}
