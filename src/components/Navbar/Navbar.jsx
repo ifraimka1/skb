@@ -1,10 +1,11 @@
-import './header.scss';
+import { Link } from 'react-router-dom';
+
 import logo from '../../assets/scb.svg'
+import './Navbar.scss';
 
-function Header() {
-
+function Navbar() {
     return (
-        <div className="header">
+        <div className="navbar">
             <div className="logo-container">
                 <img src={logo} className="logo" alt="SCB logo"/>
             </div>
@@ -21,9 +22,9 @@ function Header() {
                 <a href="">
                     ПРОЕКТЫ
                 </a>
-                <a href="">
+                <Link to={`/contact`}>
                     КОНТАКТЫ
-                </a>
+                </Link>
                 <a href="https://ictis.sfedu.ru">
                     ИКТИБ
                 </a>
@@ -32,4 +33,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default Navbar;

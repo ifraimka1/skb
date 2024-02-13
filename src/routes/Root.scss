@@ -1,0 +1,23 @@
+$primary-bg-color: #343434;
+$secondary-bg-color: white;
+$primary-text-color: white;
+
+#page {
+    margin-top: calc(60px + 2em);
+
+    .header {
+        height: 25vh;
+        
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        color: $primary-text-color;
+        background: $primary-bg-color;
+    }
+    
+    .content {
+        background: $secondary-bg-color;
+    }
+}
