@@ -1,0 +1,48 @@
+.labs {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 32px;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            width: calc(100%/3 - 5em);
+            min-height: max-content;
+            padding: 16px 24px;
+
+            border-radius: 8px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #D9D9D9;
+
+            color: black;
+
+            .text {
+                h2 {
+                    margin-top: 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                    line-height: 29px;
+                }
+
+                p {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+            }
+
+            .link-label {
+                text-align: right;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 24px;
+                color: #767676;
+            }
+        }
+    }
+}

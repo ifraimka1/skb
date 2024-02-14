@@ -1,5 +1,6 @@
 import News from '../components/Main/News';
-import Projects from '../components/Main/Projects'
+import Projects from '../components/Main/Projects';
+import Labs from '../components/Main/Labs';
 
 function Main() {
     return (
@@ -13,6 +14,7 @@ function Main() {
             <div className="content">
                 <News />
                 <Projects />
+                <Labs />
             </div>
         </>
     );

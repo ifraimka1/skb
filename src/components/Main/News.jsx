@@ -10,15 +10,15 @@ function News() {
                 <a href=''>Все новости</a>
             </div>
             <div className="row">
-                <div className="el">
+                <div className="card">
                     <div className="pic"></div>
                     Еще одна новость
                 </div>
-                <div className="el">
+                <div className="card">
                     <div className="pic"></div>
                     Новость поменьше
                 </div>
-                <div className="el">
+                <div className="card">
                     <div className="pic"></div>
                     Новость маленькая совсем жесть а текст какой длинный ого
                 </div>

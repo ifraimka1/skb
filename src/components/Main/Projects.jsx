@@ -1,4 +1,4 @@
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Projects.scss';
 
@@ -7,20 +7,20 @@ function Projects() {
         <div className="block projects">
             <div className="heading">
                 <h1>Наши проекты</h1>
-                <a href=''>Все проекты</a>
+                <Link to={`/projects`}>Все проекты</Link>
             </div>
             <div className="row">
-                <a className="big el btn" href="">
-                    <div className="text">Перейти&rarr;</div>
+                <a className="big card btn" href="">
+                    <div className="link-label">Перейти&rarr;</div>
                 </a>
-                <a className="el btn" href="">
-                    <div className="text">Перейти&rarr;</div>
+                <a className="card btn" href="">
+                    <div className="link-label">Перейти&rarr;</div>
                 </a>
-                <a className="el btn" href="">
-                    <div className="text">Перейти&rarr;</div>
+                <a className="card btn" href="">
+                    <div className="link-label">Перейти&rarr;</div>
                 </a>
-                <a className="el btn" href="">
-                    <div className="text">Перейти&rarr;</div>
+                <a className="card btn" href="">
+                    <div className="link-label">Перейти&rarr;</div>
                 </a>
             </div>
         </div>

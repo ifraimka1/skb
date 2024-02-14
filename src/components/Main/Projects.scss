@@ -1,5 +1,4 @@
 .projects {
-    margin-bottom: 1em;
 
     .row {
         display: flex;
@@ -7,18 +6,18 @@
         justify-content: space-between;
         row-gap: 32px;
 
-        .el:first-of-type {
+        .card:first-of-type {
             width: 100%;
             aspect-ratio: 3;
         }
 
-        .el {
+        .card {
             position: relative;
             width: calc(100%/3 - 64px);
             aspect-ratio: 3/2;
             background-color: #D9D9D9;
 
-            .text {
+            .link-label {
                 position: absolute;
                 right: 24px;
                 bottom: 16px;
