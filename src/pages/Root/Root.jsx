@@ -1,23 +1,24 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link, useLoaderData } from "react-router-dom";
 
-//import { getContacts } from "../api";
-import Navbar from '../components/Navbar/Navbar';
-import './Root.scss';
+import { getContacts } from "../../api";
+import Navbar from '../../components/Navbar';
+import './Root.styles.scss';
 
-// async function loader() {
-//     const contacts = await getContacts();
-//     return { contacts };
-// }
+async function loader() {
+    const contacts = await getContacts();
+    return { contacts };
+}
 
 function Root() {
-//    const { contacts } = useLoaderData();
+   const { contacts } = useLoaderData();
     return (
         <>
             <Navbar />
             <div id="page">
                 <Outlet />
             </div>
-            {/* <div id="test">
+
+            <div id="test">
                 {contacts.length ? (
                     <ul className="nav nav-pills nav-fill flex-column">
                         {contacts.map(contact => (
@@ -33,10 +34,10 @@ function Root() {
                         <i>No contacts</i>
                     </p>
                 )}
-            </div> */}
+            </div>
         </>
     );
 }
 
-//export { loader };
+export { loader };
 export default Root;

@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
-
-import './News.scss';
+import './News.styles.scss';
 
 function News() {
     return (

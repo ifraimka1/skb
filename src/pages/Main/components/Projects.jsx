@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import './Projects.scss';
+import './Projects.styles.scss';
 
 function Projects() {
     return (

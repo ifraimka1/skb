@@ -1,6 +1,4 @@
-import News from '../components/Main/News';
-import Projects from '../components/Main/Projects';
-import Labs from '../components/Main/Labs';
+import { News, Projects, Labs } from './components';
 
 function Main() {
     return (

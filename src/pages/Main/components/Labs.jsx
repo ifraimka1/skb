@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import './Labs.scss';
+import './Labs.styles.scss';
 
 function Labs() {
     return (

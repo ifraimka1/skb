@@ -1,5 +1,7 @@
 import * as WPAPI from 'wpapi';
 
+import reactPress from './reactPress';
+
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
     ? {

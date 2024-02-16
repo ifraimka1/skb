@@ -1,8 +1,8 @@
-function Labs() {
+function AboutUs() {
     return (
         <>
-             <header className="header">
-                <h1>Laboratories</h1>
+            <header className="header">
+                <h1>About us</h1>
             </header>
             <div className="content">
 
@@ -11,4 +11,4 @@ function Labs() {
     );
 }
 
-export default Labs;
+export default AboutUs;

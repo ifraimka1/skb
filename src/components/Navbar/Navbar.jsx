@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/scb.svg'
-import './Navbar.scss';
+import { scb as logo } from '../../images';
+import './Navbar.styles.scss';
 
 function Navbar() {
     return (

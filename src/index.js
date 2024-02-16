@@ -2,46 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
-import Root from './routes/Root';
-import ErrorPage from './error-page';
-import Main from './routes/Main';
-import Aboutus from './routes/Aboutus';
-import Labs from './routes/Labs';
-import Projects from './routes/Projects';
-import Contact from './routes/Contact';
+import routes from './routes';
 import reportWebVitals from './reportWebVitals';
-import './index.scss';
+import './index.styles.scss';
 
-const router = createHashRouter([  
-  
-  { 
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <Main />,
-      },
-      {
-        path: "/aboutus",
-        element: <Aboutus />,
-      },
-      {
-        path: "/labs",
-        element: <Labs />,
-      },
-      {
-        path: "/projects",
-        element: <Projects />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-    ]
-  },
-])
+const router = createHashRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
