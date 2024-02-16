@@ -25,7 +25,7 @@ function Navbar() {
                 <Link to={`/contact`}>
                     КОНТАКТЫ
                 </Link>
-                <a href="https://ictis.sfedu.ru">
+                <a href="https://ictis.sfedu.ru" target="_blank">
                     ИКТИБ
                 </a>
             </div>

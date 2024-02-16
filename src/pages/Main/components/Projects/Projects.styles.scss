@@ -12,20 +12,32 @@
         }
 
         .card {
+            display: block;
             position: relative;
             width: calc(100%/3 - 64px);
             aspect-ratio: 3/2;
-            background-color: #D9D9D9;
+
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
 
             .link-label {
                 position: absolute;
                 right: 24px;
                 bottom: 16px;
 
+                padding: 2px;
+                border-radius: 4px;
+
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 24px;
                 color: #767676;
+
+                background-color: rgba(255, 255, 255, 0.75);
             }
         }
     }
