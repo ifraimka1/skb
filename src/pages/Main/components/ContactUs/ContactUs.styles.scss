@@ -1,0 +1,31 @@
+.contact-us {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .half {
+        flex: 50%;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+
+        padding: 32px;
+        border-radius: 16px;
+
+        background-color: #EDEDED;
+
+        h2 {
+            margin-top: 0;
+
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 39px;
+        }
+
+        .submit {
+            width: 100%;
+        }
+    }
+}

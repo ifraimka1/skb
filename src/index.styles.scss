@@ -6,9 +6,12 @@
 
 body {
   margin: 0;
-  font-family: Montserrat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body, input {
+  font-family: Montserrat;
 }
 
 code {
