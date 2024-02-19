@@ -1,0 +1,46 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 242px;
+    padding: 0 10%;
+    background: #222222;
+
+    .logo-container {
+        height: 90px;
+        max-width: 30%;
+
+        .logo {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .contacts {
+        color: white;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+    }
+
+    .links {
+        display: flex;
+        gap: 20px;
+
+        .link {
+            display: flex;
+
+            width: 40px;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            background-color: white;
+
+            .icon {
+                width: 80%;
+                height: 80%;
+                object-fit: contain;
+            }
+        }
+    }
+}
