@@ -5,7 +5,7 @@ function BlockHeading({ heading, link, linkText }) {
         <div className="heading">
             <h1>{heading}</h1>
             {link && linkText &&
-                <Link to={link} target="_blank">{linkText}</Link>
+                <Link to={link} target="_blank">{linkText} &rarr;</Link>
             }
         </div>
     );

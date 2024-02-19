@@ -1,56 +1,46 @@
-import { Link } from 'react-router-dom';
-
+import BlockHeading from '../BlockHeading';
+import LabCard from './LabCard';
 import './Labs.styles.scss';
 
-function Labs() {
+const mock = [
+    {
+        name: "Лаборатория кибернетики",
+        desc: "Управление робототехническими системами, создание аппаратных и программных продуктов, а также проектирование программных систем.",
+        link: "/labs",
+    },
+    {
+        name: "Лаборатория компьютерного зрения",
+        desc: "Работа с методами и технологиями сегментации изображений, ИИ и нейронными сетями.",
+        link: "/labs",
+    },
+    {
+        name: "Лаборатория SmartTech",
+        desc: "Проектирование систем в концепции “Интернета вещей” и технологии “Умного дома”.",
+        link: "/labs",
+    },
+    {
+        name: "Лаборатория VR и AR",
+        desc: "Разработка приложений для виртуальной и дополненной реальности, 3D-моделирование.",
+        link: "/labs",
+    },
+    {
+        name: "Лаборатория мобильной разработки",
+        desc: "Разработка приложений для портативных устройств, создание дизайна и проектов мобильных приложений.",
+        link: "/labs",
+    },
+    {
+        name: "Лаборатория 3D-печати и прототипирования",
+        desc: "Проектирование 3D-модели, работа с 3D-принтером и создание качественных трёхмерных макетов.",
+        link: "/labs",
+    },
+];
+
+function Labs({ labs = mock }) {
     return (
         <div className="block labs">
-            <div className="heading">
-                <h1>Наши лаборатории</h1>
-            </div>
+            <BlockHeading heading="Наши лаборатории" />
             <div className="row">
-                <Link className="card">
-                    <div className="text">
-                        <h2>Лаборатория кибернетики</h2>
-                        <p>Управление робототехническими системами, создание аппаратных и программных продуктов, а также проектирование программных систем.</p>
-                    </div>
-                    <div className="link-label">Перейти&rarr;</div>
-                </Link>
-                <Link to={`/labs`} className="card">
-                    <div className="text">
-                        <h2>Лаборатория компьютерного зрения</h2>
-                        <p>Работа с методами и технологиями сегментации изображений, ИИ и нейронными сетями.</p>
-                    </div>
-                    <div className="link-label">Перейти&rarr;</div>
-                </Link>
-                <Link to={`/labs`} className="card">
-                    <div className="text">
-                        <h2>Лаборатория SmartTech</h2>
-                        <p>Проектирование систем в концепции “Интернета вещей” и технологии “Умного дома”.</p>
-                    </div>
-                    <div className="link-label">Перейти&rarr;</div>
-                </Link>
-                <Link to={`/labs`} className="card">
-                    <div className="text">
-                        <h2>Лаборатория VR и AR</h2>
-                        <p>Разработка приложений для виртуальной и дополненной реальности, 3D-моделирование.</p>
-                    </div>
-                    <div className="link-label">Перейти&rarr;</div>
-                </Link>
-                <Link to={`/labs`} className="card">
-                    <div className="text">
-                        <h2>Лаборатория мобильной разработки</h2>
-                        <p>Разработка приложений для портативных устройств, создание дизайна и проектов мобильных приложений.</p>
-                    </div>
-                    <div className="link-label">Перейти&rarr;</div>
-                </Link>
-                <Link to={`/labs`} className="card">
-                    <div className="text">
-                        <h2>Лаборатория 3D-печати и прототипирования</h2>
-                        <p>Проектирование 3D-модели, работа с 3D-принтером и создание качественных трёхмерных макетов.</p>
-                    </div>
-                    <div className="link-label">Перейти&rarr;</div>
-                </Link>
+                { labs.map( lab => <LabCard lab={ lab } />) }
             </div>
         </div>
     );
