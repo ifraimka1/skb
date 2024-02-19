@@ -30,8 +30,10 @@
 
         .link {
             display: flex;
+            justify-content: center;
+            align-items: center;
 
-            width: 40px;
+            width: 60px;
             aspect-ratio: 1;
             border-radius: 100%;
             background-color: white;
