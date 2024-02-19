@@ -1,7 +1,8 @@
-import { Outlet, Link, useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 
 import { getContacts } from "../../api";
 import Navbar from '../../components/Navbar';
+import UsersWP from "../../components/UsersWP";
 import './Root.styles.scss';
 
 async function loader() {
@@ -17,24 +18,7 @@ function Root() {
             <div id="page">
                 <Outlet />
             </div>
-
-            <div id="test">
-                {contacts.length ? (
-                    <ul className="nav nav-pills nav-fill flex-column">
-                        {contacts.map(contact => (
-                            <li key={contact.id} className="nav-item text-start">
-                                <Link className="nav-link" to={`contacts/${contact.id}`}>
-                                    {contact.name ? <>{contact.name}</> : <i>No Name</i>}{' '}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>
-                        <i>No contacts</i>
-                    </p>
-                )}
-            </div>
+            <UsersWP contacts={ contacts } />
         </>
     );
 }
