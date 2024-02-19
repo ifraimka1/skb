@@ -26,8 +26,11 @@ $primary-text-color: white;
 
     .bar {
         display: flex;
+        align-items: center;
 
-        a {
+        .nav-link {
+            position: relative;
+
             font-size: 16px;
             font-weight: 500;
             line-height: 20px;
@@ -36,6 +39,25 @@ $primary-text-color: white;
             margin-left: 40px;
             color: $primary-text-color;
             text-decoration: none;
+            text-wrap: nowrap;
+        }
+
+        .nav-link::after {
+            position: absolute;
+            content: '';
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            display: block;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
         }
     }
 }
