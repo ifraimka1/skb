@@ -8,9 +8,6 @@
     }
 
     .contact-form {
-        display: flex;
-        flex-direction: column;
-
         padding: 32px;
         border-radius: 16px;
 
@@ -24,8 +21,56 @@
             line-height: 39px;
         }
 
-        .submit {
-            width: 100%;
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            .field {
+                padding: 15px 24px;
+                border: none;
+                border-radius: 8px;
+
+                font-size: 20px;
+                font-weight: 400;
+            }
+
+            .field.big {
+                height: 272px;
+                line-height: 30px;
+                resize: none;
+            }
+
+            .file-input {
+                position: relative;
+                display: flex;
+
+                input {
+                    position: absolute;
+                    z-index: -1;
+                    opacity: 0;
+                    display: block;
+                    width: 0;
+                    height: 0;
+                }
+
+                span {
+                    display: inline-block;
+                    cursor: pointer;
+                    font-size: 20px;
+                }
+
+                .icon {
+                    margin-right: 8px;
+                }
+            }
+
+
+
+            .submit {
+                width: 100%;
+                cursor: pointer;
+            }
         }
     }
 }
