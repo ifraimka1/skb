@@ -1,4 +1,7 @@
+import ScrollCarousel from 'scroll-carousel-react';
+
 import BlockHeading from '../BlockHeading';
+import './Partners.styles.scss';
 
 function Partners() {
     return (
