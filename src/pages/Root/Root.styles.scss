@@ -37,12 +37,10 @@ $btn-dark: #585858;
     }
 
     .content {
-        width: 80%;
-        margin: 0 auto;
         background: $secondary-bg;
 
         .block {
-            margin-bottom: 32px;
+            margin: 0 10% 32px;
                 
             h1 {
                 font-family: Montserrat;
