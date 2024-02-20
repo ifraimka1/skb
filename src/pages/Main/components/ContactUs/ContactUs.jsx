@@ -16,8 +16,10 @@ function ContactUs() {
                     <textarea name="text" placeholder="Опишите в этом поле свой проект и, по возможности, прикрепите файл с ТЗ" className="field big" />
                     <label className="file-input">
                         <input type="file" name="file" />
-                        <img src={ fileUpload } alt="" className="icon" />
-                        <span>Прикрепить файл</span>
+                        <div className="upload-file-btn">
+                            <img src={fileUpload} alt="" className="icon" />
+                            <span>Прикрепить файл</span>
+                        </div>
                     </label>
                     <input type="submit" className="submit btn" />
                 </div>
