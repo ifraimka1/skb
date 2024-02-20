@@ -5,7 +5,6 @@ import PartnersLogo from './PartnersLogo';
 import './Partners.styles.scss';
 import { scb } from '../../../../images';
 import { porsche } from '../../../../images/partners';
-import { SCOPABLE_TYPES } from '@babel/types';
 
 const mock = [
     {
