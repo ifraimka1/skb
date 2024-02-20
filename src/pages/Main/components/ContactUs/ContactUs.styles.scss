@@ -43,7 +43,7 @@
 
             .file-input {
                 position: relative;
-                display: flex;
+                width: fit-content;
 
                 input {
                     position: absolute;
@@ -54,18 +54,24 @@
                     height: 0;
                 }
 
-                span {
-                    display: inline-block;
+                .upload-file-btn {
+                    display: flex;
                     cursor: pointer;
-                    font-size: 20px;
-                }
 
-                .icon {
-                    margin-right: 8px;
+                    .icon {
+                        margin-right: 8px;
+                    }
+
+                    span {
+                        display: inline-block;
+                        font-size: 20px;
+                    }
                 }
             }
 
-
+            .file-input input:focus + .upload-file-btn {
+                outline: -webkit-focus-ring-color auto 1px;
+            }
 
             .submit {
                 width: 100%;
