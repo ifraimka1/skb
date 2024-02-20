@@ -81,3 +81,31 @@ $btn-dark: #585858;
     color: white;
     background-color: $btn-dark;
 }
+
+.block .heading a,
+.navbar .nav-link {
+    position: relative;
+}
+
+.block .heading a::after,
+.navbar .nav-link::after {
+    position: absolute;
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    display: block;
+    width: 0;
+    height: 1px;
+    transition: 0.3s;
+}
+
+.block .heading a::after {
+    background: black;
+}
+
+.block .heading a:hover:after,
+.navbar .nav-link:hover:after,
+.navbar .nav-link.active:after {
+    width: 100%;
+}
