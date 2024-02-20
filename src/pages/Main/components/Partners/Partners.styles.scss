@@ -1,0 +1,26 @@
+#page .content .partners {
+    margin-left: 0;
+    margin-right: 0;
+
+    .heading {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .scroll-carousel-viewport {
+
+        .partner {
+            height: 300px;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            background: #D9D9D9;
+
+            .logo {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
