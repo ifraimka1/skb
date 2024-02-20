@@ -6,8 +6,7 @@ import './ContactUs.styles.scss';
 function ContactUs() {
     return (
         <div className="block contact-us">
-            <h1 className="half">Нужна помощь? Команда способных
-                IT-специалистов готова вам помочь!</h1>
+            <h1 className="half">Нужна помощь?<br/> Команда способных IT-специалистов готова вам помочь!</h1>
             <Form method="post" className="half contact-form">
                 <h2>Свяжитесь с нами!</h2>
                 <div className="inputs">
