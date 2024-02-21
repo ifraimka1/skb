@@ -1,7 +1,7 @@
-export default function Slide({ src }) {
+export default function Slide({ data: { url, title } }) {
   return (
     <div className="slide">
-      <img src={src} className="slide-image" />
+      <img src={url} alt={title} className="slide-image" />
     </div>
   );
 }
