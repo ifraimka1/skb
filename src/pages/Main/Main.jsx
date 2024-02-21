@@ -1,4 +1,4 @@
-import { News, Projects, Labs, Partners, ContactUs } from './components';
+import { News, Projects, Labs, Partners, Gallery, ContactUs } from './components';
 
 function Main() {
     return (
@@ -14,6 +14,7 @@ function Main() {
                 <Projects />
                 <Labs />
                 <Partners />
+                <Gallery />
                 <ContactUs />
             </div>
         </>
