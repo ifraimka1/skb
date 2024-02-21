@@ -4,19 +4,18 @@ import Arrows from './components/Arrows';
 import SlidesList from './components/SlidesList';
 import Dots from './components/Dots';
 
-//import { getSliderImages } from '../../api';
-import { g1, g2, g3 } from '../../images/gallery';
+import { getSliderImages } from '../../api';
 import './Slider.styles.scss';
 
 export const SliderContext = createContext();
 
-function Slider({ autoPlay = 1, autoPlayTime = 1 }) {
+function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
     const [items, setItems] = useState([]);
     const [slide, setSlide] = useState(0);
 
     useEffect(() => {
-        const loadData = () => {
-          const images = [g1, g2, g3];
+        const loadData = async () => {
+          const images = await getSliderImages();
           setItems(images);
         };
         loadData();
@@ -32,7 +31,7 @@ function Slider({ autoPlay = 1, autoPlayTime = 1 }) {
         }
 
         setSlide(slideNumber);
-    }
+    };
 
     const goToSlide = (number) => {
         setSlide(number % items.length);
@@ -40,15 +39,15 @@ function Slider({ autoPlay = 1, autoPlayTime = 1 }) {
 
     useEffect(() => {
         if (!autoPlay) return;
-    
+
         const interval = setInterval(() => {
-          changeSlide(1);
+            changeSlide(1);
         }, autoPlayTime);
-    
+
         return () => {
-          clearInterval(interval);
+            clearInterval(interval);
         };
-      }, [items.length, slide]);
+    }, [items.length, slide]);
 
     return (
         <div className="slider">
@@ -63,7 +62,7 @@ function Slider({ autoPlay = 1, autoPlayTime = 1 }) {
             >
                 <Arrows />
                 <SlidesList />
-                <Dots />
+                {/* <Dots /> */}
             </SliderContext.Provider>
         </div>
     );

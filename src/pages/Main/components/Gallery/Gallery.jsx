@@ -1,5 +1,7 @@
 import Slider from '../../../../components/Slider';
 
+import './Gallery.styles.scss';
+
 function Gallery() {
     return (
         <div className="block gallery">
