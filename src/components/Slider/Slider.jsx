@@ -53,6 +53,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
       }
     }, [transition]);
   
+    // Переход к новому слайду, подбор новых изображений
     const smoothTransition = () => {
       let newSlides = [];
   
