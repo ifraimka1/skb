@@ -27,6 +27,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
       }
     }, [items]);
   
+    // 2
     // Переход к новому слайду, подбор новых
     const smoothTransition = () => {
       let newSlides = [];
@@ -44,6 +45,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
       setTransition(0);
     }
   
+    // 1
     useEffect(() => {
       transitionRef.current = smoothTransition;
     });
