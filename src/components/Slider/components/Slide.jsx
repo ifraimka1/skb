@@ -1,4 +1,4 @@
-export default function Slide({ slide, width }) {
+function Slide({ slide, width }) {
   return (
     <div className="slide"
       style={{
@@ -10,3 +10,5 @@ export default function Slide({ slide, width }) {
     </div>
   );
 }
+
+export default Slide;
