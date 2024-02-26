@@ -27,6 +27,23 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
       }
     }, [items]);
   
+    // Переход к новому слайду, подбор новых
+    const smoothTransition = () => {
+      let newSlides = [];
+  
+      if (slide === items.length - 1) {
+        newSlides = [items[items.length - 2], items[items.length - 1], items[0]];
+      } else if (slide === 0) {
+        newSlides = [items[items.length - 1], items[0], items[1]];
+      } else {
+        newSlides = items.slice(slide - 1, slide + 2);
+      }
+  
+      setTranslate(getWidth());
+      setItemsForRender(newSlides);
+      setTransition(0);
+    }
+  
     useEffect(() => {
       transitionRef.current = smoothTransition;
     });
@@ -52,23 +69,6 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
         setTransition(0.5);
       }
     }, [transition]);
-  
-    // Переход к новому слайду, подбор новых изображений
-    const smoothTransition = () => {
-      let newSlides = [];
-  
-      if (slide === items.length - 1) {
-        newSlides = [items[items.length - 2], items[items.length - 1], items[0]];
-      } else if (slide === 0) {
-        newSlides = [items[items.length - 1], items[0], items[1]];
-      } else {
-        newSlides = items.slice(slide - 1, slide + 2);
-      }
-  
-      setTranslate(getWidth());
-      setItemsForRender(newSlides);
-      setTransition(0);
-    }
   
     // Загрузка изображений
     useEffect(() => {
