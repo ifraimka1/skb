@@ -2,7 +2,7 @@ import * as WPAPI from 'wpapi';
 
 import reactPress from './reactPress';
 
-import { g1, g2, g3 } from './images/gallery';
+import { g1, g2, g3, g4, g5 } from './images/gallery';
 
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
@@ -25,7 +25,7 @@ export async function getContacts(q = '') {
 }
 
 export async function getSliderImages() {
-  const mock = [ g1, g2, g3 ];
+  const mock = [ g1, g2, g3, g4, g5 ];
   
   return mock;
 }

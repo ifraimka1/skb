@@ -1,6 +1,11 @@
-export default function Slide({ slide }) {
+export default function Slide({ slide, width }) {
   return (
-    <div className="slide">
+    <div className="slide"
+      style={{
+        height: "100%",
+        width: `${width}px`,
+      }}
+    >
       <img src={slide} className="slide-image" />
     </div>
   );
