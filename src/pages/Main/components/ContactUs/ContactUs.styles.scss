@@ -9,7 +9,7 @@
     }
 
     .contact-form {
-        padding: 32px;
+        padding: 24px 26px;
         border-radius: 16px;
 
         background-color: #EDEDED;
@@ -25,7 +25,7 @@
         .inputs {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
 
             .field {
                 padding: 12px 16px;
@@ -66,7 +66,7 @@
 
                     span {
                         display: inline-block;
-                        font-size: 16px;
+                        font-size: 18px;
                     }
                 }
             }
@@ -78,6 +78,10 @@
             .submit {
                 width: 100%;
                 cursor: pointer;
+
+                padding: 12px;
+                font-size: 18px;
+                line-height: normal;
             }
         }
     }
