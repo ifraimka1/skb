@@ -1,11 +1,12 @@
 import { scb as logo } from '../../images';
+import { NavLink } from "react-router-dom";
 import NavbarLink from './NavbarLink';
 import './Navbar.styles.scss';
 
 const mock = [
     {
         text: "НОВОСТИ",
-        to: "/",
+        to: "/news",
     },
     {
         text: "О НАС",
@@ -26,18 +27,20 @@ const mock = [
     {
         text: "ИКТИБ",
         to: "https://ictis.sfedu.ru",
-        newTab: true, 
+        newTab: true,
     },
 ];
 
 function Navbar({ links = mock }) {
     return (
         <div className="navbar">
-            <div className="logo-container">
-                <img src={logo} className="logo" alt="SCB logo"/>
-            </div>
+            <NavbarLink link={{ to: "/" }} >
+                <div className="logo-container">
+                    <img src={logo} className="logo" alt="SCB logo" />
+                </div>
+            </NavbarLink>
             <div className="bar">
-                { links.map(link => <NavbarLink link={ link } />) }
+                {links.map(link => <NavbarLink link={link} />)}
             </div>
         </div>
     );
