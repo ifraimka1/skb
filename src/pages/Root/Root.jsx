@@ -19,7 +19,6 @@ function Root() {
             <div id="page">
                 <Outlet />
             </div>
-            <UsersWP contacts={ contacts } />
             <Footer />
         </>
     );
