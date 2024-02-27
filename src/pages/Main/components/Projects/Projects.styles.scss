@@ -4,18 +4,17 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        row-gap: 32px;
+        gap: 32px;
 
-        .card:first-of-type {
-            width: 100%;
-            aspect-ratio: 3;
+        .card:nth-child(-n + 2) {
+            flex: 1.5 1 40%;
         }
 
         .card {
             display: block;
             position: relative;
-            width: calc(100%/3 - 16px);
-            aspect-ratio: 3/2;
+            flex: 1 0.5 30%;
+            height: 250px;
 
             border-width: 1px;
             border-style: solid;

@@ -22,7 +22,11 @@ const mock = [
         link: "/projects",
     },
     {
-        image: project,
+        image: comBattle,
+        link: "/projects",
+    },
+    {
+        image: comBattle,
         link: "/projects",
     },
 ];

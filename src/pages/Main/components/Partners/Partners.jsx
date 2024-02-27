@@ -25,6 +25,12 @@ const mock = [
     {
         image: scb,
     },
+    {
+        image: porsche,
+    },
+    {
+        image: scb,
+    },
 ];
 
 function Partners({ partners = mock }) {
@@ -35,6 +41,7 @@ function Partners({ partners = mock }) {
                 autoplay
                 autoplaySpeed={6}
                 speed={1}
+                margin={32}
             >
                 { partners.map(item => <PartnersLogo partner={ item } />) }
             </ScrollCarousel>

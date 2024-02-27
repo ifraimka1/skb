@@ -9,6 +9,7 @@
         width: 100%;
         height: 100%;
         transition: transform 0.5s ease-in-out;
+        margin: 0 auto;
 
         & .slide {
             flex: 1 0 100%;
@@ -17,7 +18,7 @@
 
             & .slide-image {
                 display: flex;
-                width: 80%;
+                height: 60vh;
                 margin: 0 auto;
                 border-radius: 8px;
             }

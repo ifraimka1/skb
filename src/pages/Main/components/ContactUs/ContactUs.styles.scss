@@ -2,14 +2,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px;
+    gap: 60px;
 
     .half {
-        flex: 50%;
+        flex: 1 1 50%;
     }
 
     .contact-form {
-        padding: 32px;
+        padding: 24px 26px;
         border-radius: 16px;
 
         background-color: #EDEDED;
@@ -17,27 +17,27 @@
         h2 {
             margin-top: 0;
 
-            font-size: 32px;
+            font-size: 26px;
             font-weight: 500;
-            line-height: 39px;
+            line-height: 30px;
         }
 
         .inputs {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
 
             .field {
-                padding: 15px 24px;
+                padding: 12px 16px;
                 border: none;
                 border-radius: 8px;
 
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 400;
             }
 
             .field.big {
-                height: 272px;
+                height: 200px;
                 line-height: 30px;
                 resize: none;
             }
@@ -60,12 +60,13 @@
                     cursor: pointer;
 
                     .icon {
-                        margin-right: 8px;
+                        margin-right: 6px;
+                        height: 22px;
                     }
 
                     span {
                         display: inline-block;
-                        font-size: 20px;
+                        font-size: 18px;
                     }
                 }
             }
@@ -77,6 +78,10 @@
             .submit {
                 width: 100%;
                 cursor: pointer;
+
+                padding: 12px;
+                font-size: 18px;
+                line-height: normal;
             }
         }
     }
