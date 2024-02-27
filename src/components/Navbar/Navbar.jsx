@@ -4,7 +4,7 @@ import './Navbar.styles.scss';
 
 const mock = [
     {
-        text: "ГЛАВНАЯ",
+        text: "НОВОСТИ",
         to: "/",
     },
     {
