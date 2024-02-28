@@ -1,3 +1,5 @@
+@import "../../assets/styles/theme.scss";
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -5,7 +7,7 @@
 
     height: 160px;
     padding: 0 10%;
-    background: #222222;
+    background: $bg-footer;
 
     .logo-container {
         height: 80px;
@@ -18,7 +20,7 @@
     }
 
     .contacts {
-        color: white;
+        color: $text-secondary;
         font-size: 18px;
         font-weight: 400;
         line-height: 22px;
@@ -36,7 +38,7 @@
             width: 60px;
             aspect-ratio: 1;
             border-radius: 100%;
-            background-color: white;
+            background-color: $bg-primary;
 
             .icon {
                 width: 80%;

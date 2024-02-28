@@ -1,3 +1,5 @@
+@import "../../../../assets/styles/theme.scss";
+
 .projects {
 
     .row {
@@ -38,9 +40,9 @@
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 24px;
-                color: #767676;
+                color: $text-card-project;
 
-                background-color: rgba(255, 255, 255, 0.75);
+                background-color: $text-card-project-bg;
             }
         }
     }

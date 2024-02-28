@@ -2,7 +2,7 @@ import * as WPAPI from 'wpapi';
 
 import reactPress from './reactPress';
 
-import { g1, g2, g3 } from './images/gallery';
+import { g1, g2, g3 } from './assets/images/gallery';
 
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'

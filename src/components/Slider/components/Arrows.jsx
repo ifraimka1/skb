@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { SliderContext } from "../Slider";
 
-import { arrow } from '../../../images';
+import { arrow } from '../../../assets/images';
 import './Arrows.styles.scss';
 
 function Arrows() {

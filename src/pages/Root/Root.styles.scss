@@ -1,7 +1,4 @@
-$primary-bg: #343434;
-$secondary-bg: white;
-$primary-text: white;
-$btn-dark: #585858;
+@import "../../assets/styles/theme.scss";
 
 #page {
     margin-top: calc(60px + 2em);
@@ -13,9 +10,9 @@ $btn-dark: #585858;
         display: flex;
         flex-direction: column;
 
-        color: $primary-text;
-        background-image: url(/images/car.jpeg);
-        background-color: rgba(0, 0, 0, .75);
+        color: $text-secondary;
+        background-image: url(/assets/images/car.jpeg);
+        background-color: $bg-image;
         background-blend-mode: multiply;
         background-position: center;
         background-size: cover;
@@ -37,7 +34,7 @@ $btn-dark: #585858;
     }
 
     .content {
-        background: $secondary-bg;
+        background: $bg-primary;
 
         .block {
             margin: 0 10% 32px;
@@ -61,25 +58,11 @@ $btn-dark: #585858;
                     font-weight: 400;
                     line-height: 29px;
                     text-align: right;
-                    color: black;
+                    color: $text-primary;
                 }
             }
         }
     }
-}
-
-.btn {
-    display: block;
-    width: fit-content;
-    padding: 16px 24px;
-    border-radius: 8px;
-    
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    
-    color: white;
-    background-color: $btn-dark;
 }
 
 .block .heading a,
@@ -101,7 +84,7 @@ $btn-dark: #585858;
 }
 
 .block .heading a::after {
-    background: black;
+    background: $text-primary;
 }
 
 .block .heading a:hover:after,

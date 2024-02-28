@@ -1,0 +1,1 @@
+export { default as porsche } from './porsche.svg';
