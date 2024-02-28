@@ -1,5 +1,4 @@
-$primary-bg-color: #343434;
-$primary-text-color: white;
+@import "../../assets/styles/theme.scss";
 
 .navbar {
     position: absolute;
@@ -8,7 +7,7 @@ $primary-text-color: white;
     height: 60px;
     max-height: 80px;
     padding: 1em 10%;
-    background: $primary-bg-color;
+    background: $bg-secondary;
 
 
     display: flex;
@@ -35,13 +34,13 @@ $primary-text-color: white;
             letter-spacing: 0em;
             padding: .25em;
             margin-left: 40px;
-            color: $primary-text-color;
+            color: $text-secondary;
             text-decoration: none;
             text-wrap: nowrap;
         }
 
         .nav-link::after {
-            background: white;
+            background: $text-secondary;
         }
     }
 }

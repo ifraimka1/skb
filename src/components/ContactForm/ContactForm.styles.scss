@@ -1,8 +1,10 @@
+@import "../../assets/styles/theme.scss";
+
 .contact-form {
     padding: 24px 26px;
     border-radius: 16px;
 
-    background-color: #EDEDED;
+    background-color: $bg-form;
 
     h2 {
         margin-top: 0;
