@@ -2,12 +2,15 @@ import { Link } from 'react-router-dom';
 
 function LabCard({ lab }) {
     return (
-        <Link to={ lab.link } className="card">
-            <div className="text">
-                <h2>{ lab.name }</h2>
-                <p>{ lab.desc }</p>
+        <Link to={lab.link} className="card lab">
+            <img src={lab.img} alt="" className="image" />
+            <div className="content">
+                <h2>{lab.name}</h2>
+                <div className="hidden">
+                    <p>{lab.desc}</p>
+                    <div className="link-label">Перейти &rarr;</div>
+                </div>
             </div>
-            <div className="link-label">Перейти &rarr;</div>
         </Link>
     );
 }

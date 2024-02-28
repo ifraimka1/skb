@@ -3,45 +3,79 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        row-gap: 32px;
+        gap: 26px;
 
         .card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            flex: 1 1 30%;
+            height: 300px;
 
-            max-width: calc(100%/3 - 64px);
-            min-height: max-content;
-            padding: 16px 24px;
+            overflow: hidden;
+            position: relative;
 
             border-radius: 8px;
             border-width: 1px;
             border-style: solid;
             border-color: #D9D9D9;
 
-            color: black;
+            color: white;
+            background: black;
 
-            .text {
+            .image {
+                position: absolute;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                opacity: 0.9;
+                transition: opacity .2s ease-out;
+            }
+
+            .content {
+                position: absolute;
+                inset: auto 20px 10px 20px;
+                transition: inset .3s;
+                background: none !important;
+
                 h2 {
-                    margin-top: 0;
+                    margin: 0;
+
                     font-size: 24px;
                     font-weight: 600;
-                    line-height: 29px;
+                    line-height: 28px;
                 }
 
-                p {
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 24px;
+                .hidden {
+                    max-height: 0;
+                    transition: max-height 0.3s ease-out, opacity 0.3s 0.3s ease-out;
+                    opacity: 0;
+                    max-width: 80%;
+
+                    p {
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 20px;
+                    }
+
+                    .link-label {
+                        font-size: 20px;
+                        font-weight: 500;
+                        line-height: 24px;
+                    }
                 }
             }
 
-            .link-label {
-                text-align: right;
-                font-size: 20px;
-                font-weight: 500;
-                line-height: 24px;
-                color: #767676;
+            &:hover .content {
+                bottom: 20px;
+            }
+
+            &:hover .content .hidden {
+                max-height: 200px;
+                opacity: 1;                
+                transition: max-height 0.3s ease-out, opacity .1s ease-in;
+            }
+
+            &:hover .image {
+                transition: opacity .3s ease-in;
+                opacity: 0.5;
             }
         }
     }
