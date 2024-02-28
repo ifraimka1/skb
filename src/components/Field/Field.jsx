@@ -1,13 +1,15 @@
 import "./Field.styles.scss";
 
 function Field({ type, name, placeholder, icon }) {
-    const className = type === "submit" ? "submit btn" : "field";
+    const className = type === "submit" ? "submit btn"
+                    : type === "textarea" ? "field big"
+                    : "field";
 
     return (
         <>
             {type === "textarea" ? (
                 <textarea
-                    className="field big"
+                    className={className}
                     name={name}
                     placeholder={placeholder}
                 />
