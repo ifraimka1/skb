@@ -1,6 +1,6 @@
 import { Form } from "react-router-dom";
 
-import { fileUpload } from "../../../../images";
+import { fileUpload } from "../../../../assets/images";
 import './ContactUs.styles.scss';
 
 function ContactUs() {

@@ -6,7 +6,7 @@ import {
     drone,
     ttt,
     comBattle
-} from '../../../../images/projects';
+} from '../../../../assets/images/projects';
 
 const mock = [
     {

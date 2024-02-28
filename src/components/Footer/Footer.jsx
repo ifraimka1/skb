@@ -1,6 +1,6 @@
 import FooterLink from './FooterLink';
-import { scb as logo } from '../../images';
-import { iconIctis, iconSfedu, iconVK } from '../../images/footer';
+import { scb as logo } from '../../assets/images';
+import { iconIctis, iconSfedu, iconVK } from '../../assets/images/footer';
 import './Footer.styles.scss';
 import FooterContacts from './FooterContacts';
 

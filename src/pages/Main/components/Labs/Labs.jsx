@@ -1,7 +1,7 @@
 import BlockHeading from '../BlockHeading';
 import LabCard from './LabCard';
 
-import { labMock } from '../../../../images';
+import { labMock } from '../../../../assets/images';
 import './Labs.styles.scss';
 
 const mock = [

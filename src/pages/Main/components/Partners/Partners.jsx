@@ -3,8 +3,8 @@ import ScrollCarousel from 'scroll-carousel-react';
 import BlockHeading from '../BlockHeading';
 import PartnersLogo from './PartnersLogo';
 import './Partners.styles.scss';
-import { scb } from '../../../../images';
-import { porsche } from '../../../../images/partners';
+import { scb } from '../../../../assets/images';
+import { porsche } from '../../../../assets/images/partners';
 
 const mock = [
     {

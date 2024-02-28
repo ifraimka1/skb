@@ -1,7 +1,7 @@
 import BlockHeading from '../BlockHeading';
 import NewsCard from './NewsCard';
 import './News.styles.scss';
-import { newsMock } from '../../../../images';
+import { newsMock } from '../../../../assets/images';
 
 const mock = [
     {
