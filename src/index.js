@@ -4,7 +4,7 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import routes from './routes';
 import reportWebVitals from './reportWebVitals';
-import './index.styles.scss';
+import './assets/styles/global.scss';
 
 const router = createHashRouter(routes);
 
