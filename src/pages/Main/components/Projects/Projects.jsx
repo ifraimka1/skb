@@ -10,22 +10,27 @@ import {
 
 const mock = [
     {
+        id: 1,
         image: drone,
         link: "/projects",
     },
     {
+        id: 2,
         image: ttt,
         link: "/projects",
     },
     {
+        id: 3,
         image: comBattle,
         link: "/projects",
     },
     {
+        id: 4,
         image: comBattle,
         link: "/projects",
     },
     {
+        id: 5,
         image: comBattle,
         link: "/projects",
     },
@@ -36,7 +41,7 @@ function Projects({ projects = mock }) {
         <div className="block projects">
             <BlockHeading heading="Наши проекты" linkText="Все проекты" link="/projects" />
             <div className="row">
-                {mock.map(item => <ProjectCard project={item} />)}
+                {projects.map(item => <ProjectCard key={ item.id } project={item} />)}
             </div>
         </div>
     );
