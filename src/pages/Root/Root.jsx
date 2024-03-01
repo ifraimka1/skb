@@ -2,7 +2,6 @@ import { Outlet, useLoaderData } from "react-router-dom";
 
 import { getContacts } from "../../api";
 import Navbar from '../../components/Navbar';
-import UsersWP from "../../components/UsersWP";
 import Footer from "../../components/Footer";
 import './Root.styles.scss';
 

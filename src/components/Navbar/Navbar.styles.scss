@@ -7,8 +7,8 @@
     height: 60px;
     max-height: 80px;
     padding: 1em 10%;
-    background: $bg-secondary;
-
+    background: transparent;
+    z-index: 1;
 
     display: flex;
     justify-content: space-between;
