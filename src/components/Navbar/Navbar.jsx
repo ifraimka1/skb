@@ -1,5 +1,4 @@
 import { scb as logo } from '../../assets/images';
-import { NavLink } from "react-router-dom";
 import NavbarLink from './NavbarLink';
 import './Navbar.styles.scss';
 

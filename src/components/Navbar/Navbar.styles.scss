@@ -1,13 +1,13 @@
 @import "../../assets/styles/theme.scss";
 
 .navbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 80%;
     height: 60px;
     max-height: 80px;
     padding: 1em 10%;
-    background: transparent;
+    background: $bg-secondary;
     z-index: 1;
 
     display: flex;
@@ -43,4 +43,9 @@
             background: $text-secondary;
         }
     }
+}
+
+.navbar.absolute {
+    position: absolute;
+    background: transparent;
 }
