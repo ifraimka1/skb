@@ -17,6 +17,15 @@
     .inputs {
         display: flex;
         flex-direction: column;
-        gap: 16px;        
+        gap: 16px;
+        
+        .submit {
+            width: 100%;
+            cursor: pointer;
+        
+            padding: 12px;
+            font-size: 18px;
+            line-height: normal;
+        }
     }
 }
