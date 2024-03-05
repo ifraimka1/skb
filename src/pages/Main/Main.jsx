@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { News, Projects, Labs, Partners, Gallery, ContactUs } from './components';
 import { RootContext } from '../Root';
@@ -6,11 +6,11 @@ import { RootContext } from '../Root';
 import './Main.styles.scss';
 
 function Main() {
-    const { containerRef } = useContext(RootContext);
+    const { setRef } = useContext(RootContext);
 
     return (
         <>
-            <header className="header" id="mainpageheader" ref={containerRef}>
+            <header id="mainpageheader" ref={element => setRef(element)}>
                 <div className="container">
                     <h1>Думай иначе, будь креативным!</h1>
                     <h2>Студенческое конструкторское бюро<br />

@@ -13,6 +13,7 @@
     "reactpress": "^1.0.0",
     "sass": "^1.70.0",
     "scroll-carousel-react": "^1.0.0",
+    "use-callback-ref": "^1.3.1",
     "web-vitals": "^2.1.4",
     "wpapi": "^1.2.2"
   },

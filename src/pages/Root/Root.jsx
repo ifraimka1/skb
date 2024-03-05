@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { createContext, useEffect } from 'react';
 
 import { getContacts } from "../../api";
@@ -15,8 +15,18 @@ async function loader() {
 }
 
 function Root() {
+    const currentRoot = useLocation();
 
-    const [containerRef, isVisible] = useElementOnScreen({
+    useEffect(() => {
+        const [navbar] = document.getElementsByClassName('navbar');
+        if (currentRoot.pathname !== '/') {
+            navbar.classList.remove('absolute');
+        } else {
+            navbar.classList.add('absolute');
+        }
+    }, [currentRoot]);
+
+    const [setRef, isVisible] = useElementOnScreen({
         root: null,
         rootMargin: '0px',
         threshold: 0,
@@ -33,7 +43,7 @@ function Root() {
 
     return (
         <RootContext.Provider
-            value={{ containerRef }}
+            value={{ setRef }}
         >
             <Navbar />
             <div id="page">
