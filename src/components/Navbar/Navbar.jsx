@@ -1,5 +1,6 @@
-import { scb as logo } from '../../assets/images';
 import NavbarLink from './NavbarLink';
+
+import { scb as logo } from '../../assets/images';
 import './Navbar.styles.scss';
 
 const mock = [
