@@ -1,20 +1,20 @@
 @import "../../assets/styles/theme.scss";
 
-.navbar {
+#navbar {
     position: fixed;
     top: 0;
     width: 80%;
-    height: 60px;
-    max-height: 80px;
-    padding: 1em 10%;
-    background: $bg-secondary;
-    z-index: 1;
+    height: $navbar-height;
+    padding: $navbar-padding-tb 10%;
+    background-color: $bg-secondary;
+    z-index: 10;
+    transition: height .3s ease-out, background-color .3s ease-out;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .logo-container {
+    .nav-link:has(> .logo) {
         height: 100%;
 
         .logo {
@@ -45,7 +45,14 @@
     }
 }
 
-.navbar.absolute {
-    position: absolute;
-    background: transparent;
+#navbar.transparent{
+    background-color: transparent;
 }
+
+// #navbar.mini {
+//     height: $navbar-height-mini;
+
+//     .nav-link:has(> .logo) {
+//         height: 130%;
+//     }
+// }

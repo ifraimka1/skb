@@ -15,29 +15,18 @@ async function loader() {
 }
 
 function Root() {
-    const currentRoot = useLocation();
-
-    useEffect(() => {
-        const [navbar] = document.getElementsByClassName('navbar');
-        if (currentRoot.pathname !== '/') {
-            navbar.classList.remove('absolute');
-        } else {
-            navbar.classList.add('absolute');
-        }
-    }, [currentRoot]);
-
     const [setRef, isVisible] = useElementOnScreen({
         root: null,
         rootMargin: '0px',
-        threshold: 0,
+        threshold: 0.6,
     });
 
     useEffect(() => {
-        const [navbar] = document.getElementsByClassName('navbar');
+        const navbar = document.getElementById('navbar');
         if (isVisible) {
-            navbar.classList.add('absolute');
+            navbar.classList.add('transparent');
         } else {
-            navbar.classList.remove('absolute');
+            navbar.classList.remove('transparent');
         }
     }, [isVisible]);
 
