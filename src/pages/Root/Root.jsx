@@ -1,17 +1,16 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
-import { getContacts } from "../../api";
+import { getMedia } from "../../api";
 import Navbar from '../../components/Navbar';
 import Footer from "../../components/Footer";
 import './Root.styles.scss';
 
 async function loader() {
-    const contacts = await getContacts();
-    return { contacts };
+    const media = getMedia();
+    return { media };
 }
 
 function Root() {
-   const { contacts } = useLoaderData();
     return (
         <>
             <Navbar />

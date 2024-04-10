@@ -40,7 +40,7 @@ function Navbar({ links = mock }) {
                 </div>
             </NavbarLink>
             <div className="bar">
-                {links.map(link => <NavbarLink link={link} />)}
+                {links.map((link, index) => <NavbarLink link={link} key={index} />)}
             </div>
         </div>
     );

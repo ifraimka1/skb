@@ -4,37 +4,37 @@ import Arrows from './components/Arrows';
 import SlidesList from './components/SlidesList';
 import Dots from './components/Dots';
 
-import { getSliderImages } from '../../api';
+import { getMedia } from '../../api';
 import './Slider.styles.scss';
 
 export const SliderContext = createContext();
 
 function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
-    const [items, setItems] = useState([]);
+    const [mediaList, setMediaList] = useState([]);
     const [slide, setSlide] = useState(0);
 
     useEffect(() => {
         const loadData = async () => {
-          const images = await getSliderImages();
-          setItems(images);
+            const newMediaList = await getMedia('CATEGORY');
+            setMediaList(newMediaList);
         };
         loadData();
-      }, []);
+    }, []);
 
     const changeSlide = (direction = 1) => {
         let slideNumber = 0;
 
         if (slide + direction < 0) {
-            slideNumber = items.length - 1;
+            slideNumber = mediaList.length - 1;
         } else {
-            slideNumber = (slide + direction) % items.length;
+            slideNumber = (slide + direction) % mediaList.length;
         }
 
         setSlide(slideNumber);
     };
 
     const goToSlide = (number) => {
-        setSlide(number % items.length);
+        setSlide(number % mediaList.length);
     }
 
     useEffect(() => {
@@ -47,7 +47,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
         return () => {
             clearInterval(interval);
         };
-    }, [items.length, slide]);
+    }, [mediaList.length, slide]);
 
     return (
         <div className="slider">
@@ -55,9 +55,9 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
                 value={{
                     goToSlide,
                     changeSlide,
-                    slidesCount: items.length,
+                    slidesCount: mediaList.length,
                     slideNumber: slide,
-                    items
+                    mediaList
                 }}
             >
                 <Arrows />
