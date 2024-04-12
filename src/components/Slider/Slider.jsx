@@ -15,7 +15,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
 
     useEffect(() => {
         const loadData = async () => {
-            const newMediaList = await getMedia('CATEGORY');
+            const newMediaList = await getMedia('gallery');
             setMediaList(newMediaList);
         };
         loadData();
