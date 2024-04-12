@@ -1,6 +1,6 @@
 React-приложение "Сайт СКБ КИТ" для использования с WordPress.
 Для работы приложения требуются:
-- Wordpress с установленным плагином ReactPress
+- Wordpress с установленными плагинами: ReactPress, FileBird
 - Node.js
 
 Создано с помощью create-react-app
