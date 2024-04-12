@@ -2,6 +2,7 @@ import * as WPAPI from 'wpapi';
 
 import reactPress from './reactPress';
 
+// Токен fileBird
 const fbToken = 'ltvszr1EL7Q8lX9v4W7ivAEwJsFUvicFGtLepCDj';
 
 const wp = new WPAPI(
