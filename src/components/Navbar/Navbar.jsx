@@ -38,7 +38,7 @@ function Navbar({ links = mock }) {
                 <img src={logo} className="logo" alt="SCB logo" />
             </NavbarLink>
             <div className="bar">
-                {links.map(link => <NavbarLink link={link} />)}
+                {links.map((link, index) => <NavbarLink link={link} key={index} />)}
             </div>
         </div>
     );

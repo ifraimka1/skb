@@ -4,9 +4,9 @@ import './Gallery.styles.scss';
 
 function Gallery() {
     return (
-        <div className="block" id="gallery">
-            <h1>СКБ «КИТ» - реальные технологические проекты<br/>
-                под руководством наставников<br/>
+        <div className="block gallery">
+            <h1>СКБ «КИТ» - реальные технологические проекты<br />
+                под руководством наставников<br />
                 из университета и бизнеса.</h1>
             <Slider />
         </div>

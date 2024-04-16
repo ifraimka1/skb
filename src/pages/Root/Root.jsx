@@ -1,7 +1,7 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { createContext, useEffect } from 'react';
 
-import { getContacts } from "../../api";
+import { getMedia } from "../../api";
 import useElementOnScreen from '../../lib/useElementOnScreen';
 import Navbar from '../../components/Navbar';
 import Footer from "../../components/Footer";
@@ -10,8 +10,8 @@ import './Root.styles.scss';
 export const RootContext = createContext();
 
 async function loader() {
-    const contacts = await getContacts();
-    return { contacts };
+    const media = getMedia();
+    return { media };
 }
 
 function Root() {

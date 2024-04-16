@@ -33,7 +33,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
             </div>
             <FooterContacts contacts={ contacts } />
             <div className="links">
-                { links.map(link => <FooterLink link={link} />) }
+                { links.map((link, index) => <FooterLink link={link} key={index} />) }
             </div>
         </footer>
     );
