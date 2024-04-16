@@ -1,1 +1,1 @@
-export { default as Root, loader } from './Root';
+export { default as Root, RootContext, loader } from './Root';

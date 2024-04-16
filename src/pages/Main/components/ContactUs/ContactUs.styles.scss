@@ -1,10 +1,14 @@
-.contact-us {
+#contact-us {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 60px;
 
     .half {
-        flex: 1 1 50%;
+        flex: 0 0 50%;
+    }
+
+    .contact-form {
+        max-width: 500px;
     }
 }
