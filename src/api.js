@@ -2,8 +2,6 @@ import * as WPAPI from 'wpapi';
 
 import reactPress from './reactPress';
 
-const fbToken = 'ltvszr1EL7Q8lX9v4W7ivAEwJsFUvicFGtLepCDj';
-
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
     ? {
@@ -13,19 +11,39 @@ const wp = new WPAPI(
     }
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
-wp.setHeaders('Authorization', 'Bearer ' + fbToken);
 
-// Получаем категории медиафайлов
-const response = await wp.url(reactPress.api.rest_url + 'filebird/public/v1/folders')
-const { data: { folders } } = response;
-const mediaCategories = {};
+// Функция загрузки медабиблиотеки по категориям
+async function loadMedia() {
+  // Пытаемся получить медиа, пока не получится
+  let response;
+  while (!response) {
+    try {
+      response = await wp.media();
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
-// Деструктурируем объекты в формат {category: id}
-for (let { id, text } of folders) {
-  mediaCategories[text] = id;
+  // Нам потребуется id, категория и url
+  const result = {};
+  for (let { id, alt_text, source_url: url } of response) {
+    const [category, name] = alt_text.split('_');
+
+    // Создаем ключ с пустым массивом, если еще нет
+    if (!result[category]) {
+      result[category] = [];
+    }
+
+    // Добавляем медиа в массив нужной категории
+    result[category].push({ id, name, url });
+  }
+
+  return result;
 }
-console.log(response);
-console.log(mediaCategories);
+
+const mediaLibrary = await loadMedia();
+console.log(mediaLibrary);
+
 export async function getPosts(q = '') {
   try {
     const posts = await wp.posts().search(q);
@@ -38,9 +56,7 @@ export async function getPosts(q = '') {
 
 export async function getMedia(category) {
   try {
-    const response = await wp.url(reactPress.api.rest_url + 'filebird/public/v1/attachment-id/?folder_id=' + mediaCategories[category]);
-    console.log(response);
-    return [];
+    return mediaLibrary[category];
   } catch (error) {
     console.log(error);
     return [];

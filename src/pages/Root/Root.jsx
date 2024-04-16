@@ -4,7 +4,7 @@ import { createContext, useEffect } from 'react';
 import { getMedia } from "../../api";
 import useElementOnScreen from '../../lib/useElementOnScreen';
 import Navbar from '../../components/Navbar';
-import Footer from "../../components/Footer";
+import Footer from '../../components/Footer';
 import './Root.styles.scss';
 
 export const RootContext = createContext();
