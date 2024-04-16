@@ -51,7 +51,7 @@ const mock = [
 
 function Labs({ labs = mock }) {
     return (
-        <div className="block labs">
+        <div className="block" id="labs">
             <BlockHeading heading="Наши лаборатории" />
             <div className="row">
                 { labs.map( lab => <LabCard key={ lab.id } lab={ lab } />) }
