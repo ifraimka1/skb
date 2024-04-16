@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import { getMedia } from "../../api";
+import { getMedia } from '../../api';
 import Navbar from '../../components/Navbar';
-import Footer from "../../components/Footer";
+import Footer from '../../components/Footer';
 import './Root.styles.scss';
 
 async function loader() {

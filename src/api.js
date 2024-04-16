@@ -42,6 +42,7 @@ async function loadMedia() {
 }
 
 const mediaLibrary = await loadMedia();
+console.log(mediaLibrary);
 
 export async function getPosts(q = '') {
   try {
