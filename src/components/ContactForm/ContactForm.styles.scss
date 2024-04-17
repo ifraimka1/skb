@@ -1,7 +1,7 @@
 @import "../../assets/styles/theme.scss";
 
 .contact-form {
-    padding: 24px 26px;
+    padding: 20px 22px;
     border-radius: 16px;
 
     background-color: $bg-form;
@@ -17,7 +17,7 @@
     .inputs {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 14px;
         
         .submit {
             width: 100%;
