@@ -5,12 +5,13 @@
     justify-content: space-between;
     align-items: center;
 
-    height: 150px;
+    height: 100px;
     padding: 0 10%;
+    margin: 0;
     background: $bg-footer;
 
     .logo-container {
-        height: 80px;
+        height: 70%;
         max-width: 30%;
 
         .logo {
@@ -20,10 +21,19 @@
     }
 
     .contacts {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        max-height: 70%;
+        height: 70%;
         color: $text-secondary;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 400;
-        line-height: 20px;
+
+        p {
+            margin: 0;
+        }
     }
 
     .links {
