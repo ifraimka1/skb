@@ -36,7 +36,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
         const loadData = async () => {
             const footerMedia = await getMedia('footer');
             const newMediaList = mediaList;
-            
+
             for (let media of footerMedia) {
                 newMediaList[media.name].icon = media.url;
             }
@@ -53,7 +53,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
             </div>
             <FooterContacts contacts={ contacts } />
             <div className="links">
-                { Object.keys(mediaList).forEach((link, index) => <FooterLink link={link} key={index} />) }
+                { Object.keys(mediaList).map((link, index) => <FooterLink link={mediaList[link]} key={index} />) }
             </div>
         </footer>
     );
