@@ -2,30 +2,63 @@ import * as WPAPI from 'wpapi';
 
 import reactPress from './reactPress';
 
-import { g1, g2, g3 } from './assets/images/gallery';
-
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
     ? {
-        endpoint: reactPress.api.rest_url,
-        username: 'admin',
-        password: 'testapi',
-      }
+      endpoint: reactPress.api.rest_url,
+      username: 'admin',
+      password: 'admin',
+    }
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
 
-export async function getContacts(q = '') {
+// Функция загрузки медабиблиотеки по категориям
+async function loadMedia() {
+  // Пытаемся получить медиа, пока не получится
+  let response;
+  while (!response) {
+    try {
+      response = await wp.media();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // Нам потребуется id, категория и url
+  const result = {};
+  for (let { id, alt_text, source_url: url } of response) {
+    const [category, name] = alt_text.split('_');
+
+    // Создаем ключ с пустым массивом, если еще нет
+    if (!result[category]) {
+      result[category] = [];
+    }
+
+    // Добавляем медиа в массив нужной категории
+    result[category].push({ id, name, url });
+  }
+
+  return result;
+}
+
+const mediaLibrary = await loadMedia();
+console.log(mediaLibrary);
+
+export async function getPosts(q = '') {
   try {
-    const users = await wp.users().search(q);
-    return users;
+    const posts = await wp.posts().search(q);
+    return posts;
   } catch (error) {
     console.error(error);
     return [];
   }
 }
 
-export async function getSliderImages() {
-  const mock = [ g1, g2, g3 ];
-  
-  return mock;
+export async function getMedia(category) {
+  try {
+    return mediaLibrary[category];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 }

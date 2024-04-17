@@ -43,7 +43,7 @@ const mock = [
 
 function Partners({ partners = mock }) {
     return (
-        <div className="block partners">
+        <div className="block" id="partners">
             <BlockHeading heading="Наши партнеры" />
             <ScrollCarousel 
                 autoplay

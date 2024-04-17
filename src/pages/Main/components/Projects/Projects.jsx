@@ -38,7 +38,7 @@ const mock = [
 
 function Projects({ projects = mock }) {
     return (
-        <div className="block projects">
+        <div className="block" id="projects">
             <BlockHeading heading="Наши проекты" linkText="Все проекты" link="/projects" />
             <div className="row">
                 {projects.map(item => <ProjectCard key={ item.id } project={item} />)}

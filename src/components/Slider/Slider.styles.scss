@@ -18,14 +18,10 @@
 
             & .slide-image {
                 display: flex;
-                height: 60vh;
+                max-height: 60vh;
+                max-width: calc(100% - 2 * (15% + 30px));
                 margin: 0 auto;
                 border-radius: 8px;
-            }
-
-            & .slide-title {
-                text-align: center;
-                margin-top: 10px;
             }
         }
     }

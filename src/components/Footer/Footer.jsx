@@ -1,23 +1,27 @@
+import { useState, useEffect } from 'react';
+
 import FooterLink from './FooterLink';
+import FooterContacts from './FooterContacts';
+import { getMedia } from '../../api';
+
 import { scb as logo } from '../../assets/images';
 import { iconIctis, iconSfedu, iconVK } from '../../assets/images/footer';
 import './Footer.styles.scss';
-import FooterContacts from './FooterContacts';
 
-const mockLinks = [
-    {
+const mockLinks = {
+    ictis: {
         icon: iconIctis,
         to: "https://ictis.sfedu.ru",
     },
-    {
+    sfedu: {
         icon: iconSfedu,
         to: "https://sfedu.ru",
     },
-    {
+    vk: {
         icon: iconVK,
         to: "https://vk.com/skbkit",
     },
-];
+};
 
 const mockContacts = {
     email: "skb@sfedu.ru",
@@ -26,6 +30,22 @@ const mockContacts = {
 };
 
 function Footer({ links = mockLinks, contacts =  mockContacts }) {
+    const [mediaList, setMediaList] = useState(links);
+
+    useEffect(() => {
+        const loadData = async () => {
+            const footerMedia = await getMedia('footer');
+            const newMediaList = mediaList;
+
+            for (let media of footerMedia) {
+                newMediaList[media.name].icon = media.url;
+            }
+
+            setMediaList(newMediaList);
+        };
+        loadData();
+    }, []);
+
     return (
         <footer className="footer">
             <div className="logo-container">
@@ -33,7 +53,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
             </div>
             <FooterContacts contacts={ contacts } />
             <div className="links">
-                { links.map(link => <FooterLink link={link} />) }
+                { Object.keys(mediaList).map((link, index) => <FooterLink link={mediaList[link]} key={index} />) }
             </div>
         </footer>
     );

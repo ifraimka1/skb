@@ -1,6 +1,6 @@
-import { scb as logo } from '../../assets/images';
-import { NavLink } from "react-router-dom";
 import NavbarLink from './NavbarLink';
+
+import { scb as logo } from '../../assets/images';
 import './Navbar.styles.scss';
 
 const mock = [
@@ -33,14 +33,12 @@ const mock = [
 
 function Navbar({ links = mock }) {
     return (
-        <div className="navbar">
-            <NavbarLink link={{ to: "/" }} >
-                <div className="logo-container">
-                    <img src={logo} className="logo" alt="SCB logo" />
-                </div>
+        <div id="navbar">
+            <NavbarLink className="logo-container" link={{ to: "/" }} >
+                <img src={logo} className="logo" alt="SCB logo" />
             </NavbarLink>
             <div className="bar">
-                {links.map(link => <NavbarLink link={link} />)}
+                {links.map((link, index) => <NavbarLink link={link} key={index} />)}
             </div>
         </div>
     );

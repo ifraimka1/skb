@@ -1,10 +1,12 @@
 {
     "configurations": [
+        
         {
             "type": "chrome",
             "name": "http://localhost:3000/",
             "request": "launch",
-            "url": "http://localhost:3000/"
+            "url": "http://localhost:3000/",
+            "runtimeExecutable": "C:\\Users\\mrifr\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe"
         }
     ]
 }
