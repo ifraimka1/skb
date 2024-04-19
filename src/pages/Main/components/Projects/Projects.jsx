@@ -7,7 +7,6 @@ import { getMedia } from '../../../../api';
 
 import './Projects.styles.scss';
 import {
-    project,
     drone,
     ttt,
     comBattle
@@ -41,13 +40,7 @@ function Projects({ projects = mock }) {
 
     useEffect(() => {
         const loadData = async () => {
-            const projectsMedia = await getMedia('projects');
-            const newMediaList = mediaList;
-
-            for (let media of projectsMedia) {
-                newMediaList[media.name] = {...mediaList[media.name], image: media.image};
-            }
-
+            const newMediaList = await getMedia('projects', mediaList);
             setMediaList(newMediaList);
         };
         loadData();
@@ -57,7 +50,7 @@ function Projects({ projects = mock }) {
         <div className="block" id="projects">
             <BlockHeading heading="Наши проекты" linkText="Все проекты" link="/projects" />
             <div className="row">
-                { Object.keys(mediaList).map((project, index) => <ProjectCard key={ index } project={ mediaList[project] } />) }
+                { Object.keys(mediaList).map(project => <ProjectCard key={ mediaList[project].id } project={ mediaList[project] } />) }
             </div>
         </div>
     );

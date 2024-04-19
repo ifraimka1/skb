@@ -52,13 +52,7 @@ function Labs({ labs = mock }) {
 
     useEffect(() => {
         const loadData = async () => {
-            const labMedia = await getMedia('labs');
-            const newMediaList = mediaList;
-
-            for (let media of labMedia) {
-                newMediaList[media.name].image = media.image;
-            }
-            console.log(newMediaList);
+            const newMediaList = await getMedia('labs', mediaList);
             setMediaList(newMediaList);
         };
         loadData();
@@ -68,7 +62,7 @@ function Labs({ labs = mock }) {
         <div className="block" id="labs">
             <BlockHeading heading="Наши лаборатории" />
             <div className="row">
-                { Object.keys(mediaList).map((lab, index) => <LabCard key={ index } lab={ mediaList[lab] } />) }
+                { Object.keys(mediaList).map(lab => <LabCard key={ mediaList[lab].id } lab={ mediaList[lab] } />) }
             </div>
         </div>
     );

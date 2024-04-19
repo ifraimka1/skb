@@ -58,8 +58,18 @@ export async function getPosts(q = '') {
   }
 }
 
-export async function getMedia(category) {
+export async function getMedia(category, target = false) {
   try {
+    if (target) {
+      for (let media of mediaLibrary[category]) {
+        target[media.name].image = media.image;
+        target[media.name].id = media.id;
+        console.log(target[media.name].id);
+      }
+
+      return target;
+    }
+
     return mediaLibrary[category];
   } catch (error) {
     console.log(error);
