@@ -26,16 +26,20 @@ async function loadMedia() {
 
   // Нам потребуется id, категория и url
   const result = {};
-  for (let { id, alt_text, source_url: url } of response) {
-    const [category, name] = alt_text.split('_');
+  while (response) {
+    for (let { id, alt_text, source_url: image } of response) {
+      const [category, name] = alt_text.split('_');
 
-    // Создаем ключ с пустым массивом, если еще нет
-    if (!result[category]) {
-      result[category] = [];
+      // Создаем ключ с пустым массивом, если еще нет
+      if (!result[category]) {
+        result[category] = [];
+      }
+
+      // Добавляем медиа в массив нужной категории
+      result[category].push({ id, name, image });
     }
-
-    // Добавляем медиа в массив нужной категории
-    result[category].push({ id, name, url });
+    if (!response._paging.next) break;
+    response = await response._paging.next.get();
   }
 
   return result;

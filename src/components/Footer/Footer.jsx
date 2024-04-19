@@ -10,15 +10,15 @@ import './Footer.styles.scss';
 
 const mockLinks = {
     ictis: {
-        icon: iconIctis,
+        image: iconIctis,
         to: "https://ictis.sfedu.ru",
     },
     sfedu: {
-        icon: iconSfedu,
+        image: iconSfedu,
         to: "https://sfedu.ru",
     },
     vk: {
-        icon: iconVK,
+        image: iconVK,
         to: "https://vk.com/skbkit",
     },
 };
@@ -38,7 +38,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
             const newMediaList = mediaList;
 
             for (let media of footerMedia) {
-                newMediaList[media.name].icon = media.url;
+                newMediaList[media.name].image = media.image;
             }
 
             setMediaList(newMediaList);
