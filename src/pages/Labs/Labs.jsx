@@ -1,18 +1,10 @@
-import Page from "../Page/Page";
+import { PageHeader } from "../components";
 
 function Labs() {
     return (
-        // <>
-        //      <header className="header">
-        //         <h1>Laboratories</h1>
-        //     </header>
-        //     <div className="content">
+        <PageHeader>
 
-        //     </div>
-        // </>
-        <Page title="Laboratories">
-            
-        </Page>
+        </PageHeader>
     );
 }
 

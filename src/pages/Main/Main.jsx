@@ -3,13 +3,14 @@ import { HashLink } from 'react-router-hash-link';
 
 import { News, Projects, Labs, Partners, Gallery, ContactUs } from './components';
 import { RootContext } from '../Root';
+import { PageContent, PageHeader } from '../components';
 
 import './Main.styles.scss';
 
 function Main() {
     const { setRef } = useContext(RootContext);
 
-    useEffect(() => {        
+    useEffect(() => {
         const navbar = document.getElementById("navbar");
         navbar.classList.add('transparent'); // Mount
 
@@ -20,22 +21,22 @@ function Main() {
 
     return (
         <>
-            <header id="mainpageheader" ref={element => setRef(element)}>
+            <PageHeader id="mainpageheader" ref={element => setRef(element)}>
                 <div className="container">
                     <h1>Думай иначе, будь креативным!</h1>
                     <h2>Студенческое конструкторское бюро<br />
                         "Компьютерное инновационное творчество"</h2>
                     <HashLink smooth to="#contact-us" className="btn">Связаться с нами</HashLink>
                 </div>
-            </header>
-            <div className="content">
+            </PageHeader>
+            <PageContent>
                 <News />
                 <Projects />
                 <Labs />
                 <Partners />
                 <Gallery />
                 <ContactUs />
-            </div>
+            </PageContent>
         </>
     );
 }
