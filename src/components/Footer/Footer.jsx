@@ -10,15 +10,15 @@ import './Footer.styles.scss';
 
 const mockLinks = {
     ictis: {
-        icon: iconIctis,
+        image: iconIctis,
         to: "https://ictis.sfedu.ru",
     },
     sfedu: {
-        icon: iconSfedu,
+        image: iconSfedu,
         to: "https://sfedu.ru",
     },
     vk: {
-        icon: iconVK,
+        image: iconVK,
         to: "https://vk.com/skbkit",
     },
 };
@@ -34,13 +34,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
 
     useEffect(() => {
         const loadData = async () => {
-            const footerMedia = await getMedia('footer');
-            const newMediaList = mediaList;
-
-            for (let media of footerMedia) {
-                newMediaList[media.name].icon = media.url;
-            }
-
+            const newMediaList = await getMedia('footer', mediaList);
             setMediaList(newMediaList);
         };
         loadData();
@@ -53,7 +47,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
             </div>
             <FooterContacts contacts={ contacts } />
             <div className="links">
-                { Object.keys(mediaList).map((link, index) => <FooterLink link={mediaList[link]} key={index} />) }
+                { Object.keys(mediaList).map(link => <FooterLink link={ mediaList[link] } key={ mediaList[link].id } />) }
             </div>
         </footer>
     );

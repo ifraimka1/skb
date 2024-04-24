@@ -1,47 +1,56 @@
+import { useState, useEffect } from 'react';
+
 import BlockHeading from '../BlockHeading';
 import ProjectCard from './ProjectCard';
+
+import { getMedia } from '../../../../api';
+
 import './Projects.styles.scss';
 import {
-    project,
     drone,
     ttt,
     comBattle
 } from '../../../../assets/images/projects';
 
-const mock = [
-    {
-        id: 1,
+const mock = {
+    drone: {
         image: drone,
         link: "/projects",
     },
-    {
-        id: 2,
+    ttt: {
         image: ttt,
         link: "/projects",
     },
-    {
-        id: 3,
+    comBattle: {
         image: comBattle,
         link: "/projects",
     },
-    {
-        id: 4,
+    comBattle2: {
         image: comBattle,
         link: "/projects",
     },
-    {
-        id: 5,
+    comBattle3: {
         image: comBattle,
         link: "/projects",
     },
-];
+};
 
 function Projects({ projects = mock }) {
+    const [mediaList, setMediaList] = useState(projects);
+
+    useEffect(() => {
+        const loadData = async () => {
+            const newMediaList = await getMedia('projects', mediaList);
+            setMediaList(newMediaList);
+        };
+        loadData();
+    }, []);
+
     return (
         <div className="block" id="projects">
             <BlockHeading heading="Наши проекты" linkText="Все проекты" link="/projects" />
             <div className="row">
-                {projects.map(item => <ProjectCard key={ item.id } project={item} />)}
+                { Object.keys(mediaList).map(project => <ProjectCard key={ mediaList[project].id } project={ mediaList[project] } />) }
             </div>
         </div>
     );

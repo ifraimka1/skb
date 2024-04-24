@@ -1,4 +1,5 @@
 import * as WPAPI from 'wpapi';
+import { flatten } from 'lodash';
 
 import reactPress from './reactPress';
 
@@ -12,21 +13,29 @@ const wp = new WPAPI(
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
 
-// Функция загрузки медабиблиотеки по категориям
-async function loadMedia() {
-  // Пытаемся получить медиа, пока не получится
-  let response;
-  while (!response) {
-    try {
-      response = await wp.media();
-    } catch (e) {
-      console.error(e);
+async function getAllMedia(request) {
+  return request.then(function (response) {
+    if (!response._paging || !response._paging.next) {
+      return response;
     }
-  }
+    // Запрос к следующей странице и возврат ответов одной коллекцией
+    return Promise.all([
+      response,
+      getAllMedia(response._paging.next)
+    ]).then(function (responses) {
+      return flatten(responses);
+    });
+  });
+}
+
+// Функция загрузки медабиблиотеки и сортировки по категориям
+async function loadMedia() {
+  const response = await getAllMedia(wp.media());
 
   // Нам потребуется id, категория и url
   const result = {};
-  for (let { id, alt_text, source_url: url } of response) {
+
+  for (let { id, alt_text, source_url: image } of response) {
     const [category, name] = alt_text.split('_');
 
     // Создаем ключ с пустым массивом, если еще нет
@@ -35,7 +44,7 @@ async function loadMedia() {
     }
 
     // Добавляем медиа в массив нужной категории
-    result[category].push({ id, name, url });
+    result[category].push({ id, name, image });
   }
 
   return result;
@@ -54,8 +63,18 @@ export async function getPosts(q = '') {
   }
 }
 
-export async function getMedia(category) {
+export async function getMedia(category, target = false) {
   try {
+    if (target) {
+      for (let media of mediaLibrary[category]) {
+        target[media.name].image = media.image;
+        target[media.name].id = media.id;
+        console.log(target[media.name].id);
+      }
+
+      return target;
+    }
+
     return mediaLibrary[category];
   } catch (error) {
     console.log(error);

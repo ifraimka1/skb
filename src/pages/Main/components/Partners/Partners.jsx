@@ -1,47 +1,53 @@
+import { useState, useEffect } from 'react';
 import ScrollCarousel from 'scroll-carousel-react';
 
 import BlockHeading from '../BlockHeading';
 import PartnersLogo from './PartnersLogo';
+
+import { getMedia } from '../../../../api';
+
 import './Partners.styles.scss';
 import { scb } from '../../../../assets/images';
 import { porsche } from '../../../../assets/images/partners';
 
 const mock = [
     {
-        id: 1,
         image: porsche,
     },
     {
-        id: 2,
         image: scb,
     },
     {
-        id: 3,
         image: porsche,
     },
     {
-        id: 4,
         image: scb,
     },
     {
-        id: 5,
         image: porsche,
     },
     {
-        id: 6,
         image: scb,
     },
     {
-        id: 7,
         image: porsche,
     },
     {
-        id: 8,
         image: scb,
     },
 ];
 
 function Partners({ partners = mock }) {
+    const [ mediaList, setMediaList ] = useState(partners);
+
+    useEffect(() => {
+        const loadData = async () => {
+            const newMediaList = await getMedia('partners');
+            setMediaList(newMediaList);
+        };
+        loadData();
+    }, []);
+
     return (
         <div className="block" id="partners">
             <BlockHeading heading="Наши партнеры" />
@@ -51,7 +57,7 @@ function Partners({ partners = mock }) {
                 speed={1}
                 margin={32}
             >
-                { partners.map(item => <PartnersLogo key={ item.id } partner={ item } />) }
+                { mediaList.map((item, index) => <PartnersLogo key={ index } partner={ item } />) }
             </ScrollCarousel>
         </div>
     );
