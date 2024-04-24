@@ -1,12 +1,14 @@
+import { PageContent, PageHeader } from "../components";
+
 function Projects() {
     return (
         <>
-            <header className="header">
+            <PageHeader className="header">
                 <h1>Projects</h1>
-            </header>
-            <div className="content">
+            </PageHeader>
+            <PageContent className="content">
 
-            </div>
+            </PageContent>
         </>
     );
 }

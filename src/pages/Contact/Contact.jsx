@@ -1,11 +1,13 @@
+import { PageContent, PageHeader } from "../components";
+
 function Contact() {
     return (
         <>
-            <header className='header'>
+            <PageHeader>
                 <h1>Студенческое конструкторское бюро<br />
                     "Компьютерное инновационное творчество"</h1>
-            </header>
-            <div className="content">
+            </PageHeader>
+            <PageContent>
                 <div className="contact">
                     <p>Контактное лицо: Кутковой Владимир Сергеевич</p>
                 </div>
@@ -17,7 +19,7 @@ function Contact() {
                     <label htmlFor="message">Сообщение</label>
                     <input type="text" name="message-input" id="message-input" />
                 </form>
-            </div>
+            </PageContent>
         </>
     );
 }
