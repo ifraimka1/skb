@@ -15,7 +15,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body, input, textarea {
+body,
+input,
+textarea {
   font-family: Montserrat;
 }
 
@@ -32,12 +34,13 @@ a {
   display: block;
   width: fit-content;
   padding: 16px 24px;
+  margin: 0 auto;
   border-radius: 8px;
-  
+
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  
+
   color: $btn-primary-text;
   background: $btn-primary-bg;
   background-size: 200%;
@@ -46,4 +49,24 @@ a {
 
 .btn:hover {
   background-position: 100%;
+}
+
+.list {
+  margin-top: 0.5em;
+}
+
+.image {
+  border-radius: 8px;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+header h1 {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 44px;
 }
