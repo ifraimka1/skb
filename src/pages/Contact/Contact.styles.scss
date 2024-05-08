@@ -1,0 +1,21 @@
+.top-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex: 1 1 50%;
+
+    div:has(> ymaps) {
+
+        ymaps[class*="inner-panes"] {
+            border-radius: 8px;
+        }
+    }
+
+//    div:has(> ymaps)
+    div:has(> ymaps) > *
+    {
+        width: auto!important;
+        height: 100%!important;
+        aspect-ratio: 1;
+    }
+}
