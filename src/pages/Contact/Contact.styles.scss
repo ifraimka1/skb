@@ -1,21 +1,41 @@
-.top-block {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex: 1 1 50%;
+#page-contact {
+    .top-block {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex: 1 1 50%;
 
-    div:has(> ymaps) {
+        div:has(> ymaps) {
 
-        ymaps[class*="inner-panes"] {
-            border-radius: 8px;
+            ymaps[class*="inner-panes"] {
+                border-radius: 8px;
+            }
+        }
+
+        //    div:has(> ymaps)
+        div:has(> ymaps)>* {
+            width: auto !important;
+            height: 100% !important;
+            aspect-ratio: 1;
         }
     }
 
-//    div:has(> ymaps)
-    div:has(> ymaps) > *
-    {
-        width: auto!important;
-        height: 100%!important;
-        aspect-ratio: 1;
+    .contact-form {
+        .row {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .row:not(:has(.submit))>* {
+            flex: 1 1 calc(50% - 7px);
+        }
+
+        .row:has(.submit)>* {
+            margin: 0;
+            flex: 1 1 calc(50% - 7px);
+            max-width: 35%;
+        }
     }
 }

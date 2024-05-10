@@ -1,4 +1,6 @@
 @import "../../assets/styles/theme.scss";
+$icon-size: 24px;
+$color-file-button: rgb(7, 42, 200);
 
 .contact-form {
     padding: 20px 22px;
@@ -18,11 +20,32 @@
         display: flex;
         flex-direction: column;
         gap: 14px;
-        
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            gap: 14px;
+        }
+
+        .file-input * {
+            width: fit-content;
+            color: $color-file-button;
+            font-weight: 500;
+
+            .icon {
+                height: $icon-size;
+                width: $icon-size;
+                filter: invert(15%) sepia(100%) saturate(2861%) hue-rotate(229deg) brightness(93%) contrast(120%);;
+            }
+        }
+
         .submit {
             width: 100%;
             cursor: pointer;
-        
+
             padding: 12px;
             font-size: 18px;
             line-height: normal;

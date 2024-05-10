@@ -7,7 +7,7 @@ import "./Contact.styles.scss";
 
 function Contact() {
     return (
-        <>
+        <div id="page-contact">
             <PageHeader>
                 <div className="top-block">
                     <div>
@@ -37,7 +37,7 @@ function Contact() {
             <PageContent>
                 <ContactForm />
             </PageContent>
-        </>
+        </div>
     );
 }
 
