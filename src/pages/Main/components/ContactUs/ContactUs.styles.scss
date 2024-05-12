@@ -1,14 +1,19 @@
 #contact-us {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     gap: 60px;
 
     .half {
-        flex: 0 0 50%;
+        flex: 1 1 50%;
     }
 
     .contact-form {
-        max-width: 500px;
+        flex: 1 1 35%;
+
+        .row {
+            flex-direction: column;
+        }
     }
 }
