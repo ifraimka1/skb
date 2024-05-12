@@ -1,4 +1,5 @@
 @import "../../assets/styles/theme.scss";
+$gap: 20px;
 $icon-size: 24px;
 $color-file-button: rgb(7, 42, 200);
 
@@ -19,7 +20,7 @@ $color-file-button: rgb(7, 42, 200);
     .inputs {
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: $gap;
 
         * {
             box-sizing: border-box;
@@ -27,7 +28,7 @@ $color-file-button: rgb(7, 42, 200);
 
         .row {
             display: flex;
-            gap: 14px;
+            gap: $gap;
         }
 
         .file-input * {
