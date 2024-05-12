@@ -2,6 +2,7 @@ import * as WPAPI from 'wpapi';
 import { flatten } from 'lodash';
 
 import reactPress from './reactPress';
+import projects from './projects.json';
 
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
@@ -69,13 +70,25 @@ export async function getMedia(category, target = false) {
       for (let media of mediaLibrary[category]) {
         target[media.name].image = media.image;
         target[media.name].id = media.id;
-        console.log(target[media.name].id);
       }
 
       return target;
     }
 
     return mediaLibrary[category];
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export async function getProjects(id) {
+  try {
+    if (typeof id != 'undefined') {
+      return projects[id];
+    }
+
+    return projects;
   } catch (error) {
     console.log(error);
     return [];

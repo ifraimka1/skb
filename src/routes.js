@@ -1,6 +1,5 @@
 import {
     Root,
-    loader as rootLoader,
     ErrorPage,
     Main,
     AboutUs,
@@ -8,13 +7,13 @@ import {
     Projects,
     Contact
 } from './pages';
+import { Project, loader as projectsLoader } from './pages/Projects/components';
 
 const routes = [
     {
         path: '/',
         element: <Root />,
         errorElement: <ErrorPage />,
-        loader: rootLoader,
         children: [
             {
                 path: "/",
@@ -31,6 +30,11 @@ const routes = [
             {
                 path: "/projects",
                 element: <Projects />,
+            },
+            {
+                path: "/projects/:id",
+                element: <Project />,
+                loader: projectsLoader,
             },
             {
                 path: "/contact",

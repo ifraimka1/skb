@@ -1,4 +1,4 @@
-export { Root, loader } from './Root';
+export { Root } from './Root';
 export { default as ErrorPage} from './ErrorPage';
 export { default as Main } from './Main';
 export { default as AboutUs } from './AboutUs';

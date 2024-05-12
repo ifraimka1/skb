@@ -4,10 +4,10 @@ function Projects() {
     return (
         <>
             <PageHeader className="header">
-                <h1>Projects</h1>
+                <h1>Проекты</h1>
             </PageHeader>
             <PageContent className="content">
-
+                
             </PageContent>
         </>
     );
