@@ -14,7 +14,7 @@ const wp = new WPAPI(
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
 
-async function getAllMedia(request) {
+async function getAllContent(request) {
   return request.then(function (response) {
     if (!response._paging || !response._paging.next) {
       return response;
@@ -22,7 +22,7 @@ async function getAllMedia(request) {
     // Запрос к следующей странице и возврат ответов одной коллекцией
     return Promise.all([
       response,
-      getAllMedia(response._paging.next)
+      getAllContent(response._paging.next)
     ]).then(function (responses) {
       return flatten(responses);
     });
@@ -31,7 +31,7 @@ async function getAllMedia(request) {
 
 // Функция загрузки медабиблиотеки и сортировки по категориям
 async function loadMedia() {
-  const response = await getAllMedia(wp.media());
+  const response = await getAllContent(wp.media());
 
   // Нам потребуется id, категория и url
   const result = {};
@@ -51,13 +51,43 @@ async function loadMedia() {
   return result;
 }
 
+async function loadPosts() {
+  // Получаем рубрики
+  const responseCategories = await getAllContent(wp.categories());
+  const categories = {};
+
+  for (let { id, name } of responseCategories) {
+    categories[id] = name;
+  }
+
+  // Получаем метки
+  const responseTags = await getAllContent(wp.tags());
+  const tags = {};
+
+  for (let { id, name } of responseTags) {
+    tags[id] = name;
+  }
+
+  // Получаем записи
+  const responsePosts = await getAllContent(wp.posts());
+
+  for (let post of responsePosts) {
+    post.categories = post.categories.map(el => categories[el]);
+    post.tags = post.tags.map(el => tags[el]);
+  }
+
+  return responsePosts;
+}
+
 const mediaLibrary = await loadMedia();
 console.log(mediaLibrary);
+const posts = await loadPosts();
+console.log(posts);
 
-export async function getPosts(q = '') {
+export async function getPosts(name) {
   try {
-    const posts = await wp.posts().search(q);
-    return posts;
+    const result = posts.filter(post => post.tags.includes(name))[0];
+    return result;
   } catch (error) {
     console.error(error);
     return [];
