@@ -2,7 +2,8 @@ import * as WPAPI from 'wpapi';
 import { flatten } from 'lodash';
 
 import reactPress from './reactPress';
-import projects from './projects.json';
+import HTMLReactParser from 'html-react-parser/lib/index';
+//import projects from './projects.json';
 
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
@@ -51,6 +52,9 @@ async function loadMedia() {
   return result;
 }
 
+const mediaLibrary = await loadMedia();
+console.log(mediaLibrary);
+
 async function loadPosts() {
   // Получаем рубрики
   const responseCategories = await getAllContent(wp.categories());
@@ -79,14 +83,35 @@ async function loadPosts() {
   return responsePosts;
 }
 
-const mediaLibrary = await loadMedia();
-console.log(mediaLibrary);
 const posts = await loadPosts();
 console.log(posts);
 
+
+function createProjectList() {
+  const result = {};
+
+  for (let post of posts) {
+    if (post.categories.includes('projects')) {
+      const { image } = mediaLibrary['projects'].find(item => item.id === post.featured_media);
+
+      result[post.id] = {
+        id: post.id,
+        name: post.title.rendered,
+        tag: post.tags[0],
+        preview: image
+      }
+    }
+  }
+
+  return result;
+}
+
+const projects = createProjectList();
+console.log(projects);
+
 export async function getPosts(name) {
   try {
-    const result = posts.filter(post => post.tags.includes(name))[0];
+    const result = posts.filter(post => post.id == name)[0];
     return result;
   } catch (error) {
     console.error(error);
@@ -112,10 +137,21 @@ export async function getMedia(category, target = false) {
   }
 }
 
-export async function getProjects(id) {
+export async function getProjectByID(id) {
   try {
     if (typeof id != 'undefined') {
       return projects[id];
+    }
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export async function getProjects(filter) {
+  try {
+    if (typeof filter != 'undefined') {
+      return projects.filter(project => project.includes(filter));
     }
 
     return projects;
