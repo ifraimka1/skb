@@ -41,7 +41,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
     }, []);
 
     return (
-        <footer className="footer">
+        <footer id="footer">
             <div className="logo-container">
                 <img className="logo" alt="logo" src={ logo } />
             </div>

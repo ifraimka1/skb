@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { createContext, useEffect } from 'react';
 
-import { getProjects } from "../../api";
 import useElementOnScreen from '../../lib/useElementOnScreen';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -26,9 +25,7 @@ function Root() {
     }, [isVisible]);
 
     return (
-        <RootContext.Provider
-            value={{ setRef }}
-        >
+        <RootContext.Provider value={{ setRef }}>
             <Navbar />
             <div id="page">
                 <Outlet />
