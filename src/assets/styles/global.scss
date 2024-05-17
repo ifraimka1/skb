@@ -56,6 +56,7 @@ a {
 }
 
 .image {
+  max-width: 100%;
   border-radius: 8px;
 }
 
@@ -69,4 +70,20 @@ header h1 {
   font-size: 36px;
   font-weight: 600;
   line-height: 44px;
+  margin-top: 0;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  #page {
+    margin-bottom: 2em;
+  }
+
+  #footer {
+    margin-top: auto;
+  }
 }
