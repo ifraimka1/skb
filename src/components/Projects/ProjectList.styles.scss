@@ -1,0 +1,12 @@
+@import "../../assets/styles/theme.scss";
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+
+    .card {
+        flex: 1 1 30%;
+    }
+}

@@ -7,43 +7,5 @@
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 32px;
-
-        .card:nth-child(-n + 2) {
-            flex: 1.5 1 40%;
-        }
-
-        .card {
-            display: block;
-            position: relative;
-            flex: 1 0.5 30%;
-            height: 250px;
-
-            border-width: 1px;
-            border-style: solid;
-            border-color: transparent;
-
-            .image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 8px;
-            }
-
-            .link-label {
-                position: absolute;
-                right: 22px;
-                bottom: 16px;
-
-                padding: 2px;
-                border-radius: 4px;
-
-                font-size: 20px;
-                font-weight: 500;
-                line-height: 24px;
-                color: $text-card-project;
-
-                background-color: $text-card-project-bg;
-            }
-        }
     }
 }
