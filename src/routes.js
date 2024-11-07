@@ -7,7 +7,8 @@ import {
     Projects,
     Contact
 } from './pages';
-import { Project, loader as projectsLoader } from './pages/Projects/components';
+import { Project } from './pages/Projects/components';
+import { Lab } from './pages/Labs/components';
 
 const routes = [
     {
@@ -28,13 +29,16 @@ const routes = [
                 element: <Labs />,
             },
             {
+                path: "/labs/:id",
+                element: <Lab />,
+            },
+            {
                 path: "/projects",
                 element: <Projects />,
             },
             {
                 path: "/projects/:id",
                 element: <Project />,
-                loader: projectsLoader,
             },
             {
                 path: "/contact",
