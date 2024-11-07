@@ -60,10 +60,14 @@ a {
   border-radius: 8px;
 }
 
-p {
+p, ul, ol {
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
+}
+
+ul, ol {
+  margin-top: -0.75em;
 }
 
 header h1 {
