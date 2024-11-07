@@ -2,7 +2,7 @@ import * as WPAPI from 'wpapi';
 import { flatten } from 'lodash';
 
 import reactPress from './reactPress';
-import HTMLReactParser from 'html-react-parser/lib/index';
+import Parse from 'html-react-parser';
 //import projects from './projects.json';
 
 const wp = new WPAPI(
@@ -14,6 +14,37 @@ const wp = new WPAPI(
     }
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
+
+function parseContent(str) {
+  if (typeof str !== 'string') return str;
+  const content = Parse(str);
+
+  let result = [];
+  let temp = [];
+
+  for (let i = 0; i < content.length; i++) {
+    const current = content[i];
+
+    if (typeof current === 'string') continue;
+
+    if (current.type === "figure") {
+      temp.push(current.props.children.props.src); // Добавляем элемент в temp
+    } else {
+      if (temp.length !== 0) {
+        result.push({ type: "mediablock", value: temp });
+        temp = []; // Очищаем временный массив
+      }
+
+      result.push(current); // Добавляем текущий элемент в результат
+    }
+  }
+
+  if (temp.length !== 0) {
+    result.push({ type: "mediablock", value: temp });
+  }
+
+  return result;
+}
 
 async function getAllContent(request) {
   return request.then(function (response) {
@@ -30,7 +61,7 @@ async function getAllContent(request) {
   });
 }
 
-// Функция загрузки медабиблиотеки и сортировки по категориям
+// Функция загрузки медиабиблиотеки и сортировки по категориям
 async function loadMedia() {
   const response = await getAllContent(wp.media());
 
@@ -78,14 +109,14 @@ async function loadPosts() {
   for (let post of responsePosts) {
     post.categories = post.categories.map(el => categories[el]);
     post.tags = post.tags.map(el => tags[el]);
+    post.content = parseContent(post.content.rendered);
   }
 
   return responsePosts;
 }
 
 const posts = await loadPosts();
-console.log(posts);
-
+console.log('posts', posts);
 
 function createProjectList() {
   const result = {};
@@ -93,12 +124,15 @@ function createProjectList() {
   for (let post of posts) {
     if (post.categories.includes('projects')) {
       const { image } = mediaLibrary['projects'].find(item => item.id === post.featured_media);
+      const lab = post.categories.filter(el => el !== 'projects')[0];
 
       result[post.id] = {
         id: post.id,
         name: post.title.rendered,
         tag: post.tags[0],
-        preview: image
+        preview: image,
+        lab: lab,
+        content: post.content,
       }
     }
   }
@@ -107,7 +141,32 @@ function createProjectList() {
 }
 
 const projects = createProjectList();
-console.log(projects);
+console.log('projects', projects);
+
+function createLabList() {
+  const result = {};
+
+  for (let post of posts) {
+    if (post.categories.includes('labs')) {
+      const { image } = mediaLibrary['labs'].find(item => item.id === post.featured_media);
+      const previewText = Parse(post.excerpt.rendered)[0].props.children;
+
+      result[post.id] = {
+        id: post.id,
+        name: post.title.rendered,
+        tag: post.tags[0],
+        preview: image,
+        previewText: previewText,
+        content: post.content,
+      };
+    }
+  }
+
+  return result;
+}
+
+const labs = createLabList();
+console.log('labs', labs);
 
 export async function getPosts(name) {
   try {
@@ -148,13 +207,36 @@ export async function getProjectByID(id) {
   }
 }
 
-export async function getProjects(filter) {
+export async function getProjects(lab) {
   try {
-    if (typeof filter != 'undefined') {
-      return projects.filter(project => project.includes(filter));
+    if (typeof lab != 'undefined') {
+      console.log('projects filtering', projects);
+      console.log('lab as filter', lab);
+      console.log('projects after filter', Object.values(projects).filter(project => project.lab === lab));
+      return Object.values(projects).filter(project => project.lab === lab);
     }
 
     return projects;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export async function getLabByID(id) {
+  try {
+    if (typeof id != 'undefined') {
+      return labs[id];
+    }
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export async function getLabs() {
+  try {
+    return labs;
   } catch (error) {
     console.log(error);
     return [];
