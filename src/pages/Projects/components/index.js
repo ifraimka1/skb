@@ -1,1 +1,1 @@
-export { default as Project, loader } from "./Project";
+export { default as Project } from "./Project";
