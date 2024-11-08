@@ -27,7 +27,7 @@
             transition: opacity .2s ease-out;
         }
 
-        .content {
+        .card-content {
             margin: 0;
             position: absolute;
             inset: auto 20px 10px 20px;
@@ -62,11 +62,11 @@
             }
         }
 
-        &:hover .content {
+        &:hover .card-content {
             bottom: 20px;
         }
 
-        &:hover .content .hidden {
+        &:hover .card-content .hidden {
             max-height: 200px;
             opacity: 1;
             transition: max-height 0.3s ease-out, opacity .1s ease-in;

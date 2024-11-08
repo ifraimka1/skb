@@ -12,28 +12,28 @@ import { porsche } from '../../../../assets/images/partners';
 
 const mock = [
     {
-        image: porsche,
+        src: porsche,
     },
     {
-        image: scb,
+        src: scb,
     },
     {
-        image: porsche,
+        src: porsche,
     },
     {
-        image: scb,
+        src: scb,
     },
     {
-        image: porsche,
+        src: porsche,
     },
     {
-        image: scb,
+        src: scb,
     },
     {
-        image: porsche,
+        src: porsche,
     },
     {
-        image: scb,
+        src: scb,
     },
 ];
 

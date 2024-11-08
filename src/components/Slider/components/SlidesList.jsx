@@ -11,7 +11,7 @@ export default function SlidesList() {
       style={{ transform: `translateX(-${slideNumber * 100}%)` }}
     >
       {mediaList.map((slide, index) => (
-        <Slide key={index} slide={slide.image} />
+        <Slide key={index} slide={slide.src} />
       ))}
     </div>
   );

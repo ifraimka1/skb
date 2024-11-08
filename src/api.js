@@ -66,25 +66,19 @@ async function loadMedia() {
   const response = await getAllContent(wp.media());
 
   // Нам потребуется id, категория и url
-  const result = {};
+  const result = [];
 
-  for (let { id, alt_text, source_url: image } of response) {
+  for (let { id, source_url: src, alt_text } of response) {
     const [category, name] = alt_text.split('_');
-
-    // Создаем ключ с пустым массивом, если еще нет
-    if (!result[category]) {
-      result[category] = [];
-    }
-
     // Добавляем медиа в массив нужной категории
-    result[category].push({ id, name, image });
+    result.push({ id, src, category, name });
   }
 
   return result;
 }
 
 const mediaLibrary = await loadMedia();
-console.log(mediaLibrary);
+console.log('mediaLibrary', mediaLibrary);
 
 async function loadPosts() {
   // Получаем рубрики
@@ -106,72 +100,47 @@ async function loadPosts() {
   // Получаем записи
   const responsePosts = await getAllContent(wp.posts());
 
-  for (let post of responsePosts) {
-    post.categories = post.categories.map(el => categories[el]);
-    post.tags = post.tags.map(el => tags[el]);
-    post.content = parseContent(post.content.rendered);
+  const result = {
+    projects: [],
+    labs: [],
+    other: [],
   }
 
-  return responsePosts;
-}
+  for (let post of responsePosts) {
+    const image = mediaLibrary.find(item => item.id === post.featured_media);
+    const newPost = {
+      id: post.id,
+      name: post.title.rendered,
+      categories: post.categories.map(el => categories[el]),
+      tag: post.tags.map(el => tags[el])[0],
+      content: parseContent(post.content.rendered),
+      preview: image ? image.src : null,
+      lab: null,
+    }
 
+    if (newPost.categories.includes('projects')) {
+      newPost.lab = newPost.categories.filter(el => el !== 'projects')[0];
+      result.projects.push(newPost);
+    } else if (newPost.categories.includes('labs')) {
+      newPost.previewText = Parse(post.excerpt.rendered)[0].props.children;
+      result.labs.push(newPost);
+    } else {
+      result.other.push(newPost);
+    }
+  }
+
+  return result;
+}
 const posts = await loadPosts();
 console.log('posts', posts);
 
-function createProjectList() {
-  const result = {};
-
-  for (let post of posts) {
-    if (post.categories.includes('projects')) {
-      const { image } = mediaLibrary['projects'].find(item => item.id === post.featured_media);
-      const lab = post.categories.filter(el => el !== 'projects')[0];
-
-      result[post.id] = {
-        id: post.id,
-        name: post.title.rendered,
-        tag: post.tags[0],
-        preview: image,
-        lab: lab,
-        content: post.content,
-      }
-    }
-  }
-
-  return result;
-}
-
-const projects = createProjectList();
-console.log('projects', projects);
-
-function createLabList() {
-  const result = {};
-
-  for (let post of posts) {
-    if (post.categories.includes('labs')) {
-      const { image } = mediaLibrary['labs'].find(item => item.id === post.featured_media);
-      const previewText = Parse(post.excerpt.rendered)[0].props.children;
-
-      result[post.id] = {
-        id: post.id,
-        name: post.title.rendered,
-        tag: post.tags[0],
-        preview: image,
-        previewText: previewText,
-        content: post.content,
-      };
-    }
-  }
-
-  return result;
-}
-
-const labs = createLabList();
-console.log('labs', labs);
-
-export async function getPosts(name) {
+export async function getPosts(category) {
   try {
-    const result = posts.filter(post => post.id == name)[0];
-    return result;
+    if (category) {      
+      return posts.other.filter(post => post.categories.includes(category));
+    }
+
+    return posts;
   } catch (error) {
     console.error(error);
     return [];
@@ -180,16 +149,18 @@ export async function getPosts(name) {
 
 export async function getMedia(category, target = false) {
   try {
+    const mediaFiltered = mediaLibrary.filter(el => el.category === category);
+
     if (target) {
-      for (let media of mediaLibrary[category]) {
-        target[media.name].image = media.image;
+      for (let media of mediaFiltered) {
+        target[media.name].src = media.src;
         target[media.name].id = media.id;
       }
 
       return target;
     }
 
-    return mediaLibrary[category];
+    return mediaFiltered;
   } catch (error) {
     console.log(error);
     return [];
@@ -199,7 +170,7 @@ export async function getMedia(category, target = false) {
 export async function getProjectByID(id) {
   try {
     if (typeof id != 'undefined') {
-      return projects[id];
+      return posts.projects[id];
     }
   } catch (error) {
     console.log(error);
@@ -210,13 +181,10 @@ export async function getProjectByID(id) {
 export async function getProjects(lab) {
   try {
     if (typeof lab != 'undefined') {
-      console.log('projects filtering', projects);
-      console.log('lab as filter', lab);
-      console.log('projects after filter', Object.values(projects).filter(project => project.lab === lab));
-      return Object.values(projects).filter(project => project.lab === lab);
+      return Object.values(posts.projects).filter(project => project.lab === lab);
     }
 
-    return projects;
+    return posts.projects;
   } catch (error) {
     console.log(error);
     return [];
@@ -226,7 +194,7 @@ export async function getProjects(lab) {
 export async function getLabByID(id) {
   try {
     if (typeof id != 'undefined') {
-      return labs[id];
+      return posts.labs[id];
     }
   } catch (error) {
     console.log(error);
@@ -236,7 +204,7 @@ export async function getLabByID(id) {
 
 export async function getLabs() {
   try {
-    return labs;
+    return posts.labs;
   } catch (error) {
     console.log(error);
     return [];
