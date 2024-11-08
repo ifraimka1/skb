@@ -1,30 +1,28 @@
 import { HashLink } from "react-router-hash-link";
+import { useState, useEffect } from "react";
 
-import { PageContent, PageHeader } from "../components";
-import MediaBlock from "../../components/MediaBlock";
-
-import { car } from "../../assets/images";
+import { PagePost } from "../components";
+import { getPosts } from "../../api";
 
 function AboutUs() {
+    const [post, setPost] = useState();
+
+    useEffect(() => {
+        const loadData = async () => {
+            const newPost = await getPosts('aboutus');
+            setPost(newPost[0]);
+            console.log('aboutUs post', newPost[0]);
+        };
+        loadData();
+    }, []);
+
     return (
         <>
-            <PageHeader>
-                <h1>О нас</h1>
-            </PageHeader>
-            <PageContent>
-                <p>Студенческое конструкторское бюро «КИТ» создано на базе Института компьютерных технологий и информационной безопасности с целью развития технического творчества студентов. В СКБ студенты работают в рамках занятий проектной деятельности и создают собственные технологические проекты. Инициативу студентов поддерживают аспиранты и преподаватели ИКТИБ, а также представители бизнеса — партнёры СКБ.</p>
-                <p>СКБ «КИТ» предоставляет возможности:</p>
-                <ul>
-                    <li>выполнять технологические задачи реального рынка</li>
-                    <li>познакомиться с будущими работодателями</li>
-                    <li>найти команду единомышленников</li>
-                    <li>прокачать свои навыки в разработке и управлении проектами</li>
-                    <li>получить доступ к современному оборудованию</li>
-                    <li>участвовать в форумах, конкурсах и путешествовать по всему миру!</li>
-                </ul>
-                <MediaBlock images={[car, car, car]} />
-                <div className="btn">Показать еще</div>
-            </PageContent>
+            {typeof post !== 'undefined' &&
+                <PagePost post={post} >
+                    <div className="btn">Показать еще</div>
+                </PagePost>
+            }
         </>
     );
 }

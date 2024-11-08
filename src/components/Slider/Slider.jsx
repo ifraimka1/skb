@@ -17,6 +17,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
         const loadData = async () => {
             const newMediaList = await getMedia('gallery');
             setMediaList(newMediaList);
+            console.log('sliderMedia', newMediaList)
         };
         loadData();
     }, []);

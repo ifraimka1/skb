@@ -10,15 +10,15 @@ import './Footer.styles.scss';
 
 const mockLinks = {
     ictis: {
-        image: iconIctis,
+        src: iconIctis,
         to: "https://ictis.sfedu.ru",
     },
     sfedu: {
-        image: iconSfedu,
+        src: iconSfedu,
         to: "https://sfedu.ru",
     },
     vk: {
-        image: iconVK,
+        src: iconVK,
         to: "https://vk.com/skbkit",
     },
 };
@@ -36,6 +36,7 @@ function Footer({ links = mockLinks, contacts =  mockContacts }) {
         const loadData = async () => {
             const newMediaList = await getMedia('footer', mediaList);
             setMediaList(newMediaList);
+            console.log('footerMedia', newMediaList);
         };
         loadData();
     }, []);
