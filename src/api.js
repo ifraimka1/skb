@@ -100,9 +100,11 @@ async function loadPosts() {
   // Получаем записи
   const responsePosts = await getAllContent(wp.posts());
 
+  // К проектам и лабораториям обращение по id, поэтому для быстроты чтения они - объекты
+  // Остальные посты (other) ищутся по категориям, это проще делать по массиву
   const result = {
-    projects: [],
-    labs: [],
+    projects: {},
+    labs: {},
     other: [],
   }
 
@@ -120,10 +122,10 @@ async function loadPosts() {
 
     if (newPost.categories.includes('projects')) {
       newPost.lab = newPost.categories.filter(el => el !== 'projects')[0];
-      result.projects.push(newPost);
+      result.projects[post.id] = newPost;
     } else if (newPost.categories.includes('labs')) {
       newPost.previewText = Parse(post.excerpt.rendered)[0].props.children;
-      result.labs.push(newPost);
+      result.labs[post.id] = newPost;
     } else {
       result.other.push(newPost);
     }

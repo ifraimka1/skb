@@ -11,8 +11,6 @@ function PagePost({ post, isLab = false }) {
             <PageContent className="content">
                 {typeof post !== 'undefined' && typeof post.content !== 'string' &&
                     post.content.map(el => {
-                        console.log(el.type);
-                        console.log(el);
                         if (el.type === 'mediablock') {
                             return <MediaBlock images={el.value} />;
                         }
