@@ -1,8 +1,6 @@
 import BlockHeading from '../BlockHeading';
 import { LabList } from '../../../../components';
 
-import './Labs.styles.scss';
-
 function Labs() {
 
     return (

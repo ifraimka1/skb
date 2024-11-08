@@ -1,13 +1,12 @@
 @import "../../assets/styles/theme.scss";
 
 .row.lab-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, calc((100% - $row-gap * 2) / 3));
     justify-content: space-between;
-    gap: 26px;
+    gap: $row-gap;
 
     .card {
-        flex: 1 1 30%;
         height: 300px;
 
         overflow: hidden;
