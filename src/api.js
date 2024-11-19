@@ -15,6 +15,31 @@ const wp = new WPAPI(
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
 
+console.log(wp);
+
+export async function sendContactForm(formData) {
+  console.log('Форма отправляется');
+  for (let el of formData.entries()) {
+    console.log(el[0] + ': ' + el[1]);
+  }
+  try {
+    const response = await fetch(`${wp._options.endpoint}skbkit/v1/sendcontactform`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.log(response);
+      console.log(response.body);
+      throw new Error('Ошибка сети', response);
+    }
+
+    return response;
+  } catch (error) {
+    console.error('Ошибка отправки формы (api):', error);
+  }
+}
+
 function parseContent(str) {
   if (typeof str !== 'string') return str;
   const content = Parse(str);
@@ -138,7 +163,7 @@ console.log('posts', posts);
 
 export async function getPosts(category) {
   try {
-    if (category) {      
+    if (category) {
       return posts.other.filter(post => post.categories.includes(category));
     }
 
