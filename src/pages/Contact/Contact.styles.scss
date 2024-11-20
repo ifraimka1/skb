@@ -6,7 +6,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         flex: 1 1 50%;
-        
+
         margin-bottom: 2em;
 
         h1 {
@@ -34,15 +34,15 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+
+            .submit-container {
+                margin: 0;
+                max-width: 35%;
+            }
         }
 
-        .row > * {
+        .row>* {
             flex: 1 1 calc(50% - ($gap / 2));
-        }
-
-        .row:has(.submit)>* {
-            margin: 0;
-            max-width: 35%;
         }
     }
 }
