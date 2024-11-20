@@ -22,8 +22,18 @@ function ContactForm() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const mb = 10; // Ограничение размера в мегабайтах
+  const MAX_FILE_SIZE = mb * 1024 * 1024; // Переменная для проверки размера. Не менять
+
   const handleFileChange = (e) => {
-    const extension = e.target.files[0].name.match(/\.([^.]+)$/)[1];
+    const file = e.target.files[0];
+    // Проверка размера
+    if (file.size > MAX_FILE_SIZE) {
+      alert(`Превышено ограничение размера файла (10 Мб)`);
+      return;
+    }
+    // Проверка расширения
+    const extension = file.name.match(/\.([^.]+)$/)[1];
     switch (extension) {
       case 'doc':
       case 'docx':
