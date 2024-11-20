@@ -137,22 +137,25 @@ function ContactForm() {
             isDisabled={isSubmitting}
           />
           <div className="submit-container">
-            {formData.captcha ? (
+            {formData.captcha &&
               <Field
                 key={5}
                 type="submit"
                 value={isSubmitting ? 'Отправляется' : 'Отправить'}
                 isDisabled={isSubmitting}
               />
-            ) : (
+            }
+            <div
+              className="captcha-container"
+              style={formData.captcha ? { display: 'none' } : { display: 'block' }}
+            >
               <SmartCaptcha
                 key={6}
                 sitekey="ysc1_8nFqhYasby2fJ9J7pCTxdBMe0Xc3Y6CrWk4aylB03d4f0045"
                 onSuccess={handleCaptchaChange}
                 onTokenExpired={handleTokenExpired}
-                style={formData.captcha ? { display: 'none' } : { display: 'block' }}
               />
-            )}
+            </div>
           </div>
         </div>
       </div>
