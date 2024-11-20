@@ -47,9 +47,22 @@ $color-file-button: rgb(7, 42, 200);
             width: 100%;
             cursor: pointer;
 
+<<<<<<< Updated upstream
             padding: 12px;
             font-size: 18px;
             line-height: normal;
+=======
+        .submit-container {
+
+            .submit {
+                width: 100%;
+                cursor: pointer;
+
+                padding: 12px;
+                font-size: 18px;
+                line-height: normal;
+            }
+>>>>>>> Stashed changes
         }
     }
 }
