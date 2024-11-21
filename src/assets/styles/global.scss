@@ -1,5 +1,6 @@
 @import "./theme.scss";
 @import "./fonts.scss";
+@import "./wp-disable.scss";
 
 input {
   border: none;
@@ -83,7 +84,7 @@ header h1 {
   flex-direction: column;
   justify-content: flex-start;
 
-  #page {
+  #react-page {
     margin-bottom: 2em;
   }
 

@@ -27,7 +27,7 @@ function Root() {
     return (
         <RootContext.Provider value={{ setRef }}>
             <Navbar />
-            <div id="page">
+            <div id="react-page">
                 <Outlet />
             </div>
             <Footer />
