@@ -94,28 +94,26 @@ function ContactForm() {
     <Form method="post" onSubmit={handleSubmit} className="half contact-form">
       <h2>Свяжитесь с нами!</h2>
       <div className="inputs">
-        <div className="row">
-          <Field
-            key={1}
-            type="text"
-            name="name"
-            placeholder="Имя"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            isDisabled={isSubmitting}
-          />
-          <Field
-            key={2}
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            isDisabled={isSubmitting}
-          />
-        </div>
+        <Field
+          key={1}
+          type="text"
+          name="name"
+          placeholder="Имя"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          isDisabled={isSubmitting}
+        />
+        <Field
+          key={2}
+          type="email"
+          name="email"
+          placeholder="E-mail"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          isDisabled={isSubmitting}
+        />
         <Field
           key={3}
           type="textarea"
@@ -126,36 +124,34 @@ function ContactForm() {
           required
           isDisabled={isSubmitting}
         />
-        <div className="row">
-          <Field
-            key={4}
-            type="file"
-            name="file"
-            onChange={handleFileChange}
-            handleRemoveFile={handleRemoveFile}
-            fileAttached={formData && formData.file ? true : false}
-            isDisabled={isSubmitting}
-          />
-          <div className="submit-container">
-            {formData.captcha &&
-              <Field
-                key={5}
-                type="submit"
-                value={isSubmitting ? 'Отправляется' : 'Отправить'}
-                isDisabled={isSubmitting}
-              />
-            }
-            <div
-              className="captcha-container"
-              style={formData.captcha ? { display: 'none' } : { display: 'block' }}
-            >
-              <SmartCaptcha
-                key={6}
-                sitekey="ysc1_8nFqhYasby2fJ9J7pCTxdBMe0Xc3Y6CrWk4aylB03d4f0045"
-                onSuccess={handleCaptchaChange}
-                onTokenExpired={handleTokenExpired}
-              />
-            </div>
+        <Field
+          key={4}
+          type="file"
+          name="file"
+          onChange={handleFileChange}
+          handleRemoveFile={handleRemoveFile}
+          fileAttached={formData && formData.file ? true : false}
+          isDisabled={isSubmitting}
+        />
+        <div className="submit-container">
+          {formData.captcha &&
+            <Field
+              key={5}
+              type="submit"
+              value={isSubmitting ? 'Отправляется' : 'Отправить'}
+              isDisabled={isSubmitting}
+            />
+          }
+          <div
+            className="captcha-container"
+            style={formData.captcha ? { display: 'none' } : { display: 'block' }}
+          >
+            <SmartCaptcha
+              key={6}
+              sitekey="ysc1_8nFqhYasby2fJ9J7pCTxdBMe0Xc3Y6CrWk4aylB03d4f0045"
+              onSuccess={handleCaptchaChange}
+              onTokenExpired={handleTokenExpired}
+            />
           </div>
         </div>
       </div>

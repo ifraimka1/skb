@@ -23,21 +23,41 @@
             display: flex;
             flex-direction: column;
 
+            // Телефонная версия
+            @media (max-width: 768px) {
+                top: 30%;
+                padding: $navbar-padding-tb 5%;
+            }
+
             h1 {
-                font-size: 60px;
+                font-size: 52px; //
                 font-weight: 600;
-                line-height: 63px;
+                line-height: 63px; //
                 margin: 0;
+                margin-bottom: 24px;
+
+                @media (max-width: 768px) {
+                    font-size: 32px; // Уменьшаем размер шрифта на мобильных устройствах
+                    line-height: 40px; // Уменьшаем межстрочное расстояние
+                }
+
             }
 
             h2 {
                 font-size: 24px;
                 font-weight: 400;
                 line-height: 36px;
+
+                @media (max-width: 768px) {
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+
             }
 
             .btn {
                 margin: 0;
+                margin-top: 24px;
             }
         }
     }
@@ -48,9 +68,15 @@
             font-family: Montserrat;
             font-size: 36px;
             font-weight: 600;
-            line-height: 44px;
+          
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
+
+            @media (max-width: 768px) {
+                font-size: 24px; // Уменьшаем размер заголовка на мобильных
+
+            }
+
         }
 
         .heading {
@@ -59,16 +85,25 @@
             align-items: center;
 
             a {
-                font-size: 24px;
-                font-weight: 400;
-                line-height: 29px;
+                font-size: 20px;
+                font-weight: 500;
                 text-align: right;
                 color: $text-primary;
+
+                @media (max-width: 768px) {
+                    font-size: 16px;
+                }
             }
         }
     }
 
-    .block:not(:last-child) {        
+    .block:not(:last-child) {
         margin-bottom: 32px;
+    }
+
+    @media (max-width: 768px) {
+        #mainpageheader {
+            padding: 0; // Уменьшаем padding на мобильных устройствах
+        }
     }
 }

@@ -1,22 +1,61 @@
 #news {
+
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        left: 0;
+        width: 100%; // Увеличиваем ширину на 10%, чтобы занять отступ
+        height: 364px;
+        background-image: url('../../../../assets/images/backround/bg_news_block.svg');
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: contain; // Или cover, если нужно заполнить область
+
+        z-index: -1;
+        transform: translateX(-12.6%); // Смещаем влево, компенсируя padding
+
+        @media (max-width: 768px) {
+            display: none; // Скрываем картинку на мобильных
+        }
+    }
+
     .row {
         display: flex;
         justify-content: space-between;
-        gap: 32px;
-
+        //gap: 32px;
+        @media (max-width: 768px) {
+            gap: 32px;
+        }
         .card {
-            width: 350px;
+            width: 100%; /* Заменяем фиксированную ширину на 100% */
+            max-width: 300px; /* Ограничиваем максимальную ширину */
             margin-bottom: 1em;
+            border: none; // Убедитесь, что граница отсутствует
+            font-size: 20px; //
+            font-weight: 500; //
+
+            @media (max-width: 768px) {
+                max-width: 100%; /* Ограничиваем максимальную ширину */
+                font-size: 16px;
+            }
 
             .pic {
                 width: 100%;
                 aspect-ratio: 1;
                 margin-bottom: .5em;
-
+                @media (max-width: 768px) {
+                    aspect-ratio: auto; 
+                }
                 .image {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    @media (max-width: 768px) {
+                        height: 215px;
+                    }
                 }
             }
         }

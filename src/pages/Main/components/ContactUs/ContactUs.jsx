@@ -4,10 +4,12 @@ import './ContactUs.styles.scss';
 
 function ContactUs() {
     return (
-        <div className="block" id="contact-us">
-            <h1 className="half">Нужна помощь?<br/> Команда способных IT-специалистов готова вам помочь!</h1>
-            <ContactForm />
-        </div>
+        <><br />
+            <div className="block" id="contact-us">
+                <h1 className="half">Нужна помощь?<br /> Команда способных IT-специалистов готова вам помочь!</h1>
+                <ContactForm />
+            </div>
+        </>
     );
 }
 

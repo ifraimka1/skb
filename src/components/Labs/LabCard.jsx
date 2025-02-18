@@ -8,7 +8,7 @@ function LabCard({ lab }) {
                 <h2>{lab.name}</h2>
                 <div className="hidden">
                     <p>{lab.previewText}</p>
-                    <div className="link-label">Перейти &rarr;</div>
+                    <div className="link-label">Перейти ⟶</div> {/*&rarr;*/}
                 </div>
             </div>
         </Link>

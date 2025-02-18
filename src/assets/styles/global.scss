@@ -65,6 +65,10 @@ p, ul, ol {
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 ul, ol {
@@ -76,6 +80,10 @@ header h1 {
   font-weight: 600;
   line-height: 44px;
   margin-top: 0;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 #root {

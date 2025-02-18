@@ -11,9 +11,26 @@
 
     .contact-form {
         flex: 1 1 35%;
-
         .row {
             flex-direction: column;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    #contact-us {
+        gap: 0;
+        flex-direction: column; // Ставим элементы в колонку
+        align-items: stretch; // Центрируем контент
+        width: 100%; // Убедимся, что блок занимает всю ширину
+        margin: 0;
+        padding: 0;
+    }
+    .contact-form {
+        max-width: 100%; // Ограничиваем ширину формы на 100% экрана
+        max-width: 100%;
+        margin: 0; // Убираем внешние отступы
+        padding: 0; // Убираем внутренние отступы
+        box-sizing: border-box; // Учитываем границы и padding в ширине
     }
 }

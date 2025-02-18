@@ -1,0 +1,29 @@
+<svg width="96" height="364" viewBox="0 0 96 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M45 229L22 252" stroke="#072AC8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M46.5 253L30.5 269" stroke="#072AC8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M48 278L38 288" stroke="#072AC8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M22 252L0 252" stroke="#072AC8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M30.5 269L0 269" stroke="#072AC8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M52 226C52 223.791 50.2091 222 48 222C45.7909 222 44 223.791 44 226C44 228.209 45.7909 230 48 230C50.2091 230 52 228.209 52 226Z" stroke="#072AC8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M47.5 154L47.5 88" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M48 208L48 182" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M34 222L34 178" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M15 236L15 191" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M14 133.5L14 96" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M31 133.5L31 96" stroke="#072AC8" stroke-linecap="round"/>
+<rect width="8" height="8" transform="matrix(-1 0 0 1 52 174)" fill="#072AC8"/>
+<path d="M34 178L15.5 159.5H0" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M0 147H20L34.5 161.5" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M0 82L14 96" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M24 185L9 170" stroke="#072AC8" stroke-linecap="round"/>
+<rect width="6" height="6" transform="matrix(-0.707107 0.707107 0.707107 0.707107 48.2426 247)" fill="#072AC8"/>
+<path d="M47.5 87.5L20 60V8" stroke="#072AC8" stroke-linecap="round"/>
+<circle cx="20" cy="5" r="5" fill="#072AC8"/>
+<path d="M38 288V325.5" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M14 295L14 317" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M14 317L0 331" stroke="#072AC8" stroke-linecap="round"/>
+<path d="M38 325.5L0 363.5" stroke="#072AC8" stroke-linecap="round"/>
+<circle cx="90" cy="107" r="6" fill="#072AC8"/>
+<circle cx="67" cy="303" r="3" fill="#072AC8"/>
+<circle cx="53.5" cy="27.5" r="1.5" fill="#072AC8"/>
+</svg>

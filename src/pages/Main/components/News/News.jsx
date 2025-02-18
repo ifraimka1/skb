@@ -29,12 +29,14 @@ const mock = [
 function News({ news = mock }) {
 
     return (
+        <><br/>
         <div className="block" id="news">
             <BlockHeading heading='Новости' linkText='Все новости' link='https://vk.com/skbkit' />
             <div className="row">
                 { news.map(item => <NewsCard key={ item.id } news={ item } />) }
             </div>
         </div>
+        </>
     );
 }
 

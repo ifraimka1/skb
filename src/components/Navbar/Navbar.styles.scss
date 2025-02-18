@@ -1,9 +1,11 @@
 @import "../../assets/styles/theme.scss";
+@import "bootstrap/scss/bootstrap"; // Подключаем Bootstrap
 
 #navbar {
     position: fixed;
     top: 0;
-    width: 80%;
+    width: 100vw; // 80%
+    max-width: 100vw; //
     height: $navbar-height;
     padding: $navbar-padding-tb 10%;
     background-color: $bg-secondary;
@@ -18,14 +20,15 @@
         height: 100%;
 
         .logo {
-            width: 100%;
-            height: 100%;
+            width: 165px; // 100%
+            height: auto; // 100%
         }
     }
 
     .bar {
         display: flex;
         align-items: center;
+        //flex-grow: 1; // Позволяем .bar занимать доступное пространство
 
         .nav-link {
             font-size: 16px;
@@ -43,8 +46,53 @@
             background: $text-secondary;
         }
     }
+
+    // Телефонна версия
+    @media (max-width: 768px) {
+        padding: $navbar-padding-tb 5%;
+
+        .bar {
+            display: none; // Скрываем меню по умолчанию
+            flex-direction: column; // Вертикальное расположение
+            position: fixed;
+            top: 0; // Сдвигаем меню вниз под бургер-кнопку
+            right: 0; // Выравниваем по левому краю
+            background-color: $bg-secondary; // Фон меню
+            width: 50%; // Ширина меню равна ширине навбара
+            height: 200vh;
+            z-index: 9; // Убедитесь, что меню выше других элементов
+            padding: 60px 0px;
+
+            &.open {
+                display: flex; // Показываем меню при открытии
+            }
+
+            .nav-link {
+                padding: 10px 5px; // Отступы: 10px сверху и снизу, 5px слева и справа
+                width: 100%; // Занимаем всю ширину родительского элемента
+                text-align: left; // Выравнивание текста по левому краю
+            }
+        }
+
+        .burger {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+
+            .line {
+                width: 25px;
+                height: 3px;
+                background-color: $text-secondary;
+                margin: 4px 0;
+                transition: all 0.3s ease;
+            }
+        }
+
+    }
+
 }
 
-#navbar.transparent{
+#navbar.transparent {
     background-color: transparent;
 }
