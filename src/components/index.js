@@ -7,3 +7,6 @@ export { default as MediaContainer } from './MediaContainer';
 export { default as Navbar } from './Navbar';
 export { default as Slider } from './Slider';
 export { default as ProjectList } from './Projects';
+export { default as NewsList } from './News';
+export { default as VKvideo } from './VKvideo';
+export { default as LoadMore } from './LoadMore';

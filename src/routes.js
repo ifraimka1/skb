@@ -5,10 +5,12 @@ import {
     AboutUs,
     Labs,
     Projects,
-    Contact
+    Contact,
+    News
 } from './pages';
 import { Project } from './pages/Projects/components';
 import { Lab } from './pages/Labs/components';
+import NewsItem from './pages/News/components/NewsItem';
 
 const routes = [
     {
@@ -25,6 +27,10 @@ const routes = [
                 element: <AboutUs />,
             },
             {
+                path: "/contact",
+                element: <Contact />,
+            },
+            {
                 path: "/labs",
                 element: <Labs />,
             },
@@ -33,16 +39,20 @@ const routes = [
                 element: <Lab />,
             },
             {
+                path: "/news",
+                element: <News />,
+            },
+            {
+                path: "/news/:id",
+                element: <NewsItem />
+            },
+            {
                 path: "/projects",
                 element: <Projects />,
             },
             {
                 path: "/projects/:id",
                 element: <Project />,
-            },
-            {
-                path: "/contact",
-                element: <Contact />,
             },
         ]
     },

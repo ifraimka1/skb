@@ -72,7 +72,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
                     mediaList
                 }}
             >
-                <Arrows />
+                { mediaList.length > 1 && <Arrows /> }
                 <SlidesList />
                 {/* <Dots /> */}
             </SliderContext.Provider>

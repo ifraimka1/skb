@@ -1,0 +1,8 @@
+$news-card-gap: 1em;
+
+#news-page #news .row {
+    display: grid;
+    grid-template-columns: repeat(3, calc((100% - $news-card-gap * 2) / 3));
+    justify-content: space-between;
+    gap: $news-card-gap;
+}
