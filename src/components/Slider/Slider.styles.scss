@@ -5,24 +5,53 @@
     & .slide-list {
         display: flex;
         align-items: center;
-
+        justify-content: center; /* Центрируем изображения */
+        gap: 32px; /* Отступ между картинками */
+        width: max-content;
         width: 100%;
         height: 100%;
         transition: transform 0.5s ease-in-out;
         margin: 0 auto;
+        padding: 10px 100px; /* Добавляем отступы по бокам */
 
         & .slide {
-            flex: 1 0 100%;
+            flex: 1 0 50%;
+            max-width: 50%; /* Ограничение ширины */
             position: relative;
-
+            display: flex;
+            justify-content: center; /* Центрируем контент */
 
             & .slide-image {
                 display: flex;
                 max-height: 60vh;
-                max-width: calc(100% - 2 * (15% + 30px));
-                margin: 0 auto;
+                max-width: 100%;
                 border-radius: 8px;
             }
+        }
+    }
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+    .slider {
+        & .slide-list {
+            justify-content: left;
+            gap: 0; /* Убираем лишние отступы */
+            padding: 0; /* Уменьшаем отступы */
+        }
+
+        & .slide-list .slide {
+            flex: 1 0 100%; /* Одна картинка в ряд */
+            max-width: 100%; /* Использует всю ширину */
+            display: flex;
+            justify-content: center; /* Центрируем */
+        }
+
+        & .slide-list .slide .slide-image {
+            max-width: 90%; /* Делаем изображение большим, но с небольшими отступами */
+            height: auto; /* Сохраняем пропорции */
+            max-height: 70vh; /* Ограничиваем высоту */
+            border-radius: 8px;
         }
     }
 }

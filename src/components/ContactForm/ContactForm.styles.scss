@@ -12,9 +12,13 @@ $color-file-button: rgb(7, 42, 200);
     h2 {
         margin-top: 0;
 
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 500;
-        line-height: 30px;
+        line-height: 44px;
+
+        @media (max-width: 768px) {
+            font-size: 20px;
+        }
     }
 
     .inputs {
@@ -28,11 +32,6 @@ $color-file-button: rgb(7, 42, 200);
 
         *:disabled {
             background: dimgrey;
-        }
-
-        .row {
-            display: flex;
-            gap: $gap;
         }
 
         .field {
@@ -81,6 +80,9 @@ $color-file-button: rgb(7, 42, 200);
                     span {
                         display: inline-block;
                         font-size: 18px;
+                        @media (max-width: 768px) {
+                            font-size: 16px;
+                        }
                     }
                 }
             }
@@ -114,7 +116,7 @@ $color-file-button: rgb(7, 42, 200);
         }
 
         .submit-container {
-
+            //overflow: hidden;
             .submit {
                 width: 100%;
                 cursor: pointer;
@@ -125,4 +127,6 @@ $color-file-button: rgb(7, 42, 200);
             }
         }
     }
+    
 }
+
