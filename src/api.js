@@ -3,7 +3,6 @@ import { flatten } from 'lodash';
 
 import reactPress from './reactPress';
 import Parse from 'html-react-parser';
-//import projects from './projects.json';
 
 const wp = new WPAPI(
   process.env.NODE_ENV === 'development'
@@ -15,30 +14,7 @@ const wp = new WPAPI(
     : { endpoint: reactPress.api.rest_url, nonce: reactPress.api.nonce }
 );
 
-console.log(wp);
-
-export async function sendContactForm(formData) {
-  console.log('Форма отправляется');
-  for (let el of formData.entries()) {
-    console.log(el[0] + ': ' + el[1]);
-  }
-  try {
-    const response = await fetch(`${wp._options.endpoint}skbkit/v1/sendcontactform`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!response.ok) {
-      console.log(response);
-      console.log(response.body);
-      throw new Error('Ошибка сети', response);
-    }
-
-    return response;
-  } catch (error) {
-    console.error('Ошибка отправки формы (api):', error);
-  }
-}
+const skbEndpoint = `${wp._options.endpoint}skbkit/v1`;
 
 function parseContent(str) {
   if (typeof str !== 'string') return str;
@@ -235,5 +211,64 @@ export async function getLabs() {
   } catch (error) {
     console.log(error);
     return [];
+  }
+}
+
+export const vkWallUrl = 'https://vk.com/skbkit?w=wall-172789021';
+
+export async function getNews(count = 0, offset = 0) {
+  try {
+    const response = await fetch(`${skbEndpoint}/getnews?count=${count}&offset=${offset}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка сети', response);
+    }
+
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error('Получения новостей (api):', error);
+  }
+}
+
+export async function getNewsByID(newsID) {
+  try {
+    const response = await fetch(`${skbEndpoint}/getnewsbyid?id=${newsID}`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка сети', response);
+    }
+
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error('Получения новостей (api):', error);
+  }
+}
+
+export async function sendContactForm(formData) {
+  console.log('Форма отправляется');
+  for (let el of formData.entries()) {
+    console.log(el[0] + ': ' + el[1]);
+  }
+  try {
+    const response = await fetch(`${skbEndpoint}/sendcontactform`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка сети', response);
+    }
+
+    return response;
+  } catch (error) {
+    console.error('Ошибка отправки формы (api):', error);
   }
 }

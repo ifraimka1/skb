@@ -1,5 +1,6 @@
 @import "./theme.scss";
 @import "./fonts.scss";
+@import "./wp-disable.scss";
 
 input {
   border: none;
@@ -17,7 +18,8 @@ body {
 
 body,
 input,
-textarea {
+textarea,
+button {
   font-family: Montserrat;
 }
 
@@ -36,8 +38,9 @@ a {
   padding: 16px 24px;
   margin: 0 auto;
   border-radius: 8px;
+  border: none;
 
-  font-size: 20px;
+  font-size: $main-font-size;
   font-weight: 600;
   line-height: 24px;
 
@@ -45,10 +48,15 @@ a {
   background: $btn-primary-bg;
   background-size: 200%;
   transition: .5s;
+  cursor: pointer;
 }
 
 .btn:hover {
   background-position: 100%;
+}
+
+.btn[disabled] {
+  background: gray;
 }
 
 .list {
@@ -61,9 +69,9 @@ a {
 }
 
 p, ul, ol {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 30px;
+  font-size: $main-font-size;
+  font-weight: $main-font-weight;
+  line-height: $main-line-height;
 }
 
 ul, ol {
@@ -83,7 +91,7 @@ header h1 {
   flex-direction: column;
   justify-content: flex-start;
 
-  #page {
+  #react-page {
     margin-bottom: 2em;
   }
 

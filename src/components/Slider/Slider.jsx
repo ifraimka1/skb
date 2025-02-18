@@ -2,23 +2,34 @@ import { useEffect, useState, createContext } from 'react';
 
 import Arrows from './components/Arrows';
 import SlidesList from './components/SlidesList';
-import Dots from './components/Dots';
+// import Dots from './components/Dots';
 
 import { getMedia } from '../../api';
 import './Slider.styles.scss';
 
 export const SliderContext = createContext();
 
-function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
-    const [mediaList, setMediaList] = useState([]);
+function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
+    const [mediaList, setMediaList] = useState([images]);
     const [slide, setSlide] = useState(0);
 
     useEffect(() => {
         const loadData = async () => {
-            const newMediaList = await getMedia('gallery');
+            let newMediaList;
+
+            if (images) {
+                newMediaList = images.map((value, key) => {
+                    return { id: key, src: value };
+                });
+            } else {
+                newMediaList = await getMedia('gallery');
+            }
+            
             setMediaList(newMediaList);
-            console.log('sliderMedia', newMediaList)
+            console.log('sliderMedia', newMediaList);
         };
+
+        console.log(images);
         loadData();
     }, []);
 
@@ -61,7 +72,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0 }) {
                     mediaList
                 }}
             >
-                <Arrows />
+                { mediaList.length > 1 && <Arrows /> }
                 <SlidesList />
                 {/* <Dots /> */}
             </SliderContext.Provider>
