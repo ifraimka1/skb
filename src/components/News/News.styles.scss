@@ -1,0 +1,46 @@
+$news-card-gap: 1em;
+
+#news {
+    .row {
+        display: grid;
+
+        .card {
+            width: 100%;
+            aspect-ratio: 1/1;
+            padding: 0;
+            margin-bottom: 1em;
+            position: relative;
+
+            .pic {
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-top: 100%;
+
+                .image {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .label {
+                    position: absolute;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 22px 16px;
+                    left: 0;
+                    bottom: 0;
+                    border-radius: 0 0 8px 8px;
+
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 24px;
+                    color: white;
+                    background: rgba(0, 0, 0, 0.5);
+                }
+            }
+        }
+    }
+}

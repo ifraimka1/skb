@@ -1,5 +1,7 @@
 @import "../../assets/styles/theme.scss";
 
+$news-card-gap: 1em;
+
 #react-page:has(> #mainpageheader) {
     margin-top: 0;
 
@@ -94,6 +96,12 @@
                     font-size: 16px;
                 }
             }
+        }
+
+        #news .row {
+            grid-template-columns: repeat(4, calc((100% - $news-card-gap * 3) / 4));
+            justify-content: space-between;
+            gap: $news-card-gap;
         }
     }
 

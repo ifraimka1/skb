@@ -12,10 +12,14 @@ function Main() {
 
     useEffect(() => {
         const navbar = document.getElementById("navbar");
-        navbar.classList.add('transparent'); // Mount
+        if (navbar) {
+            navbar.classList.add('transparent');
+        }
 
         return () => {
-            navbar.classList.remove('transparent'); // Unmount
+            if (navbar) {
+                navbar.classList.remove('transparent');
+            }
         }
     }, [])
 

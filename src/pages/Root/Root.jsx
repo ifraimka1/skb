@@ -23,9 +23,13 @@ function Root() {
     useEffect(() => {
         const navbar = document.getElementById('navbar');
         if (isVisible) {
-            navbar.classList.add('transparent');
+            if (navbar) {
+                navbar.classList.add('transparent');
+            }
         } else {
-            navbar.classList.remove('transparent');
+            if (navbar) {
+                navbar.classList.remove('transparent');
+            }
         }
         setTimeout(() => {
             document.body.classList.add('page-loaded');
