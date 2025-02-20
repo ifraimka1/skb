@@ -3,7 +3,7 @@ import NewsList from '../../../../components/News';
 
 function News() {
     return (
-        <><br/>
+        <>
         <div className="block" id="news">
             <BlockHeading heading='Новости' linkText='Все новости' link='/news' />
             <NewsList isMainPage={ true } />

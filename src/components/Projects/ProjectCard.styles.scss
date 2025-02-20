@@ -2,28 +2,6 @@
 
 .project-list {
 
-    position: relative;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%; // Увеличиваем ширину на 10%, чтобы занять отступ
-        height: 465px;
-        background-image: url('../../assets/images/backround/bg_projects_block.svg');
-        background-repeat: no-repeat;
-        background-position: right center;
-        background-size: contain; // Или cover, если нужно заполнить область
-        z-index: -1;
-        transform: translateX(11.3%); // Смещаем влево, компенсируя padding
-
-        @media (max-width: 768px) {
-            display: none; // Скрываем картинку на мобильных
-        }
-
-    }
-
     .card {
         display: block;
         position: relative;

@@ -1,10 +1,12 @@
 import NavbarLink from './NavbarLink';
 
-import { scb as logo } from '../../assets/images';
+import { scb as logo, scb_blue as logo_02 } from '../../assets/images';
 import './Navbar.styles.scss';
 
-import React, { useState } from 'react'; //
+import React, { useState, useEffect } from 'react'; //
 import 'bootstrap/dist/css/bootstrap.min.css'; //
+
+import { useLocation } from 'react-router-dom';  // Импортируем useLocation
 
 const mock = [
     {
@@ -36,7 +38,9 @@ const mock = [
 
 function Navbar({ links = mock }) {
     const [isOpen, setIsOpen] = useState(false);
-
+    const location = useLocation();  // Получаем текущий путь
+    const [logoToDisplay, setLogoToDisplay] = useState(logo); // Используем useState для хранения логотипа
+    
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -45,10 +49,15 @@ function Navbar({ links = mock }) {
         setIsOpen(false); // Закрываем меню при клике на ссылку
     };
 
+    useEffect(() => {
+        // Обновляем логотип в зависимости от текущего пути
+        setLogoToDisplay(location.pathname === "/" ? logo : logo_02);
+    }, [location]);  // Каждый раз, когда путь изменяется, выполняется этот код
+
     return (
         <div id="navbar">
             <NavbarLink className="logo-container" link={{ to: "/" }} >
-                <img src={logo} className="logo" alt="SCB logo" />
+                <img src={logoToDisplay} className="logo" alt="SCB logo" />
             </NavbarLink>
             <div className="burger" onClick={toggleMenu}>
                 <span className={`line ${isOpen ? 'open' : ''}`}></span>

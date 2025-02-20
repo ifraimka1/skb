@@ -33,7 +33,7 @@ function Main() {
                     <HashLink smooth to="#contact-us" className="btn">Связаться с нами</HashLink>
                 </div>
             </PageHeader>
-            <PageContent>
+            <PageContent><br />
                 <News />
                 <Projects />
                 <Labs />

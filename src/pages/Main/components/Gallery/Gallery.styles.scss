@@ -2,28 +2,6 @@
     margin-left: 0;
     margin-right: 0;
 
-    position: relative;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 35%;
-        left: 0;
-        width: 100%; // Увеличиваем ширину на 10%, чтобы занять отступ
-        height: 307px;
-        background-image: url('../../../../assets/images/backround/bg_gallery_block.svg');
-        background-repeat: no-repeat;
-        background-position: right center;
-        background-size: contain; // Или cover, если нужно заполнить область
-
-        z-index: -1;
-        transform: translateX(12.5%); // Смещаем влево, компенсируя padding
-
-        @media (max-width: 768px) {
-            display: none; // Скрываем картинку на мобильных
-        }
-    }
-
     h1 {
         width: 80%;
         margin-left: auto;

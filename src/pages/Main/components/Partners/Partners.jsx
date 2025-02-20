@@ -43,7 +43,8 @@ function Partners({ partners = mock }) {
     useEffect(() => {
         const loadData = async () => {
             const newMediaList = await getMedia('partners');
-            setMediaList(newMediaList);
+            const repeatTimes = Math.ceil(window.innerWidth / 200); // 200px — примерная ширина одной картинки
+            setMediaList([...newMediaList, ...Array(repeatTimes).fill(...newMediaList)]);
         };
         loadData();
     }, []);
@@ -56,6 +57,8 @@ function Partners({ partners = mock }) {
                 autoplaySpeed={6}
                 speed={1}
                 margin={32}
+                loop={true} // Включаем бесконечный цикл
+                style={{ width: '100%' }}
             >
                 { mediaList.map((item, index) => <PartnersLogo key={ index } partner={ item } />) }
             </ScrollCarousel>
