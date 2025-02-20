@@ -1,28 +1,6 @@
 @import "../../assets/styles/theme.scss";
 
 .row.lab-list {
-
-    position: relative;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 10%;
-        left: 0;
-        width: 100%; // Увеличиваем ширину на 10%, чтобы занять отступ
-        height: 436px;
-        background-image: url('../../assets/images/backround/bg_labs_block.svg');
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: contain; // Или cover, если нужно заполнить область
-
-        z-index: -1;
-        transform: translateX(-11.6%); // Смещаем влево, компенсируя padding
-
-        @media (max-width: 768px) {
-            display: none; // Скрываем картинку на мобильных
-        }
-    }
     
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr)); /* Используем 1fr для равных колонок */
@@ -36,7 +14,7 @@
         display: block;
         position: relative;
         height: 300px;
-
+        overflow: hidden; /* Чтобы контент не выходил за границы и карточка не мигала*/
         border-radius: 8px;
         border-width: 1px;
         border-style: solid;

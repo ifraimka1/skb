@@ -3,7 +3,18 @@
     margin-right: 0;
     
     .scroll-carousel-viewport {
+        width: calc(100% + 25%);
+        margin-left: -12.5%;
         height: 200px;
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+            width: calc(100% + 10%);
+            margin-left: -5%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
         .scroll-carousel-slider {
             height: 100%;
 

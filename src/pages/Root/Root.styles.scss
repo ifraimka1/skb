@@ -1,15 +1,44 @@
 @import "../../assets/styles/theme.scss";
 
+// Общий стиль
 #root {
-    background-image: url('/assets/images/backround/bg_footer.svg');
+    
+    position: relative;  // Убедитесь, что #root имеет relative
     background-repeat: no-repeat;
     background-position: center bottom;
-
+    background-image: url("/assets/images/backround/bg_footer_02.svg");
     background-size: 100% auto;
-    z-index: 0; // Измените на 0 или больше
-    position: relative;
-    opacity: 0;
-    visibility: hidden;
+    z-index: 0;  // Задний план
+    opacity: 0;  // Сделаем #root видимым сразу
+    min-height: 100vh;  // Устанавливаем минимальную высоту для #root
+
+    // Псевдоэлемент для фона в верхней части страницы
+    &::before {
+        content: "";
+        position: absolute;
+        top: 160px;
+        left: 0;  // Слева
+        width: 100%;  // На всю ширину
+        height: 364px;  // Ограничиваем максимальную высоту
+        background-image: url('../../assets/images/backround/bg_news_block.svg');  // Картинка
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: contain;
+        z-index: -1;  // Картинка на заднем плане, за остальными элементами
+
+        @media (max-width: 768px) {
+            display: none;  // Прячем картинку на мобильных устройствах
+        }
+    }
+
+}
+
+// Для главной страницы
+#root:has(> #react-page #mainpageheader) {
+    background-image: url('/assets/images/backround/bg_footer.svg');
+    &::before {
+        background-image:none;
+    }
 }
 
 
@@ -72,7 +101,7 @@
     border-radius: 50%;
     width: 61px;
     height: 61px;
-    z-index: 1000;
+    z-index: 10;
     
     @media (max-width: 768px) {
         width: 45px;

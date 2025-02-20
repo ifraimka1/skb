@@ -11,7 +11,7 @@ function NewsList({ isMainPage = false }) {
     const [newsList, setNewsList] = useState();
     const [isFullList, setIsFullList] = useState(false);
 
-    const count = isMainPage ? 4 : 6;
+    const count = isMainPage ? 4 : 8;
 
     useEffect(() => {
         const loadData = async () => {
@@ -25,7 +25,7 @@ function NewsList({ isMainPage = false }) {
     return (
         <>
             {newsList ? (
-                <div id="news">
+                <div id="news-list">
                     <div className="row">
                         {newsList.map(item => <NewsCard key={item.id} news={item} />)}
                     </div>

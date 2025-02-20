@@ -1,1 +1,1 @@
-export { default } from './VKvideo';
+export { default } from './VKvideo.jsx';

@@ -1,8 +1,32 @@
 $news-card-gap: 1em;
 
-#news-page #news .row {
-    display: grid;
-    grid-template-columns: repeat(3, calc((100% - $news-card-gap * 2) / 3));
-    justify-content: space-between;
-    gap: $news-card-gap;
+#news-page #news-list .row {
+    padding-top: 0.5em; // Отступ сверху для новостей
+    padding-bottom: 2em; // Отступ снизу для кнопки
+    /* Устанавливаем, что первая карточка будет шириной 2/3 */
+    .card:first-child {
+        width: calc(66.666% - $news-card-gap); // Первая карточка будет шириной 2/3 от контейнера
+        aspect-ratio: 5 / 1;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+
+    /* Для последующих карточек (на второй и третьей позиции) в первой строке */
+    .card:nth-child(2), .card:nth-child(3) {
+        width: calc(33.333% - $news-card-gap);
+        aspect-ratio: 3 / 2.6;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+
+    /* Для всех остальных строк карточки остаются по 3 штуки в строке */
+    .card:nth-child(n+4) {
+        width: calc(33.333% - $news-card-gap);
+        aspect-ratio: 3 / 2.6;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
 }

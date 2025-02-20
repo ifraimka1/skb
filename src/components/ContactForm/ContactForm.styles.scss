@@ -6,8 +6,11 @@ $color-file-button: rgb(7, 42, 200);
 .contact-form {
     padding: 20px 22px;
     border-radius: 16px;
-
+    height: 700px;
     background-color: $bg-form;
+    @media (max-width: 768px) {
+        height: 100%;
+    }
 
     h2 {
         margin-top: 0;
@@ -44,9 +47,12 @@ $color-file-button: rgb(7, 42, 200);
         }
 
         .field.big {
-            height: 200px;
+            height: 300px;
             line-height: 30px;
             resize: none;
+            @media (max-width: 768px) {
+                height: 200px;
+            }
         }
 
         .file-input-container {
