@@ -10,8 +10,17 @@ import './Slider.styles.scss';
 export const SliderContext = createContext();
 
 function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
-    const [mediaList, setMediaList] = useState([images]);
+    const [mediaList, setMediaList] = useState([]);
     const [slide, setSlide] = useState(0);
+    const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth <= 768 ? 1 : 2);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setItemsPerSlide(window.innerWidth <= 768 ? 1 : 2);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const loadData = async () => {
@@ -31,35 +40,34 @@ function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
 
         console.log(images);
         loadData();
-    }, []);
+    }, [images]);
 
-    const changeSlide = (direction = 1) => {
-        let slideNumber = 0;
+    const changeSlide = (direction) => {
+        if (mediaList.length <= itemsPerSlide) return;
 
-        if (slide + direction < 0) {
-            slideNumber = mediaList.length - 1;
-        } else {
-            slideNumber = (slide + direction) % mediaList.length;
-        }
-
+        let slideNumber = slide + direction;
+        
+        if (direction === -1 && slideNumber < 0) return;
+        if (direction === 1 && slideNumber + itemsPerSlide > mediaList.length) return;
+        
         setSlide(slideNumber);
     };
 
     const goToSlide = (number) => {
-        setSlide(number % mediaList.length);
+        if (number >= 0 && number + itemsPerSlide <= mediaList.length) {
+            setSlide(number);
+        }
     }
 
     useEffect(() => {
-        if (!autoPlay) return;
+        if (!autoPlay || mediaList.length <= itemsPerSlide) return;
 
         const interval = setInterval(() => {
             changeSlide(1);
         }, autoPlayTime);
 
-        return () => {
-            clearInterval(interval);
-        };
-    }, [mediaList.length, slide]);
+        return () => clearInterval(interval);
+    }, [mediaList.length, slide, itemsPerSlide]);
 
     return (
         <div className="slider">
@@ -72,7 +80,7 @@ function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
                     mediaList
                 }}
             >
-                { mediaList.length > 1 && <Arrows /> }
+                { mediaList.length > itemsPerSlide && <Arrows /> }
                 <SlidesList />
                 {/* <Dots /> */}
             </SliderContext.Provider>

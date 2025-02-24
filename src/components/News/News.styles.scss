@@ -27,12 +27,26 @@ $news-card-gap: 1em;
                 border-radius: 8px; // Округляем углы изображения
                 overflow: hidden; // Обрезаем лишнее
 
+                &::before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 40%; /* Градиент покрывает 40% карточки */
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+                    border-radius: 8px;
+                    pointer-events: none; /* Не мешает взаимодействию */
+                    z-index: 0; /* Градиент уходит в фон */
+                }
+
                 .image {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     object-position: top; // Устанавливаем позицию обрезки сверху
                     border-radius: 8px; // Округление углов изображения
+                    
                 }
 
                 .label {
@@ -47,7 +61,8 @@ $news-card-gap: 1em;
                     font-weight: 600;
                     line-height: 24px;
                     color: white;
-                    background: rgba(0, 0, 0, 0.6);
+                    //background: rgba(0, 0, 0, 0.6);
+                    //background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
                 }
             }
         }
