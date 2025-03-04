@@ -14,7 +14,7 @@ function Root() {
     const [setRef, isTargetVisible] = useElementOnScreen({
         root: null,
         rootMargin: '0px',
-        threshold: 0.0,
+        threshold: 0.9,
     });
 
     const [isOnTopVisible, setIsOnTopVisible] = useState(false); // Состояние для видимости кнопки
@@ -42,7 +42,7 @@ function Root() {
         const handleScroll = () => {
             const headerHeight = document.getElementById('mainpageheader')?.offsetHeight || 0;
             if (window.scrollY > headerHeight && !hasScrolled) {
-                setHasScrolled(true); // Обновим флаг, когда пользователь прокрутит страницу
+                setHasScrolled(true);
             }
             setIsOnTopVisible(window.scrollY > headerHeight); // Показываем кнопку
         };
