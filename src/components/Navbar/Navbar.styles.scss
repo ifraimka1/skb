@@ -26,6 +26,19 @@
         transform: translateY(0); // Показываем navbar
     }
 
+    &.transparent {
+        background-color: transparent !important;
+        .bar .nav-link  {
+            color: $text-secondary;
+        }
+
+        .logo {
+            filter: brightness(0) invert(1);
+        }
+
+
+    }
+
     .nav-link:has(> .logo) {
         display: flex;
         height: 100%;
@@ -111,25 +124,10 @@
 }
 
 #root:has(#mainpageheader) #navbar {
-    background-color: $bg-secondary;
-    //height: $navbar-height;
-    @media (max-width: 768px) {
-    .bar {
-        background-color: $bg-secondary; // Фон меню
-    }}
-
-    .bar .nav-link  {
-        color: $text-secondary;
-    }
-
-    //.nav-link:has(> .logo) .logo {
-        //width: $navbar-logo-mini-height; // 100%
-    //}
-
+    
     .burger .line {
         background-color: $text-secondary;
     }
-}
-#root:has(#mainpageheader) #navbar.transparent {
-    background-color: transparent !important;
+
+    &.transparent {}
 }

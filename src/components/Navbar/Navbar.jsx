@@ -1,12 +1,11 @@
 import NavbarLink from './NavbarLink';
 
-import { scb as logo, scb_blue as logo_02 } from '../../assets/images';
+import { scb_blue as logo } from '../../assets/images';
 import './Navbar.styles.scss';
 
-import React, { useState, useEffect } from 'react'; //
-import 'bootstrap/dist/css/bootstrap.min.css'; //
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useLocation } from 'react-router-dom';  // Импортируем useLocation
 
 const mock = [
     {
@@ -38,12 +37,9 @@ const mock = [
 
 function Navbar({ links = mock }) {
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();  // Получаем текущий путь
-    const [logoToDisplay, setLogoToDisplay] = useState(logo); // Используем useState для хранения логотипа
 
     const [navbarHidden, setNavbarHidden] = useState(false); // true = спрятан, false = виден
-    const [isTransparent, setIsTransparent] = useState(true); // Прозрачность на старте
-    const [lastScrollTop, setLastScrollTop] = useState(0);
+    const [lastScrollTop, setLastScrollTop] = useState(0); 
     const THRESHOLD = 400; // navbar не скрывается в первые 400px
 
     const toggleMenu = () => {
@@ -54,16 +50,23 @@ function Navbar({ links = mock }) {
         setIsOpen(false); // Закрываем меню при клике на ссылку
     };
 
+    // Для навбара
     useEffect(() => {
-        // Обновляем логотип в зависимости от текущего пути
-        setLogoToDisplay(location.pathname === "/" ? logo : logo_02);
-    }, [location]);  // Каждый раз, когда путь изменяется, выполняется этот код
+        const navbar = document.getElementById('navbar');
+        if (navbarHidden && !isOpen) {
+            if (navbar) {
+                navbar.classList.add('hidden');
+            }
+        } else {
+            if (navbar) {
+                navbar.classList.remove('hidden');
+            }
+        }
+    }, [navbarHidden]);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollTop = window.pageYOffset;
-
-            setIsTransparent(currentScrollTop === 0);
 
             if (currentScrollTop <= THRESHOLD) {
                 setNavbarHidden(false);
@@ -83,9 +86,9 @@ function Navbar({ links = mock }) {
     }, [lastScrollTop]);
 
     return (
-        <div id="navbar" className={`${navbarHidden && !isOpen ? "hidden" : ""} ${isTransparent ? "transparent" : ""}`}>
+        <div id="navbar">
             <NavbarLink className="logo-container" link={{ to: "/" }} >
-                <img src={logoToDisplay} className="logo" alt="SCB logo" />
+                <img src={logo} className="logo" alt="SCB logo" />
             </NavbarLink>
             <div className="burger" onClick={toggleMenu}>
                 <span className={`line ${isOpen ? 'open' : ''}`}></span>
