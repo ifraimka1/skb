@@ -62,6 +62,8 @@
 
     .content {
         background: $bg-primary;
+        display: flex;
+        flex-direction: column;
     }
 }
 

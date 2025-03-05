@@ -1,11 +1,15 @@
+$block-height: 200px;
+
 #react-page .content #partners {
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: $block-height !important;
     
     .scroll-carousel-viewport {
-        width: calc(100% + 25%);
-        margin-left: -12.5%;
-        height: 200px;
+        position: absolute;
+        left: 0;
+        width: 100vw;
+        height: $block-height;
         overflow: hidden;
 
         @media (max-width: 768px) {

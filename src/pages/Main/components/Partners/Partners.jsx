@@ -58,7 +58,6 @@ function Partners({ partners = mock }) {
                 speed={1}
                 margin={32}
                 loop={true} // Включаем бесконечный цикл
-                style={{ width: '100%' }}
             >
                 { mediaList.map((item, index) => <PartnersLogo key={ index } partner={ item } />) }
             </ScrollCarousel>
