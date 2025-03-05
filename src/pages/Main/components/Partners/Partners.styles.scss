@@ -15,8 +15,6 @@ $block-height: 200px;
         @media (max-width: 768px) {
             width: calc(100% + 10%);
             margin-left: -5%;
-            height: 200px;
-            overflow: hidden;
         }
         
         .scroll-carousel-slider {
@@ -26,6 +24,7 @@ $block-height: 200px;
                 height: 100%;
                 aspect-ratio: 1;
                 border-radius: 100%;
+                pointer-events: none;
 
                 .logo {
                     width: 100%;

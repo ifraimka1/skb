@@ -10,6 +10,28 @@ $news-card-gap: 1em;
         @media (max-width: 768px) {
             width: 100%;
         }
+        .pic {
+            //&::before {
+                //content: "";
+                //position: absolute;
+                //bottom: 0;
+                //left: 0;
+                //width: 100%;
+                //height: 40%; /* Градиент покрывает 40% карточки */
+                //background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+                //border-radius: 8px;
+                //pointer-events: none; /* Не мешает взаимодействию */
+                //z-index: 0; /* Градиент уходит в фон */
+            //}
+        
+        .label {
+            font-size: 28px;
+            @media (max-width: 768px) {
+                font-size: 20px;
+            }
+        }
+    }
+
     }
 
     /* Для последующих карточек (на второй и третьей позиции) в первой строке */
@@ -19,6 +41,18 @@ $news-card-gap: 1em;
         @media (max-width: 768px) {
             width: 100%;
         }
+        /*
+        .pic {
+        .image {
+            height: 70%;
+        }
+        .label {
+            height:30%;
+            padding: 16px 0px;
+            color: black;
+        }
+        }
+        */
     }
 
     /* Для всех остальных строк карточки остаются по 3 штуки в строке */
@@ -28,5 +62,16 @@ $news-card-gap: 1em;
         @media (max-width: 768px) {
             width: 100%;
         }
+        /*.pic {
+            .image {
+                height: 70%;
+            }
+            .label {
+                height:30%;
+                padding: 16px 0px;
+                color: black;
+            }
+        }
+        */
     }
 }

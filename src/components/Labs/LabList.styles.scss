@@ -14,7 +14,6 @@
         display: block;
         position: relative;
         height: 300px;
-        overflow: hidden; /* Чтобы контент не выходил за границы и карточка не мигала*/
         border-radius: 8px;
         border-width: 1px;
         border-style: solid;
@@ -34,6 +33,7 @@
         }
 
         .card-content {
+            overflow: hidden; /* Чтобы контент не выходил за границы и карточка не мигала*/
             margin: 0;
             position: absolute;
             inset: auto 20px 10px 20px;
