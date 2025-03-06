@@ -6,11 +6,8 @@ $color-file-button: rgb(7, 42, 200);
 .contact-form {
     padding: 20px 22px;
     border-radius: 16px;
-    height: 730px;
+    height: 100%;
     background-color: $bg-form;
-    @media (max-width: 768px) {
-        height: 100%;
-    }
 
     h2 {
         margin-top: 0;
@@ -122,7 +119,6 @@ $color-file-button: rgb(7, 42, 200);
         }
 
         .submit-container {
-            //overflow: hidden;
             .submit {
                 width: 100%;
                 cursor: pointer;
@@ -132,6 +128,7 @@ $color-file-button: rgb(7, 42, 200);
                 line-height: normal;
             }
         }
+        margin-bottom: 5%;
     }
     
 }

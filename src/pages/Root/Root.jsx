@@ -55,27 +55,11 @@ function Root() {
 
     // Ускоренный плавный скролл вверх
     const scrollToTop = () => {
-        const startPosition = window.scrollY;
-        const startTime = performance.now();
-        const scrollDuration = 800; // Увеличили время для суперплавности
-    
-        // Функция плавного ускорения и замедления (easeInOutCubic)
-        const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    
-        const animateScroll = (currentTime) => {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / scrollDuration, 1); // От 0 до 1
-    
-            window.scrollTo(0, startPosition * (1 - easeInOutCubic(progress))); // Гладкий скролл
-    
-            if (progress < 1) {
-                requestAnimationFrame(animateScroll);
-            }
-        };
-    
-        requestAnimationFrame(animateScroll);
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant'
+        });
     };
-
 
     return (
         <RootContext.Provider value={{ setRef }}>
