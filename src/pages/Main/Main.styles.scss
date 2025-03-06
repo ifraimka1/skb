@@ -2,6 +2,10 @@
 
 $news-card-gap: 1em;
 
+body {
+    overflow-x: hidden; // Скрываем горизонтальный скролл
+}
+
 #react-page:has(> #mainpageheader) {
     margin-top: 0;
 
@@ -148,13 +152,11 @@ $news-card-gap: 1em;
     }
 
     .project-list {
-
         position: relative;
-
         &::before {
             content: "";
             position: absolute;
-            top: 0;
+            top: 35%;
             left: 0;
             width: 100%; // Увеличиваем ширину на 10%, чтобы занять отступ
             height: 465px;
@@ -162,13 +164,13 @@ $news-card-gap: 1em;
             background-repeat: no-repeat;
             background-position: right center;
             background-size: contain; // Или cover, если нужно заполнить область
+
             z-index: -1;
             transform: translateX(11.3%); // Смещаем влево, компенсируя padding
 
             @media (max-width: 768px) {
                 display: none; // Скрываем картинку на мобильных
             }
-
         }
     }
 
