@@ -11,18 +11,19 @@ import { up } from '../../assets/images';
 export const RootContext = createContext();
 
 function Root() {
-    const [setRef, isVisible] = useElementOnScreen({
+    const [setRef, isTargetVisible] = useElementOnScreen({
         root: null,
         rootMargin: '0px',
-        threshold: 0.6,
+        threshold: 0.9,
     });
 
-    const [isVisible_, setIsVisible] = useState(false); // Состояние для видимости кнопки
+    const [isOnTopVisible, setIsOnTopVisible] = useState(false); // Состояние для видимости кнопки
     const [hasScrolled, setHasScrolled] = useState(false); // Новый флаг для отслеживания прокрутки
 
+    // Для навбара
     useEffect(() => {
         const navbar = document.getElementById('navbar');
-        if (isVisible) {
+        if (isTargetVisible) {
             if (navbar) {
                 navbar.classList.add('transparent');
             }
@@ -31,22 +32,26 @@ function Root() {
                 navbar.classList.remove('transparent');
             }
         }
+    }, [isTargetVisible]);
+
+    // Для кнопки OnTop
+    useEffect(() => {
         setTimeout(() => {
             document.body.classList.add('page-loaded');
         }, 100); // Небольшая задержка, чтобы избежать мерцания
         const handleScroll = () => {
             const headerHeight = document.getElementById('mainpageheader')?.offsetHeight || 0;
             if (window.scrollY > headerHeight && !hasScrolled) {
-                setHasScrolled(true); // Обновим флаг, когда пользователь прокрутит страницу
+                setHasScrolled(true);
             }
-            setIsVisible(window.scrollY > headerHeight); // Показываем кнопку
+            setIsOnTopVisible(window.scrollY > headerHeight); // Показываем кнопку
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [isVisible, hasScrolled]);
+    }, [hasScrolled])
 
     // Ускоренный плавный скролл вверх
     const scrollToTop = () => {
@@ -81,7 +86,7 @@ function Root() {
             <Footer />
             {hasScrolled && (
                 <button
-                    className={`scroll-to-top ${isVisible_ ? 'visible' : 'hidden'}`}
+                    className={`scroll-to-top ${isOnTopVisible ? 'visible' : 'hidden'}`}
                     onClick={scrollToTop}
                 >
                     <img src={up} alt="Scroll to top" />

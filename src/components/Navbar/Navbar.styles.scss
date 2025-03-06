@@ -1,23 +1,22 @@
 @import "../../assets/styles/theme.scss";
-@import "bootstrap/scss/bootstrap"; // Подключаем Bootstrap
+@import "bootstrap/scss/bootstrap";
 
 #navbar {
     position: fixed;
     top: 0;
-    width: 100vw; // 80%
-    max-width: 100vw; //
+    width: 100vw;
+    max-width: 100vw;
     height: 108px;
     padding: $navbar-padding-tb 10%;
     background-color:rgb(255, 255, 255);
     z-index: 100;
-    //transition: height .3s ease-out, background-color .3s ease-out;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    transition: transform 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out;
-
+    transition: transform 0.3s ease-out, height 0.3s ease-out, background-color 0.8s ease-out;
+    
     &.hidden {
         transform: translateY(-110%); // Убираем navbar вверх
     }
@@ -26,21 +25,35 @@
         transform: translateY(0); // Показываем navbar
     }
 
+    &.transparent {
+        background-color: transparent !important;
+        transition: none;
+        .bar .nav-link  {
+            color: $text-secondary;
+            @media (max-width: 768px) {
+                color:black;
+            }
+
+        }
+        .logo {
+            filter: brightness(0) invert(1);
+        }
+    }
+
     .nav-link:has(> .logo) {
         display: flex;
         height: 100%;
-        align-items: center; // Центрируем элементы по высоте
+        align-items: center;
 
         .logo {
-            width: $navbar-logo-height; // 100%
-            height: auto; // 100%
+            width: $navbar-logo-height;
+            height: auto;
         }
     }
 
     .bar {
         display: flex;
         align-items: center;
-        //flex-grow: 1; // Позволяем .bar занимать доступное пространство
 
         .nav-link {
             font-size: 16px;
@@ -69,25 +82,25 @@
         }
         
         .bar {
-            display: none; // Скрываем меню по умолчанию
-            flex-direction: column; // Вертикальное расположение
+            display: none;
+            flex-direction: column;
             position: fixed;
-            top: 0; // Сдвигаем меню вниз под бургер-кнопку
-            right: 0; // Выравниваем по левому краю
-            background-color: white; // Фон меню
-            width: 50%; // Ширина меню равна ширине навбара
+            top: 0;
+            right: 0;
+            background-color: white;
+            width: 50%;
             height: 200vh;
-            z-index: 9; // Убедитесь, что меню выше других элементов
+            z-index: 9;
             padding: 60px 0px;
 
             &.open {
-                display: flex; // Показываем меню при открытии
+                display: flex;
             }
 
             .nav-link {
-                padding: 10px 5px; // Отступы: 10px сверху и снизу, 5px слева и справа
-                width: 100%; // Занимаем всю ширину родительского элемента
-                text-align: left; // Выравнивание текста по левому краю
+                padding: 10px 5px;
+                width: 100%;
+                text-align: left;
             }
         }
 
@@ -100,7 +113,7 @@
             .line {
                 width: 25px;
                 height: 3px;
-                background-color: black;
+                background-color: #072ac8;
                 margin: 4px 0;
                 transition: all 0.3s ease;
             }
@@ -108,28 +121,4 @@
 
     }
 
-}
-
-#root:has(#mainpageheader) #navbar {
-    background-color: $bg-secondary;
-    //height: $navbar-height;
-    @media (max-width: 768px) {
-    .bar {
-        background-color: $bg-secondary; // Фон меню
-    }}
-
-    .bar .nav-link  {
-        color: $text-secondary;
-    }
-
-    //.nav-link:has(> .logo) .logo {
-        //width: $navbar-logo-mini-height; // 100%
-    //}
-
-    .burger .line {
-        background-color: $text-secondary;
-    }
-}
-#root:has(#mainpageheader) #navbar.transparent {
-    background-color: transparent !important;
 }

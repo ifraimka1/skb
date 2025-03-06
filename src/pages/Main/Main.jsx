@@ -4,6 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 import { News, Projects, Labs, Partners, Gallery, ContactUs } from './components';
 import { RootContext } from '../Root';
 import { PageContent, PageHeader } from '../components';
+// import { scb_blue as logo_02 } from '../../assets/images';
 
 import './Main.styles.scss';
 
