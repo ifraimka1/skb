@@ -12,10 +12,10 @@ $block-height: 200px;
         height: $block-height;
         overflow: hidden;
 
-        @media (max-width: 768px) {
-            width: calc(100% + 10%);
-            margin-left: -5%;
-        }
+        // @media (max-width: 768px) {
+        //     width: calc(100% + 10%);
+        //     margin-left: -5%;
+        // }
         
         .scroll-carousel-slider {
             height: 100%;
