@@ -61,7 +61,9 @@
     }
 
     .content {
-        //background: $bg-primary;
+        background: $bg-primary;
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -95,8 +97,8 @@
 
 .scroll-to-top {
     position: fixed;
-    right: 2%;
-    bottom: 15%;
+    right: 2vw; // Используем vw для адаптивности
+    bottom: 5vh; // Используем vh для адаптивности
     background-color: white;
     border-radius: 50%;
     width: 61px;
@@ -106,7 +108,7 @@
     @media (max-width: 768px) {
         width: 45px;
         height: 45px;
-        bottom: 24px;
+        bottom: 5vh; // Можно также использовать vh для мобильных устройств
         padding: 0;
     }
     border: none;
