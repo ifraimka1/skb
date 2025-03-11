@@ -39,7 +39,7 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}
                 slidesPerView={itemsPerSlide} // Количество картинок в видимой зоне
-                slidesPerGroup={itemsPerSlide} // Перелистывать сразу по 2
+                slidesPerGroup={1} // Перелистывать сразу по 2
                 loop={true} // Зацикленный слайдер
                 navigation // Стрелки
                 pagination={{ clickable: true }}
