@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import ScrollCarousel from 'scroll-carousel-react';
+import Marquee from 'react-fast-marquee';
 
 import BlockHeading from '../BlockHeading';
 import PartnersLogo from './PartnersLogo';
@@ -11,56 +11,50 @@ import { scb } from '../../../../assets/images';
 import { porsche } from '../../../../assets/images/partners';
 
 const mock = [
-    {
-        src: porsche,
-    },
-    {
-        src: scb,
-    },
-    {
-        src: porsche,
-    },
-    {
-        src: scb,
-    },
-    {
-        src: porsche,
-    },
-    {
-        src: scb,
-    },
-    {
-        src: porsche,
-    },
-    {
-        src: scb,
-    },
+    { src: porsche },
+    { src: scb },
+    { src: porsche },
+    { src: scb },
+    { src: porsche },
+    { src: scb },
+    { src: porsche },
+    { src: scb },
 ];
 
 function Partners({ partners = mock }) {
-    const [ mediaList, setMediaList ] = useState(partners);
+    const [mediaList, setMediaList] = useState(partners);
+
+    const updateMediaList = async () => {
+        const newMediaList = await getMedia('partners');
+        const repeatTimes = Math.ceil(window.innerWidth / 200); // 200px — примерная ширина одной картинки
+        setMediaList([...newMediaList, ...Array(repeatTimes).fill(...newMediaList)]);
+    };
 
     useEffect(() => {
-        const loadData = async () => {
-            const newMediaList = await getMedia('partners');
-            const repeatTimes = Math.ceil(window.innerWidth / 200); // 200px — примерная ширина одной картинки
-            setMediaList([...newMediaList, ...Array(repeatTimes).fill(...newMediaList)]);
+        updateMediaList();
+        window.addEventListener('resize', updateMediaList); // Обработчик изменения размера окна
+        return () => {
+            window.removeEventListener('resize', updateMediaList);
         };
-        loadData();
     }, []);
 
     return (
         <div className="block" id="partners">
             <BlockHeading heading="Наши партнеры" />
-            <ScrollCarousel 
-                autoplay
-                autoplaySpeed={6}
-                speed={1}
-                margin={32}
-                loop={true} // Включаем бесконечный цикл
-            >
-                { mediaList.map((item, index) => <PartnersLogo key={ index } partner={ item } />) }
-            </ScrollCarousel>
+            <div className="marquee-container">
+                <Marquee 
+                    gradient={false} 
+                    pauseOnHover={false} 
+                    speed={80} 
+                    className="marquee"
+                >
+                    {mediaList.map((item, index) => (
+                        <div key={index} className="partner">
+                            <PartnersLogo partner={item} />
+                        </div>
+                    ))}
+                </Marquee>
+            </div>
         </div>
     );
 }
