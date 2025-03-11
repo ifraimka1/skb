@@ -1,17 +1,16 @@
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
 
-import Arrows from './components/Arrows';
-import SlidesList from './components/SlidesList';
-// import Dots from './components/Dots';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import { getMedia } from '../../api';
 import './Slider.styles.scss';
 
-export const SliderContext = createContext();
-
-function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
+function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
     const [mediaList, setMediaList] = useState([]);
-    const [slide, setSlide] = useState(0);
     const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth <= 768 ? 1 : 2);
 
     useEffect(() => {
@@ -24,67 +23,36 @@ function Slider({ autoPlay = 0, autoPlayTime = 0, images = false }) {
 
     useEffect(() => {
         const loadData = async () => {
-            let newMediaList;
+            const newMediaList = images
+                ? images.map((value, key) => ({ id: key, src: value }))
+                : await getMedia('gallery');
 
-            if (images) {
-                newMediaList = images.map((value, key) => {
-                    return { id: key, src: value };
-                });
-            } else {
-                newMediaList = await getMedia('gallery');
-            }
-            
             setMediaList(newMediaList);
-            console.log('sliderMedia', newMediaList);
         };
 
-        console.log(images);
         loadData();
     }, [images]);
 
-    const changeSlide = (direction) => {
-        if (mediaList.length <= itemsPerSlide) return;
-
-        let slideNumber = slide + direction;
-        
-        if (direction === -1 && slideNumber < 0) return;
-        if (direction === 1 && slideNumber + itemsPerSlide > mediaList.length) return;
-        
-        setSlide(slideNumber);
-    };
-
-    const goToSlide = (number) => {
-        if (number >= 0 && number + itemsPerSlide <= mediaList.length) {
-            setSlide(number);
-        }
-    }
-
-    useEffect(() => {
-        if (!autoPlay || mediaList.length <= itemsPerSlide) return;
-
-        const interval = setInterval(() => {
-            changeSlide(1);
-        }, autoPlayTime);
-
-        return () => clearInterval(interval);
-    }, [mediaList.length, slide, itemsPerSlide]);
-
     return (
         <div className="slider">
-            <SliderContext.Provider
-                value={{
-                    goToSlide,
-                    changeSlide,
-                    slidesCount: mediaList.length,
-                    slideNumber: slide,
-                    mediaList
-                }}
+            <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={20}
+                slidesPerView={itemsPerSlide} // Количество картинок в видимой зоне
+                slidesPerGroup={itemsPerSlide} // Перелистывать сразу по 2
+                loop={true} // Зацикленный слайдер
+                navigation // Стрелки
+                pagination={{ clickable: true }}
+                autoplay={autoPlay ? { delay: autoPlayTime, disableOnInteraction: false } : false}
             >
-                { mediaList.length > itemsPerSlide && <Arrows /> }
-                <SlidesList />
-                {/* <Dots /> */}
-            </SliderContext.Provider>
+                {mediaList.map((media) => (
+                    <SwiperSlide key={media.id}>
+                        <img src={media.src} alt="slide" className="slide-image" />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </div>
     );
 }
+
 export default Slider;
