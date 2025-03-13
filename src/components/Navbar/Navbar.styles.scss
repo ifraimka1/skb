@@ -40,6 +40,7 @@
         @media (max-width: 768px) {
             .burger .line {
                 background-color: #ffffff;
+
                 &.open {
                     background-color: #072ac8; // Синий цвет, когда меню открыто
                 }
@@ -65,6 +66,8 @@
     .bar {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
 
         .nav-link {
             font-size: 16px;
