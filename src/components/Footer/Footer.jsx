@@ -24,9 +24,17 @@ const mockLinks = {
 };
 
 const mockContacts = {
-    email: "skb@sfedu.ru",
-    address: "г. Таганрог, пер. Тургеневский, 44",
-    phone: "+7 (911) 8888-88-88",
+    email: (
+        <a style={{ color: 'inherit' }} href="mailto:skb@sfedu.ru">skb@sfedu.ru</a>
+    ),
+    address: (
+        <a style={{ color: 'inherit' }} href="https://yandex.ru/maps/?text=г.%20Таганрог,%20пер.%20Тургеневский,%2044" target="_blank" rel="noopener noreferrer">
+            г. Таганрог, пер. Тургеневский, 44
+        </a>
+    ),
+    phone: (
+        <a style={{ color: 'inherit' }} href="tel:+79118888888">+7 (911) 8888-88-88</a>
+    ),
 };
 
 function Footer({ links = mockLinks, contacts =  mockContacts }) {

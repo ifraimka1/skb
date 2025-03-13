@@ -1,4 +1,6 @@
 export { default as car } from './car.jpeg';
+export { default as art } from './art.bmp';
+
 export { default as newsMock } from './newsMock.png';
 export { default as labMock } from './labMock.jpeg';
 
