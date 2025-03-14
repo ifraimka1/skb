@@ -9,6 +9,7 @@ export { default as cross } from './cross.svg';
 export { default as extLink } from './extLink.svg';
 export { default as fileUpload } from './fileUpload.svg';
 export { default as up } from './up.svg';
+export { default as views } from './views.svg';
 
 export { default as footer_diagram } from './backround/bg_footer.svg';
 export { default as footer_diagram_gray } from './backround/bg_footer_gray.svg';
