@@ -178,7 +178,7 @@ body {
             background-size: contain; // Или cover, если нужно заполнить область
 
             z-index: -1;
-            transform: translateX(11.3%); // Смещаем влево, компенсируя padding
+            transform: translateX(11.5%); // Смещаем влево, компенсируя padding
 
             @media (max-width: 768px) {
                 display: none; // Скрываем картинку на мобильных
@@ -203,7 +203,7 @@ body {
             background-size: contain; // Или cover, если нужно заполнить область
 
             z-index: -1;
-            transform: translateX(-11.6%); // Смещаем влево, компенсируя padding
+            transform: translateX(-11.8%); // Смещаем влево, компенсируя padding
 
             @media (max-width: 768px) {
                 display: none; // Скрываем картинку на мобильных
