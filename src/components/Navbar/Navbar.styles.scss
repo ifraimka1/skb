@@ -31,13 +31,13 @@
         .bar .nav-link {
             color: $text-secondary;
 
-            @media (max-width: 768px) {
+            @media (max-width: 1200px) {
                 color: black;
             }
 
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
             .burger .line {
                 background-color: #ffffff;
 
@@ -86,13 +86,13 @@
         }
     }
 
-    @media (max-width: 768px) {
-        height: $navbar-height;
-        padding: $navbar-padding-tb 5%;
+    @media (max-width: 1200px) {
+        // height: $navbar-height;
+        // padding: $navbar-padding-tb 5%;
 
-        .nav-link:has(> .logo) .logo {
-            width: $navbar-logo-mini-height;
-        }
+        // .nav-link:has(> .logo) .logo {
+        //     width: $navbar-logo-mini-height;
+        // }
 
         .bar {
             display: none;
@@ -133,5 +133,12 @@
         }
 
     }
+    @media (max-width: 768px) {
+        height: $navbar-height;
+        padding: $navbar-padding-tb 5%;
 
+        .nav-link:has(> .logo) .logo {
+            width: $navbar-logo-mini-height;
+        }
+    }
 }

@@ -51,8 +51,8 @@
     margin-top: calc($navbar-height + 5 * $navbar-padding-tb);
 
     .header, .content {             
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 8%;
+        margin-right: 8%;
         
         @media (max-width: 768px) {
             margin-left: 5%;
@@ -61,9 +61,12 @@
     }
 
     .content {
-        //background: $bg-primary;
+        background: $bg-primary;
+        //padding: 0 1em;
+        border-radius: 8px;
         display: flex;
         flex-direction: column;
+        //box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -98,7 +101,7 @@
 .scroll-to-top {
     position: fixed;
     right: 2vw; // Используем vw для адаптивности
-    bottom: 5vh; // Используем vh для адаптивности
+    bottom: 7.5vh; // Используем vh для адаптивности
     background-color: white;
     border-radius: 50%;
     width: 61px;

@@ -11,8 +11,8 @@ body {
 
     #mainpageheader {
         position: relative;
-
-        height: 100vh;
+        overflow: hidden;
+        min-height: 100vh;
         padding: 0 10%;
         margin: 0;
 

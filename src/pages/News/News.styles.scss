@@ -9,7 +9,7 @@ $news-card-gap: 1em;
         aspect-ratio: 5 / 1;
         @media (max-width: 768px) {
             width: 100%;
-        }
+        }height: 325px;
         .pic .label {
             font-size: clamp(18px, 2vw, 28px);
             @media (max-width: 768px) {
@@ -22,7 +22,7 @@ $news-card-gap: 1em;
     /* Для последующих карточек (на второй и третьей позиции) в первой строке */
     .card:nth-child(2), .card:nth-child(3) {
         width: calc(33.333% - $news-card-gap);
-        aspect-ratio: 3 / 2.6;
+        aspect-ratio: 3 / 2.6;height: 325px;
         @media (max-width: 768px) {
             width: 100%;
         }
@@ -31,7 +31,7 @@ $news-card-gap: 1em;
     /* Для всех остальных строк карточки остаются по 3 штуки в строке */
     .card:nth-child(n+4) {
         width: calc(33.333% - $news-card-gap);
-        aspect-ratio: 3 / 2.6;
+        aspect-ratio: 3 / 2.6;height: 325px;
         @media (max-width: 768px) {
             width: 100%;
         }
