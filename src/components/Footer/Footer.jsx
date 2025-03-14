@@ -33,7 +33,7 @@ const mockContacts = {
         </a>
     ),
     phone: (
-        <a style={{ color: 'inherit' }} href="tel:+79118888888">+7 (911) 8888-88-88</a>
+        <a style={{ color: 'inherit' }} href="tel:+79780095480">+7 (978) 009-54-80</a>
     ),
 };
 

@@ -5,6 +5,11 @@
     justify-content: space-between;    
     margin-top: 2em;
 
+    p {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .icon {
         height: $main-font-size;
     }

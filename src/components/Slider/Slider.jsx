@@ -12,6 +12,7 @@ import './Slider.styles.scss';
 function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
     const [mediaList, setMediaList] = useState([]);
     const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth <= 768 ? 1 : 2);
+    const [enableButtons, setEnableButtons] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -23,31 +24,48 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
 
     useEffect(() => {
         const loadData = async () => {
+            console.log('hello');
             const newMediaList = images
                 ? images.map((value, key) => ({ id: key, src: value }))
                 : await getMedia('gallery');
 
             setMediaList(newMediaList);
+
+            const numberOfSlides = newMediaList.length;
+            if (numberOfSlides > 2) {
+                setEnableButtons(true);
+            } else if (numberOfSlides == 1) {
+                setItemsPerSlide(1);
+            }
         };
 
         loadData();
     }, [images]);
+
+    // Условие для проверки количества слайдов
+    const totalSlides = mediaList.length;
 
     return (
         <div className="slider">
             <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}
-                slidesPerView={itemsPerSlide} // Количество картинок в видимой зоне
-                slidesPerGroup={1} // Перелистывать сразу по 2
-                loop={true} // Зацикленный слайдер
-                navigation // Стрелки
-                pagination={{ clickable: true }}
+                slidesPerView={itemsPerSlide}
+                slidesPerGroup={1}
+                loop={enableButtons}
+                navigation={enableButtons}
+                pagination={{ clickable: enableButtons }}
                 autoplay={autoPlay ? { delay: autoPlayTime, disableOnInteraction: false } : false}
             >
-                {mediaList.map((media) => (
-                    <SwiperSlide key={media.id}>
-                        <img src={media.src} alt="slide" className="slide-image" />
+                {mediaList.map((media, index) => (
+                    <SwiperSlide
+                        key={media.id} className={totalSlides === 1 ? 'swiper-slide single' : 'swiper-slide'}
+                    >
+                        <img
+                            src={media.src}
+                            alt={`slide-${index}`}
+                            className='slide-image'
+                        />
                     </SwiperSlide>
                 ))}
             </Swiper>

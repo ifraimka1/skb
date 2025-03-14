@@ -37,8 +37,7 @@ function NewsItem() {
                         {news.photos.length !== 0 && <Slider images={news.photos} />}
                         {news.text.map(textRow => <p dangerouslySetInnerHTML={{ __html: textRow }}></p>)}
                         <div className="row">
-                            <p><a href={newsUrl} target="_blank" rel="noreferrer">Ссылка на новость <img class="icon" src={extLink} /></a></p>
-                            <p className="date">Дата публикации: {news.date}</p>
+                            <p><a href={newsUrl} target="_blank" rel="noreferrer">Ссылка на новость <img class="icon" src={extLink} /></a><span className="date">Дата публикации: {news.date}</span></p>
                         </div>
                     </PageContent>
                 </>

@@ -13,7 +13,6 @@ $news-card-gap: 1em;
             position: relative;
             border: none;
             margin-bottom: 1em; // Отступ снизу
-
             @media (max-width: 768px) {
                 width: 100%; // 1 карточка в ряд на мобильных
                 height: 215px; // Меньшая высота для мобильных
@@ -47,7 +46,7 @@ $news-card-gap: 1em;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    object-position: top; // Устанавливаем позицию обрезки сверху
+                    object-position: center; // Устанавливаем позицию обрезки сверху
                     border-radius: 8px; // Округление углов изображения
                     pointer-events: none;
                 }
