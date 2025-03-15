@@ -4,11 +4,11 @@ $icon-size: 24px;
 $color-file-button: rgb(7, 42, 200);
 
 .contact-form {
-    padding: 20px 22px;
+    padding: 1.3rem 22px;
     border-radius: 16px;
     height: 100%;
     background-color: $bg-form;
-
+    align-items: flex-start;
     h2 {
         margin-top: 0;
 

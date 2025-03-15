@@ -1,81 +1,56 @@
 import NavbarLink from './NavbarLink';
-
 import { scb_blue as logo } from '../../assets/images';
 import './Navbar.styles.scss';
-
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const mock = [
-    {
-        text: "НОВОСТИ",
-        to: "/news",
-    },
-    {
-        text: "О НАС",
-        to: "/aboutus",
-    },
-    {
-        text: "ЛАБОРАТОРИИ",
-        to: "/labs",
-    },
-    {
-        text: "ПРОЕКТЫ",
-        to: "/projects",
-    },
-    {
-        text: "КОНТАКТЫ",
-        to: "/contact",
-    },
-    {
-        text: "ИКТИБ",
-        to: "https://ictis.sfedu.ru",
-        newTab: true,
-    },
+    { text: "НОВОСТИ", to: "/news" },
+    { text: "О НАС", to: "/aboutus" },
+    { text: "ЛАБОРАТОРИИ", to: "/labs" },
+    { text: "ПРОЕКТЫ", to: "/projects" },
+    { text: "КОНТАКТЫ", to: "/contact" },
+    { text: "ИКТИБ", to: "https://ictis.sfedu.ru", newTab: true },
 ];
 
 function Navbar({ links = mock }) {
     const [isOpen, setIsOpen] = useState(false);
-
-    const [navbarHidden, setNavbarHidden] = useState(false); // true = спрятан, false = виден
-    const [lastScrollTop, setLastScrollTop] = useState(0); 
+    const [isTransparent, setIsTransparent] = useState(true); // Начально navbar прозрачный
+    const [isHidden, setIsHidden] = useState(false);
+    const [lastScrollTop, setLastScrollTop] = useState(0);
+    const [scrolledOnce, setScrolledOnce] = useState(false); // Проверка на первый скролл
     const THRESHOLD = 400; // navbar не скрывается в первые 400px
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
+    const toggleMenu = () => setIsOpen(!isOpen);
+    const handleLinkClick = () => setIsOpen(false);
 
-    const handleLinkClick = () => {
-        setIsOpen(false); // Закрываем меню при клике на ссылку
-    };
-
-    // Для навбара
     useEffect(() => {
         const navbar = document.getElementById('navbar');
-        if (navbarHidden && !isOpen) {
-            if (navbar) {
-                navbar.classList.add('hidden');
-            }
+        if (isHidden && !isOpen) {
+            navbar?.classList.add('hidden');
         } else {
-            if (navbar) {
-                navbar.classList.remove('hidden');
-            }
+            navbar?.classList.remove('hidden');
         }
-    }, [navbarHidden]);
+    }, [isHidden]);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollTop = window.pageYOffset;
 
             if (currentScrollTop <= THRESHOLD) {
-                setNavbarHidden(false);
+                setIsHidden(false);
             } else {
                 if (currentScrollTop > lastScrollTop) {
-                    setNavbarHidden(true);
+                    setIsHidden(true);
                 } else {
-                    setNavbarHidden(false);
+                    setIsHidden(false);
                 }
+            }
+
+            // Логика первого скролла (прозрачность только при первом скролле)
+            if (!scrolledOnce && currentScrollTop > 50) {
+                setIsTransparent(false); // Сделать navbar непрозрачным после первого скролла
+                setScrolledOnce(true); // Устанавливаем флаг, чтобы прозрачность больше не менялась
             }
 
             setLastScrollTop(currentScrollTop);
@@ -83,11 +58,11 @@ function Navbar({ links = mock }) {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollTop]);
+    }, [lastScrollTop, scrolledOnce]);
 
     return (
-        <div id="navbar">
-            <NavbarLink className="logo-container" link={{ to: "/" }} >
+        <div id="navbar" className={isTransparent ? "transparent" : ""}>
+            <NavbarLink className="logo-container" link={{ to: "/" }}>
                 <img src={logo} className="logo" alt="SCB logo" />
             </NavbarLink>
             <div className="burger" onClick={toggleMenu}>

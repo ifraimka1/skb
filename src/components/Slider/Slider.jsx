@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import { getMedia } from '../../api';
 import './Slider.styles.scss';
 
-function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
+function Slider({ autoPlay = false, autoPlayTime = 3000, images = false, variant = "default" }) {
     const [mediaList, setMediaList] = useState([]);
     const [itemsPerSlide, setItemsPerSlide] = useState(window.innerWidth <= 768 ? 1 : 2);
     const [enableButtons, setEnableButtons] = useState(false);
@@ -24,33 +24,27 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
 
     useEffect(() => {
         const loadData = async () => {
-            console.log('hello');
             const newMediaList = images
                 ? images.map((value, key) => ({ id: key, src: value }))
                 : await getMedia('gallery');
 
             setMediaList(newMediaList);
-
-            const numberOfSlides = newMediaList.length;
-            if (numberOfSlides > 2) {
-                setEnableButtons(true);
-            } else if (numberOfSlides == 1) {
-                setItemsPerSlide(1);
-            }
+            setEnableButtons(newMediaList.length > 1);
         };
 
         loadData();
     }, [images]);
 
-    // Условие для проверки количества слайдов
-    const totalSlides = mediaList.length;
+    // Фиксим центрирование 1 слайда
+    const slidesView = mediaList.length === 1 ? 1 : (variant === "news" ? (window.innerWidth <= 768 ? 1 : 1.4) : itemsPerSlide);
 
     return (
-        <div className="slider">
+        <div className={`slider ${variant}`}>
             <Swiper
                 modules={[Navigation, Pagination]}
-                spaceBetween={20}
-                slidesPerView={itemsPerSlide}
+                spaceBetween={variant === "news" ? 20 : 30}
+                slidesPerView={slidesView}
+                centeredSlides={mediaList.length === 1 ? false : variant === "news"}
                 slidesPerGroup={1}
                 loop={enableButtons}
                 navigation={enableButtons}
@@ -58,14 +52,8 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false }) {
                 autoplay={autoPlay ? { delay: autoPlayTime, disableOnInteraction: false } : false}
             >
                 {mediaList.map((media, index) => (
-                    <SwiperSlide
-                        key={media.id} className={totalSlides === 1 ? 'swiper-slide single' : 'swiper-slide'}
-                    >
-                        <img
-                            src={media.src}
-                            alt={`slide-${index}`}
-                            className='slide-image'
-                        />
+                    <SwiperSlide key={media.id} className={mediaList.length === 1 ? 'swiper-slide single' : 'swiper-slide'}>
+                        <img src={media.src} alt={`slide-${index}`} className='slide-image' />
                     </SwiperSlide>
                 ))}
             </Swiper>
