@@ -3,6 +3,7 @@ import { scb_blue as logo } from '../../assets/images';
 import './Navbar.styles.scss';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useLocation } from 'react-router-dom'; // Для отслеживания изменения пути
 
 const mock = [
     { text: "НОВОСТИ", to: "/news" },
@@ -18,11 +19,22 @@ function Navbar({ links = mock }) {
     const [isTransparent, setIsTransparent] = useState(true); // Начально navbar прозрачный
     const [isHidden, setIsHidden] = useState(false);
     const [lastScrollTop, setLastScrollTop] = useState(0);
-    const [scrolledOnce, setScrolledOnce] = useState(false); // Проверка на первый скролл
+    const [scrolledOnce, setScrolledOnce] = useState(false);
     const THRESHOLD = 400; // navbar не скрывается в первые 400px
+
+    const location = useLocation(); // Получаем текущий путь
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const handleLinkClick = () => setIsOpen(false);
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setIsTransparent(true); // На главной странице прозрачный
+        } else {
+            setIsTransparent(false); // На других страницах непрозрачный
+        }
+        setScrolledOnce(false);
+    }, [location]);
 
     useEffect(() => {
         const navbar = document.getElementById('navbar');
@@ -47,7 +59,7 @@ function Navbar({ links = mock }) {
                 }
             }
 
-            // Логика первого скролла (прозрачность только при первом скролле)
+            // прозрачность только при первом скролле
             if (!scrolledOnce && currentScrollTop > 50) {
                 setIsTransparent(false); // Сделать navbar непрозрачным после первого скролла
                 setScrolledOnce(true); // Устанавливаем флаг, чтобы прозрачность больше не менялась
@@ -59,6 +71,20 @@ function Navbar({ links = mock }) {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [lastScrollTop, scrolledOnce]);
+
+    // Обработчик события для кнопки "назад" (popstate)
+    useEffect(() => {
+        const handlePopState = () => {
+            if (location.pathname === '/') {
+                setIsTransparent(true); // Возвращаем прозрачность
+            } else {
+                setIsTransparent(false);
+            }
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, [location]);
 
     return (
         <div id="navbar" className={isTransparent ? "transparent" : ""}>
