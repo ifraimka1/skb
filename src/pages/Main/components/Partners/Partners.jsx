@@ -18,23 +18,22 @@ const mock = [
 function Partners({ partners = mock }) {
     const [mediaList, setMediaList] = useState(partners);
 
-    const initMediaList = async () => {
-        const newMediaList = await getMedia('partners');
-        setMediaList(newMediaList);
-    }
-
     useEffect(() => {
-        initMediaList();
+        const loadData = async () => {
+            const newMediaList = await getMedia('partners');
+            setMediaList(newMediaList);
+        }
+        loadData();
     }, []);
 
     return (
         <div className="block" id="partners">
             <BlockHeading heading="Наши партнеры" />
             <div className="marquee-container">
-                <Marquee 
-                    gradient={false} 
-                    pauseOnHover={false} 
-                    speed={80} 
+                <Marquee
+                    gradient={false}
+                    pauseOnHover={false}
+                    speed={80}
                     className="marquee"
                     autoFill={true}
                 >
