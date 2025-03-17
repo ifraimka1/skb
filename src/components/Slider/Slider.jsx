@@ -33,7 +33,7 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false, variant
                 : await getMedia('gallery');
 
             setMediaList(newMediaList);
-            setEnableButtons(newMediaList.length > 1);
+            setEnableButtons(newMediaList.length > 2);
         };
 
         loadData();
