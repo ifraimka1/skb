@@ -1,6 +1,6 @@
 React-приложение "Сайт СКБ КИТ" для использования с WordPress.
 Для работы приложения требуются:
-- Wordpress с установленными плагинами ReactPress и SkbKit (https://github.com/ifraimka1/skb-site-wp-plugin)
+- Wordpress с установленными плагинами ReactPress, Enable CORS и SkbKit (https://github.com/ifraimka1/skb-site-wp-plugin)
 - Node.js
 
 Создано с помощью create-react-app
