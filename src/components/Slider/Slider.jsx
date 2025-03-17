@@ -20,11 +20,18 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false, variant
 
     useEffect(() => {
         const handleResize = () => {
-            setItemsPerSlide(window.innerWidth <= 768 ? 1 : 2);
+            const isMobile = window.innerWidth <= 768;
+            setItemsPerSlide(isMobile ? 1 : 2);
+    
+            // Показываем кнопки, если на мобильной версии показывается 1 картинка, а всего их больше 1
+            setEnableButtons(isMobile ? mediaList.length > 1 : mediaList.length > 2);
         };
+    
         window.addEventListener('resize', handleResize);
+        handleResize(); // Вызываем сразу, чтобы не ждать первого ресайза
+    
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [mediaList]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -33,7 +40,7 @@ function Slider({ autoPlay = false, autoPlayTime = 3000, images = false, variant
                 : await getMedia('gallery');
 
             setMediaList(newMediaList);
-            setEnableButtons(newMediaList.length > 2);
+            setEnableButtons(newMediaList.length > 1);
         };
 
         loadData();

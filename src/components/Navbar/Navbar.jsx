@@ -27,15 +27,17 @@ function Navbar({ links = mock }) {
     const toggleMenu = () => setIsOpen(!isOpen);
     const handleLinkClick = () => setIsOpen(false);
 
+    // Обновление состояния прозрачности при изменении пути
     useEffect(() => {
         if (location.pathname === '/') {
-            setIsTransparent(true); // На главной странице прозрачный
+            setIsTransparent(true); // На главной странице navbar прозрачный
         } else {
-            setIsTransparent(false); // На других страницах непрозрачный
+            setIsTransparent(false); // На других страницах navbar непрозрачный
         }
-        setScrolledOnce(false);
-    }, [location]);
+        setScrolledOnce(false); // Сбрасываем флаг для первого скролла
+    }, [location]); // Отслеживаем изменения пути
 
+    // Скрытие navbar при прокрутке страницы
     useEffect(() => {
         const navbar = document.getElementById('navbar');
         if (isHidden && !isOpen) {
@@ -71,20 +73,6 @@ function Navbar({ links = mock }) {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [lastScrollTop, scrolledOnce]);
-
-    // Обработчик события для кнопки "назад" (popstate)
-    useEffect(() => {
-        const handlePopState = () => {
-            if (location.pathname === '/') {
-                setIsTransparent(true); // Возвращаем прозрачность
-            } else {
-                setIsTransparent(false);
-            }
-        };
-
-        window.addEventListener('popstate', handlePopState);
-        return () => window.removeEventListener('popstate', handlePopState);
-    }, [location]);
 
     return (
         <div id="navbar" className={isTransparent ? "transparent" : ""}>
