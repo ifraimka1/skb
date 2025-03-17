@@ -17,11 +17,15 @@ const mock = [
 
 function Partners({ partners = mock }) {
     const [mediaList, setMediaList] = useState(partners);
+    const [play, setPlay] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
             const newMediaList = await getMedia('partners');
             setMediaList(newMediaList);
+            if (newMediaList.length >= 5) {
+                setPlay(true);
+            };
         }
         loadData();
     }, []);
@@ -33,9 +37,10 @@ function Partners({ partners = mock }) {
                 <Marquee
                     gradient={false}
                     pauseOnHover={false}
+                    play={play}
                     speed={80}
                     className="marquee"
-                    autoFill={true}
+                    autoFill={play}
                 >
                     {mediaList.map((item, index) => (
                         <div key={index} className="partner">
