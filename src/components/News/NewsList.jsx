@@ -17,7 +17,9 @@ function NewsList({ isMainPage = false }) {
         const loadData = async () => {
             const newNewsList = await getNews(count);
             setNewsList(newNewsList);
-            console.log('newNewsList', newNewsList);
+            if (newNewsList.length < count) {
+                setIsFullList(true);
+            }
         };
         loadData();
     }, []);
