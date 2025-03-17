@@ -18,6 +18,10 @@ $logo-size: 150px;
             display: flex;
             align-items: center;
 
+            .rfm-marquee {
+                justify-content: center;
+            }
+
             .partner {
                 display: flex;
                 justify-content: center;
@@ -28,12 +32,13 @@ $logo-size: 150px;
                 .logo {
                     width: $logo-size;
                     height: $logo-size;
-                    border-radius: 50%;//
-                    object-fit: cover;//
+                    border-radius: 50%; //
+                    object-fit: cover; //
                     //object-fit: contain;
                     pointer-events: none;
                 }
             }
+
         }
     }
 }
