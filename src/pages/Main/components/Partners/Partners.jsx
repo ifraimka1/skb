@@ -23,11 +23,21 @@ const mock = [
 
 function Partners({ partners = mock }) {
     const [mediaList, setMediaList] = useState(partners);
-
+    // TODO: сделать отдельно init и отдельно update. Сделать статичными при <5
     const updateMediaList = async () => {
-        const newMediaList = await getMedia('partners');
-        const repeatTimes = Math.ceil(window.innerWidth / 200); // 200px — примерная ширина одной картинки
-        setMediaList([...newMediaList, ...Array(repeatTimes).fill(...newMediaList)]);
+        // const newMediaList = await getMedia('partners');
+        // if (newMediaList.length < 2) return; // Если картинок меньше двух, нет смысла чередовать
+        
+        // const items = Math.ceil(window.innerWidth / 200); // 200px — примерная ширина одной картинки
+        // const repeatTimes = Math.ceil(items / newMediaList.length);
+
+        // for (let i = 0; i < repeatTimes; i++) {
+        //     newMediaList.push(...newMediaList);
+        // }
+
+        // console.log('Я ОБНОВЛЯЮСЬ');
+
+        // setMediaList(newMediaList);
     };
 
     useEffect(() => {

@@ -19,4 +19,5 @@ export { default as bg_news_block } from './backround/bg_news_block.svg';
 export { default as bg_projects_block } from './backround/bg_projects_block.svg';
 
 export { default as scb } from './scb.svg';
+export { default as logo } from './Logo sfedu-2014 4.png';
 export { default as scb_blue } from './sсb_blue.svg';

@@ -1,5 +1,5 @@
-$block-height: 200px;
-$logo-size: 200px;
+$block-height: 150px;
+$logo-size: 150px;
 
 #react-page .content #partners {
     margin-left: 0;
@@ -28,8 +28,9 @@ $logo-size: 200px;
                 .logo {
                     width: $logo-size;
                     height: $logo-size;
-                    border-radius: 50%;
-                    object-fit: cover;
+                    border-radius: 50%;//
+                    object-fit: cover;//
+                    //object-fit: contain;
                     pointer-events: none;
                 }
             }

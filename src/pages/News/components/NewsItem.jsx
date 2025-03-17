@@ -45,7 +45,7 @@ function NewsItem() {
                         <h1>{news.heading}</h1>
                     </PageHeader>
                     <PageContent className="content" id="news-item-page">
-                        {news.photos.length !== 0 && <Slider images={news.photos} />}
+                        {news.photos.length !== 0 && <Slider images={news.photos} variant="news"/>}
                         {news.text.map(textRow => <p dangerouslySetInnerHTML={{ __html: textRow }}></p>)}
                         <div className="row">
                             <p><a href={newsUrl} target="_blank" rel="noreferrer">Ссылка на новость <img class="icon" src={extLink} alt="" /></a></p>

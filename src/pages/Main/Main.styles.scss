@@ -23,6 +23,7 @@ body {
         background-position: center;
         background-size: cover;
 
+
         .container {
             position: absolute;
             top: 40%;
@@ -75,7 +76,7 @@ body {
             font-size: 36px;
             font-weight: 600;
 
-            margin-top: 1.5rem;
+            margin-top: 0;
             margin-bottom: 1.5rem;
 
             @media (max-width: 768px) {
@@ -178,7 +179,7 @@ body {
             background-size: contain; // Или cover, если нужно заполнить область
 
             z-index: -1;
-            transform: translateX(11.3%); // Смещаем влево, компенсируя padding
+            transform: translateX(11.5%); // Смещаем влево, компенсируя padding
 
             @media (max-width: 768px) {
                 display: none; // Скрываем картинку на мобильных
@@ -203,7 +204,7 @@ body {
             background-size: contain; // Или cover, если нужно заполнить область
 
             z-index: -1;
-            transform: translateX(-11.6%); // Смещаем влево, компенсируя padding
+            transform: translateX(-11.8%); // Смещаем влево, компенсируя padding
 
             @media (max-width: 768px) {
                 display: none; // Скрываем картинку на мобильных
