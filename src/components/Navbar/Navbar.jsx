@@ -40,7 +40,7 @@ function Navbar({ links = mock }) {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollTop = window.pageYOffset;
-
+            if (!isOpen) {
             // Логика скрытия Navbar при скролле вниз
             if (currentScrollTop <= THRESHOLD) {
                 setIsHidden(false); // Navbar видим, если скролл маленький
@@ -51,7 +51,7 @@ function Navbar({ links = mock }) {
                     setIsHidden(false); // Показать Navbar при скролле вверх
                 }
             }
-
+        }
             // Прозрачность только при первом скролле на главной странице
             if (location.pathname === "/" && !scrolledOnce && currentScrollTop > 50) {
                 setIsTransparent(false);
@@ -63,7 +63,7 @@ function Navbar({ links = mock }) {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollTop, scrolledOnce, location.pathname]);
+    }, [lastScrollTop, scrolledOnce, location.pathname, isOpen]);
 
     // Обработчик события при возвращении на главную (при использовании кнопки "назад")
     useEffect(() => {
