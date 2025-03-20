@@ -11,9 +11,11 @@ function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '', //
     message: '',
     file: null,
     captcha: '',
+    agree: false, //
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -21,6 +23,32 @@ function ContactForm() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+  
+    // Если строка пустая или содержит только "7", сбрасываем поле
+    if (value.length === 0 || value === '7') {
+      setFormData({ ...formData, phone: '' });
+      return;
+    }
+  
+    //+7 (XXX) XXX-XX-XX
+    if (value.length === 1) {
+      value = `+7 ${value}`;
+    } else if (value.length <= 4) {
+      value = `+7 (${value.slice(1)}`;
+    } else if (value.length <= 7) {
+      value = `+7 (${value.slice(1, 4)}) ${value.slice(4)}`;
+    } else if (value.length <= 9) {
+      value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7)}`;
+    } else {
+      value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}-${value.slice(9, 11)}`;
+    }
+  
+    setFormData({ ...formData, phone: value });
+  };
+  
 
   const mb = 10; // Ограничение размера в мегабайтах
   const MAX_FILE_SIZE = mb * 1024 * 1024; // Переменная для проверки размера. Не менять
@@ -62,14 +90,23 @@ function ContactForm() {
     console.log('Капча просрочилась');
   }, []);
 
+  const handleAgreeChange = () => {//
+    setFormData((prev) => ({ ...prev, agree: !prev.agree }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.agree) {//
+      alert('Вы должны согласиться с обработкой персональных данных.');
+      return;
+    }
     setIsSubmitting(true);
     console.log('handleSubmit isSubmitting: ', isSubmitting);
 
     const formDataObj = new FormData();
     formDataObj.append('name', formData.name);
     formDataObj.append('email', formData.email);
+    formDataObj.append('phone', formData.phone);//
     formDataObj.append('message', formData.message);
     formDataObj.append('file', formData.file);
     formDataObj.append('captcha', formData.captcha);
@@ -115,6 +152,17 @@ function ContactForm() {
           isDisabled={isSubmitting}
         />
         <Field
+          key={7}
+          type="tel"
+          name="phone"
+          placeholder="+7 (___) ___-__-__"
+          value={formData.phone}
+          onChange={handlePhoneChange}
+          pattern="\+7\s?\(?\d{3}\)?\s?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}"
+          required
+          isDisabled={isSubmitting}
+        />
+        <Field
           key={3}
           type="textarea"
           name="message"
@@ -133,13 +181,27 @@ function ContactForm() {
           fileAttached={formData && formData.file ? true : false}
           isDisabled={isSubmitting}
         />
+        <div className="checkbox-container">
+          <input
+            type="checkbox"
+            id="agree"
+            name="agree"
+            checked={formData.agree}
+            onChange={handleAgreeChange}
+            required
+            disabled={isSubmitting}
+          />
+          <label htmlFor="agree">
+            Я согласен с <a href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873" target="_blank" rel="noopener noreferrer">обработкой персональных данных</a>
+          </label>
+        </div>
         <div className="submit-container">
           {formData.captcha &&
             <Field
               key={5}
               type="submit"
               value={isSubmitting ? 'Отправляется' : 'Отправить'}
-              isDisabled={isSubmitting}
+              isDisabled={isSubmitting || !formData.agree}
             />
           }
           <div

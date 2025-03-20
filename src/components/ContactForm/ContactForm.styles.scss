@@ -126,8 +126,20 @@ $color-file-button: rgb(7, 42, 200);
                 padding: 12px;
                 font-size: 18px;
                 line-height: normal;
+
+                &:disabled {
+                    background-color: #aaaaaa;
+                    cursor: not-allowed;
+                }
             }
         }
     }
 }
 
+.checkbox-container {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
