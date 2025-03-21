@@ -11,11 +11,11 @@ function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '', //
+    phone: '',
     message: '',
     file: null,
     captcha: '',
-    agree: false, //
+    agree: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -27,7 +27,6 @@ function ContactForm() {
   const handlePhoneChange = (e) => {
     let value = e.target.value.replace(/\D/g, '');
   
-    // Если строка пустая или содержит только "7", сбрасываем поле
     if (value.length === 0 || value === '7') {
       setFormData({ ...formData, phone: '' });
       return;
@@ -50,8 +49,8 @@ function ContactForm() {
   };
   
 
-  const mb = 10; // Ограничение размера в мегабайтах
-  const MAX_FILE_SIZE = mb * 1024 * 1024; // Переменная для проверки размера. Не менять
+  const mb = 10;
+  const MAX_FILE_SIZE = mb * 1024 * 1024; // Переменная для проверки размера. НЕ МЕНЯТЬ
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -90,13 +89,13 @@ function ContactForm() {
     console.log('Капча просрочилась');
   }, []);
 
-  const handleAgreeChange = () => {//
-    setFormData((prev) => ({ ...prev, agree: !prev.agree }));
+  const handleAgreeChange = () => {
+    setFormData({ ...formData, agree: !formData.agree });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.agree) {//
+    if (!formData.agree) {
       alert('Вы должны согласиться с обработкой персональных данных.');
       return;
     }
