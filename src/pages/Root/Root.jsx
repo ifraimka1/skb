@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { createContext, useEffect, useState } from 'react';
 
 import useElementOnScreen from '../../lib/useElementOnScreen';
+import ScrollToTop from "../../lib/scrollToTop";
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import './Root.styles.scss';
@@ -63,6 +64,7 @@ function Root() {
 
     return (
         <RootContext.Provider value={{ setRef }}>
+            <ScrollToTop />
             <Navbar />
             <div id="react-page">
                 <Outlet />
