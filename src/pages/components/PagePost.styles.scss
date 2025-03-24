@@ -44,6 +44,10 @@ $background-tape: #F5F5F7;
     text-align: center;
 }
 
+.has-text-align-justify {
+    text-align: justify;
+}
+
 .is-style-rounded * {
     border-radius: 16px;
 }
@@ -69,4 +73,3 @@ $background-tape: #F5F5F7;
         }
     }
 }
-
