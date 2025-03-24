@@ -28,7 +28,9 @@ function parseContent(str) {
 
     if (typeof current === 'string') continue;
 
-    if (current.type === "figure") {
+    const currentElClasses = current.props.className;
+
+    if (current.type === "figure" && currentElClasses.includes('wp-block-image')) {
       temp.push(current.props.children.props.src); // Добавляем элемент в temp
     } else {
       if (temp.length !== 0) {
