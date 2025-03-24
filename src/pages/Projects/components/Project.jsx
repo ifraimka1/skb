@@ -5,6 +5,8 @@ import { PagePost } from "../../components";
 
 import { getProjectByID } from "../../../api";
 
+import "./Project.styles.scss";
+
 function Project() {
     const [project, setProject] = useState();
 
