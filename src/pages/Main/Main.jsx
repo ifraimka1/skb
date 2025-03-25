@@ -7,6 +7,8 @@ import { PageContent, PageHeader } from '../components';
 // import { scb_blue as logo_02 } from '../../assets/images';
 
 import './Main.styles.scss';
+import Nambers from './components/Numbers/Numbers';
+import Numbers from './components/Numbers/Numbers';
 
 function Main() {
     const { setRef } = useContext(RootContext);
@@ -38,6 +40,7 @@ function Main() {
                 <News />
                 <Projects />
                 <Labs />
+                <Numbers/>
                 <Partners />
                 <Gallery />
                 <ContactUs />
