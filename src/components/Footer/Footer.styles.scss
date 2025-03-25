@@ -83,6 +83,12 @@
         gap: 32px;
         justify-content: center;
     }
+    .copyright {
+        display: none;
+    }
+    .visible {
+        display: block;
+    }
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -92,6 +98,18 @@
         height: auto;
         padding: 1.5em 10%;
         position: relative;
+        gap: 20px;
+
+        .visible {
+            display: none !important;
+        }
+        .copyright {
+            display: block !important; // Показываем текст внизу только в мобильной версии
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            margin-top: 10px;
+        }
 
         .container-fluid {
             display: flex;
@@ -103,14 +121,18 @@
         .logo-container {
             height: auto;
             max-height: 100%;
-            max-width: 60%;
+            max-width: 100%;
             display: flex;
             justify-content: center;
-
+            gap: 20px;
             .logo {
                 height: auto;
                 width: 100%;
             }
+        }
+
+        .logo-container label {
+            display: none !important; // Скрываем текст в мобильной версии
         }
 
         .contacts {

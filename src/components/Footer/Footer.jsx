@@ -72,7 +72,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }) {
                         <Link href="#" to="https://ictis.sfedu.ru">ИКТИБ</Link>
                     </div>
                 </div>
-                <Link style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} href="#" to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+                <Link className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} href="#" to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
             </div>
 
             <div className="footer-content">
@@ -80,6 +80,11 @@ function Footer({ links = mockLinks, contacts = mockContacts }) {
                 <div className="links">
                     {Object.keys(mediaList).map(link => <FooterLink link={mediaList[link]} key={mediaList[link].id} />)}
                 </div>
+            </div>
+
+            <Link className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} href="#" to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+            <div className="copyright">
+                ©СКБ «КИТ» 2015–2025
             </div>
         </footer >
     );
