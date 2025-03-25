@@ -1,13 +1,14 @@
 @import "../../assets/styles/theme.scss";
 @import "bootstrap/scss/bootstrap"; // Подключение Bootstrap
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
 #footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    //align-items: center;
 
-    height: 192px;
-    padding: 0 10%;
+    height: 309px;
+    padding: 45px 10%;
     margin: 2em 0 0;
     background: $bg-footer;
 
@@ -22,12 +23,15 @@
     }
 
     .logo-container {
-        height: 52%;
-        max-width: 22%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100%;
 
         .logo {
-            height: 100%;
-            width: 100%;
+            height: auto;
+            width: 256px;
         }
     }
 
@@ -37,27 +41,28 @@
         justify-content: space-between;
 
         max-height: 70%;
-        height: 40%;
+        height: 100%;
 
         p {
             color: $text-secondary;
-            font-size: 16px;
+            //font-size: 16px;
+            font-family: Montserrat, sans-serif;
             font-weight: 400;
-            line-height: 16px;
+            line-height: 20px;
             margin: 0;
         }
     }
 
     .links {
         display: flex;
-        gap: 20px;
+        gap: 17px;
 
         .link {
             display: flex;
             justify-content: center;
             align-items: center;
 
-            width: 60px;
+            width: 42px;
             aspect-ratio: 1;
             border-radius: 100%;
             background-color: $bg-primary;
@@ -70,6 +75,15 @@
         }
     }
 
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        gap: 32px;
+        justify-content: center;
+    }
+
     @media (max-width: 768px) {
         flex-direction: column;
         justify-content: center;
@@ -78,7 +92,7 @@
         height: auto;
         padding: 1.5em 10%;
         position: relative;
-    
+
         .container-fluid {
             display: flex;
             flex-direction: column;
@@ -86,47 +100,81 @@
             gap: 2rem;
         }
 
-    .logo-container {
-        height: auto;
-        max-width: 60%;
-        display: flex;
-        justify-content: center;
-
-        .logo {
+        .logo-container {
             height: auto;
+            max-height: 100%;
+            max-width: 60%;
+            display: flex;
+            justify-content: center;
+
+            .logo {
+                height: auto;
+                width: 100%;
+            }
+        }
+
+        .contacts {
+            text-align: center;
+            gap: 0.5em;
             width: 100%;
+            padding: 10px 0;
+
+            p {
+                font-size: 16px;
+            }
         }
-    }
-    .contacts {
-        text-align: center;
-        gap: 0.5em;
-        width: 100%;
-        padding: 10px 0;
-        p {
-            font-size: 16px;
-        }
-    }
-    .links {
-        display: flex;
+
+        .links {
+            display: flex;
             justify-content: center;
             gap: 10px;
 
-        .link {
-            width: 45px;
-            transition: background 0.3s ease;
+            .link {
+                width: 45px;
+                transition: background 0.3s ease;
 
-            &:hover {
-                background-color: darken($bg-primary, 10%);//
-            }
+                &:hover {
+                    background-color: darken($bg-primary, 10%); //
+                }
 
-            .icon {
-                width: 65%;
-                height: 65%;
+                .icon {
+                    width: 65%;
+                    height: 65%;
+                }
             }
         }
     }
+    
+    .footer-links-container {
+        display: flex;
+        flex-direction: column; /* Arrange links vertically */
+        justify-content: space-between; /* Spread out the items */
+        height: 100%; /* Make sure the container takes up full height */
     }
-
+    
+    .footer-links {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px; // Между столбиками будет отступ
+    
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; // Расстояние между ссылками в одном столбике
+    
+            a {
+                color: white; // Белый цвет текста
+                text-decoration: none; // Убираем подчеркивание
+                font-size: 16px; // Размер текста
+            }
+        }
+    }    
+    
+    .privacy-policy {
+        align-self: flex-end; /* Align the "Политика конфиденциальности" link to the bottom */
+        margin-top: auto; /* Ensure the link is pushed to the bottom */
+    }
+    
 }
 
 #root:has(#mainpageheader) #footer {
