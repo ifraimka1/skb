@@ -48,18 +48,30 @@ const mock = {
 
 function LabList() {
     const [labList, setLabList] = useState(mock);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const loadData = async () => {
             const newLabList = await getLabs();
             setLabList(newLabList);
+            setIsLoading(false);
         };
         loadData();
     }, []);
 
     return (
         <div className="row lab-list">
-            {Object.values(labList).map(lab => <LabCard key={lab.id} lab={lab} />)}
+            {isLoading ? (
+                // Отображаем карточки с эффектом мерцания во время загрузки
+                [...Array(6)].map((_, index) => (
+                    <div key={index} className="card loading">
+                        <div className="pic">
+                            <div className="shimmer"></div>
+                        </div>
+                    </div>
+                ))
+            ) : ( Object.values(labList).map(lab => <LabCard key={lab.id} lab={lab} />)
+            )}
         </div>
     );
 }

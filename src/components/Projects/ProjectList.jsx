@@ -18,7 +18,15 @@ function ProjectList({ laboratory }) {
 
     return (
         <div className="row project-list">
-            {Object.keys(projectList).map(id => <ProjectCard key={id} project={projectList[id]} />)}
+            {Object.keys(projectList).length === 0 ? (
+            [...Array(3)].map((_, index) => (
+                <div key={index} className="card loading">
+                    <div className="shimmer"></div>
+                </div>
+            ))
+        ) : (
+            Object.keys(projectList).map(id => <ProjectCard key={id} project={projectList[id]} />)
+        )}
         </div>
     );
 }
