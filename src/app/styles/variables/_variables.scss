@@ -1,0 +1,58 @@
+//Цвета
+$bg-primary: white;
+$bg-secondary: #343434;
+$bg-footer: #222222;
+$bg-form: #f5f5f7;
+$bg-card-lab: black;
+$bg-image: rgba(0, 0, 0, 0.75);
+
+$text-primary: black;
+$text-secondary: white;
+$text-card-project: white;
+$text-card-project-bg: rgba(255, 255, 255, 0.75);
+
+$shadow-primary: rgba(0, 0, 0, 0.25);
+
+$btn-primary-text: white;
+$btn-primary-bg: linear-gradient(
+    93.25deg,
+    #4942e4 0%,
+    #11009e 50%,
+    #4942e4 100%
+  ),
+  linear-gradient(0deg, #585858, #585858);
+
+// Размеры
+$navbar-height: 60px;
+$navbar-height-mini: 30px;
+$navbar-padding-tb: 10px;
+$navbar-logo-height: 247px;
+$navbar-logo-mini-height: 165px;
+
+$row-gap: 26px;
+
+$main-font-size: 20px;
+$main-font-weight: 400;
+$main-line-height: 30px;
+
+//Разрешения
+$desktop-4k-width: 2560px;
+$maxDesktopWidth: 2800px;
+$desktop-hd: 1920px;
+$desktop-bootstrap: 100000px;
+$desktop-max-width: 1441.98px;
+$desktop-max-width-sec: 1400.98px;
+$desktop-small-width: 1200.98px;
+$small-tablet-max-width: 993.98px;
+// $small-tablet-max-width-exception: 992px;
+$tablet-max-width: 767.98px;
+$tablet-max-width-exception: 767.98px;
+$mobile-max-widthGosBlock: 531.98px;
+$mobile-max-width: 500.98px;
+$mobile-max-width-small: 425.98px;
+$mobile-max-width-superSmall: 390.98px;
+$mobile-extra-small-width: 375.98px;
+$img-mobile-max-width: 580.98px;
+
+$mobile-xs-width: 576.98px;
+$mobile-xs-exception-absolute: 572px;

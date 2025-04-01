@@ -1,0 +1,136 @@
+$gap: 20px;
+$icon-size: 24px;
+$color-file-button: rgb(7, 42, 200);
+
+.contact-form {
+  padding: 20px 22px;
+  border-radius: 16px;
+  height: 100%;
+  width: 100%;
+  background-color: $bg-form;
+  margin-top: 20px;
+  h2 {
+    margin-top: 0;
+    min-width: 400px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 44px;
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+      min-width: 0;
+    }
+  }
+  .smart-captcha {
+    min-width: 0;
+  }
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    *:disabled {
+      background: dimgrey;
+    }
+
+    .field {
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .field.big {
+      height: 300px;
+      line-height: 30px;
+      resize: none;
+      @media (max-width: 768px) {
+        height: 200px;
+      }
+    }
+
+    .file-input-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .file-input {
+        position: relative;
+        width: fit-content;
+        color: $color-file-button;
+        font-weight: 500;
+
+        input {
+          position: absolute;
+          z-index: -1;
+          opacity: 0;
+          display: block;
+          width: 0;
+          height: 0;
+        }
+
+        .upload-file-btn {
+          display: flex;
+          cursor: pointer;
+
+          .icon {
+            filter: invert(15%) sepia(100%) saturate(2861%) hue-rotate(229deg)
+              brightness(93%) contrast(120%);
+          }
+
+          span {
+            display: inline-block;
+            font-size: 18px;
+            @media (max-width: 768px) {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      .icon {
+        margin-right: 6px;
+        height: $icon-size;
+        width: $icon-size;
+      }
+
+      .remove-btn {
+        display: flex;
+        width: fit-content;
+        height: fit-content;
+        padding: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        .icon.remove {
+          margin-left: 6px;
+          filter: hue-rotate(0) !important;
+          height: calc($icon-size * 0.75);
+          width: calc($icon-size * 0.75);
+        }
+      }
+    }
+
+    .file-input input:focus + .upload-file-btn {
+      outline: -webkit-focus-ring-color auto 1px;
+    }
+
+    .submit-container {
+      .submit {
+        width: 100%;
+        cursor: pointer;
+
+        padding: 12px;
+        font-size: 18px;
+        line-height: normal;
+      }
+    }
+  }
+}
