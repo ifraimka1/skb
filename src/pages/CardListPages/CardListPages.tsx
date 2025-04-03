@@ -8,9 +8,11 @@ import {
   transformNewsToCardData,
   transformPostsToCardData,
 } from "@/pages/CardListPages/CardListFunctions";
+import { useProjects } from "@/modules/posts/hooks/usePostProjects";
 
 interface ListProps {
   gridConfig?: GridConfig;
+  tag?: number;
 }
 
 const NewsList = ({
@@ -72,9 +74,9 @@ const LabsList = ({
 
 const ProjectsList = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
+  tag = -1,
 }: ListProps) => {
-  const { data: postsData, isError, isLoading } = usePosts();
-  const projects = postsData?.projects ? Object.values(postsData.projects) : [];
+  const { data: projects, isError, isLoading } = useProjects(tag);
 
   if (isLoading)
     return (
@@ -87,14 +89,18 @@ const ProjectsList = ({
   if (isError) return <div>Ошибка при загрузке данных</div>;
 
   return (
-    <div className={styles.mainContainer}>
-      <CardList
-        items={transformPostsToCardData(projects)}
-        variant="project"
-        gridConfig={gridConfig}
-        title="Проекты"
-      />
-    </div>
+    <>
+      {projects?.length !== 0 &&
+        <div className={styles.mainContainer}>
+          <CardList
+            items={transformPostsToCardData(projects)}
+            variant="project"
+            gridConfig={gridConfig}
+            title="Проекты"
+          />
+        </div>
+      }
+    </>
   );
 };
 

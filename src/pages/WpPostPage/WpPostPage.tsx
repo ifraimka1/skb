@@ -1,14 +1,17 @@
 import { usePostById } from "@/modules";
-import { PagePost } from "@/widgets/PostPage";
+import { WpPost } from "@/widgets/WpPost";
 import { useParams } from "react-router-dom";
+import { ProjectsList } from "../CardListPages/CardListPages";
 
 function PostPage() {
   const params = useParams();
   const postId = params.id ? parseInt(params.id, 10) : null;
+
+  const { data: post, isLoading, isError } = usePostById(postId || -1);
+
   if (!postId) {
     return <div>Не указан ID поста</div>;
   }
-  const { data: post, isLoading, isError } = usePostById(postId);
 
   if (isLoading) {
     return (
@@ -22,7 +25,14 @@ function PostPage() {
     return <div>Ошибка при загрузке данных</div>;
   }
   console.log('post', post);
-  return <>{post && <PagePost post={post} isLab={false} />}</>;
+  return (<>
+    {post &&
+      <>
+        <WpPost post={post} isLab={false} />
+        {post?.categories?.includes("labs") && <ProjectsList tag={post?.tag || -1} />}
+      </>
+    }
+  </>);
 }
 
 export default PostPage;
