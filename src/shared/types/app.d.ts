@@ -273,25 +273,24 @@ declare namespace App {
 
   export type ParsedContent = HtmlElement | MediaBlock;
 
-  export interface ProjectPost {
+  export interface WpPost {
     id: number;
     title: string;
-    content: ParsedContent[];
-    lab: string;
-    preview: string | null;
-    categories: string[];
-    tag: string;
+    categories?: string[];
+    tag:? number;
+    content?: ParsedContent[];
+    preview?: string | null;
     previewText?: string;
   }
 
-  export interface LabPost extends ProjectPost {
+  export interface LabPost extends WpPost {
     previewText: string;
   }
 
   export interface PostsResult {
-    projects: Record<number, ProjectPost>;
+    projects: Record<number, WpPost>;
     labs: Record<number, LabPost>;
-    other: ProjectPost[];
+    other: WpPost[];
   }
 
   export interface MediaItem {
