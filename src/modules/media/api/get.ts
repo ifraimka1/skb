@@ -20,12 +20,7 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
     try {
       // Запрашиваем медиа с указанной страницы
       const media = (await wp.media().page(page)) as WPv2.Media[];
-
-      // Если медиа нет, завершаем цикл
-      if (!media.length) {
-        hasMore = false;
-        break;
-      }
+      console.log('media', media);
 
       // Преобразуем данные и добавляем в общий массив
       const transformedMedia = media.map(({ id, source_url, alt_text }) => {
@@ -35,6 +30,13 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
       });
 
       allMedia = [...allMedia, ...transformedMedia];
+
+      // Если это последняя страница
+      if (media._paging.totalPages === page) {
+        hasMore = false;
+        break;
+      }
+
       page++; // Переходим на следующую страницу
     } catch (error) {
       // Если произошла ошибка (например, страница не найдена), завершаем цикл
