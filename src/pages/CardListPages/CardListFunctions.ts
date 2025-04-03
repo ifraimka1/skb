@@ -1,7 +1,7 @@
 import { CardData } from "@/widgets/Card/types";
 import { App, SKBKit } from "@/shared/types/app";
 export const transformPostsToCardData = (
-  posts: App.ProjectPost[]
+  posts: App.WpPost[]
 ): Record<string, CardData> => {
   return posts.reduce((acc, post) => {
     acc[post.id] = {

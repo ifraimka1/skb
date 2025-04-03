@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-      "baseUrl": "src",
+      "baseUrl": "../TypeScriptSKB/src",
       "paths": {
         "@/*": ["*"]
       }
     },
-    "include": ["src"],
+    "include": ["../TypeScriptSKB/src"],
     "exclude": ["node_modules"]
   }

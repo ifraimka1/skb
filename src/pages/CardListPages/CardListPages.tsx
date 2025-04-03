@@ -17,7 +17,7 @@ const NewsList = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
 }: ListProps) => {
   const { data: newsData, isLoading, isError } = useNews();
-  console.log(newsData);
+
   if (isLoading)
     return (
       <div className="mainContainer">
@@ -25,7 +25,9 @@ const NewsList = ({
         <span className="loader"></span>
       </div>
     );
+
   if (isError) return <div>Ошибка при загрузке данных</div>;
+
   return (
     <div className={styles.mainContainer}>
       {newsData && (
@@ -45,6 +47,7 @@ const LabsList = ({
 }: ListProps) => {
   const { data: postsData, isLoading, isError } = usePosts();
   const labs = postsData?.labs ? Object.values(postsData.labs) : [];
+
   if (isLoading)
     return (
       <div className="mainContainer">
@@ -52,7 +55,9 @@ const LabsList = ({
         <span className="loader"></span>
       </div>
     );
+
   if (isError) return <div>Ошибка при загрузке данных</div>;
+
   return (
     <div className={styles.mainContainer}>
       <CardList
@@ -70,6 +75,7 @@ const ProjectsList = ({
 }: ListProps) => {
   const { data: postsData, isError, isLoading } = usePosts();
   const projects = postsData?.projects ? Object.values(postsData.projects) : [];
+
   if (isLoading)
     return (
       <div className="mainContainer">
@@ -77,7 +83,9 @@ const ProjectsList = ({
         <span className="loader"></span>
       </div>
     );
+
   if (isError) return <div>Ошибка при загрузке данных</div>;
+
   return (
     <div className={styles.mainContainer}>
       <CardList

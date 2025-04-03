@@ -1,5 +1,5 @@
 import { usePosts } from "@/modules/posts/hooks/usePosts";
-import { PagePost } from "@/widgets/PostPage";
+import { WpPost } from "@/widgets/WpPost";
 
 interface CategoryPageProps {
   category: string;
@@ -22,9 +22,9 @@ export function CategoryPage({ category }: CategoryPageProps) {
   return (
     <>
       {categoryPosts.map((post) => (
-        <PagePost key={post.id} post={post}>
+        <WpPost key={post.id} post={post}>
           <div className="btn">Показать еще</div>
-        </PagePost>
+        </WpPost>
       ))}
     </>
   );

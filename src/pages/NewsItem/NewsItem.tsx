@@ -5,7 +5,7 @@ import views from "@/shared/assets/images/views.svg";
 
 import "./NewsItem.styles.scss";
 import { useNewsById } from "@/modules/news/hooks/useNewsById";
-import { PageContent, PageHeader } from "@/widgets/PostPage";
+import { PageContent, PageHeader } from "@/widgets/WpPost";
 import Slider from "@/widgets/Slider/Slider";
 export const vkWallUrl = "https://vk.com/skbkit?w=wall-172789021";
 function NewsItem() {
