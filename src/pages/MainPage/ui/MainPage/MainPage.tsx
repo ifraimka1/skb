@@ -44,10 +44,14 @@ const MainPage = () => {
       </div>
       <NewsList />
       <ProjectsList />
-      <LabsList />
+      <div className={styles.LabListContainer}>
+        <LabsList />
+      </div>
       <div className={styles.mainContainer}>
         <Partners />
+        <div className={styles.GalleryContainer}>
         <Gallery />
+        </div>
         <ContactUs />
       </div>
     </div>

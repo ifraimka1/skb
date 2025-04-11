@@ -3,7 +3,7 @@
   position: relative; // Убедитесь, что #root имеет relative
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-image: url("/assets/images/backround/bg_footer_02.svg");
+  background-image: url("../../shared/assets/images/backround/bg_footer_02.svg");
   background-size: 100% auto;
   z-index: 0; // Задний план
   opacity: 0; // Сделаем #root видимым сразу
@@ -17,7 +17,7 @@
     left: 0; // Слева
     width: 100%; // На всю ширину
     height: 364px; // Ограничиваем максимальную высоту
-    background-image: url("../../assets/images/backround/bg_news_block.svg"); // Картинка
+    background-image: url("../../shared/assets/images/backround/bg_news_block.svg"); // Картинка
     background-repeat: no-repeat;
     background-position: left center;
     background-size: contain;
@@ -31,7 +31,7 @@
 
 // Для главной страницы
 #root:has(> #react-page #mainpageheader) {
-  background-image: url("/assets/images/backround/bg_footer.svg");
+  background-image: url("../../shared/assets/images/backround/bg_footer.svg");
   &::before {
     background-image: none;
   }

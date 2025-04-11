@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import FooterLink from "./FooterLink";
 import FooterContacts from "./FooterContacts";
 
@@ -8,34 +9,31 @@ import iconSfedu from "@/shared/assets/images/footer/iconSfedu.png";
 import iconVK from "@/shared/assets/images/footer/iconVK.svg";
 import "./Footer.styles.scss";
 
-// Тип для ссылок
 interface LinkType {
   src: string;
   to: string;
-  id?: string; // Добавляем опциональное поле id
+  id?: string;
 }
 
-// Тип для контактов
 interface ContactsType {
   email: JSX.Element;
   address: JSX.Element;
   phone: JSX.Element;
 }
 
-// Тип для пропсов компонента Footer
 interface FooterProps {
-  links?: Record<string, LinkType>; // Объект с ключами-строками и значениями типа LinkType
+  links?: Record<string, LinkType>;
   contacts?: ContactsType;
 }
 
 const mockLinks: Record<string, LinkType> = {
-  ictis: {
-    src: iconIctis,
-    to: "https://ictis.sfedu.ru",
-  },
   sfedu: {
     src: iconSfedu,
     to: "https://sfedu.ru",
+  },
+  ictis: {
+    src: iconIctis,
+    to: "https://ictis.sfedu.ru",
   },
   vk: {
     src: iconVK,
@@ -45,42 +43,75 @@ const mockLinks: Record<string, LinkType> = {
 
 const mockContacts: ContactsType = {
   email: (
-    <a style={{ color: "inherit" }} href="mailto:skb@sfedu.ru">
+    <a style={{
+      fontSize: "24px",
+      color: "inherit",
+      fontWeight: "500",
+    }} href="mailto:skb@sfedu.ru">
       skb@sfedu.ru
+    </a>
+  ),
+  phone: (
+    <a style={{ color: "inherit", fontSize: "24px", }} href="tel:+79780095480">
+      +7 (978) 009-54-80
     </a>
   ),
   address: (
     <a
-      style={{ color: "inherit" }}
+      style={{ color: "inherit", fontSize: "16px" }}
       href="https://yandex.ru/maps/?text=г.%20Таганрог,%20пер.%20Тургеневский,%2044"
       target="_blank"
       rel="noopener noreferrer"
     >
-      г. Таганрог, пер. Тургеневский, 44
-    </a>
-  ),
-  phone: (
-    <a style={{ color: "inherit" }} href="tel:+79780095480">
-      +7 (978) 009-54-80
+      <div style={{ marginBottom: "5px" }}>
+        <span style={{ color: "#898989" }}>Таганрог</span>
+      </div>
+      пер. Тургеневский, 44
+
     </a>
   ),
 };
 
 function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
-  const [mediaList] = useState(links);
+  const [mediaList, setMediaList] = useState(links);
 
   return (
     <footer id="footer">
       <div className="logo-container">
-        <img className="logo" alt="logo" src={logo} />
+        <div className="logo-container" style={{ alignItems: 'flex-start' }}>
+          <img className="logo" alt="logo" src={logo} />
+        </div>
+        <label style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }}>©СКБ «КИТ» 2015–2025</label>
       </div>
-      <FooterContacts contacts={contacts} />
-      <div className="links">
-        {Object.keys(mediaList).map((linkKey) => (
-          <FooterLink link={mediaList[linkKey]} key={linkKey} />
-        ))}
+      <div className="footer-links-container">
+        <div className="footer-links">
+          <div className="footer-column">
+            <Link to="/news">НОВОСТИ</Link>
+            <Link to="/projects">ПРОЕКТЫ</Link>
+            <Link to="/labs">ЛАБОРАТОРИИ</Link>
+            <Link to="/aboutus">О НАС</Link>
+          </div>
+          <div className="footer-column">
+            <Link to="/contact" >НАША КОМАНДА</Link>
+            <Link to="/contact">КОНТАКТЫ</Link>
+            <Link to="https://ictis.sfedu.ru">ИКТИБ</Link>
+          </div>
+        </div>
+        <Link className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
       </div>
-    </footer>
+
+      <div className="footer-content">
+        <FooterContacts contacts={contacts} />
+        <div className="links">
+          {Object.keys(mediaList).map(link => <FooterLink link={mediaList[link]} key={mediaList[link].id} />)}
+        </div>
+      </div>
+
+      <Link className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+      <div className="copyright">
+        ©СКБ «КИТ» 2015–2025
+      </div>
+    </footer >
   );
 }
 
