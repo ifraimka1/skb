@@ -5,6 +5,7 @@ import { RootContext } from "@/app/Layout/Root";
 import Partners from "@/widgets/Partners";
 import Gallery from "@/pages/MainPage/ui/components/Gallery";
 import ContactUs from "@/widgets/ContactUs";
+
 import {
   LabsList,
   NewsList,

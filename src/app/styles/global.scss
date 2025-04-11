@@ -49,6 +49,7 @@ a {
 
 .btn:hover {
   background-position: 100%;
+  color: $btn-primary-text;
 }
 
 .btn[disabled] {

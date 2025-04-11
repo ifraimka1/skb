@@ -1,0 +1,92 @@
+.mainContainer {
+    margin: 0 10%;
+    text-align: left;
+    display: block;
+
+    @include mediaMax($mobile-xs-width) {
+        margin: 0 5%;
+    }
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    margin-top: 0;
+    margin-bottom: 8px;
+
+    @include mediaMax($tablet-max-width) {
+        font-size: 24px;
+    }
+}
+
+.btn {
+    margin: 32px auto 0;
+    display: block;
+    text-align: center;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 32px;
+
+    @include mediaMax($tablet-max-width) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mediaMax($mobile-xs-width) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.image-container {
+    height: 352px;
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+}
+
+$tablet-min-width: 768px;
+
+@for $i from 0 through 100 {
+    @include mediaMin($tablet-min-width) {
+        @if $i % 2==0 {
+
+            // Первый случай: широкая слева
+            .image-container:nth-child(5n + #{1 + $i * 5}) {
+                grid-column: span 4;
+            }
+
+            .image-container:nth-child(5n + #{2 + $i * 5}) {
+                grid-column: span 2;
+            }
+        }
+
+        @else {
+
+            // Второй случай: широкая справа
+            .image-container:nth-child(5n + #{2 + $i * 5}) {
+                grid-column: span 4;
+            }
+
+            .image-container:nth-child(5n + #{1 + $i * 5}) {
+                grid-column: span 2;
+            }
+        }
+
+        // чётная строка
+        .image-container:nth-child(5n + #{3 + $i * 5}),
+        .image-container:nth-child(5n + #{4 + $i * 5}),
+        .image-container:nth-child(5n + #{5 + $i * 5}) {
+            grid-column: span 2;
+        }
+
+    }
+}
