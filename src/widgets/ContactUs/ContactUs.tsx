@@ -7,8 +7,8 @@ function ContactUs() {
       <br />
       <div className="block" id="contact-us">
         <h1 className="half">
-          Нужна помощь?
-          <br /> Команда способных IT-специалистов готова вам помочь!
+          Есть вопросы?
+          <br /> Команда способных<br />IT-специалистов готова<br />вам помочь!
         </h1>
         <ContactForm />
       </div>

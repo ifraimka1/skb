@@ -71,16 +71,30 @@ function Root() {
   // Определяем, находимся ли мы на главной странице
   const isHomePage = location.pathname === "/";
 
+  useEffect(() => {
+    const rootElement = document.getElementById("root");
+  
+    if (!rootElement) return;
+  
+    if (location.pathname === "/") {
+      rootElement.classList.add("main-page");
+      rootElement.classList.remove("inner-page");
+    } else {
+      rootElement.classList.remove("main-page");
+      rootElement.classList.add("inner-page");
+    }
+  }, [location.pathname]);
+  
+
   return (
     <RootContext.Provider value={{ setRef }}>
-      <Navbar />
-      <div
-        id="react-page"
-        style={{ marginTop: isHomePage ? "0px" : "" }} // Устанавливаем margin-top
-      >
-        <Outlet />
+      <div id="layout-wrapper">
+        <Navbar />
+        <div id="react-page" style={{ marginTop: isHomePage ? "0px" : "" }}>
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
       {hasScrolled && (
         <button
           className={`scroll-to-top ${isOnTopVisible ? "visible" : "hidden"}`}
@@ -90,7 +104,7 @@ function Root() {
         </button>
       )}
     </RootContext.Provider>
-  );
+  );  
 }
 
 export default Root;

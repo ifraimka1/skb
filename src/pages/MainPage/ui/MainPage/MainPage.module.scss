@@ -152,6 +152,11 @@ body {
 
 .GalleryContainer {
   position: relative;
+  padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
 
   &::before {
     content: '';
@@ -165,7 +170,34 @@ body {
     background-position: left center;
     background-size: contain;
     z-index: -1;
-    transform: translateX(-12.5%);
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.NumbersContainer {
+  position: relative;
+  padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    height: 459px;
+    background-image: url('/src/shared/assets/images/backround/bg_projects_block.svg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+    z-index: -1;
+
     @media (max-width: 768px) {
       display: none;
     }

@@ -11,6 +11,7 @@ import {
   NewsList,
   ProjectsList,
 } from "@/pages/CardListPages/CardListPages";
+import Numbers from "@/widgets/Numbers";
 
 const MainPage = () => {
   const { setRef } = useContext(RootContext);
@@ -47,11 +48,16 @@ const MainPage = () => {
       <div className={styles.LabListContainer}>
         <LabsList />
       </div>
+      <div className={styles.NumbersContainer}>
+        <Numbers />
+        </div>
       <div className={styles.mainContainer}>
         <Partners />
-        <div className={styles.GalleryContainer}>
+      </div>
+      <div className={styles.GalleryContainer}>
         <Gallery />
-        </div>
+      </div>
+      <div className={styles.mainContainer}>
         <ContactUs />
       </div>
     </div>

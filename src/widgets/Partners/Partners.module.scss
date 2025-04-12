@@ -1,5 +1,5 @@
-$block-height: 150px;
-$logo-size: 150px;
+$block-height: 200px;
+$logo-size: 200px;
 
 #partners {
   margin-left: 0;
@@ -31,6 +31,11 @@ $logo-size: 150px;
       height: 100%;
       display: flex;
       align-items: center;
+
+      .rfm-marquee {
+        justify-content: center;
+    }
+
     }
   }
   .partner {
