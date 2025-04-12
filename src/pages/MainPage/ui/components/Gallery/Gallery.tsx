@@ -4,8 +4,6 @@ import "./Gallery.styles.scss";
 function Gallery() {
   return (
     <div id="gallery">
-      <br />
-      <br />
       <h1>
         СКБ «КИТ» - реальные технологические
         <br />

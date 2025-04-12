@@ -51,11 +51,11 @@ const MainPage = () => {
       <div className={styles.NumbersContainer}>
         <Numbers />
         </div>
-      <div className={styles.mainContainer}>
-        <Partners />
-      </div>
       <div className={styles.GalleryContainer}>
         <Gallery />
+      </div>
+      <div className={styles.mainContainer}>
+        <Partners />
       </div>
       <div className={styles.mainContainer}>
         <ContactUs />

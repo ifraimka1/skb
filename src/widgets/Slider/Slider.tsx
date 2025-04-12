@@ -57,7 +57,7 @@ function Slider({
   if (isError) return <div>Ошибка при загрузке медиа</div>;
 
   return (
-    <div className="slider">
+    <div className={`slider ${enableButtons ? "has-pagination" : ""}`}>
       {/* Кастомные стрелки */}
       {enableButtons && (
         <div className="custom-navigation">
