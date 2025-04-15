@@ -1,10 +1,39 @@
 #numbers {
+    margin-bottom: 48px;
+
     img {
         pointer-events: none;
     }
+
+    .title {
+        // если нужно — добавь стили заголовка
+    }
+
     label {
+        font-weight: 500;
         font-size: 20px;
         margin-top: 10px;
+        text-align: center;
+        display: block;
+    }
+
+    .block-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 24px;
+    }
+
+    .columns {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
+    .gap01 {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
     }
 
     .blocks {
@@ -14,10 +43,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .gap01 {
-        gap: 32px;
     }
 
     .visible {
@@ -46,4 +71,17 @@
             gap: 10px;
         }
     }
+}
+
+.namber {
+    font-size: 64px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #0867F4, #072AC8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
 }
