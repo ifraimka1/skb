@@ -1,0 +1,140 @@
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 108px;
+  padding: $navbar-padding-tb 10%;
+  background-color: rgb(255, 255, 255);
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: transform 0.3s ease-out, height 0.3s ease-out,
+    background-color 0.8s ease-out;
+
+  &.hidden {
+    transform: translateY(-110%); // Убираем navbar вверх
+  }
+
+  &:not(.hidden) {
+    transform: translateY(0); // Показываем navbar
+  }
+
+  &.transparent {
+    background-color: transparent !important;
+    transition: none;
+
+    .bar .nav-link {
+      color: $text-secondary;
+
+      @media (max-width: 1200px) {
+        color: black;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .burger .line {
+        background-color: #ffffff;
+
+        &.open {
+          background-color: #072ac8; // Синий цвет, когда меню открыто
+        }
+      }
+    }
+
+    .logo {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .nav-link:has(> .logo) {
+    display: flex;
+    height: 100%;
+    align-items: center;
+
+    .logo {
+      width: $navbar-logo-height;
+      height: auto;
+    }
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    .nav-link {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0em;
+      padding: 0.25em;
+      margin-left: 40px;
+      color: black;
+      text-decoration: none;
+      text-wrap: nowrap;
+    }
+
+    .nav-link::after {
+      background: $text-secondary;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    // height: $navbar-height;
+    // padding: $navbar-padding-tb 5%;
+
+    // .nav-link:has(> .logo) .logo {
+    //     width: $navbar-logo-mini-height;
+    // }
+
+    .bar {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: white;
+      width: 50%;
+      height: 200vh;
+      z-index: 9;
+      padding: 60px 0px;
+
+      &.open {
+        display: flex;
+      }
+
+      .nav-link {
+        padding: 10px 5px;
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    .burger {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+
+      .line {
+        width: 25px;
+        height: 3px;
+        background-color: #072ac8;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    height: $navbar-height;
+    padding: $navbar-padding-tb 5%;
+
+    .nav-link:has(> .logo) .logo {
+      width: $navbar-logo-mini-height;
+    }
+  }
+}

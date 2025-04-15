@@ -1,0 +1,13 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Пробрасываем порт 4173, если вы используете 'npm run preview'
+    ports:
+      - '4173:4173'
+    container_name: smart_lab_front
+    # Опционально, если хотите зафиксировать переменную окружения
+    environment:
+      NODE_ENV: production

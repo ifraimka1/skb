@@ -1,0 +1,175 @@
+// .field {
+//     padding: 12px 16px;
+//     border: none;
+//     border-radius: 8px;
+
+//     font-size: 16px;
+//     font-weight: 400;
+// }
+
+// .field.big {
+//     height: 200px;
+//     line-height: 30px;
+//     resize: none;
+// }
+
+// .file-input {
+//     position: relative;
+//     width: fit-content;
+
+//     input {
+//         position: absolute;
+//         z-index: -1;
+//         opacity: 0;
+//         display: block;
+//         width: 0;
+//         height: 0;
+//     }
+
+//     .upload-file-btn {
+//         display: flex;
+//         cursor: pointer;
+
+//         .icon {
+//             margin-right: 6px;
+//             height: 22px;
+//         }
+
+//         span {
+//             display: inline-block;
+//             font-size: 18px;
+//         }
+//     }
+// }
+
+// .file-input input:focus + .upload-file-btn {
+//     outline: -webkit-focus-ring-color auto 1px;
+// }
+.field-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  .field {
+    width: 100%;
+  }
+}
+.error-message {
+  color: rgb(239, 68, 68);
+}
+// Field.styles.scss
+
+.field-container {
+  width: 100%;
+
+  position: relative;
+
+  .field,
+  .field.big,
+  .submit.btn {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    // Стили для disabled состояния
+    &:disabled {
+      opacity: 0.7;
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+      border-color: #e0e0e0;
+      color: #a0a0a0;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .field.big {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .submit.btn {
+    border-radius: 8px;
+    &:hover:not(:disabled) {
+      background-color: #0069d9;
+    }
+
+    &:disabled {
+      background-color: #b0c4de;
+    }
+  }
+
+  .file-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .file-input {
+      flex-grow: 1;
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .upload-file-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border: 1px dashed #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover:not(:disabled) {
+          border-color: #007bff;
+          background-color: #f8f9fa;
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          background-color: #f5f5f5;
+        }
+      }
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .icon.remove {
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    display: block;
+  }
+}

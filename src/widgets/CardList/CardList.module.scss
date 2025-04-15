@@ -1,0 +1,17 @@
+.mainContainer {
+  margin: 0 10%;
+  @include mediaMax($mobile-xs-width) {
+    margin: 0 5%;
+  }
+}
+.title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 44px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  @include mediaMax($tablet-max-width) {
+    font-size: 24px;
+    margin-top: 0;
+  }
+}

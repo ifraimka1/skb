@@ -1,0 +1,51 @@
+@import "../../widgets/ContactForm/ContactForm.styles.scss";
+
+#page-contact {
+  .top-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex: 1 1 50%;
+
+    margin-bottom: 2em;
+    margin-top: 48px;
+    @media (max-width: 768px) {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    div:has(> ymaps) {
+      ymaps[class*="inner-panes"] {
+        border-radius: 8px;
+      }
+    }
+
+    //    div:has(> ymaps)
+    div:has(> ymaps) > * {
+      width: auto !important;
+      height: 100% !important;
+      aspect-ratio: 1;
+    }
+  }
+
+  .contact-form {
+    .row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+
+      .submit-container {
+        margin: 0;
+        max-width: 35%;
+      }
+    }
+
+    .row > * {
+      flex: 1 1 calc(50% - ($gap / 2));
+    }
+  }
+}

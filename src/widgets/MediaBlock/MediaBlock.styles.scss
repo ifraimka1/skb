@@ -1,0 +1,22 @@
+$media-gap: 1em;
+$row-limit: 2;
+
+.media-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $media-gap;
+    margin: 2em auto;
+
+    .media-container {
+        flex: 1 1 calc((100% / $row-limit) - ($media-gap * $row-limit));
+
+        .image {
+            display: block;
+            box-sizing: border-box;
+            object-fit: contain;
+            max-width: 100%;
+            width: 100%;
+            max-height: 100%;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+@import "bootstrap/scss/bootstrap";
+@import "global";
+@import "variables/variables";
+@import "reset";
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+}
+.app {
+  min-height: 100%;
+}
+#page {
+  > #header,
+  > hr,
+  > #footer {
+    display: none;
+  }
+}
+.mainContainer {
+  margin: 0 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+  @include mediaMax($mobile-xs-width) {
+    margin: 0 5%;
+    margin-bottom: 30px;
+  }
+}
+.loader {
+  width: 336px; /* 48px * 7 */
+  height: 280px; /* 40px * 7 */
+  margin-top: 210px; /* 30px * 7 */
+  display: inline-block;
+  position: relative;
+  background: #6ebeff;
+  border-radius: 15% 15% 35% 35%;
+}
+
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 315px; /* 45px * 7 */
+  top: 56px; /* 8px * 7 */
+  border: 28px solid #6ebeff; /* 4px * 7 */
+  width: 112px; /* 16px * 7 */
+  height: 140px; /* 20px * 7 */
+  border-radius: 0 28px 28px 0; /* 4px * 7 */
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  width: 7px; /* 1px * 7 */
+  height: 70px; /* 10px * 7 */
+  color: #6ebeff;
+  top: -105px; /* -15px * 7 */
+  left: 77px; /* 11px * 7 */
+  box-sizing: border-box;
+  animation: animloader 1s ease infinite;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 14px 0px rgba(51, 122, 183, 0),
+      /* 2px * 7 */ 84px 0px rgba(51, 122, 183, 0.3),
+      /* 12px * 7 */ 140px 0px rgba(51, 122, 183, 0); /* 20px * 7 */
+  }
+  50% {
+    box-shadow: 14px -35px rgba(51, 122, 183, 0.5),
+      /* 2px * 7, -5px * 7 */ 84px -21px rgba(51, 122, 183, 0.5),
+      /* 12px * 7, -3px * 7 */ 140px -14px rgba(51, 122, 183, 0.6); /* 20px * 7, -2px * 7 */
+  }
+  100% {
+    box-shadow: 14px -56px rgba(51, 122, 183, 0),
+      /* 2px * 7, -8px * 7 */ 84px -35px rgba(51, 122, 183, 0),
+      /* 12px * 7, -5px * 7 */ 140px -35px rgba(51, 122, 183, 0); /* 20px * 7, -5px * 7 */
+  }
+}
