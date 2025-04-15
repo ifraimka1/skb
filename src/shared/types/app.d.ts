@@ -181,15 +181,15 @@ declare namespace WPv2 {
     offset?: number;
     order?: "asc" | "desc";
     orderby?:
-      | "author"
-      | "date"
-      | "id"
-      | "include"
-      | "modified"
-      | "parent"
-      | "relevance"
-      | "slug"
-      | "title";
+    | "author"
+    | "date"
+    | "id"
+    | "include"
+    | "modified"
+    | "parent"
+    | "relevance"
+    | "slug"
+    | "title";
     slug?: string[];
     status?: string[];
   }
@@ -276,21 +276,26 @@ declare namespace App {
   export interface WpPost {
     id: number;
     title: string;
-    categories?: string[];
-    tag:? number;
-    content?: ParsedContent[];
-    preview?: string | null;
-    previewText?: string;
+    categories: string[];
   }
 
-  export interface LabPost extends WpPost {
+  export interface WpPostPage extends WpPost {
+    content: ParsedContent[];
+    tag: number;
+  }
+
+  export interface Card extends WpPost {
+    preview: string | null;
+  }
+
+  export interface LabCard extends Card {
     previewText: string;
   }
 
   export interface PostsResult {
-    projects: Record<number, WpPost>;
-    labs: Record<number, LabPost>;
-    other: WpPost[];
+    projects: Record<number, Card>;
+    labs: Record<number, LabCard>;
+    other: WpPostPage[];
   }
 
   export interface MediaItem {

@@ -22,9 +22,7 @@ export function CategoryPage({ category }: CategoryPageProps) {
   return (
     <>
       {categoryPosts.map((post) => (
-        <WpPost key={post.id} post={post}>
-          <div className="btn">Показать еще</div>
-        </WpPost>
+        <WpPost key={post.id} post={post} />
       ))}
     </>
   );

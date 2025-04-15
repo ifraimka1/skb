@@ -6,7 +6,7 @@ import { PageContent, PageHeader } from "@/widgets/WpPost";
 import { App } from "@/shared/types/app";
 
 interface WpPostProps {
-  post: App.WpPost;
+  post: App.WpPostPage;
   children?: ReactNode;
 }
 
