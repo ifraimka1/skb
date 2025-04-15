@@ -1,3 +1,9 @@
+.mainContainer {
+  margin: 0 10%;
+  @include mediaMax($mobile-xs-width) {
+    margin: 0 5%;
+  }
+}
 .title {
   font-size: 36px;
   font-weight: 600;
@@ -7,42 +13,5 @@
   @include mediaMax($tablet-max-width) {
     font-size: 24px;
     margin-top: 0;
-  }
-}
-.list {
-  display: grid;
-  gap: 2rem;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 32px;
-  &__lab {
-    grid-template-columns: repeat(var(--desktop-columns, 3), 1fr);
-    @include mediaMax($desktop-small-width) {
-      grid-template-columns: repeat(var(--tablet-columns, 3), 1fr);
-    }
-    @include mediaMax($tablet-max-width) {
-      grid-template-columns: repeat(var(--mobile-columns, 3), 1fr);
-    }
-  }
-
-  &__news {
-    grid-template-columns: repeat(var(--desktop-columns, 3), 1fr);
-    @include mediaMax($desktop-small-width) {
-      grid-template-columns: repeat(var(--tablet-columns, 3), 1fr);
-    }
-    @include mediaMax($tablet-max-width) {
-      grid-template-columns: repeat(var(--mobile-columns, 3), 1fr);
-    }
-  }
-
-  &__project {
-    grid-template-columns: repeat(var(--desktop-columns, 3), 1fr);
-    @include mediaMax($desktop-small-width) {
-      grid-template-columns: repeat(var(--tablet-columns, 3), 1fr);
-    }
-    @include mediaMax($tablet-max-width) {
-      grid-template-columns: repeat(var(--mobile-columns, 3), 1fr);
-    }
   }
 }

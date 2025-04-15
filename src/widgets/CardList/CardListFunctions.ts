@@ -1,4 +1,4 @@
-import { CardData } from "@/widgets/Card/types";
+import { CardData } from "@/shared/Components/Card/types";
 import { App, SKBKit } from "@/shared/types/app";
 export const transformPostsToCardData = (
   posts: App.WpPost[]

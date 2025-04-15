@@ -9,7 +9,7 @@ import {
   LabsList,
   NewsList,
   ProjectsList,
-} from "@/pages/CardListPages/CardListPages";
+} from "@/widgets/CardList/CardList";
 
 const MainPage = () => {
   const { setRef } = useContext(RootContext);

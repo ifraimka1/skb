@@ -1,9 +1,9 @@
 import { usePostById } from "@/modules";
 import { WpPost } from "@/widgets/WpPost";
 import { useParams } from "react-router-dom";
-import { ProjectsList } from "../CardListPages/CardListPages";
+import { ProjectsList } from "@/widgets/CardList/CardList";
 
-function PostPage() {
+function WpPostPage() {
   const params = useParams();
   const postId = params.id ? parseInt(params.id, 10) : null;
 
@@ -28,11 +28,11 @@ function PostPage() {
   return (<>
     {post &&
       <>
-        <WpPost post={post} isLab={false} />
+        <WpPost post={post} />
         {post?.categories?.includes("labs") && <ProjectsList tag={post?.tag || -1} />}
       </>
     }
   </>);
 }
 
-export default PostPage;
+export default WpPostPage;
