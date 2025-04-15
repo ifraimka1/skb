@@ -1,5 +1,5 @@
 // posts/api/usePosts.ts
-import { fetchPosts } from "@/modules/posts/api/get";
+import { fetchPosts } from "@/modules/posts/api/get/fetchPosts";
 import { App } from "@/shared/types/app";
 import { useQuery } from "@tanstack/react-query";
 

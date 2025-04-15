@@ -1,12 +1,12 @@
 // posts/api/useProjects.ts
-import { fetchProjects } from "@/modules/posts/api/get";
+import { fetchPostProjects } from "@/modules/posts/api/get/fetchPostProjects";
 import { useQuery } from "@tanstack/react-query";
 import { App } from "@/shared/types/app";
 
-export const useProjects = (tag: number) => {
-  return useQuery<App.WpPost[]>({
-    queryKey: [tag],
-    queryFn: fetchProjects,
+export const usePostProjects = (tag: number) => {
+  return useQuery<App.Card[]>({
+    queryKey: ["projects", tag],
+    queryFn: () => fetchPostProjects(tag),
     enabled: !!tag,
   });
 };
