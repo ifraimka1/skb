@@ -3,12 +3,12 @@ import {
   LabsList,
   NewsList,
   ProjectsList,
-} from "@/pages/CardListPages/CardListPages";
+} from "@/widgets/CardList/CardList";
 import Contact from "@/pages/Contact";
 import { MainPage } from "@/pages/MainPage";
 import NewsItem from "@/pages/NewsItem/NewsItem";
 import { NotFoundPage } from "@/pages/NotFound/NotFoundPage";
-import PostPage from "@/pages/WpPostPage/WpPostPage";
+import WpPostPage from "@/pages/WpPostPage/WpPostPage";
 import { RouteProps } from "react-router-dom";
 
 export enum AppRoutes {
@@ -66,7 +66,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   },
   [AppRoutes.POST]: {
     path: RoutePath.post,
-    element: <PostPage />,
+    element: <WpPostPage />,
   },
   [AppRoutes.CURRENTNEW]: {
     path: RoutePath.currentnew,
