@@ -1,8 +1,5 @@
 import { usePosts } from "@/modules/posts/hooks/usePosts";
 import { PagePost } from "@/widgets/PostPage";
-import Team from "../Team";
-import PhotoGallery from "../PhotoGallery";
-
 
 interface CategoryPageProps {
   category: string;
@@ -28,13 +25,7 @@ export function CategoryPage({ category }: CategoryPageProps) {
         <PagePost key={post.id} post={post}>
           {/* <div className="btn">Показать еще</div> */}
         </PagePost>
-      ))}
-      {category === "aboutus" && <>
-        <Team />
-        <PhotoGallery />
-        </>
-      }
-      
+      ))}  
     </>
   );
 }
