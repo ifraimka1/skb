@@ -31,7 +31,6 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
     const newPost: App.WpPost = {
       id: post.id,
       title: post.title.rendered,
-      categories: postCategories,
     };
 
     if (postCategories.includes("projects")) {
@@ -58,6 +57,6 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
       result.other.push(newWpPostPage);
     }
   }
-
+  console.log('fetchPosts result', result);
   return result;
 };
