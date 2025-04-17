@@ -89,10 +89,9 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
             <Link to="/news">НОВОСТИ</Link>
             <Link to="/projects">ПРОЕКТЫ</Link>
             <Link to="/labs">ЛАБОРАТОРИИ</Link>
-            <Link to="/aboutus">О НАС</Link>
           </div>
           <div className="footer-column">
-            <Link to="/contact" >НАША КОМАНДА</Link>
+            <Link to="/aboutus">О НАС</Link>
             <Link to="/contact">КОНТАКТЫ</Link>
             <Link to="https://ictis.sfedu.ru">ИКТИБ</Link>
           </div>
