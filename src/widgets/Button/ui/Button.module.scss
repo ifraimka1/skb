@@ -1,0 +1,21 @@
+button {
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #07a8e3;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Kumbh Sans;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 140%;
+  letter-spacing: 1%;
+  text-align: center;
+
+  color: #fff;
+  &:hover {
+    background-color: #07a8e3;
+  }
+}

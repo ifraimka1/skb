@@ -1,0 +1,41 @@
+// posts/api/get/getPostProjects.ts
+import { wp } from "@/shared/api/wp-client";
+import { fetchMedia } from "@/modules/media/api/get";
+import { App, WPv2 } from "@/shared/types/app";
+
+export const fetchPostProjects = async (tag: number): Promise<App.Card[]> => {
+  const categories = await wp.categories().get() as WPv2.Category[];
+  const catId = categories.find(item => item.name === "projects")?.id || -1;
+
+  const postsRequest = wp.posts();
+  if (tag !== -1) {
+    postsRequest.tags(tag);
+  }
+
+  const [posts, mediaLibrary] = await Promise.all([
+    postsRequest.get() as Promise<WPv2.Post[]>,
+    fetchMedia(),
+  ]);
+
+  const labIndex = posts.findIndex((post) => {
+    return !post.categories.includes(catId);
+  });
+  posts.splice(labIndex, 1);
+
+  const result: App.Card[] = [];
+
+  for (const post of posts) {
+    const image = mediaLibrary.find((item) => item.id === post.featured_media);
+
+    const newPost: App.Card = {
+      id: post.id,
+      title: post.title.rendered,
+      //tag: post.tags[0] || -1,
+      preview: image?.src || null,
+    };
+
+    result.push(newPost);
+  }
+
+  return result;
+};

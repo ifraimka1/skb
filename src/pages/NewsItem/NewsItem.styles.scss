@@ -1,0 +1,31 @@
+#news-item-page .row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+
+  > * {
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .icon {
+    height: $main-font-size;
+  }
+
+  #right {
+    text-align: right;
+    color: rgb(100, 100, 100);
+
+    .icon {
+      margin-right: 0.5em;
+    }
+
+    p {
+      display: inline-block;
+    }
+
+    #date {
+      margin-left: 1em;
+    }
+  }
+}
