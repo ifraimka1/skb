@@ -17,13 +17,16 @@ import {
 const formSchema = z.object({
   name: z.string().min(1, "Обязательное поле"),
   email: z.string().email("Некорректный email. Пример 123@sfedu.ru"),
+  phone: z.string()
+    .min(1, "Обязательное поле")
+    .regex(/^\+7\s?\(?\d{3}\)?\s?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/, "Некорректный номер телефона"),
   message: z.string().min(1, "Обязательное поле"),
   file: z
-    .any() // Используем `any`, чтобы избежать ошибки типа
+    .any()
     .optional()
     .nullable()
     .refine(
-      (file) => !file || file.length === 0 || file instanceof File, // Проверяем, что это File, если значение есть
+      (file) => !file || file.length === 0 || file instanceof File,
       "Файл должен быть экземпляром File"
     )
     .refine(
@@ -37,6 +40,7 @@ const formSchema = z.object({
     )
     .transform((value) => value ?? undefined),
   captcha: z.string().min(1, "Требуется проверка капчи"),
+  agree: z.boolean().refine(val => val, "Необходимо согласие на обработку данных"),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -55,9 +59,11 @@ function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       message: "",
       file: undefined,
       captcha: "",
+      agree: false,
     },
   });
 
@@ -65,7 +71,31 @@ function ContactForm() {
 
   const file = watch("file");
   const fileAttached = !!file && file instanceof File;
-  console.log(file);
+  const agree = watch("agree");
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, '');
+  
+    if (value.length === 0 || value === '7') {
+      setValue("phone", "");
+      return;
+    }
+  
+    if (value.length === 1) {
+      value = `+7 ${value}`;
+    } else if (value.length <= 4) {
+      value = `+7 (${value.slice(1)}`;
+    } else if (value.length <= 7) {
+      value = `+7 (${value.slice(1, 4)}) ${value.slice(4)}`;
+    } else if (value.length <= 9) {
+      value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7)}`;
+    } else {
+      value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}-${value.slice(9, 11)}`;
+    }
+  
+    setValue("phone", value, { shouldValidate: true });
+  };
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     setValue("file", selectedFile || undefined, { shouldValidate: true });
@@ -87,12 +117,18 @@ function ContactForm() {
     setValue("captcha", "");
   }, [setValue]);
 
+  const handleAgreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue("agree", e.target.checked, { shouldValidate: true });
+  };
+
   const onSubmit = async (data: FormData) => {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
+    formData.append("phone", data.phone);
     formData.append("message", data.message);
     formData.append("captcha", data.captcha);
+    formData.append("agree", data.agree.toString());
 
     if (data.file instanceof File) {
       formData.append("file", data.file);
@@ -134,6 +170,16 @@ function ContactForm() {
           error={errors.email?.message}
         />
         <Field
+          type="tel"
+          name="phone"
+          placeholder="+7 (___) ___-__-__"
+          disabled={isSubmitting || isPending}
+          register={register("phone", {
+            onChange: handlePhoneChange,
+          })}
+          error={errors.phone?.message}
+        />
+        <Field
           type="textarea"
           name="message"
           placeholder="Опишите в этом поле свой проект и, по возможности, прикрепите файл с ТЗ"
@@ -141,7 +187,6 @@ function ContactForm() {
           register={register("message")}
           error={errors.message?.message}
         />
-
         <Field
           type="file"
           name="file"
@@ -153,12 +198,25 @@ function ContactForm() {
           })}
           error={errors.file?.message}
         />
+        <div className="checkbox-container">
+          <input
+            type="checkbox"
+            id="agree"
+            disabled={isSubmitting || isPending}
+            {...register("agree")}
+            onChange={handleAgreeChange}
+          />
+          <label htmlFor="agree">
+            Я согласен с <a href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873" target="_blank" rel="noopener noreferrer">обработкой персональных данных</a>
+          </label>
+          {errors.agree && <span className="error-message">{errors.agree.message}</span>}
+        </div>
         <div className="submit-container">
           {watch("captcha") ? (
             <Field
               type="submit"
               name="submit"
-              disabled={isSubmitting || isPending}
+              disabled={isSubmitting || isPending || !agree}
             />
           ) : (
             <div className="captcha-container">

@@ -73,14 +73,13 @@ function Root() {
 
   return (
     <RootContext.Provider value={{ setRef }}>
+      <div id="layout-wrapper">
       <Navbar />
-      <div
-        id="react-page"
-        style={{ marginTop: isHomePage ? "0px" : "" }} // Устанавливаем margin-top
-      >
+      <main id="react-page" style={{ marginTop: isHomePage ? "0px" : "" }}>
         <Outlet />
-      </div>
+      </main>
       <Footer />
+    </div>
       {hasScrolled && (
         <button
           className={`scroll-to-top ${isOnTopVisible ? "visible" : "hidden"}`}
@@ -90,7 +89,7 @@ function Root() {
         </button>
       )}
     </RootContext.Provider>
-  );
+  );  
 }
 
 export default Root;

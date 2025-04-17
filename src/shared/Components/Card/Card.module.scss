@@ -98,6 +98,7 @@
   height: 100%;
   object-fit: cover;
   transition: filter 0.3s ease;
+  pointer-events: none;
 }
 
 .title {

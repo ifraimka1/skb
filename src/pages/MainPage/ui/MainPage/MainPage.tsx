@@ -5,11 +5,13 @@ import { RootContext } from "@/app/Layout/Root";
 import Partners from "@/widgets/Partners";
 import Gallery from "@/pages/MainPage/ui/components/Gallery";
 import ContactUs from "@/widgets/ContactUs";
+
 import {
   LabsList,
   NewsList,
   ProjectsList,
 } from "@/widgets/CardList/CardList";
+import Numbers from "@/widgets/Numbers";
 
 const MainPage = () => {
   const { setRef } = useContext(RootContext);
@@ -43,10 +45,19 @@ const MainPage = () => {
       </div>
       <NewsList />
       <ProjectsList />
-      <LabsList />
+      <div className={styles.LabListContainer}>
+        <LabsList />
+      </div>
+      <div className={styles.NumbersContainer}>
+        <Numbers />
+        </div>
+      <div className={styles.GalleryContainer}>
+        <Gallery />
+      </div>
       <div className={styles.mainContainer}>
         <Partners />
-        <Gallery />
+      </div>
+      <div className={styles.mainContainer}>
         <ContactUs />
       </div>
     </div>

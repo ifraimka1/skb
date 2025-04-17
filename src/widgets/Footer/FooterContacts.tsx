@@ -11,8 +11,8 @@ function FooterContacts({ contacts }: FooterContactsProps) {
   return (
     <div className="contacts">
       <p>{contacts.email}</p>
-      <p>{contacts.address}</p>
       <p>{contacts.phone}</p>
+      <p>{contacts.address}</p>
     </div>
   );
 }

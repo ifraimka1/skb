@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import NavbarLink from "./NavbarLink";
+import { useLocation } from "react-router-dom";
 
 import logo from "@/shared/assets/images/sсb_blue.svg";
 import "./Navbar.styles.scss";
@@ -50,6 +51,9 @@ function Navbar({ links = mock }: NavbarProps) {
   const [navbarHidden, setNavbarHidden] = useState(false); // true = спрятан, false = виден
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const THRESHOLD = 400; // navbar не скрывается в первые 400px
+  const [isTransparent, setIsTransparent] = useState(true);
+  const [scrolledOnce, setScrolledOnce] = useState(false);
+  const location = useLocation(); // отслеживаем путь
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -58,6 +62,17 @@ function Navbar({ links = mock }: NavbarProps) {
   const handleLinkClick = () => {
     setIsOpen(false); // Закрываем меню при клике на ссылку
   };
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setIsTransparent(true);
+      setScrolledOnce(false);
+      window.scrollTo(0, 0);
+    } else {
+      setIsTransparent(false);
+    }
+  }, [location]);
+
 
   // Для навбара
   useEffect(() => {
@@ -73,14 +88,26 @@ function Navbar({ links = mock }: NavbarProps) {
     const handleScroll = () => {
       const currentScrollTop = window.pageYOffset;
 
-      if (currentScrollTop <= THRESHOLD) {
-        setNavbarHidden(false);
-      } else {
-        if (currentScrollTop > lastScrollTop) {
-          setNavbarHidden(true);
-        } else {
+      if (!isOpen) {
+        if (currentScrollTop <= THRESHOLD) {
           setNavbarHidden(false);
+        } else {
+          if (currentScrollTop > lastScrollTop) {
+            setNavbarHidden(true);
+          } else {
+            setNavbarHidden(false);
+          }
         }
+      }
+
+      // Прозрачность исчезает при первом скролле на главной
+      if (
+        location.pathname === "/" &&
+        !scrolledOnce &&
+        currentScrollTop > 50
+      ) {
+        setIsTransparent(false);
+        setScrolledOnce(true);
       }
 
       setLastScrollTop(currentScrollTop);
@@ -88,10 +115,16 @@ function Navbar({ links = mock }: NavbarProps) {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollTop]);
+  }, [lastScrollTop, scrolledOnce, location.pathname, isOpen]);
+
 
   return (
-    <div id="navbar">
+    <div
+      id="navbar"
+      className={`${isTransparent ? "transparent" : ""} ${navbarHidden ? "hidden" : ""
+        }`}
+    >
+
       <NavbarLink className="logo-container" link={{ to: "/" }}>
         <img src={logo} className="logo" alt="SCB logo" />
       </NavbarLink>
