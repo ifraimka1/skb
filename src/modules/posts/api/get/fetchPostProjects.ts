@@ -6,10 +6,16 @@ import { App, WPv2 } from "@/shared/types/app";
 export const fetchPostProjects = async (tag: number): Promise<App.Card[]> => {
   const categories = await wp.categories().get() as WPv2.Category[];
   const catId = categories.find(item => item.name === "projects")?.id || -1;
+  const isLabPage = tag !== -1; // Если передали тег, значит, это страница лаборатории
 
+  // Одновременно отфильтровать и по тегу, по категории WP не дает
+  // Если тега нет, проще взять категорию projects
+  // Если тег есть, надо искать по нему
   const postsRequest = wp.posts();
-  if (tag !== -1) {
+  if (isLabPage) {
     postsRequest.tags(tag);
+  } else {
+    postsRequest.categories(catId);
   }
 
   const [posts, mediaLibrary] = await Promise.all([
@@ -17,10 +23,13 @@ export const fetchPostProjects = async (tag: number): Promise<App.Card[]> => {
     fetchMedia(),
   ]);
 
-  const labIndex = posts.findIndex((post) => {
-    return !post.categories.includes(catId);
-  });
-  posts.splice(labIndex, 1);
+  // При выборке по тегу подтянется еще и лаборатория, ее нужно убрать из массива
+  if (isLabPage) {
+    const labIndex = posts.findIndex((post) => {
+      return !post.categories.includes(catId);
+    });
+    posts.splice(labIndex, 1);
+  }
 
   const result: App.Card[] = [];
 
@@ -30,7 +39,6 @@ export const fetchPostProjects = async (tag: number): Promise<App.Card[]> => {
     const newPost: App.Card = {
       id: post.id,
       title: post.title.rendered,
-      //tag: post.tags[0] || -1,
       preview: image?.src || null,
     };
 

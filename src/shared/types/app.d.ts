@@ -276,7 +276,6 @@ declare namespace App {
   export interface WpPost {
     id: number;
     title: string;
-    categories: string[];
   }
 
   export interface WpPostPage extends WpPost {
