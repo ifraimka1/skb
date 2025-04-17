@@ -87,11 +87,12 @@ const ProjectsList = ({
       </div>
     );
 
-  if (isError) return <div>Ошибка при загрузке данных</div>;
+  if (isError || !projects) return <div>Ошибка при загрузке данных</div>;
 
   return (
     <div className={styles.mainContainer}>
       <CardListTemplate
+        //@ts-ignore
         items={transformPostsToCardData(projects)}
         variant="project"
         gridConfig={gridConfig}

@@ -9,7 +9,8 @@ export function CategoryPage({ category }: CategoryPageProps) {
   const { data: postsData, isLoading, isError } = usePosts();
 
   const categoryPosts =
-    postsData?.other.filter((post) => post.categories.includes(category)) || [];
+    postsData?.other.filter((post) => post.categories?.includes(category)) ||
+    [];
 
   if (isLoading)
     return (

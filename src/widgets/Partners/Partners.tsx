@@ -3,7 +3,6 @@ import Marquee from "react-fast-marquee";
 
 import PartnersLogo from "./PartnersLogo";
 import styles from "./Partners.module.scss";
-import BlockHeading from "@/widgets/BlockHeading";
 
 // Тип для данных партнёра
 interface Partner {
@@ -73,7 +72,7 @@ const mock: Partner[] = [
 ];
 
 function Partners({ partners = mock }: PartnersProps) {
-  const [mediaList, setMediaList] = useState<Partner[]>(partners);
+  const [mediaList] = useState<Partner[]>(partners);
 
   const updateMediaList = async () => {
     // Логика для обновления списка медиа
