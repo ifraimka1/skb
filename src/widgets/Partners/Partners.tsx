@@ -3,7 +3,6 @@ import Marquee from "react-fast-marquee";
 
 import PartnersLogo from "./PartnersLogo";
 import styles from "./Partners.module.scss";
-// import BlockHeading from "@/widgets/BlockHeading";
 
 // Тип для данных партнёра
 interface Partner {
@@ -73,28 +72,25 @@ const mock: Partner[] = [
 ];
 
 function Partners({ partners = mock }: PartnersProps) {
-  const [mediaList, setMediaList] = useState<Partner[]>(partners);
+  const [mediaList] = useState<Partner[]>(partners);
   const [play, setPlay] = useState(false);
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        // Эмуляция загрузки данных
-        // const newMediaList = await getMedia('partners');
-        // setMediaList(newMediaList);
-        
-        // Автозапуск если достаточно элементов
-        if (mediaList.length >= 5) {
-          setPlay(true);
-        }
-      } catch (error) {
-        console.error("Error loading partners data:", error);
-        // Автозапуск с mock-данными
-        setPlay(true);
-      }
-    };
+  const updateMediaList = async () => {
+    // Логика для обновления списка медиа
+    // const newMediaList = await getMedia('partners');
+    // setMediaList(newMediaList);
 
-    loadData();
+    // if (newMediaList.length >= 5) {
+      setPlay(true);
+    // }
+  };
+
+  useEffect(() => {
+    updateMediaList();
+    window.addEventListener("resize", updateMediaList);
+    return () => {
+      window.removeEventListener("resize", updateMediaList);
+    };
   }, [mediaList.length]);
 
   return (

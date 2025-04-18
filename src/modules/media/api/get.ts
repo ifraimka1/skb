@@ -19,8 +19,8 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
   while (hasMore) {
     try {
       // Запрашиваем медиа с указанной страницы
-      const media = (await wp.media().page(page)) as WPv2.Media[];
-      console.log('media', media);
+      const media = (await wp.media().page(page)) as WPv2.MediaWithPaging;
+      console.log("media", media);
 
       // Преобразуем данные и добавляем в общий массив
       const transformedMedia = media.map(({ id, source_url, alt_text }) => {
@@ -31,7 +31,6 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
 
       allMedia = [...allMedia, ...transformedMedia];
 
-      // Если это последняя страница
       if (media._paging.totalPages === page) {
         hasMore = false;
         break;
