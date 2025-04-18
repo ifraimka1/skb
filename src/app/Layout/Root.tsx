@@ -14,7 +14,7 @@ interface RootContextType {
 }
 
 // Создаем контекст с типом
-export const RootContext = createContext<RootContextType>({ setRef: () => {} });
+export const RootContext = createContext<RootContextType>({ setRef: () => { } });
 
 function Root() {
   const location = useLocation(); // Хук для получения текущего пути
@@ -74,12 +74,12 @@ function Root() {
   return (
     <RootContext.Provider value={{ setRef }}>
       <div id="layout-wrapper">
-      <Navbar />
-      <main id="react-page" style={{ marginTop: isHomePage ? "0px" : "" }}>
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+        <Navbar />
+        <main id="react-page" style={{ marginTop: isHomePage ? "0px" : "" }}>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
       {hasScrolled && (
         <button
           className={`scroll-to-top ${isOnTopVisible ? "visible" : "hidden"}`}
@@ -89,7 +89,7 @@ function Root() {
         </button>
       )}
     </RootContext.Provider>
-  );  
+  );
 }
 
 export default Root;
