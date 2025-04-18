@@ -39,7 +39,7 @@ export const fetchPostProjects = async (tag: number): Promise<App.Card[]> => {
     const newPost: App.Card = {
       id: post.id,
       title: post.title.rendered,
-      preview: image?.src || null,
+      preview: image?.src || "",
     };
 
     result.push(newPost);

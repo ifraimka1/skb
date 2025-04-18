@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMedia } from "@/modules/media/hooks/useMedia";
 
 import "./PhotoGallery.style.scss"
@@ -8,9 +8,9 @@ interface PhotoGalleryProps {
   category?: string;
 }
 
-const PhotoGallery = ({ images, category = "галерея" }: PhotoGalleryProps) => {
+const PhotoGallery = ({ images }: PhotoGalleryProps) => {
   const { data: mediaData, isLoading, isError } = useMedia();
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount] = useState(10);
 
     const filteredMedia = images
   ? images.map((src, id) => ({ id, src }))

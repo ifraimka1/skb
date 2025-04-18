@@ -36,7 +36,7 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
     if (postCategories.includes("projects")) {
       const newProject: App.Card = {
         ...newPost,
-        preview: image?.src || null,
+        preview: image?.src || "",
       };
       result.projects[post.id] = newProject;
     } else if (postCategories.includes("labs")) {
@@ -44,7 +44,7 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
       const excerptElement = Parse(post.excerpt.rendered)[0];
       const newLab: App.LabCard = {
         ...newPost,
-        preview: image?.src || undefined,
+        preview: image?.src || "",
         previewText: (excerptElement as any)?.props?.children || "",
       };
       result.labs[post.id] = newLab;
@@ -53,6 +53,7 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
         ...newPost,
         content: parseContent(post.content.rendered),
         tag: post.tags[0],
+        categories: postCategories,
       };
       result.other.push(newWpPostPage);
     }

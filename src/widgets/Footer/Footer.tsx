@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import FooterLink from "./FooterLink";
 import FooterContacts from "./FooterContacts";
@@ -73,7 +73,8 @@ const mockContacts: ContactsType = {
 };
 
 function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
-  const [mediaList, setMediaList] = useState(links);
+  // TODO: добавить setMediaList
+  const [mediaList] = useState(links);
 
   return (
     <footer id="footer">

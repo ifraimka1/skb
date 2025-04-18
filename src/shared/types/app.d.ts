@@ -301,14 +301,15 @@ declare namespace App {
   export interface WpPostPage extends WpPost {
     content: ParsedContent[];
     tag: number;
+    categories?: string[];
   }
 
   export interface Card extends WpPost {
-    preview?: string | null;
+    preview: string;
   }
 
   export interface LabCard extends Card {
-    previewText?: string | null;
+    previewText: string;
   }
 
   export interface PostsResult {

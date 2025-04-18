@@ -16,7 +16,8 @@ type FieldType =
   | "file"
   | "textarea"
   | "textarea"
-  | "password";
+  | "password"
+  | "tel";
 
 interface FieldProps {
   type: FieldType;

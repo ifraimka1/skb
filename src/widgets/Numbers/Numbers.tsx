@@ -1,5 +1,5 @@
 import "./Numbers.styles.scss";
-import { Illustration } from '../../shared/assets/images/numbers';
+import { Illustration } from '@/shared/assets/images/numbers';
 
 const Numbers = () => {
     const currentYear = new Date().getFullYear();
