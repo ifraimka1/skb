@@ -1,7 +1,7 @@
 import WPAPI from "wpapi";
 
 export const wp = new WPAPI({
-  endpoint: "http://skb-site.local/wp-json/",
+  endpoint: "https://test.skbkit.ru/wp-json/",
   username: "admin",
   password: "admin",
 });
