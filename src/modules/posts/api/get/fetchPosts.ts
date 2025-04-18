@@ -44,7 +44,7 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
       const excerptElement = Parse(post.excerpt.rendered)[0];
       const newLab: App.LabCard = {
         ...newPost,
-        preview: image?.src || null,
+        preview: image?.src || undefined,
         previewText: (excerptElement as any)?.props?.children || "",
       };
       result.labs[post.id] = newLab;

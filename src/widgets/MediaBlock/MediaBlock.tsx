@@ -1,7 +1,12 @@
 import MediaContainer from "@/widgets/MediaBlock/MediaContainer";
 import "./MediaBlock.styles.scss";
+import { ReactElement } from "react";
 
-function MediaBlock({ images }) {
+interface MediaBlockProps {
+  images: string[];
+}
+
+function MediaBlock({ images }: MediaBlockProps): ReactElement {
   return (
     <div className="media-block">
       {images.map((item, index) => (

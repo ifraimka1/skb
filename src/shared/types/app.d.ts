@@ -19,7 +19,25 @@ declare namespace WPv2 {
     raw: string;
     rendered: string;
   }
-
+  export interface PagingInfo {
+    total: number;
+    totalPages: number;
+    links: {
+      next?: string;
+    };
+    next?: {
+      _options: {
+        auth: boolean;
+        endpoint: string;
+        username: string;
+        password: string;
+      };
+      transport: Record<string, any>;
+      _params: Record<string, any>;
+      _supportedMethods: string[];
+      _path: Record<string, any>;
+    };
+  }
   export interface Content {
     raw: string;
     rendered: string;
@@ -113,7 +131,9 @@ declare namespace WPv2 {
     class_list: string[];
     _links: Links;
   }
-
+  export interface MediaWithPaging extends Array<Media> {
+    _paging: PagingInfo;
+  }
   export interface Media {
     id: number;
     date: string;
@@ -181,15 +201,15 @@ declare namespace WPv2 {
     offset?: number;
     order?: "asc" | "desc";
     orderby?:
-    | "author"
-    | "date"
-    | "id"
-    | "include"
-    | "modified"
-    | "parent"
-    | "relevance"
-    | "slug"
-    | "title";
+      | "author"
+      | "date"
+      | "id"
+      | "include"
+      | "modified"
+      | "parent"
+      | "relevance"
+      | "slug"
+      | "title";
     slug?: string[];
     status?: string[];
   }
@@ -284,11 +304,11 @@ declare namespace App {
   }
 
   export interface Card extends WpPost {
-    preview: string | null;
+    preview?: string | null;
   }
 
   export interface LabCard extends Card {
-    previewText: string;
+    previewText?: string | null;
   }
 
   export interface PostsResult {

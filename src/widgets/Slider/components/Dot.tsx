@@ -1,8 +1,12 @@
 import { useContext } from "react";
-
 import { SliderContext } from "../Slider";
+import { ReactElement } from "react";
 
-function Dot({ number }) {
+interface DotProps {
+  number: number;
+}
+
+function Dot({ number }: DotProps): ReactElement {
   const { goToSlide, slideNumber } = useContext(SliderContext);
 
   return (

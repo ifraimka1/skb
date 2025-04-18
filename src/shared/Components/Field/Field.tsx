@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./Field.styles.scss";
 import cross from "@/shared/assets/images/cross.svg";
 import fileUpload from "@/shared/assets/images/fileUpload.svg";
 import { ForwardedRef, forwardRef } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import {
+  FieldError,
+  FieldErrorsImpl,
+  Merge,
+  UseFormRegisterReturn,
+} from "react-hook-form";
 type FieldType =
   | "text"
   | "email"
@@ -18,7 +24,11 @@ interface FieldProps {
   placeholder?: string;
   disabled?: boolean;
   fileAttached?: boolean;
-  error?: string;
+  error?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<any>>
+    | undefined;
   handleRemoveFile?: () => void;
   register?: UseFormRegisterReturn;
 }
@@ -27,7 +37,7 @@ const Field = forwardRef(
   (
     {
       type,
-      name,
+
       placeholder,
       disabled = false,
       fileAttached = false,
@@ -90,7 +100,7 @@ const Field = forwardRef(
             {...register}
           />
         )}
-        {error && <span className="error-message">{error}</span>}
+        {error && <span className="error-message">{String(error)}</span>}
       </div>
     );
   }
