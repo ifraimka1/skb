@@ -4,6 +4,11 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
+  padding-top: 48px;
+
+  h1, h2 {
+    font-weight: 600;
+  }
 
   .half {
     flex: 1 1 50%;

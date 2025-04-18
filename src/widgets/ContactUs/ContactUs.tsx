@@ -4,12 +4,13 @@ import "./ContactUs.styles.scss";
 function ContactUs() {
   return (
     <>
-      <br />
       <div className="block" id="contact-us">
-        <h1 className="half">
+        <div className="half">
+        <h1>
           Есть вопросы?
-          <br /> Команда способных<br />IT-специалистов готова<br />вам помочь!
         </h1>
+        <h2>Наша команда всегда<br/>готова вам помочь</h2>
+        </div>
         <ContactForm />
       </div>
     </>
