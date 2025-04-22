@@ -12,9 +12,9 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
   const { data: mediaData, isLoading, isError } = useMedia();
   const [visibleCount] = useState(10);
 
-    const filteredMedia = images
-  ? images.map((src, id) => ({ id, src }))
-  : mediaData || []; // без фильтра
+  const filteredMedia = images
+    ? images.map((src, id) => ({ id, src }))
+    : mediaData || []; // без фильтра
 
   if (isLoading)
     return (
@@ -27,7 +27,7 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
 
   return (
     <div className="mainContainer">
-        <h1 className="title">Фотогалерея</h1>
+      <h1 className="title">Фотогалерея</h1>
       <div className="images">
         {filteredMedia.slice(0, visibleCount).map((media) => (
           <div key={media.id} className="image-container">
@@ -41,8 +41,8 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
       </div>
 
       <div className="btn">
-          Показать еще
-        </div>
+        Загрузить ещё
+      </div>
     </div>
   );
 };
