@@ -28,25 +28,28 @@ function Slider({
     window.innerWidth <= 768 ? 1 : 2
   );
   const [enableButtons, setEnableButtons] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef<any>(null);
 
   const filteredMedia = images
     ? images.map((src, id) => ({ id, src }))
     : mediaData?.filter((media) => media.category === category) || [];
 
-    useEffect(() => {
-      const handleResize = () => {
-        const isMobile = window.innerWidth <= 768;
-        setItemsPerSlide(isMobile ? 1 : 2);
-    
-        // Показываем стрелки только если слайдов больше 2
-        setEnableButtons(!isMobile && filteredMedia.length > 2);
-      };
-    
-      window.addEventListener("resize", handleResize);
-      handleResize(); // сразу вызываем
-      return () => window.removeEventListener("resize", handleResize);
-    }, [filteredMedia]);    
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      setItemsPerSlide(isMobile ? 1 : 2);
+      setEnableButtons(!isMobile && filteredMedia.length > 2);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // сразу вызываем
+    return () => window.removeEventListener("resize", handleResize);
+  }, [filteredMedia]);
+
+  const handleSlideChange = (swiper: any) => {
+    setCurrentIndex(swiper.realIndex);
+  };
 
   if (isLoading)
     return (
@@ -83,6 +86,7 @@ function Slider({
             : false
         }
         onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onSlideChange={handleSlideChange}
       >
         {filteredMedia.map((media) => (
           <SwiperSlide

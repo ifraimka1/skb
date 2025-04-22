@@ -4,17 +4,17 @@
     position: relative;
     padding: 10px 0;
 
-    &.has-pagination {
-        .swiper {
-            padding-bottom: 40px;
-        }
-    }
+    .swiper-pagination {
+        margin-top: 20px;
+        position: static; // чтобы убрать абсолютное позиционирование по умолчанию
+        display: flex;
+        justify-content: center;
+      }
 
     .swiper-slide {
         display: flex;
         justify-content: center;
         align-items: center;
-
 
         .slide-image {
             width: 100%;
