@@ -15,7 +15,11 @@ import {
 } from "@/widgets/ContactForm/variables";
 
 const formSchema = z.object({
-  name: z.string().min(1, "Обязательное поле"),
+  name: z
+    .string()
+    .trim()
+    .min(1, "Обязательное поле")
+    .regex(/^[a-zA-Zа-яА-ЯёЁ\s-]+$/, "Имя может содержать только буквы и пробелы"),
   email: z.string().email("Некорректный email. Пример 123@sfedu.ru"),
   phone: z.string()
     .min(1, "Обязательное поле")
@@ -75,12 +79,12 @@ function ContactForm() {
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, '');
-  
+
     if (value.length === 0 || value === '7') {
       setValue("phone", "");
       return;
     }
-  
+
     if (value.length === 1) {
       value = `+7 ${value}`;
     } else if (value.length <= 4) {
@@ -92,7 +96,7 @@ function ContactForm() {
     } else {
       value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}-${value.slice(9, 11)}`;
     }
-  
+
     setValue("phone", value, { shouldValidate: true });
   };
 
@@ -145,6 +149,13 @@ function ContactForm() {
     });
   };
 
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Разрешены только буквы (латиница и кириллица), пробелы и дефисы
+    const rawValue = e.target.value;
+    const cleanedValue = rawValue.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, '');
+    setValue("name", cleanedValue, { shouldValidate: true });
+  };
+
   return (
     <Form
       method="post"
@@ -158,7 +169,9 @@ function ContactForm() {
           name="name"
           placeholder="Имя"
           disabled={isSubmitting || isPending}
-          register={register("name")}
+          register={register("name", {
+            onChange: handleNameChange,
+          })}
           error={errors.name?.message}
         />
         <Field

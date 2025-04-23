@@ -94,7 +94,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
           <div className="footer-column">
             <Link to="/aboutus">О НАС</Link>
             <Link to="/contact">КОНТАКТЫ</Link>
-            <Link to="https://ictis.sfedu.ru">ИКТИБ</Link>
+            <a href="https://ictis.sfedu.ru" target="_blank" rel="noopener noreferrer">ИКТИБ</a>
           </div>
         </div>
         <Link className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
