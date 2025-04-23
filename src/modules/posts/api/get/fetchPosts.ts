@@ -58,6 +58,6 @@ export const fetchPosts = async (): Promise<App.PostsResult> => {
       result.other.push(newWpPostPage);
     }
   }
-  console.log('fetchPosts result', result);
+
   return result;
 };
