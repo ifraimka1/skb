@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  // base: '/wp-content/reactpress/apps/skb/dist/',
+  base: "/wp-content/reactpress/apps/skb/dist/index.html",
   plugins: [react()],
   resolve: {
     alias: {
