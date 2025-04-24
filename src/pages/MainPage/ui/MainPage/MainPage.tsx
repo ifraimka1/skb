@@ -43,24 +43,22 @@ const MainPage = () => {
           </HashLink>
         </section>
       </div>
-      <div className={styles.mainpageContainer}>
-        <ProjectsList />
-        <div className={styles.NumbersContainer}>
-          <Numbers />
-        </div>
-        <NewsList />
-        <div className={styles.GalleryContainer}>
-          <Gallery />
-        </div>
-        <div className={styles.LabListContainer}>
-          <LabsList />
-        </div>
-        <div className={styles.mainContainer}>
-          <Partners />
-        </div>
-        <div className={styles.mainContainer}>
-          <ContactUs />
-        </div>
+      <ProjectsList />
+      <div className={styles.NumbersContainer}>
+        <Numbers />
+      </div>
+      <NewsList />
+      <div className={styles.GalleryContainer}>
+        <Gallery />
+      </div>
+      <div className={styles.LabListContainer}>
+        <LabsList />
+      </div>
+      <div className={styles.mainContainer}>
+        <Partners />
+      </div>
+      <div className={styles.mainContainer}>
+        <ContactUs />
       </div>
     </div>
   );
