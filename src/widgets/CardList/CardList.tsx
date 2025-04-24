@@ -9,6 +9,7 @@ import {
   transformPostsToCardData,
 } from "@/widgets/CardList/CardListFunctions";
 import { usePostProjects } from "@/modules/posts/hooks/usePostProjects";
+import CardSkeleton from "./ui/CardSkeleton";
 
 interface ListProps {
   gridConfig?: GridConfig;
@@ -24,11 +25,16 @@ const NewsList = ({
     return (
       <div className="mainContainer">
         <h2 className={styles.title}>Новости</h2>
-        <span className="loader"></span>
+        <div className={styles.skeletonGrid }>
+          {[...Array(3)].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
+        {/* <span className="loader"></span> анимация прогрузки */}
       </div>
     );
 
-  if (isError) return <div>Ошибка при загрузке данных</div>;
+  if (isError) return <center>Ошибка при загрузке данных</center>;
 
   return (
     <div className={styles.mainContainer}>
@@ -43,7 +49,7 @@ const NewsList = ({
     </div>
   );
 };
-
+// TODO: вынести array cardSkeleton Отдельно
 const LabsList = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
 }: ListProps) => {
@@ -54,7 +60,11 @@ const LabsList = ({
     return (
       <div className="mainContainer">
         <h2 className={styles.title}>Лаборатории</h2>
-        <span className="loader"></span>
+        <div className={styles.skeletonGrid}>
+          {[...Array(3)].map((_, index) => (
+            <CardSkeleton key={index} variant="lab" />
+          ))}
+        </div>
       </div>
     );
 
@@ -83,7 +93,11 @@ const ProjectsList = ({
     return (
       <div className="mainContainer">
         <h2 className={styles.title}>Наши проекты</h2>
-        <span className="loader"></span>
+        <div className={styles.skeletonGrid}>
+          {[...Array(3)].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
       </div>
     );
 
