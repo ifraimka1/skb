@@ -1,8 +1,8 @@
 import Root from "@/app/Layout/Root";
 import { routeConfig } from "@/shared/config/routeConfig/routeConfig";
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
-export const appRouter = createBrowserRouter([
+export const appRouter = createHashRouter([
   {
     element: <Root />,
 
