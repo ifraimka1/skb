@@ -66,7 +66,7 @@ const LabsList = ({
         items={transformPostsToCardData(labs)}
         variant="lab"
         gridConfig={gridConfig}
-        title="Лаборатории"
+        title="Наши лаборатории"
       />
     </div>
   );
@@ -82,7 +82,7 @@ const ProjectsList = ({
   if (isLoading)
     return (
       <div className="mainContainer">
-        <h2 className={styles.title}>Проекты</h2>
+        <h2 className={styles.title}>Наши проекты</h2>
         <span className="loader"></span>
       </div>
     );
@@ -96,7 +96,7 @@ const ProjectsList = ({
         items={transformPostsToCardData(projects)}
         variant="project"
         gridConfig={gridConfig}
-        title="Проекты"
+        title="Наши проекты"
       />
     </div>
   );
