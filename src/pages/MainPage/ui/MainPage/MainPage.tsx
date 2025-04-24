@@ -43,16 +43,16 @@ const MainPage = () => {
           </HashLink>
         </section>
       </div>
-      <NewsList />
       <ProjectsList />
-      <div className={styles.LabListContainer}>
-        <LabsList />
-      </div>
       <div className={styles.NumbersContainer}>
         <Numbers />
-        </div>
+      </div>
+      <NewsList />
       <div className={styles.GalleryContainer}>
         <Gallery />
+      </div>
+      <div className={styles.LabListContainer}>
+        <LabsList />
       </div>
       <div className={styles.mainContainer}>
         <Partners />
