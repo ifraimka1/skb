@@ -1,7 +1,7 @@
 .mainContainer {
-  margin: 30px 10% 0 10%;
+  margin: 0 10% 0 10%;
   @include mediaMax($mobile-xs-width) {
-    margin: 30px 5% 0 5%;
+    margin: 0 5% 0 5%;
   }
 }
 
@@ -202,4 +202,11 @@ body {
       display: none;
     }
   }
+}
+
+.mainpage-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 40px;
 }

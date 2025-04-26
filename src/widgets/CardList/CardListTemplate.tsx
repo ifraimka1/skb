@@ -8,7 +8,7 @@ export const CardListTemplate = ({
   items,
   variant = "lab", // Значение по умолчанию
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
-  title = "Лаборатории",
+  title = "Наши лаборатории",
 }: CardListProps) => {
   const itemsArray = Object.values(items);
 

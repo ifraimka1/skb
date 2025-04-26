@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  margin-bottom: 32px;
+  //margin-bottom: 32px;
   &__lab {
     grid-template-columns: repeat(var(--desktop-columns, 3), 1fr);
     @include mediaMax($desktop-small-width) {
