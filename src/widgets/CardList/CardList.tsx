@@ -1,5 +1,6 @@
 // pages/MainPage/ui/MainPage/Lists.tsx
 import { CardListTemplate } from "@/widgets/CardList/CardListTemplate";
+import { WithLoading } from "@/shared/Components/WithLoading/WithLoading";
 import { GridConfig } from "@/widgets/CardList/types";
 import { usePosts } from "@/modules/posts/hooks/usePosts";
 import styles from "./CardList.module.scss";
@@ -9,7 +10,6 @@ import {
   transformPostsToCardData,
 } from "@/widgets/CardList/CardListFunctions";
 import { usePostProjects } from "@/modules/posts/hooks/usePostProjects";
-import CardSkeleton from "./ui/CardSkeleton";
 
 interface ListProps {
   gridConfig?: GridConfig;
@@ -21,64 +21,48 @@ const NewsList = ({
 }: ListProps) => {
   const { data: newsData, isLoading, isError } = useNews();
 
-  if (isLoading)
-    return (
-      <div className="mainContainer">
-        <h2 className={styles.title}>Новости</h2>
-        <div className={styles.skeletonGrid }>
-          {[...Array(3)].map((_, index) => (
-            <CardSkeleton key={index} />
-          ))}
-        </div>
-        {/* <span className="loader"></span> анимация прогрузки */}
-      </div>
-    );
-
-  if (isError) return <center>Ошибка при загрузке данных</center>;
-
   return (
-    <div className={styles.mainContainer}>
-      {newsData && (
-        <CardListTemplate
-          items={transformNewsToCardData(newsData)}
-          variant="news"
-          gridConfig={gridConfig}
-          title="Новости"
-        />
-      )}
-    </div>
+    <WithLoading
+      isLoading={isLoading}
+      isError={isError}
+      count={4}
+      gridConfig={gridConfig}
+    >
+      <div className={styles.mainContainer}>
+        {newsData && (
+          <CardListTemplate
+            items={transformNewsToCardData(newsData)}
+            variant="news"
+            gridConfig={gridConfig}
+            title="Новости"
+          />
+        )}
+      </div>
+    </WithLoading>
   );
 };
-// TODO: вынести array cardSkeleton Отдельно
+
 const LabsList = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
 }: ListProps) => {
   const { data: postsData, isLoading, isError } = usePosts();
   const labs = postsData?.labs ? Object.values(postsData.labs) : [];
 
-  if (isLoading)
-    return (
-      <div className="mainContainer">
-        <h2 className={styles.title}>Лаборатории</h2>
-        <div className={styles.skeletonGrid}>
-          {[...Array(3)].map((_, index) => (
-            <CardSkeleton key={index} variant="lab" />
-          ))}
-        </div>
-      </div>
-    );
-
-  if (isError) return <div>Ошибка при загрузке данных</div>;
-
   return (
-    <div className={styles.mainContainer}>
-      <CardListTemplate
-        items={transformPostsToCardData(labs)}
-        variant="lab"
-        gridConfig={gridConfig}
-        title="Наши лаборатории"
-      />
-    </div>
+    <WithLoading
+      isLoading={isLoading}
+      isError={isError}
+      gridConfig={gridConfig}
+    >
+      <div className={styles.mainContainer}>
+        <CardListTemplate
+          items={transformPostsToCardData(labs)}
+          variant="lab"
+          gridConfig={gridConfig}
+          title="Наши лаборатории"
+        />
+      </div>
+    </WithLoading>
   );
 };
 
@@ -89,30 +73,22 @@ const ProjectsList = ({
   const { data, isError, isLoading } = usePostProjects(tag);
   const projects = data ?? [];
 
-  if (isLoading)
-    return (
-      <div className="mainContainer">
-        <h2 className={styles.title}>Наши проекты</h2>
-        <div className={styles.skeletonGrid}>
-          {[...Array(3)].map((_, index) => (
-            <CardSkeleton key={index} />
-          ))}
-        </div>
-      </div>
-    );
-
-  if (isError || !projects) return <div>Ошибка при загрузке данных</div>;
-
   return (
-    <div className={styles.mainContainer}>
-      <CardListTemplate
-        //@ts-ignore
-        items={transformPostsToCardData(projects)}
-        variant="project"
-        gridConfig={gridConfig}
-        title="Наши проекты"
-      />
-    </div>
+    <WithLoading
+      isLoading={isLoading}
+      isError={isError}
+      gridConfig={gridConfig}
+    >
+      <div className={styles.mainContainer}>
+        <CardListTemplate
+          //@ts-ignore
+          items={transformPostsToCardData(projects)}
+          variant="project"
+          gridConfig={gridConfig}
+          title="Наши проекты"
+        />
+      </div>
+    </WithLoading>
   );
 };
 

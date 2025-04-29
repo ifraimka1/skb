@@ -1,11 +1,11 @@
-// shared/ui/CardSkeleton/CardSkeleton.tsx
-import styles from "./CardSkeleton.module.scss";
+// shared/Components/SkeletonCard/SkeletonCard.tsx
+import styles from "./SkeletonCard.module.scss";
 
-interface CardSkeletonProps {
+interface SkeletonCardProps {
   variant?: "default" | "lab";
 }
 
-const CardSkeleton = ({ variant = "default" }: CardSkeletonProps) => {
+const SkeletonCard = ({ variant = "default" }: SkeletonCardProps) => {
   const cardClass =
     variant === "lab"
       ? `${styles.card} ${styles.labsCard}`
@@ -20,5 +20,4 @@ const CardSkeleton = ({ variant = "default" }: CardSkeletonProps) => {
   );
 };
 
-export default CardSkeleton;
-
+export default SkeletonCard;
