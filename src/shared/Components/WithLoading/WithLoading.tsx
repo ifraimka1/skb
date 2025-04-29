@@ -33,12 +33,5 @@ export const WithLoading = ({
         return <div>Ошибка при загрузке данных</div>;
     }
 
-    // return <>{children}</>;
-    return (
-        <SkeletonGrid
-            count={count}
-            gridConfig={gridConfig}
-            variant={variant}
-        />
-    );
+    return <>{children}</>;
 };
