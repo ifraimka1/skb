@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 
 import MediaBlock from "@/widgets/MediaBlock/MediaBlock";
-
 import { PageContent, PageHeader } from "@/widgets/WpPost";
 import { App } from "@/shared/types/app";
+
+import "./Projects.scss";
 
 interface WpPostProps {
   post: App.WpPostPage;
@@ -15,7 +16,7 @@ export default function WpPost({
   children,
 }: WpPostProps) {
   return (
-    <>
+    <div className={post.categories?.includes('projects') ? "project" : ""}>
       <PageHeader className="header">
         <h1>{post.title}</h1>
       </PageHeader>
@@ -29,6 +30,6 @@ export default function WpPost({
           })}
         {children}
       </PageContent>
-    </>
+    </div>
   );
 }
