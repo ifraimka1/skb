@@ -17,7 +17,7 @@ $background-tape: #F5F5F7;
 .project {
     .header {
         text-align: center;
-        margin-bottom: 4em;
+        margin-bottom: 2em;
     }
 
     .wp-block-columns {
@@ -82,7 +82,8 @@ $background-tape: #F5F5F7;
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            font-size: 20px;
+            font-size: 18px;
+            word-wrap: normal;
 
             th,
             td {
