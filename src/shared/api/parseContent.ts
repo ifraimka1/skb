@@ -19,7 +19,7 @@ export const parseContent = (html: string): ParsedContent[] => {
     }
 
     // Обработка медиа-элементов (img внутри figure)
-    if (node.type === "figure") {
+    if (node.type === "figure" && node.props.className.includes('wp-block-image')) {
       const imgSrc = node.props.children?.props?.src;
       if (imgSrc) {
         mediaBuffer.push(imgSrc);
@@ -47,6 +47,9 @@ export const parseContent = (html: string): ParsedContent[] => {
   if (mediaBuffer.length > 0) {
     result.push({ type: "mediablock", value: [...mediaBuffer] });
   }
+
+  console.log('nonParsedElements', elements);
+  console.log('parsedElements', result);
 
   return result;
 };

@@ -1,9 +1,11 @@
 import { ReactNode } from "react";
 
 import MediaBlock from "@/widgets/MediaBlock/MediaBlock";
-
 import { PageContent, PageHeader } from "@/widgets/WpPost";
+import { useResizeObserver } from "@/shared/lib/ResizeObserver/ResizeObserver";
 import { App } from "@/shared/types/app";
+
+import "./Projects.scss";
 
 interface WpPostProps {
   post: App.WpPostPage;
@@ -14,8 +16,10 @@ export default function WpPost({
   post,
   children,
 }: WpPostProps) {
+  useResizeObserver({parentSelector: '.wp-block-pullquote'});
+
   return (
-    <>
+    <div className={post.categories?.includes('projects') ? "project" : ""}>
       <PageHeader className="header">
         <h1>{post.title}</h1>
       </PageHeader>
@@ -29,6 +33,6 @@ export default function WpPost({
           })}
         {children}
       </PageContent>
-    </>
+    </div>
   );
 }
