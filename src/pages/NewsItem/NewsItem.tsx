@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import extLink from "@/shared/assets/images/extLink.svg";
 import views from "@/shared/assets/images/views.svg";
+import {SkeletonPost} from "@/shared/Components/SkeletonPost/SkeletonPost";
 
 import "./NewsItem.styles.scss";
 import { useNewsById } from "@/modules/news/hooks/useNewsById";
@@ -25,10 +26,12 @@ function NewsItem() {
   if (isLoading)
     return (
       <div className="mainContainer">
-        <span className="loader"></span>
+        {[...Array(1)].map((_, index) => (
+          <SkeletonPost key={index} />
+        ))}
       </div>
     );
-  if (isError) return <div>Ошибка при загрузке новости</div>;
+  if (isError) return <center>Ошибка при загрузке новости</center>;
 
   const newsUrl = `${vkWallUrl}_${newsID}`;
 

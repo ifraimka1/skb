@@ -2,6 +2,7 @@ import { usePostById } from "@/modules";
 import { WpPost } from "@/widgets/WpPost";
 import { useParams } from "react-router-dom";
 import { ProjectsList } from "@/widgets/CardList/CardList";
+import { SkeletonPost } from "@/shared/Components/SkeletonPost/SkeletonPost";
 
 function WpPostPage() {
   const params = useParams();
@@ -16,13 +17,15 @@ function WpPostPage() {
   if (isLoading) {
     return (
       <div className="mainContainer">
-        <span className="loader"></span>
+        {[...Array(1)].map((_, index) => (
+          <SkeletonPost key={index} />
+        ))}
       </div>
     );
   }
 
   if (isError) {
-    return <div>Ошибка при загрузке данных</div>;
+    return <center>Ошибка при загрузке данных</center>;
   }
   console.log('post', post);
   return (<>

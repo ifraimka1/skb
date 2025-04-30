@@ -1,4 +1,3 @@
-// shared/ui/SkeletonGrid/SkeletonGrid.tsx
 import React from "react";
 import SkeletonCard from "./SkeletonCard";
 import styles from "@/shared/styles/cardGrid.module.scss";

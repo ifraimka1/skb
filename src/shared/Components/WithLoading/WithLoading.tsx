@@ -34,7 +34,7 @@ export const WithLoading = ({
     }
 
     if (isError) {
-        return <div>Ошибка при загрузке данных</div>;
+        return <center>Ошибка при загрузке данных</center>;
     }
 
     return <>{children}</>;

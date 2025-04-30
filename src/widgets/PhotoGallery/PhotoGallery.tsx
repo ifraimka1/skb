@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMedia } from "@/modules/media/hooks/useMedia";
+import { SkeletonGallery } from "@/shared/Components/SkeletonGallery/SkeletonGallery";
 
 import "./PhotoGallery.style.scss"
 
@@ -14,16 +15,19 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
 
   const filteredMedia = images
     ? images.map((src, id) => ({ id, src }))
-    : mediaData || []; // без фильтра
+    : mediaData || [];
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div className="mainContainer">
-        <span className="loader"></span>
+      <div>
+        <SkeletonGallery />
       </div>
     );
+  }
 
-  if (isError) return <div>Ошибка при загрузке медиа</div>;
+  if (isError || !filteredMedia || filteredMedia.length === 0) {
+    return <center>Ошибка при загрузке медиа</center>;
+  }
 
   return (
     <div className="mainContainer">
@@ -39,12 +43,10 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
           </div>
         ))}
       </div>
-
-      <div className="btn">
-        Загрузить ещё
-      </div>
+      <div className="btn">Загрузить ещё</div>
     </div>
   );
 };
+
 
 export default PhotoGallery;
