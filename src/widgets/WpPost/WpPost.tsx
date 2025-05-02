@@ -6,6 +6,7 @@ import { useResizeObserver } from "@/shared/lib/ResizeObserver/ResizeObserver";
 import { App } from "@/shared/types/app";
 
 import "./Projects.scss";
+import Slider from "../Slider/Slider";
 
 interface WpPostProps {
   post: App.WpPostPage;
@@ -28,6 +29,8 @@ export default function WpPost({
           post.content.map((el, index) => {
             if (el.type === "mediablock") {
               return <MediaBlock key={index} images={el.value} />;
+            } else if (el.type === "slider") {
+              return <Slider images={el.value} />
             }
             return <div key={index}>{el.element}</div>;
           })}
