@@ -64,11 +64,10 @@ $btn-primary-bg: linear-gradient(
     text-align: left;
     font-size: 18px;
     color: #000;
-    font-family: "Montserrat";
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-display: swap;
-    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
-  }
+    }
 
   .bold {
     font-size: 22px;
@@ -100,5 +99,5 @@ $btn-primary-bg: linear-gradient(
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  font-family: "Montserrat";
+  font-family: 'Montserrat', sans-serif;
 }
