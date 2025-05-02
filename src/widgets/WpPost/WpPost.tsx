@@ -18,6 +18,7 @@ export default function WpPost({
   children,
 }: WpPostProps) {
   useResizeObserver({parentSelector: '.wp-block-pullquote'});
+  // useResizeObserver({parentSelector: ".swiper", childSelector: ".swiper-wrapper"});
 
   return (
     <div className={post.categories?.includes('projects') ? "project" : ""}>

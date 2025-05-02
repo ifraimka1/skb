@@ -5,6 +5,9 @@ $color-usual: #ACACAC;
 $border-raduis: 16px;
 $background-tape: #F5F5F7;
 
+$swiper-button-size: 48px;
+$swiper-button-arrow-size: 20px;
+
 :root {
     --wp--preset--spacing--10: 5%;
     --wp--preset--spacing--20: 10%;
@@ -50,6 +53,7 @@ $background-tape: #F5F5F7;
         border-radius: 16px;
     }
 
+    // "Цитаты"
     .wp-block-pullquote {
         * {
             margin-bottom: 0;
@@ -72,6 +76,7 @@ $background-tape: #F5F5F7;
         }
     }
 
+    // Таблица
     .table-wrapper {
         border: 1px solid $table-header-color;
         border-radius: $border-raduis;
@@ -135,4 +140,37 @@ $background-tape: #F5F5F7;
             }
         }
     }
+
+    // .slider {
+    //     position: static;
+
+    //     .swiper {
+    //         height: 476px;
+
+    //         .swiper-wrapper {
+    //             align-items: flex-end;
+    //             position: absolute;
+    //             left: 0;
+    //             width: 100%;
+
+    //             .swiper-slide {
+    //                 height: 376px;
+    //                 width: 376px;
+    //             }
+    //         }
+
+    //         .swiper-button-prev, .swiper-button-next {
+    //             top: calc($swiper-button-size / 2);
+    //             left: auto;
+    //         }
+
+    //         .swiper-button-prev {
+    //             right: calc($swiper-button-size);
+    //         }
+
+    //         .swiper-pagination {
+    //             display: none;
+    //         }
+    //     }
+    // }
 }

@@ -32,7 +32,7 @@ interface SliderContextType {
 export const SliderContext = createContext<SliderContextType>({
   slideNumber: 0,
   mediaList: [],
-  goToSlide: () => {},
+  goToSlide: () => { },
   slidesCount: 0,
 });
 
@@ -91,38 +91,40 @@ function Slider({
   return (
     <SliderContext.Provider value={contextValue}>
       <div className="slider">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={20}
-          slidesPerView={itemsPerSlide}
-          slidesPerGroup={1}
-          loop={enableButtons}
-          navigation={enableButtons}
-          pagination={{ clickable: enableButtons }}
-          autoplay={
-            autoPlay
-              ? { delay: autoPlayTime, disableOnInteraction: false }
-              : false
-          }
-          onSlideChange={(swiper) => setSlideNumber(swiper.activeIndex)}
-        >
-          {filteredMedia.map((media) => (
-            <SwiperSlide
-              key={media.id}
-              className={
-                filteredMedia.length === 1
-                  ? "swiper-slide single"
-                  : "swiper-slide"
-              }
-            >
-              <img
-                src={media.src}
-                alt={`slide-${media.id}`}
-                className="slide-image"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="full-width-container">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={20}
+            slidesPerView={itemsPerSlide}
+            slidesPerGroup={1}
+            loop={enableButtons}
+            navigation={enableButtons}
+            pagination={{ clickable: enableButtons }}
+            autoplay={
+              autoPlay
+                ? { delay: autoPlayTime, disableOnInteraction: false }
+                : false
+            }
+            onSlideChange={(swiper) => setSlideNumber(swiper.activeIndex)}
+          >
+            {filteredMedia.map((media) => (
+              <SwiperSlide
+                key={media.id}
+                className={
+                  filteredMedia.length === 1
+                    ? "swiper-slide single"
+                    : "swiper-slide"
+                }
+              >
+                <img
+                  src={media.src}
+                  alt={`slide-${media.id}`}
+                  className="slide-image"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </SliderContext.Provider>
   );
