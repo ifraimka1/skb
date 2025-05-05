@@ -15,9 +15,9 @@ interface SliderProps {
   autoPlayTime?: number;
   images?: string[];
   category?: string;
+  customPerSlide: number;
 }
 
-// Update the SliderContextType interface to include the missing properties
 interface SliderContextType {
   slideNumber: number;
   mediaList: MediaItem[];
@@ -26,9 +26,6 @@ interface SliderContextType {
   slidesCount: number; // Added for Dots component
 }
 
-// Then in your Slider component, update the context value:
-
-// Create context with default values
 export const SliderContext = createContext<SliderContextType>({
   slideNumber: 0,
   mediaList: [],
@@ -41,9 +38,11 @@ function Slider({
   autoPlayTime = 3000,
   images,
   category = "gallery",
+  customPerSlide = 0
 }: SliderProps) {
   const { data: mediaData, isLoading, isError } = useMedia();
   const [itemsPerSlide, setItemsPerSlide] = useState<number>(
+    customPerSlide !== 0 ? 4 :
     window.innerWidth <= 768 ? 1 : 2
   );
   const [enableButtons, setEnableButtons] = useState<boolean>(false);
@@ -64,7 +63,7 @@ function Slider({
 
   useEffect(() => {
     const numberOfSlides = filteredMedia.length;
-    if (numberOfSlides > 2) {
+    if (numberOfSlides > 2 || customPerSlide !== 0) {
       setEnableButtons(true);
     } else if (numberOfSlides === 1) {
       setItemsPerSlide(1);

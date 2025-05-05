@@ -31,7 +31,7 @@ export default function WpPost({
             if (el.type === "mediablock") {
               return <MediaBlock key={index} images={el.value} />;
             } else if (el.type === "slider") {
-              return <Slider images={el.value} />
+              return <Slider images={el.value} customPerSlide={4} />
             }
             return <div key={index}>{el.element}</div>;
           })}
