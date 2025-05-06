@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 import "./Slider.styles.scss";
 import { MediaItem } from "@/modules/media/api/get";
 
+import { SkeletonSlider } from "@/shared/Components/SkeletonSlider/SkeletonSlider";
+
 interface SliderProps {
   autoPlay?: boolean;
   autoPlayTime?: number;
@@ -72,11 +74,13 @@ function Slider({
 
   if (isLoading)
     return (
-      <div className="mainContainer">
-        <span className="loader"></span>
+      <div >
+        {[...Array(1)].map((_, index) => (
+          <SkeletonSlider key={index} />
+        ))}
       </div>
     );
-  if (isError) return <div>Ошибка при загрузке медиа</div>;
+  if (isError) return <center>Ошибка при загрузке медиа</center>;
 
   // Create context value
   const contextValue: SliderContextType = {

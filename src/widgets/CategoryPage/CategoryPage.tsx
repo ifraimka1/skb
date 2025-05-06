@@ -1,5 +1,6 @@
 import { usePosts } from "@/modules/posts/hooks/usePosts";
 import { WpPost } from "@/widgets/WpPost";
+import {SkeletonPost} from "@/shared/Components/SkeletonPost/SkeletonPost";
 
 interface CategoryPageProps {
   category: string;
@@ -15,10 +16,12 @@ export function CategoryPage({ category }: CategoryPageProps) {
   if (isLoading)
     return (
       <div className="mainContainer">
-        <span className="loader"></span>
+        {[...Array(1)].map((_, index) => (
+          <SkeletonPost key={index} />
+        ))}
       </div>
     );
-  if (isError) return <div>Ошибка при загрузке данных</div>;
+  if (isError) return <center>Ошибка при загрузке данных</center>;
 
   return (
     <>

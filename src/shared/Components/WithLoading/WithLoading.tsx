@@ -1,6 +1,7 @@
 // shared/lib/withLoading/withLoading.tsx
 import React from "react";
 import { SkeletonGrid } from "../SkeletonGrid/SkeletonGrid";
+import styles from "../Skeleton/SkeletonCard.module.scss";
 
 interface WithLoadingProps {
     isLoading: boolean;
@@ -21,16 +22,19 @@ export const WithLoading = ({
 }: WithLoadingProps) => {
     if (isLoading) {
         return (
-            <SkeletonGrid
-                count={count}
-                gridConfig={gridConfig}
-                variant={variant}
-            />
+            <div>
+                <div className={styles.titleSkeleton}></div>
+                <SkeletonGrid
+                    count={count}
+                    gridConfig={gridConfig}
+                    variant={variant}
+                />
+            </div>
         );
     }
 
     if (isError) {
-        return <div>Ошибка при загрузке данных</div>;
+        return <center>Ошибка при загрузке данных</center>;
     }
 
     return <>{children}</>;
