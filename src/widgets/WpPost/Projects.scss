@@ -161,11 +161,12 @@ $swiper-button-arrow-size: 20px;
 
             .swiper-button-prev,
             .swiper-button-next {
+                background: url('/./src/shared/assets/images/arrow2-0.svg') center center no-repeat;
                 top: calc($swiper-button-size / 2);
                 left: auto;
                 width: $swiper-button-size;
                 height: $swiper-button-size;
-                color: black;
+                color: transparent;
 
                 border: 2px solid black;
                 border-radius: 100%;
@@ -177,6 +178,7 @@ $swiper-button-arrow-size: 20px;
             }
 
             .swiper-button-prev {
+                transform: scaleX(-1);
                 right: calc(10% + 24px + $swiper-button-size);
             }
 
