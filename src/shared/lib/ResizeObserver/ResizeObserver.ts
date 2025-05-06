@@ -12,7 +12,7 @@ export const useResizeObserver = ({
     parentSelector,
     childSelector = 'blockquote',
     onResize = (parent, height) => {
-        parent.style.marginBottom = `calc(${height}px + 2em)`;
+        parent.style.paddingBottom = `calc(${height}px + 2em)`;
     }
 }: UseResizeObserverConfig) => {
     useEffect(() => {
