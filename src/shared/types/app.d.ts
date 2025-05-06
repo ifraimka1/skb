@@ -291,7 +291,7 @@ declare namespace App {
     value: string[];
   }
 
-  export type ParsedContent = HtmlElement | MediaBlock;
+  export type ParsedContent = HtmlElement | MediaBlock | Slider;
 
   export interface WpPost {
     id: number;

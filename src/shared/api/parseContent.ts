@@ -27,14 +27,14 @@ export const parseContent = (html: string): ParsedContent[] => {
       }
       return; // Пропускаем добавление figure в результат
     }
-
+    
     // Если есть накопленные медиа-элементы, добавляем их как mediablock
     if (mediaBuffer.length > 0) {
       result.push({ type: "mediablock", value: [...mediaBuffer] });
       mediaBuffer = [];
     }
 
-    if (node.props.className.includes('wp-block-gallery')) {
+    if (node.props.className?.includes('wp-block-gallery')) {
       const slider = [];
       for (const child of node.props.children) {
         const imgSrc = child.props?.children.props?.src;
@@ -42,10 +42,10 @@ export const parseContent = (html: string): ParsedContent[] => {
           slider.push(imgSrc);
         }
       }
-      result.push({ type: "slider", value: slider })
+      result.push({ type: "slider", value: slider });
       return;
     }
-
+    
     // Сохраняем текущий элемент как есть
     result.push({ type: "html", element: node });
   };
@@ -60,9 +60,6 @@ export const parseContent = (html: string): ParsedContent[] => {
   if (mediaBuffer.length > 0) {
     result.push({ type: "mediablock", value: [...mediaBuffer] });
   }
-
-  console.log('nonParsedElements', elements);
-  console.log('parsedElements', result);
 
   return result;
 };
