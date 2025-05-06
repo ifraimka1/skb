@@ -38,37 +38,21 @@ function Slider({
   autoPlayTime = 3000,
   images,
   category = "gallery",
-  customPerSlide = 0
+  customPerSlide = 0,
 }: SliderProps) {
   const { data: mediaData, isLoading, isError } = useMedia();
-  const [itemsPerSlide, setItemsPerSlide] = useState<number>(
-    customPerSlide !== 0 ? 4 :
-    window.innerWidth <= 768 ? 1 : 2
-  );
-  const [enableButtons, setEnableButtons] = useState<boolean>(false);
-  const [slideNumber, setSlideNumber] = useState<number>(0);
+  const [enableButtons, setEnableButtons] = useState(false);
+  const [slideNumber, setSlideNumber] = useState(0);
 
-  // Фильтруем медиа по категории
   const filteredMedia: MediaItem[] = images
     ? images.map((src, id) => ({ id, src, category: "", name: "" }))
-    : mediaData?.filter((media) => media.category === category) || [];
+    : mediaData?.filter((m) => m.category === category) || [];
 
   useEffect(() => {
-    const handleResize = () => {
-      setItemsPerSlide(window.innerWidth <= 768 ? 1 : 2);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const numberOfSlides = filteredMedia.length;
-    if (numberOfSlides > 2 || customPerSlide !== 0) {
-      setEnableButtons(true);
-    } else if (numberOfSlides === 1) {
-      setItemsPerSlide(1);
-    }
-  }, [filteredMedia]);
+    const count = filteredMedia.length;
+    const threshold = customPerSlide > 0 ? customPerSlide : 2;
+    setEnableButtons(count > threshold);
+  }, [filteredMedia, customPerSlide]);
 
   if (isLoading)
     return (
@@ -78,23 +62,20 @@ function Slider({
     );
   if (isError) return <div>Ошибка при загрузке медиа</div>;
 
-  // Create context value
-  const contextValue: SliderContextType = {
-    slideNumber,
-    mediaList: filteredMedia,
-    setSlideNumber,
-    goToSlide: (slide: number) => setSlideNumber(slide),
-    slidesCount: filteredMedia.length,
-  };
-
   return (
-    <SliderContext.Provider value={contextValue}>
+    <SliderContext.Provider
+      value={{
+        slideNumber,
+        mediaList: filteredMedia,
+        goToSlide: setSlideNumber,
+        slidesCount: filteredMedia.length,
+      }}
+    >
       <div className="slider">
         <div className="full-width-container">
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={20}
-            slidesPerView={itemsPerSlide}
             slidesPerGroup={1}
             loop={enableButtons}
             navigation={enableButtons}
@@ -105,14 +86,17 @@ function Slider({
                 : false
             }
             onSlideChange={(swiper) => setSlideNumber(swiper.activeIndex)}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: customPerSlide > 0 ? customPerSlide : 2 },
+            }}
           >
             {filteredMedia.map((media) => (
               <SwiperSlide
                 key={media.id}
                 className={
-                  filteredMedia.length === 1
-                    ? "swiper-slide single"
-                    : "swiper-slide"
+                  filteredMedia.length === 1 ? "swiper-slide single" : "swiper-slide"
                 }
               >
                 <img
