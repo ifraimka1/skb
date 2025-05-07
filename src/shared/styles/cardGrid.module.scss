@@ -1,0 +1,52 @@
+// shared/styles/cardGrid.module.scss
+:export {
+    --desktop-columns: 3;
+    --tablet-columns: 2;
+    --mobile-columns: 1;
+}
+
+.mainContainer {
+    margin: 0 10%;
+
+    @include mediaMax($mobile-xs-width) {
+        margin: 0 5%;
+    }
+}
+
+.gridСontainer {
+    display: grid;
+    gap: 2rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(var(--tablet-columns), 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(var(--mobile-columns), 1fr);
+    }
+}
+
+.cardSizes {
+    &--lab {
+        height: 300px;
+
+        @media (max-width: 768px) {
+            height: 215px;
+        }
+    }
+
+    &--news,
+    &--project {
+        height: 250px;
+
+        @media (max-width: 768px) {
+            height: 215px;
+        }
+    }
+}
