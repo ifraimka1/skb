@@ -1,12 +1,8 @@
 #numbers {
-    margin-bottom: 24px;
+    margin-bottom: 60px;
 
     img {
         pointer-events: none;
-    }
-
-    .title {
-        // если нужно — добавь стили заголовка
     }
 
     label {
@@ -19,14 +15,14 @@
 
     .block-content {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        margin-top: 24px;
+        margin-top: 60px;
+        gap: 64px;
     }
 
     .columns {
         display: flex;
-        justify-content: space-between;
         gap: 32px;
     }
 
