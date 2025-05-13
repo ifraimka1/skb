@@ -58,6 +58,10 @@ $btn-primary-bg: linear-gradient(
     object-position: top;
     object-fit: cover;
     pointer-events: none;
+
+    @media (max-width: 768px) {
+       height: 460px;
+    }
   }
 
   .caption {
