@@ -53,15 +53,12 @@ $btn-primary-bg: linear-gradient(
 
   img {
     width: 100%;
-    height: 360px;
-    border-radius: 8px;
-    object-position: top;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
     pointer-events: none;
-
-    @media (max-width: 768px) {
-       height: 460px;
-    }
+    display: block;
   }
 
   .caption {
