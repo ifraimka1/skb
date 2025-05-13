@@ -35,9 +35,9 @@ function Contact() {
             <Placemark defaultGeometry={[47.20669, 38.929113]} />
           </Map>
         </YMaps>
-      </div>
-
-      <ContactForm />
+      </div >
+      <div id="contact-form-anchor"></div>
+        <ContactForm />
     </div>
   );
 }
