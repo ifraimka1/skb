@@ -76,12 +76,12 @@ function Slider({
       }}
     >
       <div className="slider">
-        <div className="full-width-container">
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={20}
             slidesPerGroup={1}
-            loop={enableButtons}
+            loop={true}
+            lazyPreloadPrevNext={0}
             navigation={enableButtons}
             pagination={{ clickable: enableButtons }}
             autoplay={
@@ -95,6 +95,7 @@ function Slider({
               768: { slidesPerView: 2 },
               1024: { slidesPerView: customPerSlide > 0 ? customPerSlide : 2 },
             }}
+            loopAddBlankSlides={true}
           >
             {filteredMedia.map((media) => (
               <SwiperSlide
@@ -107,12 +108,12 @@ function Slider({
                   src={media.src}
                   alt={`slide-${media.id}`}
                   className="slide-image"
+                  loading="lazy"
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-      </div>
     </SliderContext.Provider>
   );
 }

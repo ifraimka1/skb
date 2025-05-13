@@ -143,17 +143,13 @@ $swiper-button-arrow-size: 20px;
     }
 
     .slider {
-        position: static;
-        height: $slider;
-
-        .full-width-container {
-            position: absolute;
-            left: 0;
-            width: 100%;
-        }
+        margin-top: 2em;
+        padding: 0;
 
         .swiper {
             padding-top: 4em;
+            // overflow: unset;
+
             .swiper-wrapper .swiper-slide {
                 aspect-ratio: 1 / 1;
                 position: relative;
@@ -187,11 +183,11 @@ $swiper-button-arrow-size: 20px;
 
             .swiper-button-prev {
                 transform: scaleX(-1);
-                right: calc(10% + 24px + $swiper-button-size);
+                right: calc(24px + $swiper-button-size);
             }
 
             .swiper-button-next {
-                right: 10%;
+                right: 0;
             }
 
             .swiper-pagination {

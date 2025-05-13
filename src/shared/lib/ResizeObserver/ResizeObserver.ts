@@ -4,38 +4,56 @@ type ResizeHandler = (parent: HTMLElement, childHeight: number) => void;
 
 interface UseResizeObserverConfig {
     parentSelector: string;
-    childSelector?: string;
+    childSelector: string;
+    margin?: string;
     onResize?: ResizeHandler;
 }
 
 export const useResizeObserver = ({
     parentSelector,
-    childSelector = 'blockquote',
+    childSelector,
+    margin = '2em',
     onResize = (parent, height) => {
-        parent.style.paddingBottom = `calc(${height}px + 2em)`;
+        parent.style.height = `calc(${height}px + ${margin})`;
     }
 }: UseResizeObserverConfig) => {
     useEffect(() => {
         const resizeObserver = new ResizeObserver(entries => {
             entries.forEach(entry => {
-                const parent = entry.target as HTMLElement;
-                const child = parent.querySelector(childSelector) as HTMLElement | null;
+                const child = entry.target as HTMLElement;
+                const parent = child.closest(parentSelector) as HTMLElement | null;
 
-                if (child) {
-                    const childHeight = child.offsetHeight;
-                    onResize(parent, childHeight);
+                if (parent) {
+                    requestAnimationFrame(() => {
+                        onResize(parent, child.offsetHeight);
+                    });
                 }
             });
         });
 
-        const elements = document.querySelectorAll(parentSelector);
+        const mutationObserver = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === 1 && (node as Element).matches(parentSelector)) {
+                        resizeObserver.observe(node as HTMLElement);
+                    }
+                });
+            });
+        });
+
+        const container = document.querySelector('.content') as HTMLElement;
+        if (container) {
+            mutationObserver.observe(container, { childList: true });
+        }
+
+        const elements = document.querySelectorAll(childSelector);
         const elementsArray = Array.from(elements) as HTMLElement[];
 
         elementsArray.forEach(element => resizeObserver.observe(element));
 
         return () => {
-            elementsArray.forEach(element => resizeObserver.unobserve(element));
             resizeObserver.disconnect();
+            mutationObserver.disconnect();
         };
     }, [parentSelector, childSelector, onResize]);
 };
