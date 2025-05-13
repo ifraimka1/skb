@@ -180,19 +180,21 @@
     .footer-links {
         display: flex;
         justify-content: space-between;
-        gap: 30px; // Между столбиками будет отступ
-
+        gap: 30px;
+    
         .footer-column {
             display: flex;
             flex-direction: column;
             gap: 20px;
-
+    
             a {
                 color: white;
                 text-decoration: none;
                 font-size: 16px;
                 position: relative;
-
+                display: inline-block;
+                width: fit-content;
+    
                 &::after {
                     content: '';
                     position: absolute;
@@ -204,15 +206,13 @@
                     transition: width 0.3s ease, left 0.3s ease;
                     transform: translateX(-50%);
                 }
-
+    
                 &:hover::after {
-                    width: calc(100% + 8px);
+                    width: 100%;
                     left: 50%;
-                    transform: translateX(-50%);
                 }
             }
         }
-
     }
 
     .privacy-policy {
