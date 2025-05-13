@@ -6,6 +6,14 @@ export interface MediaItem {
   src: string;
   category: string;
   name: string;
+  team_name: string;
+  team_job: string;
+}
+
+function decodeHtml(html: string) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  return tempDiv.textContent || tempDiv.innerText || '';
 }
 
 /**
@@ -20,13 +28,13 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
     try {
       // Запрашиваем медиа с указанной страницы
       const media = (await wp.media().page(page)) as WPv2.MediaWithPaging;
-      console.log("media", media);
+      console.log('unfilteredMedia', media);
 
       // Преобразуем данные и добавляем в общий массив
-      const transformedMedia = media.map(({ id, source_url, alt_text }) => {
+      const transformedMedia = media.map(({ id, source_url, alt_text, caption, title }) => {
         const [category = "uncategorized", name = "unknown"] =
           alt_text?.split("_") || [];
-        return { id, src: source_url, category, name };
+        return { id, src: source_url, category, name, team_name: title.rendered, team_job: decodeHtml(caption.rendered)};
       });
 
       allMedia = [...allMedia, ...transformedMedia];
@@ -36,13 +44,13 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
         break;
       }
 
-      page++; // Переходим на следующую страницу
+      page++;
     } catch (error) {
-      // Если произошла ошибка (например, страница не найдена), завершаем цикл
       hasMore = false;
       console.error("Ошибка при загрузке медиа:", error);
     }
   }
 
+  console.log("media", allMedia);
   return allMedia;
 };

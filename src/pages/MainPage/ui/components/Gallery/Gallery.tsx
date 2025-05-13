@@ -11,7 +11,7 @@ function Gallery() {
         <br />
         из университета и бизнеса.
       </h1>
-      <Slider />
+      <Slider category="gallery" />
     </div>
   );
 }

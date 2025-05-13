@@ -16,8 +16,8 @@ interface SliderProps {
   autoPlay?: boolean;
   autoPlayTime?: number;
   images?: string[];
-  category?: string;
-  customPerSlide: number;
+  category: string;
+  customPerSlide?: number;
 }
 
 interface SliderContextType {
@@ -39,7 +39,7 @@ function Slider({
   autoPlay = false,
   autoPlayTime = 3000,
   images,
-  category = "gallery",
+  category,
   customPerSlide = 0,
 }: SliderProps) {
   const { data: mediaData, isLoading, isError } = useMedia();

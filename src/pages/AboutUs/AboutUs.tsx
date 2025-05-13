@@ -5,7 +5,7 @@ import PhotoGallery from "@/widgets/PhotoGallery";
 export default function AboutUs() {
   return <>
   <CategoryPage category="aboutus" />
-  < Team />
-  < PhotoGallery />
+  <Team />
+  <PhotoGallery />
   </>
 }
