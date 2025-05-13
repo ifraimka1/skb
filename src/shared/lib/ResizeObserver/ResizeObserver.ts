@@ -9,6 +9,8 @@ interface UseResizeObserverConfig {
     onResize?: ResizeHandler;
 }
 
+// Хук, отслеживающий фактическую высоту дочернего элемента, и назначающий эту высоту родительскому
+// Для случаев с position: absolute, когда высота дочерки "выпадает"
 export const useResizeObserver = ({
     parentSelector,
     childSelector,
