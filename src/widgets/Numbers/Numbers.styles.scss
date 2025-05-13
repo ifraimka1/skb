@@ -18,17 +18,12 @@
         justify-content: center;
         align-items: center;
         margin-top: 60px;
-        gap: 64px;
-    }
-
-    .columns {
-        display: flex;
         gap: 32px;
     }
 
-    .gap01 {
-        display: flex;
-        flex-direction: column;
+    .numbers-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); // 3 колонки по умолчанию (3x2)
         gap: 32px;
     }
 
@@ -39,6 +34,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        min-height: 200px;
     }
 
     .visible {
@@ -51,7 +48,21 @@
         }
     }
 
+    @media (max-width: 768px) {
+        margin-bottom: 24px;
+        .block-content {
+            margin-top: 24px;
+        }
+        .numbers-grid {
+            grid-template-columns: repeat(2, 1fr); // 2 колонки на мобильных (2x3)
+        }
+    }
+
     @media (max-width: 500px) {
+        margin-bottom: 24px;
+        .block-content {
+            margin-top: 24px;
+        }
         label {
             font-size: 14px;
             margin-top: 5px;
@@ -63,7 +74,7 @@
             width: 100%;
         }
 
-        .gap01 {
+        .numbers-grid {
             gap: 10px;
         }
     }
