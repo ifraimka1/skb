@@ -6,8 +6,8 @@ export interface MediaItem {
   src: string;
   category: string;
   name: string;
-  team_name: string;
-  team_job: string;
+  team_name?: string;
+  team_job?: string;
 }
 
 function decodeHtml(html: string) {
@@ -34,7 +34,14 @@ export const fetchMedia = async (): Promise<MediaItem[]> => {
       const transformedMedia = media.map(({ id, source_url, alt_text, caption, title }) => {
         const [category = "uncategorized", name = "unknown"] =
           alt_text?.split("_") || [];
-        return { id, src: source_url, category, name, team_name: title.rendered, team_job: decodeHtml(caption.rendered)};
+        const newItem: MediaItem = { id, src: source_url, category, name };
+
+        if (category === "team") {
+          newItem.team_name = title.rendered;
+          newItem.team_job = decodeHtml(caption.rendered);
+        }
+
+        return newItem;
       });
 
       allMedia = [...allMedia, ...transformedMedia];

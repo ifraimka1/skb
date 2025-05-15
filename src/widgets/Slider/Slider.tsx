@@ -16,7 +16,7 @@ interface SliderProps {
   autoPlay?: boolean;
   autoPlayTime?: number;
   images?: string[];
-  category: string;
+  category?: string;
   customPerSlide?: number;
 }
 
