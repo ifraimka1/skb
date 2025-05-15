@@ -4,18 +4,11 @@ import { SkeletonGallery } from "@/shared/Components/SkeletonGallery/SkeletonGal
 
 import "./PhotoGallery.style.scss"
 
-interface PhotoGalleryProps {
-  images?: string[];
-  category?: string;
-}
-
-const PhotoGallery = ({ images }: PhotoGalleryProps) => {
+const PhotoGallery = () => {
   const { data: mediaData, isLoading, isError } = useMedia();
   const [visibleCount] = useState(10);
 
-  const filteredMedia = images
-    ? images.map((src, id) => ({ id, src }))
-    : mediaData || [];
+  const filteredMedia = mediaData?.filter((el) => el.category === "gallery") || [];
 
   if (isLoading) {
     return (
