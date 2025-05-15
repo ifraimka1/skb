@@ -53,10 +53,12 @@ $btn-primary-bg: linear-gradient(
 
   img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
     pointer-events: none;
+    display: block;
   }
 
   .caption {
@@ -87,7 +89,7 @@ $btn-primary-bg: linear-gradient(
   background-size: 200% 100%;
   background-position: 0% 0%;
   cursor: pointer;
-
+text-align: center;
   &:hover {
     background-size: 200%;
     background-position: 100%;
@@ -100,4 +102,5 @@ $btn-primary-bg: linear-gradient(
   font-weight: 600;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  padding: 16px 24px;
 }

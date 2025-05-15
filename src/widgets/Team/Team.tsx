@@ -2,7 +2,6 @@ import { HashLink } from "react-router-hash-link";
 import { useMedia } from "@/modules";
 import { WithLoading } from "@/shared/Components/WithLoading/WithLoading";
 import "./Team.style.scss";
-import photo from "@/shared/assets/images/photo.png";
 
 const Team = () => {
   const { data: mediaData, isLoading, isError } = useMedia();
@@ -28,7 +27,7 @@ const Team = () => {
               </p>
             </div>
           ))}
-          <HashLink smooth to="/contact" className="card">
+          <HashLink smooth to="/contact#contact-form-anchor" className="card">
             <div className="joinContent">
               <span className="joinText">Хочу в команду</span>
             </div>
