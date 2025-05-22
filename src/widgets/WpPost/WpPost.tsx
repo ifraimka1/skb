@@ -18,14 +18,18 @@ export default function WpPost({
   post,
   children,
 }: WpPostProps) {
-  useResizeObserver({parentSelector: '.wp-block-pullquote', childSelector: 'blockquote'});
-  //useResizeObserver({parentSelector: '.slider', childSelector: '.swiper-slide', margin: '5em'});
+  useResizeObserver({ parentSelector: '.wp-block-pullquote', childSelector: 'blockquote' });
+
+  const isLabBoardPost = post.title === "LabBoard 1.1";
 
   return (
     <div className={post.categories?.includes('projects') ? "project" : ""}>
-      {/* <PageHeader className="header">
-        <h1>{post.title}</h1>
-      </PageHeader>
+      {!isLabBoardPost && (
+        <PageHeader className="header">
+          <h1>{post.title}</h1>
+        </PageHeader>
+      )}
+
       <PageContent className="content">
         {Array.isArray(post.content) &&
           post.content.map((el, index) => {
@@ -37,8 +41,9 @@ export default function WpPost({
             return <div key={index}>{el.element}</div>;
           })}
         {children}
-      </PageContent> */}
-      <LabBoard/>
+      </PageContent>
+
+      {isLabBoardPost && <LabBoard />}
     </div>
   );
 }
