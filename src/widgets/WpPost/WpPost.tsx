@@ -7,6 +7,7 @@ import { App } from "@/shared/types/app";
 
 import "./Projects.scss";
 import Slider from "../Slider/Slider";
+import LabBoard from "@/pages/CustomProjects/LabBoard/LabBoard";
 
 interface WpPostProps {
   post: App.WpPostPage;
@@ -22,7 +23,7 @@ export default function WpPost({
 
   return (
     <div className={post.categories?.includes('projects') ? "project" : ""}>
-      <PageHeader className="header">
+      {/* <PageHeader className="header">
         <h1>{post.title}</h1>
       </PageHeader>
       <PageContent className="content">
@@ -36,7 +37,8 @@ export default function WpPost({
             return <div key={index}>{el.element}</div>;
           })}
         {children}
-      </PageContent>
+      </PageContent> */}
+      <LabBoard/>
     </div>
   );
 }

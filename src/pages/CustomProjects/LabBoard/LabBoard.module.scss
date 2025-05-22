@@ -1,0 +1,431 @@
+#padding {
+  padding: 0 10%;
+}
+
+#pageheader {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 0 10%;
+  margin: 0;
+  margin-bottom: 64px;
+  color: rgba(18, 18, 18, 1);
+  background-image: url("/src/shared/assets/images/LabBoard/fond.png");
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+
+  img {
+    pointer-events: none;
+  }
+
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    flex: 1;
+    max-width: 50%;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding: $navbar-padding-tb 5%;
+    }
+
+    h1 {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 63px;
+      margin: 0;
+      margin-bottom: 24px;
+
+      @media (max-width: 768px) {
+        font-size: 32px;
+        line-height: 40px;
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 36px;
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+
+    .btn {
+      margin: 0;
+      margin-top: 24px;
+    }
+  }
+
+  .microcontrollerImage {
+    flex: 1;
+    max-width: 40%;
+    height: auto;
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+#page_container {
+  padding: 0 10%;
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h4 {
+    font-weight: 600;
+  }
+
+  img {
+    pointer-events: none;
+  }
+
+  p {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  .numbersContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    background-color: #f5f5f7;
+    border-radius: 16px;
+    margin-bottom: 64px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .numberBlock {
+    flex: 1;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .namber {
+    font-size: 64px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #0867F4, #072AC8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 48px;
+    }
+  }
+
+  .numberLabel {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  .imagesContainer {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 64px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .imageBlock {
+    flex: 1;
+    background-color: #f5f5f7;
+    border-radius: 16px;
+    padding: 32px 48px 48px 48px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imageTitle {
+    font-weight: 550;
+    margin-bottom: 16px
+  }
+
+  .microcontrollerPhoto {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 300px;
+  }
+}
+
+.featuresContainer {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 64px;
+  padding-top: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.featuresList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.featureItem {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 600;
+
+  &.active {
+    color: #072AC8;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.featureContent {
+  flex: 0 0 600px;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+.featureDescription {
+  animation: fadeIn 0.3s ease;
+}
+
+.mcuContainer {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+// слайдер
+.sliderHeaderContainer {
+  padding: 0 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  width: 100%;
+}
+
+.sliderNav {
+  display: flex;
+  gap: 16px;
+}
+
+.sliderButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f5f5f7;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 356px;
+  margin-bottom: 64px;
+}
+
+.sliderContainer {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  background: #f5f5f7;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.centerSlide {
+  width: 736px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+
+  .imageContainer {
+    width: 100%;
+    height: 100%;
+
+    .sliderImage {
+      width: 74%;
+      height: 68%;
+      object-fit: contain;
+    }
+  }
+}
+
+.leftSlide {
+  width: 352px;
+  left: calc(50% - 736px/2 - 352px - 32px);
+  z-index: 2;
+
+  .imageContainer {
+    width: 100%;
+    height: 100%;
+
+    .sliderImage {
+      width: 72.5%;
+      height: 26%;
+      object-fit: contain;
+
+    }
+  }
+}
+
+.rightSlide {
+  width: 352px;
+  left: calc(50% + 736px/2 + 32px);
+  z-index: 2;
+
+  .imageContainer {
+    width: 100%;
+    height: 100%;
+
+    .sliderImage {
+      width: 72.5%;
+      height: 26%;
+      object-fit: contain;
+    }
+  }
+}
+
+.hiddenSlide {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .sliderWrapper {
+    height: 300px;
+  }
+
+  .centerSlide {
+    width: 600px;
+
+    .sliderImage {
+      width: 70%;
+      height: 65%;
+    }
+  }
+
+  .leftSlide,
+  .rightSlide {
+    width: 280px;
+
+    .sliderImage {
+      width: 70%;
+      height: 25%;
+    }
+  }
+
+  .leftSlide {
+    left: calc(50% - 600px/2 - 280px - 24px);
+  }
+
+  .rightSlide {
+    left: calc(50% + 600px/2 + 24px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sliderHeaderContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .sliderNav {
+    align-self: flex-end;
+  }
+
+  .sliderWrapper {
+    height: 250px;
+  }
+
+  .centerSlide {
+    width: 100%;
+
+    .sliderImage {
+      width: 60%;
+      height: 60%;
+    }
+  }
+
+  .leftSlide,
+  .rightSlide {
+    display: none;
+  }
+}
