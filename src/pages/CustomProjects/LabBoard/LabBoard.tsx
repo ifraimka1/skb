@@ -9,12 +9,17 @@ import Group_one from "@/shared/assets/images/LabBoard/Group_one.svg";
 import Group_two from "@/shared/assets/images/LabBoard/Group_two.svg";
 import Vector from "@/shared/assets/images/LabBoard/Vector.svg";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import ContactUs from "@/widgets/ContactUs";
 
 function LabBoard() {
   const [activeFeature, setActiveFeature] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const mcuImages = [Group_one, Group_two, Group_one, Group_two];
+
   const features = [
     {
       title: "OLED дисплей",
@@ -50,8 +55,23 @@ function LabBoard() {
     setActiveFeature(activeFeature === index ? null : index);
   };
 
-  const nextSlide = () => setCurrentSlide(prev => (prev + 1) % mcuImages.length);
-  const prevSlide = () => setCurrentSlide(prev => (prev - 1 + mcuImages.length) % mcuImages.length);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    {
+      image: Group_one, title: "Блок \"MCU\"",
+      description1: "Основным вычислительным устройством лабораторного стенда является микроконтроллер STM32F407IG использующий архитектуру ARMv7-M и работающий с максимальной частотой 168MHz. На борту устройства установлено 192Kb оперативной памяти (RAM) и 1Mb постоянной FLASH (ROM). Тактирование осуществляется с помощью двух кварцевых резонаторов: 8MHz для основной системы тактирования и 32.768KHz для встроенных часов реального времени (RTC). Напряжение питания микроконтроллера и логических выводов 3.3V, но большинство контактов толерантных к 5V логике."
+      , description2: "Для взаимодействия с микроконтроллером на панели блока \"MCU\" установлены три тактовых выключателя: RESET - сброс MK, TEST - пользовательская кнопка, BOOT - переход в режим встроенного загрузчика. Выключатель TEST подаёт на контакт PI10 высокий сигнал. Светодиод LD110 управляется контактом PI11 и может использоваться программой пользователя для индикации режима работы. Питания встроенных часов реального времени осуществляется с помощью батареи CR1220."
+    },
+    { image: Group_two, title: "Slide 2", description1: "Текст для слайда 2", description2: "222" },
+    {
+      image: Group_one, title: "Блок \"MCU\"",
+      description1: "Основным вычислительным устройством лабораторного стенда является микроконтроллер STM32F407IG использующий архитектуру ARMv7-M и работающий с максимальной частотой 168MHz. На борту устройства установлено 192Kb оперативной памяти (RAM) и 1Mb постоянной FLASH (ROM). Тактирование осуществляется с помощью двух кварцевых резонаторов: 8MHz для основной системы тактирования и 32.768KHz для встроенных часов реального времени (RTC). Напряжение питания микроконтроллера и логических выводов 3.3V, но большинство контактов толерантных к 5V логике."
+
+      , description2: "Для взаимодействия с микроконтроллером на панели блока \"MCU\" установлены три тактовых выключателя: RESET - сброс MK, TEST - пользовательская кнопка, BOOT - переход в режим встроенного загрузчика. Выключатель TEST подаёт на контакт PI10 высокий сигнал. Светодиод LD110 управляется контактом PI11 и может использоваться программой пользователя для индикации режима работы. Питания встроенных часов реального времени осуществляется с помощью батареи CR1220."
+    },
+    { image: Group_two, title: "Slide 2", description1: "Текст для слайда 2", description2: "222" }
+  ];
+
   return (
     <div>
       <div id={styles.pageheader}>
@@ -73,15 +93,15 @@ function LabBoard() {
         <h2 className={styles.title}>LabBoard в цифрах</h2>
         <div className={styles.numbersContainer}>
           <div className={styles.numberBlock}>
-            <p className={styles.namber}>10</p>
+            <p className={styles.number}>10</p>
             <label className={styles.numberLabel}>различных кнопок</label>
           </div>
           <div className={styles.numberBlock}>
-            <p className={styles.namber}>1</p>
+            <p className={styles.number}>1</p>
             <label className={styles.numberLabel}>OLED дисплей</label>
           </div>
           <div className={styles.numberBlock}>
-            <p className={styles.namber}>25</p>
+            <p className={styles.number}>25</p>
             <label className={styles.numberLabel}>микроконтроллеров</label>
           </div>
         </div>
@@ -129,49 +149,83 @@ function LabBoard() {
             </div>
           </div>
         </div>
-      </div>
+
+
         <div className={styles.sliderHeaderContainer}>
-        <h2 className={styles.title}>Подробнее о микроконтроллерах</h2>
-        <div className={styles.sliderNav}>
-          <button onClick={prevSlide} className={styles.sliderButton}><img src={Vector} style={{ transform: 'scaleX(-1)' }} /></button>
-          <button onClick={nextSlide} className={styles.sliderButton}><img src={Vector}/></button>
+          <h2 className={styles.title}>Подробнее о микроконтроллерах</h2>
+          <div className={styles.sliderNav}>
+            <button className={`${styles.sliderButton} ${styles.sliderPrevBtn}`}>
+              <img src={Vector} style={{ transform: 'scaleX(-1)' }} alt="Previous" />
+            </button>
+            <button className={`${styles.sliderButton} ${styles.sliderNextBtn}`}>
+              <img src={Vector} alt="Next" />
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className={styles.sliderWrapper}>
-        <div className={styles.sliderTrack}>
-          {mcuImages.map((img, index) => {
-            const position = (index - currentSlide + mcuImages.length) % mcuImages.length;
-            const slideClass = 
-              position === 0 ? styles.centerSlide :
-              position === 1 ? styles.rightSlide :
-              position === mcuImages.length - 1 ? styles.leftSlide : 
-              styles.hiddenSlide;
-
-            return (
-              <div key={index} className={`${styles.slide} ${slideClass}`}>
-                <div className={styles.imageContainer}>
-                  <img src={img} alt={`Слайд ${index + 1}`} className={styles.sliderImage} />
+        <div className={styles.sliderWrapper}>
+          <Swiper
+            modules={[Navigation]}
+  navigation={{
+    nextEl: `.${styles.sliderNextBtn}`,
+    prevEl: `.${styles.sliderPrevBtn}`,
+  }}
+  spaceBetween={32}
+  slidesPerView={2}
+  centeredSlides={true}
+  loop={true}
+  onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+  className={styles.sliderContainer}
+  allowTouchMove={false}
+  breakpoints={{
+    0: {
+      slidesPerView: 1,
+      centeredSlides: false,
+    },
+    768: {
+      slidesPerView: 2,
+      centeredSlides: true,
+    }
+  }}
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide
+                key={index}
+                className={`${styles.swiperSlide} ${currentSlide === index ? styles.slideActive : ""}`}
+              >
+                <div className={styles.slideContent}>
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className={styles.slideImage}
+                  />
                 </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+        </div>
+        <div>
+          <h4><div className={styles.slideDescription}>
+            {slides[currentSlide]?.title}
+          </div></h4>
+          <div className={styles.mcuContainer}>
+            <p>
+              <div className={styles.slideDescription}>
+                {slides[currentSlide]?.description1}
               </div>
-            );
-          })}
+            </p>
+            <p>
+              <div className={styles.slideDescription}>
+                {slides[currentSlide]?.description2}
+              </div>
+            </p>
+          </div>
         </div>
       </div>
 
-      <div id={styles.page_container}>
-        <h4>Блок "MCU"</h4>
-        <div className={styles.mcuContainer}>
-          <p>
-            Основным вычислительным устройством лабораторного стенда является микроконтроллер STM32F407IG использующий архитектуру ARMv7-M и работающий с максимальной частотой 168MHz. На борту устройства установлено 192Kb оперативной памяти (RAM) и 1Mb постоянной FLASH (ROM). Тактирование осуществляется с помощью двух кварцевых резонаторов: 8MHz для основной системы тактирования и 32.768KHz для встроенных часов реального времени (RTC). Напряжение питания микроконтроллера и логических выводов 3.3V, но большинство контактов толерантных к 5V логике.
-          </p>
-          <p>
-            Для взаимодействия с микроконтроллером на панели блока "MCU" установлены три тактовых выключателя: RESET - сброс MK, TEST - пользовательская кнопка, BOOT - переход в режим встроенного загрузчика. Выключатель TEST подаёт на контакт PI10 высокий сигнал. Светодиод LD110 управляется контактом PI11 и может использоваться программой пользователя для индикации режима работы. Питания встроенных часов реального времени осуществляется с помощью батареи CR1220.
-          </p>
-        </div>
-      </div>
       <div id={styles.padding}>
-      <ContactUs /></div>
+        <ContactUs /></div>
     </div>
   );
 }

@@ -8,6 +8,6 @@ const customProjects: Record<string, ReactNode> = {
 };
 
 export const getCustomProject = (title: string): ReactNode | null => {
-  const normalizedKey = title.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
-  return customProjects[normalizedKey] || null;
+//   const normalizedKey = title.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
+  return customProjects[title] || null;
 };
