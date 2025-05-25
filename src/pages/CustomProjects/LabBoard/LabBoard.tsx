@@ -8,12 +8,7 @@ import microcontroller_rear from "@/shared/assets/images/LabBoard/microcontrolle
 import Group_one from "@/shared/assets/images/LabBoard/Group_one.svg";
 import Group_two from "@/shared/assets/images/LabBoard/Group_two.svg";
 import Vector from "@/shared/assets/images/LabBoard/Vector.svg";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { useSwipeable } from 'react-swipeable';
 
 import ContactUs from "@/widgets/ContactUs";
 
@@ -71,6 +66,24 @@ function LabBoard() {
     },
     { image: Group_two, title: "Slide 2", description1: "Текст для слайда 2", description2: "222" }
   ];
+
+  const [fade, setFade] = useState(false);
+
+  const nextSlide = () => {
+    setFade(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setFade(false);
+    }, 200);
+  };
+
+  const prevSlide = () => {
+    setFade(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      setFade(false);
+    }, 200);
+  };
 
   return (
     <div>
@@ -154,75 +167,68 @@ function LabBoard() {
         <div className={styles.sliderHeaderContainer}>
           <h2 className={styles.title}>Подробнее о микроконтроллерах</h2>
           <div className={styles.sliderNav}>
-            <button className={`${styles.sliderButton} ${styles.sliderPrevBtn}`}>
+            <button onClick={prevSlide} className={styles.sliderButton}>
               <img src={Vector} style={{ transform: 'scaleX(-1)' }} alt="Previous" />
             </button>
-            <button className={`${styles.sliderButton} ${styles.sliderNextBtn}`}>
+            <button onClick={nextSlide} className={styles.sliderButton}>
               <img src={Vector} alt="Next" />
             </button>
           </div>
         </div>
-
-        <div className={styles.sliderWrapper}>
-          <Swiper
-            modules={[Navigation]}
-  navigation={{
-    nextEl: `.${styles.sliderNextBtn}`,
-    prevEl: `.${styles.sliderPrevBtn}`,
-  }}
-  spaceBetween={32}
-  slidesPerView={2}
-  centeredSlides={true}
-  loop={true}
-  onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
-  className={styles.sliderContainer}
-  allowTouchMove={false}
-  breakpoints={{
-    0: {
-      slidesPerView: 1,
-      centeredSlides: false,
-    },
-    768: {
-      slidesPerView: 2,
-      centeredSlides: true,
-    }
-  }}
-          >
-            {slides.map((slide, index) => (
-              <SwiperSlide
-                key={index}
-                className={`${styles.swiperSlide} ${currentSlide === index ? styles.slideActive : ""}`}
-              >
-                <div className={styles.slideContent}>
-                  <img
-                    src={slide.image}
-                    alt={slide.title}
-                    className={styles.slideImage}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-        </div>
-        <div>
-          <h4><div className={styles.slideDescription}>
-            {slides[currentSlide]?.title}
-          </div></h4>
-          <div className={styles.mcuContainer}>
-            <p>
-              <div className={styles.slideDescription}>
-                {slides[currentSlide]?.description1}
-              </div>
-            </p>
-            <p>
-              <div className={styles.slideDescription}>
-                {slides[currentSlide]?.description2}
-              </div>
-            </p>
-          </div>
-        </div>
       </div>
+
+      <div id={styles.padding2} className={styles.sliderWrapper}>
+          <button onClick={prevSlide} className={styles.sliderButton2}>
+            <img src={Vector} style={{ transform: 'scaleX(-1)' }} alt="Previous" />
+          </button>
+
+          <div
+            className={styles.sliderContainer}
+            {...useSwipeable({
+              onSwipedLeft: nextSlide,
+              onSwipedRight: prevSlide,
+              preventScrollOnSwipe: true,
+              trackMouse: true,
+            })}
+          >
+            <div className={`${styles.slideActive} ${fade ? styles.fadeOut : ''}`}>
+              <img
+                src={slides[currentSlide].image}
+                alt={slides[currentSlide].title}
+                className={styles.activeImage}
+              />
+            </div>
+            <div className={`${styles.slideNext} ${fade ? styles.fadeOut : ''}`}>
+              <img
+                src={slides[(currentSlide + 1) % slides.length].image}
+                alt={slides[(currentSlide + 1) % slides.length].title}
+                className={styles.nextImage}
+              />
+            </div>
+          </div>
+
+          <button onClick={nextSlide} className={styles.sliderButton2}>
+            <img src={Vector} alt="Next" />
+          </button>
+        </div>
+
+          <div id={styles.padding}>
+            <h4><div className={styles.slideDescription}>
+              {slides[currentSlide]?.title}
+            </div></h4>
+            <div className={styles.mcuContainer}>
+              <p>
+                <div className={styles.slideDescription}>
+                  {slides[currentSlide]?.description1}
+                </div>
+              </p>
+              <p>
+                <div className={styles.slideDescription}>
+                  {slides[currentSlide]?.description2}
+                </div>
+              </p>
+            </div>
+          </div>
 
       <div id={styles.padding}>
         <ContactUs /></div>

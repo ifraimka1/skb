@@ -3,6 +3,7 @@
   overflow: hidden;
   min-height: 100vh;
   padding: 0 10%;
+
   margin: 0;
   margin-bottom: 64px;
   color: rgba(18, 18, 18, 1);
@@ -71,14 +72,34 @@
       display: none;
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+    margin-bottom: 32px;
+  }
 }
 
 #padding {
   padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
+}
+
+#padding2 {
+  padding: 0 10%;
+   @media (max-width: 769px) {
+  padding: 0 2.5%;
+   }
 }
 
 #page_container {
   padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
 
   h2 {
     font-size: 36px;
@@ -120,6 +141,7 @@
     @media (max-width: 768px) {
       flex-direction: column;
       gap: 24px;
+      margin-bottom: 32px;
     }
   }
 
@@ -168,6 +190,7 @@
     @media (max-width: 768px) {
       flex-direction: column;
       gap: 24px;
+      margin-bottom: 32px;
     }
   }
 
@@ -202,6 +225,7 @@
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 24px;
+    margin-bottom: 32px;
   }
 }
 
@@ -278,14 +302,7 @@
 .sliderNav {
   display: flex;
   gap: 16px;
-
-  @media (max-width: 768px) {
-    order: 2;
-    justify-content: center;
-    width: 100%;
-  }
 }
-
 
 .sliderButton {
   width: 40px;
@@ -304,57 +321,166 @@
   }
 }
 
-// Карточка слайда
-.sliderWrapper {
-  width: 100%;
+.slideActive,
+.slideNext {
+  background: #f5f5f7;
+  border-radius: 16px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 64px;
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  transform: scale(1);
+}
 
-  @media (max-width: 768px) {
-    margin-bottom: 32px;
-    margin-top: 16px;
+.slideActive {
+  flex: 2;
+  padding: 48px;
+  border: 2px solid #0867F4;
+
+  .activeImage {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+  }
+}
+
+.slideNext {
+  flex: 1;
+  padding: 32px;
+
+  .nextImage {
+    width: 100%;
+    max-height: 200px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.slideActive.fade-out,
+.slideNext.fade-out,
+.fadeOut {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+
+  .slideActive,
+  .slideNext {
+    width: 100%;
+    flex: none;
+  }
+
+  .slideNext {
+    display: none;
+  }
+
+  .sliderNav {
+    display: none;
+  }
+
+  .swiper-slide {
+    opacity: 1 !important;
+    transition: none !important;
+    height: 48vh !important;
+
+    .slide-image {
+      height: 350px !important;
+    }
+  }
+
+  .slideActive .activeImage {
+    height: 200px; // или auto, если хочешь, чтобы она заполняла контейнер
+    max-height: 60vh; // чтобы не вылезала за экран
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .swiper-slide {
+    height: auto; // либо установи нужную высоту, например: 60vh
+  }
+
+  .slideActive {
+    padding: 16px; // уменьшить паддинги, чтобы картинка влезала лучше
   }
 }
 
 
 
-.slideContent {
-  width: 100%;
-  background: #f5f5f7;
-  border-radius: 16px;
-  padding: 48px;
+.swiper-slide {
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  height: 65vh;
+
+  .slide-image {
+    height: 500px;
+  }
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: 0.7;
+  transform: scale(0.9);
+
+  @media (max-width: 768px) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sliderWrapper {
   display: flex;
-  height: 352px;
   align-items: center;
-  justify-content: center;
-}
-
-
-.slideImage {
-  width: 80%;
-  height: auto;
-  object-fit: contain;
-}
-
-
-.swiperSlide {
-  flex-shrink: 0;
+  gap: 16px;
   width: 100%;
+  margin-bottom: 34px;
 
-  transition: all 0.3s ease;
-  transform: scale(0.8);
-  opacity: 0.6;
+  @media (max-width: 768px) {
+    .sliderNav {
+      display: none;
+    }
+  }
+}
+
+.sliderContainer {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    gap: 0;
+
+    .slideNext {
+      display: none;
+    }
+  }
+}
+
+.sliderButton2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f5f5f7;
+  border: none;
   cursor: pointer;
   display: flex;
+  align-items: center;
   justify-content: center;
-}
+  
+  img {
+    width: 16px;
+    height: 16px;
+  }
 
-
-.slideActive {
-  transform: scale(1);
-  opacity: 1;
-  border: 2px solid #0867F4;
-  border-radius: 16px;
-  z-index: 10;
+  @media (min-width: 769px) {
+    display: none;
+  }
 }
