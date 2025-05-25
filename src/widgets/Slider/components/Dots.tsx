@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { SliderContext } from "../Slider";
+
 import Dot from "./Dot"; // Fixed import - was incorrectly importing from "./Dots"
 import { ReactElement } from "react";
+import { SliderContext } from "@/widgets/Slider/context";
 
 function Dots(): ReactElement {
   const { slidesCount } = useContext(SliderContext);

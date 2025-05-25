@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import Slide from "./Slide";
-import { SliderContext } from "../Slider";
+
 import { MediaItem } from "@/modules/media/api/get";
+import { SliderContext } from "@/widgets/Slider/context";
 
 export default function SlidesList() {
   const { slideNumber, mediaList } = useContext(SliderContext);

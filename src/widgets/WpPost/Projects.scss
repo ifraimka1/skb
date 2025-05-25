@@ -1,198 +1,201 @@
-$color-highlight: #072AC8;
-$table-header-color: #EEEEEE;
+$color-highlight: #072ac8;
+$table-header-color: #eeeeee;
 $table-body-bg: #ffffff;
-$color-usual: #ACACAC;
+$color-usual: #acacac;
 $border-raduis: 16px;
-$background-tape: #F5F5F7;
+$background-tape: #f5f5f7;
 
 $slider: 476px;
 $swiper-button-size: 48px;
 $swiper-button-arrow-size: 20px;
 
 :root {
-    --wp--preset--spacing--10: 5%;
-    --wp--preset--spacing--20: 10%;
-    --wp--preset--spacing--30: 15%;
-    --wp--preset--spacing--40: 20%;
-    --wp--preset--spacing--50: 25%;
-    --wp--preset--spacing--60: 30%;
+  --wp--preset--spacing--10: 5%;
+  --wp--preset--spacing--20: 10%;
+  --wp--preset--spacing--30: 15%;
+  --wp--preset--spacing--40: 20%;
+  --wp--preset--spacing--50: 25%;
+  --wp--preset--spacing--60: 30%;
 }
 
 .project {
-    .header {
+  .header {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  .wp-block-columns {
+    margin-bottom: 2em;
+  }
+
+  .is-layout-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+
+    figure {
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain !important; // Wordpress накидывает styles к элементу, приходится перебивать
+      }
+    }
+  }
+
+  .has-text-align-center {
+    text-align: center;
+  }
+
+  .has-text-align-justify {
+    text-align: justify;
+  }
+
+  .is-style-rounded * {
+    border-radius: 16px;
+  }
+
+  // "Цитаты"
+  .wp-block-pullquote {
+    * {
+      margin-bottom: 0;
+    }
+
+    blockquote {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      padding: 16px 0;
+      background: $background-tape;
+
+      p {
+        display: inline-block;
+        max-width: 40%;
         text-align: center;
-        margin-bottom: 2em;
+      }
     }
+  }
 
-    .wp-block-columns {
-        margin-bottom: 2em;
-    }
+  // Таблица
+  .table-wrapper {
+    border: 1px solid $table-header-color;
+    border-radius: $border-raduis;
+    overflow-x: auto;
+    background: $table-header-color;
 
-    .is-layout-flex {
-        display: flex;
-        justify-content: space-between;
-        gap: 2em;
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 18px;
+      word-wrap: normal;
 
-        figure {
-            img {
-                max-width: 100%;
-                height: auto;
-                object-fit: contain !important; // Wordpress накидывает styles к элементу, приходится перебивать
-            }
-        }
-    }
+      th,
+      td {
+        max-width: 200px;
+        border: none;
+        padding: 12px 16px;
+        vertical-align: middle;
+        background: $table-body-bg;
+      }
 
-    .has-text-align-center {
+      tr:not(:last-child) th,
+      tr:not(:last-child) td {
+        border-bottom: 1px solid $table-header-color;
+      }
+
+      tr:last-child th,
+      tr:last-child td {
+        border-bottom: 1px solid $table-body-bg;
+      }
+
+      thead th {
+        background-color: $table-header-color;
+        font-weight: 400;
+        padding: 12px 16px;
+        border: none;
+      }
+
+      tbody td:not(:first-child),
+      thead th:not(:first-child) {
         text-align: center;
-    }
+      }
 
-    .has-text-align-justify {
-        text-align: justify;
-    }
+      thead th.highlight {
+        font-weight: 600;
+        font-size: 24px;
+        border-radius: 10px 10px 0 0;
+        border-bottom: 1px solid $color-highlight;
+        color: #ffffff;
+        background-color: $color-highlight;
+      }
 
-    .is-style-rounded * {
-        border-radius: 16px;
-    }
+      tbody td.highlight {
+        border: 1px solid $color-highlight;
+        border-top: none;
 
-    // "Цитаты"
-    .wp-block-pullquote {
-        * {
-            margin-bottom: 0;
+        .icon {
+          filter: brightness(0) saturate(100%) invert(26%) sepia(94%)
+            saturate(2350%) hue-rotate(225deg) brightness(95%) contrast(93%);
         }
-
-        blockquote {
-            display: flex;
-            justify-content: center;
-            position: absolute;
-            left: 0;
-            width: 100%;
-            padding: 16px 0;
-            background: $background-tape;
-
-            p {
-                display: inline-block;
-                max-width: 40%;
-                text-align: center;
-            }
-        }
+      }
     }
+  }
 
-    // Таблица
-    .table-wrapper {
-        border: 1px solid $table-header-color;
-        border-radius: $border-raduis;
-        overflow-x: auto;
-        background: $table-header-color;
+  .slider {
+    margin-top: 2em;
+    padding: 0;
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            font-size: 18px;
-            word-wrap: normal;
+    .swiper {
+      padding-top: 4em;
+      overflow: visible;
+      .swiper-wrapper {
+        left: -250px;
+      }
+      .swiper-wrapper .swiper-slide {
+        aspect-ratio: 1 / 1;
+        position: relative;
 
-            th,
-            td {
-                max-width: 200px;
-                border: none;
-                padding: 12px 16px;
-                vertical-align: middle;
-                background: $table-body-bg;
-            }
-
-            tr:not(:last-child) th,
-            tr:not(:last-child) td {
-                border-bottom: 1px solid $table-header-color;
-            }
-
-            tr:last-child th,
-            tr:last-child td {
-                border-bottom: 1px solid $table-body-bg;
-            }
-
-            thead th {
-                background-color: $table-header-color;
-                font-weight: 400;
-                padding: 12px 16px;
-                border: none;
-            }
-
-            tbody td:not(:first-child),
-            thead th:not(:first-child) {
-                text-align: center;
-            }
-
-            thead th.highlight {
-                font-weight: 600;
-                font-size: 24px;
-                border-radius: 10px 10px 0 0;
-                border-bottom: 1px solid $color-highlight;
-                color: #ffffff;
-                background-color: $color-highlight;
-            }
-
-            tbody td.highlight {
-                border: 1px solid $color-highlight;
-                border-top: none;
-
-                .icon {
-                    filter: brightness(0) saturate(100%) invert(26%) sepia(94%) saturate(2350%) hue-rotate(225deg) brightness(95%) contrast(93%);
-                }
-            }
+        .slide-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0;
         }
+      }
+
+      .swiper-button-prev,
+      .swiper-button-next {
+        background: url("/./src/shared/assets/images/arrow2-0.svg") center
+          center no-repeat;
+        top: calc($swiper-button-size / 2);
+        left: auto;
+        width: $swiper-button-size;
+        height: $swiper-button-size;
+        color: transparent;
+
+        border: 2px solid black;
+        border-radius: 100%;
+      }
+
+      .swiper-button-prev::after,
+      .swiper-button-next::after {
+        font-size: $swiper-button-arrow-size;
+      }
+
+      .swiper-button-prev {
+        transform: scaleX(-1);
+        right: calc(24px + $swiper-button-size);
+      }
+
+      .swiper-button-next {
+        right: 0;
+      }
+
+      .swiper-pagination {
+        display: none;
+      }
     }
-
-    .slider {
-        margin-top: 2em;
-        padding: 0;
-
-        .swiper {
-            padding-top: 4em;
-            // overflow: unset;
-
-            .swiper-wrapper .swiper-slide {
-                aspect-ratio: 1 / 1;
-                position: relative;
-
-                .slide-image {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 0;
-                  }
-              }
-              
-
-            .swiper-button-prev,
-            .swiper-button-next {
-                background: url('/./src/shared/assets/images/arrow2-0.svg') center center no-repeat;
-                top: calc($swiper-button-size / 2);
-                left: auto;
-                width: $swiper-button-size;
-                height: $swiper-button-size;
-                color: transparent;
-
-                border: 2px solid black;
-                border-radius: 100%;
-            }
-
-            .swiper-button-prev::after,
-            .swiper-button-next::after {
-                font-size: $swiper-button-arrow-size;
-            }
-
-            .swiper-button-prev {
-                transform: scaleX(-1);
-                right: calc(24px + $swiper-button-size);
-            }
-
-            .swiper-button-next {
-                right: 0;
-            }
-
-            .swiper-pagination {
-                display: none;
-            }
-        }
-    }
+  }
 }

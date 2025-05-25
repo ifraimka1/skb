@@ -13,15 +13,15 @@ interface WpPostProps {
   children?: ReactNode;
 }
 
-export default function WpPost({
-  post,
-  children,
-}: WpPostProps) {
-  useResizeObserver({parentSelector: '.wp-block-pullquote', childSelector: 'blockquote'});
+export default function WpPost({ post, children }: WpPostProps) {
+  useResizeObserver({
+    parentSelector: ".wp-block-pullquote",
+    childSelector: "blockquote",
+  });
   //useResizeObserver({parentSelector: '.slider', childSelector: '.swiper-slide', margin: '5em'});
 
   return (
-    <div className={post.categories?.includes('projects') ? "project" : ""}>
+    <div className={post.categories?.includes("projects") ? "project" : ""}>
       <PageHeader className="header">
         <h1>{post.title}</h1>
       </PageHeader>
@@ -31,7 +31,7 @@ export default function WpPost({
             if (el.type === "mediablock") {
               return <MediaBlock key={index} images={el.value} />;
             } else if (el.type === "slider") {
-              return <Slider images={el.value} customPerSlide={4} />
+              return <Slider images={el.value} customPerSlide={4} />;
             }
             return <div key={index}>{el.element}</div>;
           })}
