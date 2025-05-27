@@ -6,7 +6,7 @@ import { useResizeObserver } from "@/shared/lib/ResizeObserver/ResizeObserver";
 import { App } from "@/shared/types/app";
 
 import "./Projects.scss";
-import Slider from "../Slider/Slider";
+import NewSlider from "../NewSlider/NewSlider";
 import { getCustomProject } from "./customProjects";
 
 interface WpPostProps {
@@ -33,18 +33,20 @@ export default function WpPost({
           <PageHeader className="header">
             <h1>{post.title}</h1>
           </PageHeader>
-          <PageContent className="content">
-            {Array.isArray(post.content) &&
-              post.content.map((el, index) => {
-                if (el.type === "mediablock") {
-                  return <MediaBlock key={index} images={el.value} />;
-                } else if (el.type === "slider") {
-                  return <Slider key={index} images={el.value} customPerSlide={4} />;
-                }
-                return <div key={index}>{el.element}</div>;
-              })}
-            {children}
-          </PageContent>
+          {Array.isArray(post.content) &&
+            post.content.map((el, index) => {
+              if (el.type === "mediablock") {
+                return <MediaBlock key={index} images={el.value} />;
+              } else if (el.type === "slider") {
+                return <NewSlider key={index} images={el.value} slidesPerView={4} />;
+              }
+              return (
+                <PageContent key={index} className="content">
+                  {el.element}
+                </PageContent>
+              );
+            })}
+          {children && <PageContent className="content">{children}</PageContent>}
         </>
       )}
     </div>
