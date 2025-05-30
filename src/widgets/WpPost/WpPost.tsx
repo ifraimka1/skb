@@ -24,6 +24,8 @@ export default function WpPost({
   const title = post.title;
   const customComponent = getCustomProject(title);
 
+  const isSpecialTitle = title === "Программно-аппаратный комплекс для мониторинга управления мусорных контейнеров";
+
   return (
     <div className={categories.includes("projects") ? "project" : ""}>
       {customComponent ? (
@@ -31,14 +33,24 @@ export default function WpPost({
       ) : (
         <>
           <PageHeader className="header">
-            <h1>{post.title}</h1>
+            <h1>{title}</h1>
           </PageHeader>
           {Array.isArray(post.content) &&
             post.content.map((el, index) => {
               if (el.type === "mediablock") {
-                return <MediaBlock key={index} images={el.value} />;
+                const media = <MediaBlock key={index} images={el.value} />;
+                return isSpecialTitle ? media : (
+                  <PageContent key={index} className="content">
+                    {media}
+                  </PageContent>
+                );
               } else if (el.type === "slider") {
-                return <NewSlider key={index} images={el.value} slidesPerView={4} />;
+                const slider = <NewSlider key={index} images={el.value} slidesPerView={4} />;
+                return isSpecialTitle ? slider : (
+                  <PageContent key={index} className="content">
+                    {slider}
+                  </PageContent>
+                );
               }
               return (
                 <PageContent key={index} className="content">
