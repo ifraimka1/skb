@@ -1,97 +1,38 @@
 import { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 
+import { useMedia } from "@/modules/media/hooks/useMedia";
 import PartnersLogo from "./PartnersLogo";
 import styles from "./Partners.module.scss";
 
-// Тип для данных партнёра
 interface Partner {
   src: string;
+  alt?: string;
+  category?: string;
+  id?: string | number;
 }
 
-// Пропсы для компонента Partners
-interface PartnersProps {
-  partners?: Partner[];
-}
-
-const mock: Partner[] = [
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/bmw-m4-bright-headlights-close-up-g7qtwp90l3u3c0vv-scaled.jpg",
-  },
-  {
-    src: "https://test.skbkit.ru/wp-content/uploads/2025/03/partners_sundowner.gif",
-  },
-];
-
-function Partners({ partners = mock }: PartnersProps) {
-  const [mediaList] = useState<Partner[]>(partners);
+function Partners() {
+  const { data: mediaData, isLoading, isError } = useMedia();
   const [play, setPlay] = useState(false);
 
-  const updateMediaList = async () => {
-    // Логика для обновления списка медиа
-    // const newMediaList = await getMedia('partners');
-    // setMediaList(newMediaList);
-
-    // if (newMediaList.length >= 5) {
-      setPlay(true);
-    // }
-  };
+  // Отфильтрованные партнёрские медиа
+  const mediaList: Partner[] =
+    mediaData?.filter((item: Partner) => item.category === "partners") || [];
 
   useEffect(() => {
-    updateMediaList();
-    window.addEventListener("resize", updateMediaList);
-    return () => {
-      window.removeEventListener("resize", updateMediaList);
-    };
+    if (mediaList.length >= 5) {
+      setPlay(true);
+    }
   }, [mediaList.length]);
+
+  if (isLoading) {
+    return <div className={styles.loading}>Загрузка партнеров...</div>;
+  }
+
+  if (isError || mediaList.length === 0) {
+    return <div className={styles.error}>Не удалось загрузить партнеров</div>;
+  }
 
   return (
     <div className={styles.block} id={styles.partners}>
@@ -102,13 +43,15 @@ function Partners({ partners = mock }: PartnersProps) {
         <Marquee
           gradient={false}
           pauseOnHover={false}
-          play={play}
+          //play={play}
           speed={80}
           className={styles.marquee}
-          autoFill={play}
+          //autoFill={play}
+          autoFill={true}
+          play={true}
         >
           {mediaList.map((item, index) => (
-            <div key={index} className={styles.partner}>
+            <div key={item.id || index} className={styles.partner}>
               <PartnersLogo partner={item} />
             </div>
           ))}

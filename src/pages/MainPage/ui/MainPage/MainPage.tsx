@@ -5,6 +5,7 @@ import { RootContext } from "@/app/Layout/Root";
 import Partners from "@/widgets/Partners";
 import Gallery from "@/pages/MainPage/ui/components/Gallery";
 import ContactUs from "@/widgets/ContactUs";
+import { useMedia } from "@/modules/media/hooks/useMedia";
 
 import {
   LabsList,
@@ -16,20 +17,13 @@ import Numbers from "@/widgets/Numbers";
 const MainPage = () => {
   const { setRef } = useContext(RootContext);
   const [headerBgUrl, setHeaderBgUrl] = useState("");
+  const { data: mediaData, isLoading, isError } = useMedia();
 
   useEffect(() => {
-    // Запрос к WP REST API для поиска медиа по ключу "art"
-    fetch("https://test.skbkit.ru/wp-json/wp/v2/media?search=art")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.length > 0) {
-          // Берём первый объект и его URL картинки
-          setHeaderBgUrl(data[0].source_url);
-        }
-      })
-      .catch((err) => {
-        console.error("Ошибка загрузки фона с WP:", err);
-      });
+    const artMedia = mediaData?.filter((el) => el.category === "art");
+    if (artMedia && artMedia.length > 0) {
+      setHeaderBgUrl(artMedia[0].src);
+    }
 
     const navbar = document.getElementById("navbar");
     if (navbar) {
@@ -41,7 +35,15 @@ const MainPage = () => {
         navbar.classList.remove("transparent");
       }
     };
-  }, []);
+  }, [mediaData]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    console.error("Error loading media");
+  }
 
   return (
     <div>
@@ -49,8 +51,7 @@ const MainPage = () => {
         id={styles.mainpageheader}
         ref={(element) => setRef(element)}
         style={{
-          backgroundImage:
-            `url(${headerBgUrl})`,
+          backgroundImage: headerBgUrl ? `url(${headerBgUrl})` : "none",
         }}
       >
         <section className={styles.container}>
