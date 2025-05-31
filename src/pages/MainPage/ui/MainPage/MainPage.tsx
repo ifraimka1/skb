@@ -17,24 +17,34 @@ import Numbers from "@/widgets/Numbers";
 const MainPage = () => {
   const { setRef } = useContext(RootContext);
   const [headerBgUrl, setHeaderBgUrl] = useState("");
+  const [nextBgUrl, setNextBgUrl] = useState("");
+  const [fade, setFade] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { data: mediaData, isLoading, isError } = useMedia();
 
   useEffect(() => {
     const artMedia = mediaData?.filter((el) => el.category === "art");
+
     if (artMedia && artMedia.length > 0) {
       setHeaderBgUrl(artMedia[0].src);
-    }
+      let index = 0;
 
-    const navbar = document.getElementById("navbar");
-    if (navbar) {
-      navbar.classList.add("transparent");
-    }
+      const intervalId = setInterval(() => {
+        const nextIndex = (index + 1) % artMedia.length;
+        const nextImage = artMedia[nextIndex].src;
 
-    return () => {
-      if (navbar) {
-        navbar.classList.remove("transparent");
-      }
-    };
+        setNextBgUrl(nextImage);
+        setFade(true);
+
+        setTimeout(() => {
+          setHeaderBgUrl(nextImage);
+          setFade(false);
+          index = nextIndex;
+        }, 1000);
+      }, 600000); // 10 минут
+
+      return () => clearInterval(intervalId);
+    }
   }, [mediaData]);
 
   if (isLoading) {
