@@ -156,7 +156,7 @@ function LabBoard() {
             <div className={styles.featureContent}>
               {activeFeature !== null && (
                 <div className={styles.featureDescription}>
-                  {features[activeFeature].content}
+                  <p>{features[activeFeature].content}</p>
                 </div>
               )}
             </div>
