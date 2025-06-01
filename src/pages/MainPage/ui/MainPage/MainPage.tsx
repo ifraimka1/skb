@@ -5,12 +5,8 @@ import { RootContext } from "@/app/Layout/Root";
 import Partners from "@/widgets/Partners";
 import Gallery from "@/pages/MainPage/ui/components/Gallery";
 import ContactUs from "@/widgets/ContactUs";
-
-import {
-  LabsList,
-  NewsList,
-  ProjectsList,
-} from "@/widgets/CardList/CardList";
+import { Helmet } from "react-helmet";
+import { LabsList, NewsList, ProjectsList } from "@/widgets/CardList/CardList";
 import Numbers from "@/widgets/Numbers";
 
 const MainPage = () => {
@@ -30,6 +26,19 @@ const MainPage = () => {
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>СКБ "Компьютерное инновационное творчество"</title>
+        <meta
+          name="keywords"
+          content="СКБ, Студенческое конструкторское бюро, Компьютерное инновационное творчество, ИКТИБ, ЮФУ, программирование, IT, инновации, проекты, лаборатории, Таганрог, образование, технологии, разработка, студенческие проекты"
+        />
+        <meta
+          name="description"
+          content="Студенческое конструкторское бюро 'Компьютерное инновационное творчество' ИКТИБ ЮФУ - площадка для реализации творческих и инновационных проектов студентов в области IT, робототехники, компьютерного зрения, VR/AR и других современных технологий."
+        />
+        <meta name="robots" content="index,follow,archive" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet>
       <div id={styles.mainpageheader} ref={(element) => setRef(element)}>
         <section className={styles.container}>
           <h1>Думай иначе, будь креативным!</h1>

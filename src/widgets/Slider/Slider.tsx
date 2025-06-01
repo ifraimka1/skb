@@ -7,7 +7,7 @@ import { SkeletonSlider } from "@/shared/Components/SkeletonSlider/SkeletonSlide
 import "./Slider.styles.scss";
 import { SliderContext, SliderProps } from "@/widgets/Slider/context";
 
-function Slider({
+function Slider({                                                                   
   autoPlay = false,
   autoPlayTime = 3000,
   images,
