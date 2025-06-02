@@ -1,0 +1,486 @@
+#pageheader {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 0 10%;
+
+  margin: 0;
+  margin-bottom: 64px;
+  color: rgba(18, 18, 18, 1);
+  background-image: url("/src/shared/assets/images/LabBoard/fond.png");
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+
+  img {
+    pointer-events: none;
+  }
+
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    flex: 1;
+    max-width: 50%;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding: $navbar-padding-tb 5%;
+    }
+
+    h1 {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 63px;
+      margin: 0;
+      margin-bottom: 24px;
+
+      @media (max-width: 768px) {
+        font-size: 32px;
+        line-height: 40px;
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 36px;
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+
+    .btn {
+      margin: 0;
+      margin-top: 24px;
+    }
+  }
+
+  .microcontrollerImage {
+    flex: 1;
+    max-width: 40%;
+    height: auto;
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+    margin-bottom: 32px;
+  }
+}
+
+#padding {
+  padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
+}
+
+#padding2 {
+  padding: 0 10%;
+   @media (max-width: 769px) {
+  padding: 0 2.5%;
+   }
+}
+
+#page_container {
+  padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h4 {
+    font-weight: 600;
+  }
+
+  img {
+    pointer-events: none;
+  }
+
+  p {
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    margin-top: 0;
+    margin-bottom: 8px;
+
+    @include mediaMax($tablet-max-width) {
+      font-size: 24px;
+      margin-top: 0;
+    }
+  }
+
+  .numbersContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    background-color: #f5f5f7;
+    border-radius: 16px;
+    margin-bottom: 64px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .numberBlock {
+    flex: 1;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .number {
+    font-size: 64px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #0867F4, #072AC8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 48px;
+    }
+  }
+
+  .numberLabel {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  .imagesContainer {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 64px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .imageBlock {
+    flex: 1;
+    background-color: #f5f5f7;
+    border-radius: 16px;
+    padding: 32px 48px 48px 48px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imageTitle {
+    font-weight: 550;
+    margin-bottom: 16px
+  }
+
+  .microcontrollerPhoto {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 300px;
+  }
+}
+
+.featuresContainer {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 64px;
+  padding-top: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+}
+
+.featuresList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.featureItem {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 600;
+
+  &.active {
+    color: #072AC8;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.featureContent {
+  flex: 0 0 600px;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+.featureDescription {
+  animation: fadeIn 0.3s ease;
+}
+
+.mcuContainer {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+// слайдер
+.sliderHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  width: 100%;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+}
+
+.sliderNav {
+  display: flex;
+  gap: 16px;
+}
+
+.sliderButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f5f5f7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.slideActive,
+.slideNext {
+  background: #f5f5f7;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slideActive {
+  flex: 2;
+  padding: 48px;
+  border: 2px solid #0867F4;
+
+  .activeImage {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+  }
+}
+
+.slideNext {
+  flex: 1;
+  padding: 32px;
+
+  .nextImage {
+    width: 100%;
+    max-height: 200px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.slideActive.fade-out,
+.slideNext.fade-out,
+.fadeOut {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+
+  .slideActive,
+  .slideNext {
+    width: 100%;
+    flex: none;
+  }
+
+  .slideNext {
+    display: none;
+  }
+
+  .sliderNav {
+    display: none;
+  }
+
+  .swiper-slide {
+    opacity: 1 !important;
+    transition: none !important;
+    height: 48vh !important;
+
+    .slide-image {
+      height: 350px !important;
+    }
+  }
+
+  .slideActive .activeImage {
+    height: 200px; // или auto, если хочешь, чтобы она заполняла контейнер
+    max-height: 60vh; // чтобы не вылезала за экран
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .swiper-slide {
+    height: auto; // либо установи нужную высоту, например: 60vh
+  }
+
+  .slideActive {
+    padding: 16px; // уменьшить паддинги, чтобы картинка влезала лучше
+  }
+}
+
+
+
+.swiper-slide {
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  height: 65vh;
+
+  .slide-image {
+    height: 500px;
+  }
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: 0.7;
+  transform: scale(0.9);
+
+  @media (max-width: 768px) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sliderWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 34px;
+
+  @media (max-width: 768px) {
+    .sliderNav {
+      display: none;
+    }
+  }
+}
+
+.sliderContainer {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    gap: 0;
+
+    .slideNext {
+      display: none;
+    }
+  }
+}
+
+.sliderButton2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f5f5f7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
