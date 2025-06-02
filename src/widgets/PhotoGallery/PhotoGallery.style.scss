@@ -90,3 +90,57 @@ $tablet-min-width: 768px;
 
     }
 }
+
+.creativity-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 64px;
+
+  .creativity-text-top {
+    width: calc(50% - 16px);
+  }
+
+  .creativity-images {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    width: calc(50% - 16px); // по 50% минус половина gap
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  @include mediaMax($tablet-max-width) {
+    flex-direction: column;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+  @include mediaMax($tablet-max-width) {
+    flex-direction: column;
+
+    .creativity-text-top,
+    .creativity-text-bottom,
+    .creativity-images {
+      width: 100%;
+    }
+
+    .creativity-images {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+}
+.creativity-text-bottom {
+  margin-left: auto;
+  width: calc(50% - 16px);
+
+}

@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 
 const customProjects: Record<string, ReactNode> = {
   labboard: <LabBoard />,
-  tests: <Test />,
 };
 
 export const getCustomProject = (title: string): ReactNode | null => {

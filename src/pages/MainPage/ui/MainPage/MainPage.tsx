@@ -1,10 +1,11 @@
+import { useContext, useEffect, useState } from "react";
 import styles from "./MainPage.module.scss";
 import { HashLink } from "react-router-hash-link";
-import { useContext, useEffect } from "react";
 import { RootContext } from "@/app/Layout/Root";
 import Partners from "@/widgets/Partners";
 import Gallery from "@/pages/MainPage/ui/components/Gallery";
 import ContactUs from "@/widgets/ContactUs";
+import { useMedia } from "@/modules/media/hooks/useMedia";
 
 import {
   LabsList,
@@ -15,8 +16,15 @@ import Numbers from "@/widgets/Numbers";
 
 const MainPage = () => {
   const { setRef } = useContext(RootContext);
+  const [headerBgUrl, setHeaderBgUrl] = useState("");
+  const { data: mediaData, isLoading, isError } = useMedia();
 
   useEffect(() => {
+    const artMedia = mediaData?.filter((el) => el.category === "art");
+    if (artMedia && artMedia.length > 0) {
+      setHeaderBgUrl(artMedia[0].src);
+    }
+
     const navbar = document.getElementById("navbar");
     if (navbar) {
       navbar.classList.add("transparent");
@@ -27,10 +35,25 @@ const MainPage = () => {
         navbar.classList.remove("transparent");
       }
     };
-  }, []);
+  }, [mediaData]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    console.error("Error loading media");
+  }
+
   return (
     <div>
-      <div id={styles.mainpageheader} ref={(element) => setRef(element)}>
+      <div
+        id={styles.mainpageheader}
+        ref={(element) => setRef(element)}
+        style={{
+          backgroundImage: headerBgUrl ? `url(${headerBgUrl})` : "none",
+        }}
+      >
         <section className={styles.container}>
           <h1>Думай иначе, будь креативным!</h1>
           <h2>
