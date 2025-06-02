@@ -79,17 +79,18 @@ $btn-primary-bg: linear-gradient(
 
 .joinContent {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 5;
   display: flex;
   align-items: center;
   justify-content: center;
   background: $btn-primary-bg;
   border-radius: 8px;
-  transition: 0.5s;background: $btn-primary-bg;
+  transition: 0.5s;
   background-size: 200% 100%;
   background-position: 0% 0%;
   cursor: pointer;
-text-align: center;
+  text-align: center;
+  
   &:hover {
     background-size: 200%;
     background-position: 100%;
