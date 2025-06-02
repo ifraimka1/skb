@@ -15,7 +15,7 @@ const PhotoGallery = () => {
     return <SkeletonGallery />;
   }
 
-  if (isError || !galleryImages || galleryImages.length === 0) {
+  if (isError || !filteredMedia || filteredMedia.length === 0) {
     return <center>Ошибка при загрузке медиа</center>;
   }
 
@@ -43,7 +43,7 @@ const PhotoGallery = () => {
 
       <h1 className="title">Фотогалерея</h1>
       <div className="images">
-        {galleryImages.slice(0, visibleCount).map((media) => (
+        {filteredMedia.slice(0, visibleCount).map((media) => (
           <div key={media.id} className="image-container">
             <img
               src={media.src}
@@ -54,7 +54,7 @@ const PhotoGallery = () => {
         ))}
       </div>
 
-      {visibleCount < galleryImages.length && (
+      {visibleCount < filteredMedia.length && (
         <div className="btn" onClick={() => setVisibleCount(visibleCount + 10)}>
           Загрузить ещё
         </div>
