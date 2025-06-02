@@ -1,4 +1,5 @@
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import { Helmet } from "react-helmet";
 
 import "./Contact.styles.scss";
 import ContactForm from "@/widgets/ContactForm";
@@ -6,6 +7,18 @@ import ContactForm from "@/widgets/ContactForm";
 function Contact() {
   return (
     <div id="page-contact" className="mainContainer">
+      <Helmet>
+        <title>Контакты | СКБ "Компьютерное инновационное творчество"</title>
+        <meta
+          name="keywords"
+          content="СКБ, контакты, связаться, Студенческое конструкторское бюро, Компьютерное инновационное творчество, ИКТИБ, ЮФУ, адрес, телефон, email, карта, местоположение, Таганрог"
+        />
+        <meta
+          name="description"
+          content="Свяжитесь с нами! Контактная информация Студенческого конструкторского бюро 'Компьютерное инновационное творчество' ИКТИБ ЮФУ. Наш адрес: г. Таганрог, пер. Тургеневский, 44, ауд. 208."
+        />
+        <meta name="robots" content="index,follow" />
+      </Helmet>
       <div className="top-block">
         <div>
           <h1>Контакты</h1>

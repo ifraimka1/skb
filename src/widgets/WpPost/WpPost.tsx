@@ -8,6 +8,7 @@ import { App } from "@/shared/types/app";
 import "./Projects.scss";
 import NewSlider from "../NewSlider/NewSlider";
 import { getCustomProject } from "./customProjects";
+import Slider from "../Slider/Slider";
 
 interface WpPostProps {
   post: App.WpPostPage;
