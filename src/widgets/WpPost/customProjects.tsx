@@ -6,7 +6,12 @@ const customProjects: Record<string, ReactNode> = {
   labboard: <LabBoard />,
 };
 
-export const getCustomProject = (title: string): ReactNode | null => {
-//   const normalizedKey = title.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
-  return customProjects[title] || null;
+export const getCustomProject = (categories: string[]): ReactNode | null => {
+  for (const category of categories) {
+    const key = category;
+    if (customProjects[key]) {
+      return customProjects[key];
+    }
+  }
+  return null;
 };

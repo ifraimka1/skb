@@ -5,17 +5,21 @@ import "./PhotoGallery.style.scss";
 import HWaC1 from "@/shared/assets/images/hard_work_and_creativity/HWaC1.jpg";
 import HWaC2 from "@/shared/assets/images/hard_work_and_creativity/HWaC2.jpg";
 
-const PhotoGallery = () => {
-  const { data: mediaData, isLoading, isError } = useMedia();
-  const [visibleCount] = useState(10);
+interface PhotoGalleryProps {
+  images?: string[];
+}
 
-  const filteredMedia = mediaData?.filter((el) => el.category === "gallery") || [];
+const PhotoGallery = ({ images }: PhotoGalleryProps) => {
+  const { data: mediaData, isLoading, isError } = useMedia();
+  const [visibleCount, setVisibleCount] = useState(10);
+
+  const galleryImages = mediaData?.filter((el) => el.category === "photogallery");
 
   if (isLoading) {
     return <SkeletonGallery />;
   }
 
-  if (isError || !filteredMedia || filteredMedia.length === 0) {
+  if (isError || !galleryImages || galleryImages.length === 0) {
     return <center>Ошибка при загрузке медиа</center>;
   }
 
@@ -43,7 +47,7 @@ const PhotoGallery = () => {
 
       <h1 className="title">Фотогалерея</h1>
       <div className="images">
-        {filteredMedia.slice(0, visibleCount).map((media) => (
+        {galleryImages.slice(0, visibleCount).map((media) => (
           <div key={media.id} className="image-container">
             <img
               src={media.src}
@@ -54,7 +58,7 @@ const PhotoGallery = () => {
         ))}
       </div>
 
-      {visibleCount < filteredMedia.length && (
+      {visibleCount < galleryImages.length && (
         <div className="btn" onClick={() => setVisibleCount(visibleCount + 10)}>
           Загрузить ещё
         </div>

@@ -23,7 +23,7 @@ export default function WpPost({
 
   const categories = post.categories ?? [];
   const title = post.title;
-  const customComponent = getCustomProject(title);
+  const customComponent = getCustomProject(categories);
 
   const isSpecialTitle = title === "Программно-аппаратный комплекс для мониторинга управления мусорных контейнеров";
 
