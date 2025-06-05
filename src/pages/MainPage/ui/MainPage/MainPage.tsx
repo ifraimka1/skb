@@ -15,7 +15,6 @@ const MainPage = () => {
   const [headerBgUrl, setHeaderBgUrl] = useState("");
   const [nextBgUrl, setNextBgUrl] = useState("");
   const [fade, setFade] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const { data: mediaData, isLoading, isError } = useMedia();
 
   useEffect(() => {

@@ -8,7 +8,6 @@ import { App } from "@/shared/types/app";
 import "./Projects.scss";
 import NewSlider from "../NewSlider/NewSlider";
 import { getCustomProject } from "./customProjects";
-import Slider from "../Slider/Slider";
 
 interface WpPostProps {
   post: App.WpPostPage;
@@ -46,7 +45,7 @@ export default function WpPost({
                   </PageContent>
                 );
               } else if (el.type === "slider") {
-                const slider = <NewSlider key={index} images={el.value} slidesPerView={4} />;
+                const slider = <NewSlider key={index} images={el.value} />;
                 return isSpecialTitle ? slider : (
                   <PageContent key={index} className="content">
                     {slider}
