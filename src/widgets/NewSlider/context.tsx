@@ -6,6 +6,7 @@ export interface SliderProps {
   images?: string[];
   category?: string;
   customPerSlide?: number;
+  slidesPerView?: number;
 }
 interface SliderContextType {
   slideNumber: number;

@@ -10,6 +10,7 @@ import { useNewsById } from "@/modules/news/hooks/useNewsById";
 import { PageContent, PageHeader } from "@/widgets/WpPost";
 import Slider from "@/widgets/Slider/Slider";
 export const vkWallUrl = "https://vk.com/skbkit?w=wall-172789021";
+
 function NewsItem() {
   const params = useParams();
   const newsID = params.id;
@@ -76,7 +77,7 @@ function NewsItem() {
             <h1>{news.heading}</h1>
           </PageHeader>
           <PageContent className="content" id="news-item-page">
-            {news.photos.length !== 0 && <Slider images={news.photos} />}
+            {news.photos.length !== 0 && <Slider images={news.photos} category="news"/>}
             {news.text.map((textRow, index) => (
               <p key={index} dangerouslySetInnerHTML={{ __html: textRow }} />
             ))}

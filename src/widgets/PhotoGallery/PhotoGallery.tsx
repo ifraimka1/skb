@@ -5,11 +5,7 @@ import "./PhotoGallery.style.scss";
 import HWaC1 from "@/shared/assets/images/hard_work_and_creativity/HWaC1.jpg";
 import HWaC2 from "@/shared/assets/images/hard_work_and_creativity/HWaC2.jpg";
 
-interface PhotoGalleryProps {
-  images?: string[];
-}
-
-const PhotoGallery = ({ images }: PhotoGalleryProps) => {
+const PhotoGallery = () => {
   const { data: mediaData, isLoading, isError } = useMedia();
   const [visibleCount, setVisibleCount] = useState(10);
 
@@ -51,7 +47,7 @@ const PhotoGallery = ({ images }: PhotoGalleryProps) => {
           <div key={media.id} className="image-container">
             <img
               src={media.src}
-              alt={media.alt || `slide-${media.id}`}
+              alt={`slide-${media.id}`}
               className="slide-image"
             />
           </div>

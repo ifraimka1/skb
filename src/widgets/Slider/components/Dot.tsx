@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SliderContext } from "../Slider";
+import { SliderContext } from "../context";
 import { ReactElement } from "react";
 
 interface DotProps {

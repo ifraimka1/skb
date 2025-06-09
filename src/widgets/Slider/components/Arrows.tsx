@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SliderContext } from "../Slider";
+import { SliderContext } from "../context";
 
 import arrow from "@/shared/assets/images/arrow.svg";
 import "./Arrows.styles.scss";

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 
 import { useMedia } from "@/modules/media/hooks/useMedia";
@@ -14,17 +13,10 @@ interface Partner {
 
 function Partners() {
   const { data: mediaData, isLoading, isError } = useMedia();
-  const [play, setPlay] = useState(false);
 
   // Отфильтрованные партнёрские медиа
   const mediaList: Partner[] =
     mediaData?.filter((item: Partner) => item.category === "partners") || [];
-
-  useEffect(() => {
-    if (mediaList.length >= 5) {
-      setPlay(true);
-    }
-  }, [mediaList.length]);
 
   if (isLoading) {
     return <div className={styles.loading}>Загрузка партнеров...</div>;
@@ -43,10 +35,8 @@ function Partners() {
         <Marquee
           gradient={false}
           pauseOnHover={false}
-          //play={play}
           speed={80}
           className={styles.marquee}
-          //autoFill={play}
           autoFill={true}
           play={true}
         >

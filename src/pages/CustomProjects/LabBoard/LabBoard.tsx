@@ -13,7 +13,7 @@ import { useSwipeable } from 'react-swipeable';
 import ContactUs from "@/widgets/ContactUs";
 
 function LabBoard() {
-  const [activeFeature, setActiveFeature] = useState(null);
+  const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
   const features = [
     {
@@ -46,7 +46,7 @@ function LabBoard() {
     }
   ];
 
-  const toggleFeature = (index) => {
+  const toggleFeature = (index: number) => {
     setActiveFeature(activeFeature === index ? null : index);
   };
 

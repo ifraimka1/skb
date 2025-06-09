@@ -11,6 +11,8 @@ import "./Slider.styles.scss";
 
 import arrow from "@/shared/assets/images/arrow.svg";
 
+import { SliderContext } from "./context";
+
 interface SliderProps {
   autoPlay?: boolean;
   autoPlayTime?: number;
@@ -34,6 +36,15 @@ const Slider = ({
   const [enableButtons, setEnableButtons] = useState(false);
 
   const swiperRef = useRef<any>(null);
+
+  const [slideNumber, setSlideNumber] = useState(0);
+
+  const goToSlide = (num: number) => {
+    swiperRef.current?.slideTo(num, 0);
+    setSlideNumber(num);
+  };
+
+  const slidesCount = mediaList.length;
 
   useEffect(() => {
     const mapped =
@@ -59,7 +70,9 @@ const Slider = ({
           ? 1
           : customPerSlide || 2
       );
-      setEnableButtons(isMobile ? slideCount > 1 : slideCount > (customPerSlide || 2));
+      setEnableButtons(
+        isMobile ? slideCount > 1 : slideCount > (customPerSlide || 2)
+      );
     };
 
     updateLayout();
@@ -74,55 +87,64 @@ const Slider = ({
     variant === "news" && mediaList.length <= 2 ? "no-animation" : "";
 
   return (
-    <div className={`slider ${variant} ${sliderClass}`}>
-      {enableButtons && (
-        <div className="custom-navigation">
-          <button
-            className="custom-prev"
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <img src={arrow} alt="prev" />
-          </button>
-          <button
-            className="custom-next"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <img src={arrow} alt="next" style={{ transform: "rotate(180deg)" }} />
-          </button>
-        </div>
-      )}
+    <SliderContext.Provider
+      value={{ slideNumber, mediaList, goToSlide, slidesCount, setSlideNumber }}
+    >
+      <div className={`slider ${variant} ${sliderClass}`}>
+        {enableButtons && (
+          <div className="custom-navigation">
+            <button
+              className="custom-prev"
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <img src={arrow} alt="prev" />
+            </button>
+            <button
+              className="custom-next"
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <img
+                src={arrow}
+                alt="next"
+                style={{ transform: "rotate(180deg)" }}
+              />
+            </button>
+          </div>
+        )}
 
-      <Swiper
-        modules={[Navigation]}
-        spaceBetween={variant === "news" ? 20 : 30}
-        slidesPerView={itemsPerSlide}
-        centeredSlides={variant === "news" && mediaList.length > 1}
-        slidesPerGroup={1}
-        loop={enableButtons}
-        autoplay={
-          autoPlay
-            ? { delay: autoPlayTime, disableOnInteraction: false }
-            : false
-        }
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-      >
-        {mediaList.map((media, index) => (
-          <SwiperSlide
-            key={media.id}
-            className={`swiper-slide ${
-              mediaList.length === 1 ? "single" : ""
-            }`}
-          >
-            <img
-              src={media.src}
-              alt={`slide-${index}`}
-              className="slide-image"
-              loading="lazy"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={variant === "news" ? 20 : 30}
+          slidesPerView={itemsPerSlide}
+          centeredSlides={variant === "news" && mediaList.length > 1}
+          slidesPerGroup={1}
+          loop={enableButtons}
+          autoplay={
+            autoPlay
+              ? { delay: autoPlayTime, disableOnInteraction: false }
+              : false
+          }
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={(swiper) => setSlideNumber(swiper.realIndex)} // Обновляем slideNumber при смене слайда
+        >
+          {mediaList.map((media, index) => (
+            <SwiperSlide
+              key={media.id}
+              className={`swiper-slide ${
+                mediaList.length === 1 ? "single" : ""
+              }`}
+            >
+              <img
+                src={media.src}
+                alt={`slide-${index}`}
+                className="slide-image"
+                loading="lazy"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </SliderContext.Provider>
   );
 };
 

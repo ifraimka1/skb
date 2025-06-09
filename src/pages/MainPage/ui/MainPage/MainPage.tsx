@@ -13,9 +13,6 @@ import Numbers from "@/widgets/Numbers";
 const MainPage = () => {
   const { setRef } = useContext(RootContext);
   const [headerBgUrl, setHeaderBgUrl] = useState("");
-  const [nextBgUrl, setNextBgUrl] = useState("");
-  const [fade, setFade] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const { data: mediaData, isLoading, isError } = useMedia();
 
   useEffect(() => {
@@ -29,12 +26,8 @@ const MainPage = () => {
         const nextIndex = (index + 1) % artMedia.length;
         const nextImage = artMedia[nextIndex].src;
 
-        setNextBgUrl(nextImage);
-        setFade(true);
-
         setTimeout(() => {
           setHeaderBgUrl(nextImage);
-          setFade(false);
           index = nextIndex;
         }, 1000);
       }, 600000); // 10 минут
@@ -66,7 +59,7 @@ const MainPage = () => {
         <meta name="robots" content="index,follow,archive" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
-      
+
       <div
         id={styles.mainpageheader}
         ref={(element) => setRef(element)}

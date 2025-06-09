@@ -1,5 +1,6 @@
 import { MediaItem } from "@/modules/media/api/get";
 import { createContext } from "react";
+
 export interface SliderProps {
   autoPlay?: boolean;
   autoPlayTime?: number;
@@ -7,7 +8,7 @@ export interface SliderProps {
   category?: string;
   customPerSlide?: number;
 }
-interface SliderContextType {
+export interface SliderContextType {
   slideNumber: number;
   mediaList: MediaItem[];
   setSlideNumber?: (slideNumber: number) => void;

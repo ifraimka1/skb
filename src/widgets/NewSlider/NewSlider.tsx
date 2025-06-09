@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
@@ -17,27 +17,12 @@ function NewSlider({
 }: SliderProps) {
   const { data: mediaData, isLoading, isError } = useMedia();
   const [slideNumber, setSlideNumber] = useState(0);
-  const [itemsPerSlide, setItemsPerSlide] = useState(1);
+
   const carouselRef = useRef<AliceCarousel | null>(null);
 
   const filteredMedia: MediaItem[] = images
     ? images.map((src, id) => ({ id, src, category: "", name: "" }))
     : mediaData?.filter((m) => m.category === category) || [];
-
-
-  useEffect(() => {
-    function updateItemsPerSlide() {
-      const containerWidth = window.innerWidth;
-      const itemWidth = 376;
-      const gap = 32;
-
-      const n = Math.floor((containerWidth + gap) / (itemWidth + gap));
-      setItemsPerSlide(n > 0 ? n : 1);
-    }
-    updateItemsPerSlide();
-    window.addEventListener("resize", updateItemsPerSlide);
-    return () => window.removeEventListener("resize", updateItemsPerSlide);
-  }, []);
 
   const responsive = {
     0: { items: 1 },

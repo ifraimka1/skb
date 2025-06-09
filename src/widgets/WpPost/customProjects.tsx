@@ -1,5 +1,4 @@
 import LabBoard from "@/pages/CustomProjects/LabBoard/LabBoard";
-import Test from "@/pages/CustomProjects/LabBoard/test";
 import { ReactNode } from "react";
 
 const customProjects: Record<string, ReactNode> = {
