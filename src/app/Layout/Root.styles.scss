@@ -77,6 +77,10 @@
   }
 }
 
+#react-page:has(.noMargin) {
+  margin-top: 0;
+}
+
 .block .heading a,
 #navbar .nav-link {
   position: relative;
