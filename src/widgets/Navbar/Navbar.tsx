@@ -61,6 +61,7 @@ function Navbar({ links = mock }: NavbarProps) {
 
   const handleLinkClick = () => {
     setIsOpen(false); // Закрываем меню при клике на ссылку
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
