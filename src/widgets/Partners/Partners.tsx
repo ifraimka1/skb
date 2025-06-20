@@ -26,12 +26,24 @@ function Partners() {
     return <div className={styles.error}>Не удалось загрузить партнеров</div>;
   }
 
+  // Определяем, нужно ли включать автопрокрутку
+  const shouldAutoScroll = mediaList.length > 5;
+
+  if (isLoading) {
+    return <div className={styles.loading}>Загрузка партнеров...</div>;
+  }
+
+  if (isError || mediaList.length === 0) {
+    return <div className={styles.error}>Не удалось загрузить партнеров</div>;
+  }
+
   return (
     <div className={styles.block} id={styles.partners}>
       <div className={styles.heading}>
         <h1>Наши партнеры</h1>
       </div>
       <div className={styles.marquee__container}>
+        {shouldAutoScroll ? (
         <Marquee
           gradient={false}
           pauseOnHover={false}
@@ -46,6 +58,15 @@ function Partners() {
             </div>
           ))}
         </Marquee>
+        ) : (
+          <div className={styles.staticPartners}>
+            {mediaList.map((item, index) => (
+              <div key={item.id || index} className={styles.partner}>
+                <PartnersLogo partner={item} />
+              </div>
+            ))}
+            </div>
+        )}
       </div>
     </div>
   );
