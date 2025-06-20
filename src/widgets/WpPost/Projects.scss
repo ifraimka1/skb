@@ -20,7 +20,7 @@ $swiper-button-arrow-size: 20px;
 
 .project {
   .header {
-    text-align: center;
+    //text-align: center;
     margin-bottom: 2em;
   }
 
@@ -39,6 +39,10 @@ $swiper-button-arrow-size: 20px;
         height: auto;
         object-fit: contain !important; // Wordpress накидывает styles к элементу, приходится перебивать
       }
+    }
+
+    @media (max-width: 768px) {
+      gap: 0;
     }
   }
 
@@ -71,7 +75,7 @@ $swiper-button-arrow-size: 20px;
 
       p {
         display: inline-block;
-        max-width: 40%;
+        //max-width: 40%;
         text-align: center;
       }
     }
@@ -136,8 +140,7 @@ $swiper-button-arrow-size: 20px;
         border-top: none;
 
         .icon {
-          filter: brightness(0) saturate(100%) invert(26%) sepia(94%)
-            saturate(2350%) hue-rotate(225deg) brightness(95%) contrast(93%);
+          filter: brightness(0) saturate(100%) invert(26%) sepia(94%) saturate(2350%) hue-rotate(225deg) brightness(95%) contrast(93%);
         }
       }
     }
@@ -150,9 +153,11 @@ $swiper-button-arrow-size: 20px;
     .swiper {
       padding-top: 4em;
       overflow: visible;
+
       .swiper-wrapper {
         left: -250px;
       }
+
       .swiper-wrapper .swiper-slide {
         aspect-ratio: 1 / 1;
         position: relative;
@@ -167,8 +172,7 @@ $swiper-button-arrow-size: 20px;
 
       .swiper-button-prev,
       .swiper-button-next {
-        background: url("/./src/shared/assets/images/arrow2-0.svg") center
-          center no-repeat;
+        background: url("/./src/shared/assets/images/arrow2-0.svg") center center no-repeat;
         top: calc($swiper-button-size / 2);
         left: auto;
         width: $swiper-button-size;
