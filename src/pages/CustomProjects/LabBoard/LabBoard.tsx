@@ -13,7 +13,7 @@ import { useSwipeable } from 'react-swipeable';
 import ContactUs from "@/widgets/ContactUs";
 
 function LabBoard() {
-  const [activeFeature, setActiveFeature] = useState<number | null>(null);
+  const [activeFeature, setActiveFeature] = useState<number | null>(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const features = [
@@ -142,9 +142,9 @@ function LabBoard() {
         </div>
         <h2 className={styles.title}>Об устройстве</h2>
         <p>
-          Для изучения принципов работы микроконтроллеров, их 
-          интерфейсов и подключаемой периферии был разработан 
-          лабораторный учебный стенд «LabBoard 1.1». Он состоит из 25 
+          Для изучения принципов работы микроконтроллеров, их
+          интерфейсов и подключаемой периферии был разработан
+          лабораторный учебный стенд «LabBoard 1.1». Он состоит из 25
           независимых блоков, соединённых с микроконтроллером.
         </p>
         <div className={styles.imagesContainer}>
@@ -162,20 +162,31 @@ function LabBoard() {
           <div className={styles.featuresContainer}>
             <div className={styles.featuresList}>
               {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className={`${styles.featureItem} ${activeFeature === index ? styles.active : ''}`}
-                  onClick={() => toggleFeature(index)}
-                >
-                  <span>{feature.title}</span>
-                  <img
-                    src={activeFeature === index ? angle_small_down : angle_small_down_one}
-                    alt={activeFeature === index ? "Свернуть" : "Развернуть"}
-                  />
+                <div key={index} className={styles.featureItemWrapper}>
+                  <div
+                    className={`${styles.featureItem} ${activeFeature === index ? styles.active : ''}`}
+                    onClick={() => toggleFeature(index)}
+                  >
+                    <span>{feature.title}</span>
+                    <img
+                      src={activeFeature === index ? angle_small_down : angle_small_down_one}
+                      alt={activeFeature === index ? "Свернуть" : "Развернуть"}
+                    />
+                  </div>
+                  {/* моб. версия */}
+                  <div className={styles.mobileFeatureContent}>
+                    {activeFeature === index && (
+                      <div className={styles.featureDescription}>
+                        <p>{feature.content}</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
-            <div className={styles.featureContent}>
+
+            {/* пк версия */}
+            <div className={styles.desktopFeatureContent}>
               {activeFeature !== null && (
                 <div className={styles.featureDescription}>
                   <p>{features[activeFeature].content}</p>
@@ -199,57 +210,57 @@ function LabBoard() {
       </div>
 
       <div id={styles.padding2} className={styles.sliderWrapper} ref={sliderRef}>
-          <button onClick={prevSlide} className={styles.sliderButton2}>
-            <img src={Vector} style={{ transform: 'scaleX(-1)' }} alt="Previous" />
-          </button>
+        <button onClick={prevSlide} className={styles.sliderButton2}>
+          <img src={Vector} style={{ transform: 'scaleX(-1)' }} alt="Previous" />
+        </button>
 
-          <div
-            className={styles.sliderContainer}
-            {...useSwipeable({
-              onSwipedLeft: nextSlide,
-              onSwipedRight: prevSlide,
-              preventScrollOnSwipe: true,
-              trackMouse: true,
-            })}
-          >
-            <div className={`${styles.slideActive} ${fade ? styles.fadeOut : ''}`}>
-              <img
-                src={slides[currentSlide].image}
-                alt={slides[currentSlide].title}
-                className={styles.activeImage}
-              />
-            </div>
-            <div className={`${styles.slideNext} ${fade ? styles.fadeOut : ''}`}>
-              <img
-                src={slides[(currentSlide + 1) % slides.length].image}
-                alt={slides[(currentSlide + 1) % slides.length].title}
-                className={styles.nextImage}
-              />
-            </div>
+        <div
+          className={styles.sliderContainer}
+          {...useSwipeable({
+            onSwipedLeft: nextSlide,
+            onSwipedRight: prevSlide,
+            preventScrollOnSwipe: true,
+            trackMouse: true,
+          })}
+        >
+          <div className={`${styles.slideActive} ${fade ? styles.fadeOut : ''}`}>
+            <img
+              src={slides[currentSlide].image}
+              alt={slides[currentSlide].title}
+              className={styles.activeImage}
+            />
           </div>
-
-          <button onClick={nextSlide} className={styles.sliderButton2}>
-            <img src={Vector} alt="Next" />
-          </button>
+          <div className={`${styles.slideNext} ${fade ? styles.fadeOut : ''}`}>
+            <img
+              src={slides[(currentSlide + 1) % slides.length].image}
+              alt={slides[(currentSlide + 1) % slides.length].title}
+              className={styles.nextImage}
+            />
+          </div>
         </div>
 
-          <div id={styles.padding}>
-            <h4><div className={styles.slideDescription}>
-              {slides[currentSlide]?.title}
-            </div></h4>
-            <div className={styles.mcuContainer}>
-              <p>
-                <div className={styles.slideDescription}>
-                  {slides[currentSlide]?.description1}
-                </div>
-              </p>
-              <p>
-                <div className={styles.slideDescription}>
-                  {slides[currentSlide]?.description2}
-                </div>
-              </p>
+        <button onClick={nextSlide} className={styles.sliderButton2}>
+          <img src={Vector} alt="Next" />
+        </button>
+      </div>
+
+      <div id={styles.padding}>
+        <h4><div className={styles.slideDescription}>
+          {slides[currentSlide]?.title}
+        </div></h4>
+        <div className={styles.mcuContainer}>
+          <p>
+            <div className={styles.slideDescription}>
+              {slides[currentSlide]?.description1}
             </div>
-          </div>
+          </p>
+          <p>
+            <div className={styles.slideDescription}>
+              {slides[currentSlide]?.description2}
+            </div>
+          </p>
+        </div>
+      </div>
 
       <div id={styles.padding}>
         <ContactUs /></div>
