@@ -222,8 +222,11 @@ function ContactForm() {
           <label htmlFor="agree">
             Я согласен с <a href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873" target="_blank" rel="noopener noreferrer">обработкой персональных данных</a>
           </label>
-          {errors.agree && <span className="error-message">{errors.agree.message}</span>}
+          
         </div>
+        <div>
+            {errors.agree && <span className="error-message">{errors.agree.message}</span>}
+          </div>
         <div className="submit-container">
           {watch("captcha") ? (
             <Field
