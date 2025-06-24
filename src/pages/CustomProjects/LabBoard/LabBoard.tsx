@@ -86,7 +86,7 @@ function LabBoard() {
   };
 
   return (
-    <div>
+    <div className="noMargin">
       <div id={styles.pageheader}>
         <div className={styles.headerContent}>
           <section className={styles.container}>
