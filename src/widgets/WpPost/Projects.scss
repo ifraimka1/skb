@@ -203,3 +203,28 @@ $swiper-button-arrow-size: 20px;
     }
   }
 }
+
+@media (max-width: 768px) {
+  .project .is-layout-flex {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .project .is-layout-flex figure {
+    width: 100% !important;
+    margin: 0 0 1em !important;
+  }
+
+  .project .is-layout-flex figure img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+  }
+
+  .project .wp-block-column {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
