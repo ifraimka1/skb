@@ -136,7 +136,28 @@ function LabBoard() {
             <label className={styles.numberLabel}>микроконтроллер stm32</label>
           </div>
           <div className={styles.numberBlock}>
-            <p className={styles.number}>∞</p>
+            <div className={styles.infinitySymbol}>
+              <svg
+                width="96"
+                height="64"
+                viewBox="0 0 96 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#0867F4" />
+                    <stop offset="100%" stopColor="#072AC8" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M12 32C12 18 36 18 48 32C60 46 84 46 84 32C84 18 60 18 48 32C36 46 12 46 12 32Z"
+                  stroke="url(#infinityGradient)"
+                  strokeWidth="7"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
             <label className={styles.numberLabel}>опыта</label>
           </div>
         </div>

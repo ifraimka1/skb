@@ -526,3 +526,24 @@
     display: none;
   }
 }
+
+.infinitySymbol {
+  width: 96px;
+  height: 64px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .infinitySymbol {
+    width: 72px;
+    height: 48px;
+  }
+}
