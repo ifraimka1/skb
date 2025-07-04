@@ -133,7 +133,7 @@ function LabBoard() {
           </div>
           <div className={styles.numberBlock}>
             <p className={styles.number}>1</p>
-            <label className={styles.numberLabel}>микроконтроллер stm32</label>
+            <label className={styles.numberLabel}>микроконтроллер STM32</label>
           </div>
           <div className={styles.numberBlock}>
             <div className={styles.infinitySymbol}>
