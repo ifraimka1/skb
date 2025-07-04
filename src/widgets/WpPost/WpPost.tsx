@@ -32,7 +32,7 @@ export default function WpPost({
         customComponent
       ) : (
         <>
-          <PageHeader className="header">
+          <PageHeader className={`header ${isSpecialTitle ? "header--center" : ""}`}>
             <h1>{title}</h1>
           </PageHeader>
           {Array.isArray(post.content) &&
