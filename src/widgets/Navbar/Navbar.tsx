@@ -48,39 +48,36 @@ const mock: LinkType[] = [
 
 function Navbar({ links = mock }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [navbarHidden, setNavbarHidden] = useState(false); // true = спрятан, false = виден
+  const [navbarHidden, setNavbarHidden] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const THRESHOLD = 400; // navbar не скрывается в первые 400px
+  const THRESHOLD = 400;
   const [isTransparent, setIsTransparent] = useState(true);
-  const [scrolledOnce, setScrolledOnce] = useState(false);
-  const location = useLocation(); // отслеживаем путь
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLinkClick = () => {
-    setIsOpen(false); // Закрываем меню при клике на ссылку
+    setIsOpen(false);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      setIsTransparent(true);
-      setScrolledOnce(false);
-      window.scrollTo(0, 0);
-    } else {
-      setIsTransparent(false);
-    }
+    // Сбрасываем состояние при изменении маршрута
+    setIsOpen(false);
+    setNavbarHidden(false);
+    setLastScrollTop(0);
+    
+    // Проверяем, нужно ли делать navbar прозрачным
+    const shouldBeTransparent = location.pathname === "/" && window.pageYOffset <= 50;
+    setIsTransparent(shouldBeTransparent);
   }, [location]);
 
-
-  // Для навбара
   useEffect(() => {
     const navbar = document.getElementById("navbar");
-    if (navbarHidden && !isOpen && navbar) {
-      navbar.classList.add("hidden");
-    } else if (navbar) {
-      navbar.classList.remove("hidden");
+    if (navbar) {
+      navbar.classList.toggle("hidden", navbarHidden && !isOpen);
     }
   }, [navbarHidden, isOpen]);
 
@@ -92,22 +89,13 @@ function Navbar({ links = mock }: NavbarProps) {
         if (currentScrollTop <= THRESHOLD) {
           setNavbarHidden(false);
         } else {
-          if (currentScrollTop > lastScrollTop) {
-            setNavbarHidden(true);
-          } else {
-            setNavbarHidden(false);
-          }
+          setNavbarHidden(currentScrollTop > lastScrollTop);
         }
       }
 
-      // Прозрачность исчезает при первом скролле на главной
-      if (
-        location.pathname === "/" &&
-        !scrolledOnce &&
-        currentScrollTop > 50
-      ) {
-        setIsTransparent(false);
-        setScrolledOnce(true);
+      // Обновляем прозрачность для главной страницы
+      if (location.pathname === "/") {
+        setIsTransparent(currentScrollTop <= 50);
       }
 
       setLastScrollTop(currentScrollTop);
@@ -115,7 +103,7 @@ function Navbar({ links = mock }: NavbarProps) {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollTop, scrolledOnce, location.pathname, isOpen]);
+  }, [lastScrollTop, isOpen, location.pathname]);
 
 
   return (

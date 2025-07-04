@@ -87,13 +87,13 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
       <div className="footer-links-container">
         <div className="footer-links">
           <div className="footer-column">
-            <Link to="/news">НОВОСТИ</Link>
-            <Link to="/projects">ПРОЕКТЫ</Link>
-            <Link to="/labs">ЛАБОРАТОРИИ</Link>
+            <Link to="/news" onClick={() => window.scrollTo(0, 0)}>НОВОСТИ</Link>
+            <Link to="/projects" onClick={() => window.scrollTo(0, 0)}>ПРОЕКТЫ</Link>
+            <Link to="/labs" onClick={() => window.scrollTo(0, 0)}>ЛАБОРАТОРИИ</Link>
           </div>
           <div className="footer-column">
-            <Link to="/aboutus">О НАС</Link>
-            <Link to="/contact">КОНТАКТЫ</Link>
+            <Link to="/aboutus" onClick={() => window.scrollTo(0, 0)}>О НАС</Link>
+            <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>КОНТАКТЫ</Link>
             <a href="https://ictis.sfedu.ru" target="_blank" rel="noopener noreferrer">ИКТИБ</a>
           </div>
         </div>

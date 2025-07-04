@@ -224,7 +224,7 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 24px;
+    gap: 0px;
     margin-bottom: 32px;
   }
 }
@@ -234,6 +234,16 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @media (max-width: 768px) {
+    gap: 0;
+  }
+}
+
+.featureItemWrapper {
+  @media (max-width: 768px) {
+    margin-bottom: 8px;
+  }
 }
 
 .featureItem {
@@ -252,6 +262,35 @@
     width: 24px;
     height: 24px;
   }
+
+  @media (max-width: 768px) {
+    padding: 12px;
+    background-color: #f5f5f7;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+}
+
+.mobileFeatureContent {
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: block;
+    padding: 0 12px;
+    background-color: #f5f5f7;
+    border-radius: 0 0 8px 8px;
+    margin-top: -8px;
+    margin-bottom: 16px;
+  }
+}
+
+.desktopFeatureContent {
+  flex: 0 0 700px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .featureContent {
@@ -265,6 +304,8 @@
 
 .featureDescription {
   animation: fadeIn 0.3s ease;
+  white-space: pre-line;
+  margin-bottom: 1em;
 }
 
 .mcuContainer {
@@ -342,6 +383,7 @@
     width: 100%;
     height: 300px;
     object-fit: contain;
+    pointer-events: none;
   }
 }
 
@@ -482,5 +524,26 @@
 
   @media (min-width: 769px) {
     display: none;
+  }
+}
+
+.infinitySymbol {
+  width: 96px;
+  height: 64px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .infinitySymbol {
+    width: 72px;
+    height: 48px;
   }
 }
