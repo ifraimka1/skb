@@ -45,7 +45,7 @@ export default function WpPost({
                   </PageContent>
                 );
               } else if (el.type === "slider") {
-                const slider = <NewSlider key={index} images={el.value} slidesPerView={4} />;
+                const slider = <NewSlider key={index} images={el.value} />;
                 return isSpecialTitle ? slider : (
                   <PageContent key={index} className="content">
                     {slider}
