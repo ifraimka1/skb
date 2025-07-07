@@ -60,13 +60,27 @@ function Root() {
     };
   }, [hasScrolled]);
 
-  // Ускоренный плавный скролл вверх
+  // скролл вверх
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  const duration = 900;
+  const start = window.scrollY;
+  const startTime = performance.now();
+
+  const animateScroll = (currentTime: number) => {
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+
+    window.scrollTo(0, start * (1 - ease));
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animateScroll);
+    }
   };
+
+  requestAnimationFrame(animateScroll);
+};
+
 
   // Определяем, находимся ли мы на главной странице
   const isHomePage = location.pathname === "/";
