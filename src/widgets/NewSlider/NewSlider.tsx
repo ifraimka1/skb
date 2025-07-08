@@ -10,8 +10,6 @@ import "./NewSlider.scss";
 import { SliderContext, SliderProps } from "@/widgets/NewSlider/context";
 
 function NewSlider({
-  autoPlay = false,
-  autoPlayTime = 3000,
   images,
   category = "gallery",
 }: SliderProps) {
@@ -78,7 +76,17 @@ function NewSlider({
   if (filteredMedia.length === 0) return <div>Нет изображений</div>;
 
   return (
-    <SliderContext.Provider value={{ slideNumber, mediaList: filteredMedia }}>
+    <SliderContext.Provider
+      value={{
+        slideNumber,
+        mediaList: filteredMedia,
+        goToSlide: (index: number) => {
+          carouselRef.current?.slideTo(index);
+          setSlideNumber(index);
+        },
+        slidesCount: filteredMedia.length,
+      }}
+    >
       <div className="slider-container">
         {shouldShowControls && (
           <div className="sliderNav">
