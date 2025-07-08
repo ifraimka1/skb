@@ -48,7 +48,7 @@ $logo-size: 200px;
     .logo {
       width: $logo-size;
       height: $logo-size;
-      border-radius: 50%;
+      //border-radius: 50%;
       object-fit: cover;
       pointer-events: none;
     }
