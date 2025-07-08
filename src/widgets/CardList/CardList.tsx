@@ -10,6 +10,17 @@ import {
   transformPostsToCardData,
 } from "@/widgets/CardList/CardListFunctions";
 import { usePostProjects } from "@/modules/posts/hooks/usePostProjects";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
+// Компонент для прокрутки вверх при переходе
+const ScrollToTopOnMount = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return null;
+};
 
 interface ListProps {
   gridConfig?: GridConfig;
@@ -22,23 +33,30 @@ const NewsList = ({
   const { data: newsData, isLoading, isError } = useNews();
 
   return (
-    <WithLoading
-      isLoading={isLoading}
-      isError={isError}
-      count={4}
-      gridConfig={gridConfig}
-    >
-      <div className={styles.mainContainer}>
-        {newsData && (
-          <CardListTemplate
-            items={transformNewsToCardData(newsData)}
-            variant="news"
-            gridConfig={gridConfig}
-            title="Новости"
-          />
-        )}
-      </div>
-    </WithLoading>
+    <>
+      <ScrollToTopOnMount />
+      <WithLoading
+        isLoading={isLoading}
+        isError={isError}
+        count={4}
+        gridConfig={gridConfig}
+      >
+        <div className={styles.mainContainer}>
+          {newsData && (
+            <CardListTemplate
+              items={transformNewsToCardData(newsData)}
+              variant="news"
+              gridConfig={gridConfig}
+              title={
+                <Link to="/news" className={styles.title} onClick={() => window.scrollTo(0, 0)}>
+                  Новости
+                </Link>
+              }
+            />
+          )}
+        </div>
+      </WithLoading>
+    </>
   );
 };
 
@@ -49,20 +67,27 @@ const LabsList = ({
   const labs = postsData?.labs ? Object.values(postsData.labs) : [];
 
   return (
-    <WithLoading
-      isLoading={isLoading}
-      isError={isError}
-      gridConfig={gridConfig}
-    >
-      <div className={styles.mainContainer}>
-        <CardListTemplate
-          items={transformPostsToCardData(labs)}
-          variant="lab"
-          gridConfig={gridConfig}
-          title="Наши лаборатории"
-        />
-      </div>
-    </WithLoading>
+    <>
+      <ScrollToTopOnMount />
+      <WithLoading
+        isLoading={isLoading}
+        isError={isError}
+        gridConfig={gridConfig}
+      >
+        <div className={styles.mainContainer}>
+          <CardListTemplate
+            items={transformPostsToCardData(labs)}
+            variant="lab"
+            gridConfig={gridConfig}
+            title={
+              <Link to="/labs" className={styles.title} onClick={() => window.scrollTo(0, 0)}>
+                Наши лаборатории
+              </Link>
+            }
+          />
+        </div>
+      </WithLoading>
+    </>
   );
 };
 
@@ -74,21 +99,27 @@ const ProjectsList = ({
   const projects = data ?? [];
 
   return (
-    <WithLoading
-      isLoading={isLoading}
-      isError={isError}
-      gridConfig={gridConfig}
-    >
-      <div className={styles.mainContainer}>
-        <CardListTemplate
-          //@ts-ignore
-          items={transformPostsToCardData(projects)}
-          variant="project"
-          gridConfig={gridConfig}
-          title="Наши проекты"
-        />
-      </div>
-    </WithLoading>
+    <>
+      <ScrollToTopOnMount />
+      <WithLoading
+        isLoading={isLoading}
+        isError={isError}
+        gridConfig={gridConfig}
+      >
+        <div className={styles.mainContainer}>
+          <CardListTemplate
+            items={transformPostsToCardData(projects)}
+            variant="project"
+            gridConfig={gridConfig}
+            title={
+              <Link to="/projects" className={styles.title} onClick={() => window.scrollTo(0, 0)}>
+                Наши проекты
+              </Link>
+            }
+          />
+        </div>
+      </WithLoading>
+    </>
   );
 };
 
