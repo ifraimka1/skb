@@ -45,7 +45,7 @@ function Contact() {
             }}
             modules={["control.ZoomControl", "control.FullscreenControl"]}
             width="500px"
-            height="400px"
+            height="200px"
           >
             <Placemark defaultGeometry={[47.20669, 38.929113]} />
           </Map>
