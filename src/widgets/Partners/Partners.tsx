@@ -1,8 +1,8 @@
 import Marquee from "react-fast-marquee";
-
 import { useMedia } from "@/modules/media/hooks/useMedia";
 import PartnersLogo from "./PartnersLogo";
 import styles from "./Partners.module.scss";
+import { useEffect, useState } from "react";
 
 interface Partner {
   src: string;
@@ -13,21 +13,28 @@ interface Partner {
 
 function Partners() {
   const { data: mediaData, isLoading, isError } = useMedia();
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Отфильтрованные партнёрские медиа
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Проверяем сразу при загрузке
+    handleResize();
+    
+    // Добавляем слушатель изменения размера окна
+    window.addEventListener('resize', handleResize);
+    
+    // Убираем слушатель при размонтировании компонента
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const mediaList: Partner[] =
     mediaData?.filter((item: Partner) => item.category === "partners") || [];
 
-  if (isLoading) {
-    return <div className={styles.loading}>Загрузка партнеров...</div>;
-  }
-
-  if (isError || mediaList.length === 0) {
-    return <div className={styles.error}>Не удалось загрузить партнеров</div>;
-  }
-
   // Определяем, нужно ли включать автопрокрутку
-  const shouldAutoScroll = mediaList.length > 5;
+  const shouldAutoScroll = isMobile ? mediaList.length > 1 : mediaList.length > 5;
 
   if (isLoading) {
     return <div className={styles.loading}>Загрузка партнеров...</div>;
@@ -44,20 +51,20 @@ function Partners() {
       </div>
       <div className={styles.marquee__container}>
         {shouldAutoScroll ? (
-        <Marquee
-          gradient={false}
-          pauseOnHover={false}
-          speed={80}
-          className={styles.marquee}
-          autoFill={true}
-          play={true}
-        >
-          {mediaList.map((item, index) => (
-            <div key={item.id || index} className={styles.partner}>
-              <PartnersLogo partner={item} />
-            </div>
-          ))}
-        </Marquee>
+          <Marquee
+            gradient={false}
+            pauseOnHover={false}
+            speed={80}
+            className={styles.marquee}
+            autoFill={true}
+            play={true}
+          >
+            {mediaList.map((item, index) => (
+              <div key={item.id || index} className={styles.partner}>
+                <PartnersLogo partner={item} />
+              </div>
+            ))}
+          </Marquee>
         ) : (
           <div className={styles.staticPartners}>
             {mediaList.map((item, index) => (
@@ -65,7 +72,7 @@ function Partners() {
                 <PartnersLogo partner={item} />
               </div>
             ))}
-            </div>
+          </div>
         )}
       </div>
     </div>
