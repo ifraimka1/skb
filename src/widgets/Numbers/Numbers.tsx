@@ -1,9 +1,11 @@
 import "./Numbers.styles.scss";
-import { Illustration } from '@/shared/assets/images/numbers';
+import { Illustration, Illustration2 } from '@/shared/assets/images/numbers';
+import { useState } from 'react';
 
 const Numbers = () => {
     const currentYear = new Date().getFullYear();
     const yearsSince2015 = currentYear - 2015;
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div className="block" id="numbers">
@@ -35,7 +37,18 @@ const Numbers = () => {
                         <label>обученных студентов</label>
                     </div>
                 </div>
-                <img className="visible" src={Illustration} alt="Illustration" />
+                <div
+                    className="image-wrapper"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
+                    <img
+                        className="visible"
+                        src={isHovered ? Illustration : Illustration}
+                        alt="СКБ КИТ"
+                        draggable="false"
+                    />
+                </div>
             </div>
         </div>
     );

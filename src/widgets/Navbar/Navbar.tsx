@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import NavbarLink from "./NavbarLink";
 import { useLocation } from "react-router-dom";
-
+import { HashLink } from "react-router-hash-link";
 import logo from "@/shared/assets/images/sсb_blue.svg";
 import "./Navbar.styles.scss";
 
@@ -46,6 +46,28 @@ const mock: LinkType[] = [
   },
 ];
 
+interface ContactsType {
+  email: JSX.Element;
+  phone: JSX.Element;
+}
+
+const mockContacts: ContactsType = {
+  email: (
+    <a style={{
+      fontSize: "19.2px",
+      color: "inherit",
+      fontWeight: "600",
+    }} href="mailto:skb@sfedu.ru">
+      skb@sfedu.ru
+    </a>
+  ),
+  phone: (
+    <a style={{ color: "inherit", fontSize: "19.2px", }} href="tel:+79780095480">
+      +7 (978) 009-54-80
+    </a>
+  ),
+};
+
 function Navbar({ links = mock }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [navbarHidden, setNavbarHidden] = useState(false);
@@ -68,7 +90,7 @@ function Navbar({ links = mock }: NavbarProps) {
     setIsOpen(false);
     setNavbarHidden(false);
     setLastScrollTop(0);
-    
+
     // Проверяем, нужно ли делать navbar прозрачным
     const shouldBeTransparent = location.pathname === "/" && window.pageYOffset <= 50;
     setIsTransparent(shouldBeTransparent);
@@ -107,29 +129,39 @@ function Navbar({ links = mock }: NavbarProps) {
 
 
   return (
-    <div
-      id="navbar"
-      className={`${isTransparent ? "transparent" : ""} ${navbarHidden ? "hidden" : ""
-        }`}
-    >
+    <>
+      <div
+        id="navbar"
+        className={`${isTransparent ? "transparent" : ""} ${navbarHidden ? "hidden" : ""
+          }`}
+      >
 
-      <NavbarLink className="logo-container" link={{ to: "/" }}>
-        <img src={logo} className="logo" alt="SCB logo" />
-      </NavbarLink>
-      <div className="burger" onClick={toggleMenu}>
-        <span className={`line ${isOpen ? "open" : ""}`}></span>
-        <span className={`line ${isOpen ? "open" : ""}`}></span>
-        <span className={`line ${isOpen ? "open" : ""}`}></span>
+        <NavbarLink className="logo-container" link={{ to: "/" }}>
+          <img src={logo} className="logo" alt="SCB logo" />
+        </NavbarLink>
+        <div className="burger" onClick={toggleMenu}>
+          <span className={`line ${isOpen ? "open" : ""}`}></span>
+          <span className={`line ${isOpen ? "open" : ""}`}></span>
+          <span className={`line ${isOpen ? "open" : ""}`}></span>
+        </div>
+        <div className={`bar ${isOpen ? "open" : ""}`}>
+          {links.map((link, index) => (
+            <NavbarLink
+              link={{ ...link, onClick: handleLinkClick }}
+              key={index}
+            />
+          ))}
+          <div className="mobile-contacts">
+            {mockContacts.phone}
+            {mockContacts.email}
+            <HashLink smooth to="/contact#contact-form-anchor" className={"btn"}>
+              Связаться с нами
+            </HashLink>
+          </div>
+        </div>
       </div>
-      <div className={`bar ${isOpen ? "open" : ""}`}>
-        {links.map((link, index) => (
-          <NavbarLink
-            link={{ ...link, onClick: handleLinkClick }}
-            key={index}
-          />
-        ))}
-      </div>
-    </div>
+      <div className={`overlay ${isOpen ? "open" : ""}`} onClick={toggleMenu}></div>
+    </>
   );
 }
 

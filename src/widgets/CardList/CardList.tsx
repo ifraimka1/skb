@@ -11,16 +11,6 @@ import {
 } from "@/widgets/CardList/CardListFunctions";
 import { usePostProjects } from "@/modules/posts/hooks/usePostProjects";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-
-// Компонент для прокрутки вверх при переходе
-const ScrollToTopOnMount = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  return null;
-};
 
 interface ListProps {
   gridConfig?: GridConfig;
@@ -34,7 +24,6 @@ const NewsList = ({
 
   return (
     <>
-      <ScrollToTopOnMount />
       <WithLoading
         isLoading={isLoading}
         isError={isError}
@@ -48,7 +37,7 @@ const NewsList = ({
               variant="news"
               gridConfig={gridConfig}
               title={
-                <Link to="/news" className={styles.title} onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/news" className={styles.title}>
                   Новости
                 </Link>
               }
@@ -68,7 +57,6 @@ const LabsList = ({
 
   return (
     <>
-      <ScrollToTopOnMount />
       <WithLoading
         isLoading={isLoading}
         isError={isError}
@@ -80,7 +68,7 @@ const LabsList = ({
             variant="lab"
             gridConfig={gridConfig}
             title={
-              <Link to="/labs" className={styles.title} onClick={() => window.scrollTo(0, 0)}>
+              <Link to="/labs" className={styles.title}>
                 Наши лаборатории
               </Link>
             }
@@ -100,7 +88,6 @@ const ProjectsList = ({
 
   return (
     <>
-      <ScrollToTopOnMount />
       <WithLoading
         isLoading={isLoading}
         isError={isError}
@@ -112,7 +99,7 @@ const ProjectsList = ({
             variant="project"
             gridConfig={gridConfig}
             title={
-              <Link to="/projects" className={styles.title} onClick={() => window.scrollTo(0, 0)}>
+              <Link to="/projects" className={styles.title} >
                 Наши проекты
               </Link>
             }

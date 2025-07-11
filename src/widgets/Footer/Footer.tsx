@@ -6,7 +6,7 @@ import FooterContacts from "./FooterContacts";
 import logo from "@/shared/assets/images/scb.svg";
 import iconIctis from "@/shared/assets/images/footer/iconIctis.png";
 import iconSfedu from "@/shared/assets/images/footer/iconSfedu.png";
-import iconVK from "@/shared/assets/images/footer/iconVK.svg";
+import iconVK from "@/shared/assets/images/footer/iconVK.png";
 import "./Footer.styles.scss";
 
 interface LinkType {
@@ -82,7 +82,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
         <div className="logo-container" style={{ alignItems: 'flex-start' }}>
           <img className="logo" alt="logo" src={logo} />
         </div>
-        <label style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }}>©СКБ «КИТ» 2015–2025</label>
+        <label style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }}>©СКБ «КИТ» 2015 – 2025</label>
       </div>
       <div className="footer-links-container">
         <div className="footer-links">
@@ -109,7 +109,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
 
       <Link className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
       <div className="copyright">
-        ©СКБ «КИТ» 2015–2025
+        ©СКБ «КИТ» 2015 – 2025
       </div>
     </footer >
   );

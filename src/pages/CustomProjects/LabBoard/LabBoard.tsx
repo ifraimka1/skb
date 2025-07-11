@@ -230,7 +230,7 @@ function LabBoard() {
         </div>
       </div>
 
-      <div id={styles.padding2} className={styles.sliderWrapper} ref={sliderRef}>
+      <div id={styles.padding2} className={styles.sliderWrapper}>
         <button onClick={prevSlide} className={styles.sliderButton2}>
           <img src={Vector} style={{ transform: 'scaleX(-1)' }} alt="Previous" />
         </button>
@@ -243,6 +243,7 @@ function LabBoard() {
             preventScrollOnSwipe: true,
             trackMouse: true,
           })}
+          ref={sliderRef}
         >
           <div className={`${styles.slideActive} ${fade ? styles.fadeOut : ''}`}>
             <img

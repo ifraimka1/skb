@@ -2,7 +2,27 @@
     margin-bottom: 60px;
 
     img {
-        pointer-events: none;
+        //pointer-events: none;
+    }
+
+    .image-wrapper {
+        display: inline-block;
+        position: relative;
+
+        img {
+            display: block;
+            // Все остальные стили из предыдущего примера
+        }
+
+        // Дополнительная защита для Firefox
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     }
 
     label {
@@ -50,9 +70,11 @@
 
     @media (max-width: 768px) {
         margin-bottom: 24px;
+
         .block-content {
             margin-top: 24px;
         }
+
         .numbers-grid {
             grid-template-columns: repeat(2, 1fr); // 2 колонки на мобильных (2x3)
         }
@@ -60,9 +82,11 @@
 
     @media (max-width: 500px) {
         margin-bottom: 24px;
+
         .block-content {
             margin-top: 24px;
         }
+
         label {
             font-size: 14px;
             margin-top: 5px;

@@ -16,7 +16,11 @@ export const Card = ({ data }: CardProps) => {
       className={classNames(styles.card, {}, [styles[`card__${variant}`]])}
       to={link || `/${id || name}`}
     >
-      <img src={preview} alt={name} className={styles.image} />
+      {preview ? (
+        <img src={preview} alt={name} className={styles.image} />
+      ) : (
+        <div className={styles.placeholder} />
+      )}
 
       <div className={styles.content}>
         <h3 className={styles.title}>{name}</h3>

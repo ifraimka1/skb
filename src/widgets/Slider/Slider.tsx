@@ -125,7 +125,7 @@ const Slider = ({
               : false
           }
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setSlideNumber(swiper.realIndex)} // Обновляем slideNumber при смене слайда
+          onSlideChange={(swiper) => setSlideNumber(swiper.realIndex)}
         >
           {mediaList.map((media, index) => (
             <SwiperSlide
@@ -134,12 +134,18 @@ const Slider = ({
                 mediaList.length === 1 ? "single" : ""
               }`}
             >
-              <img
-                src={media.src}
-                alt={`slide-${index}`}
-                className="slide-image"
-                loading="lazy"
-              />
+              <div className="slide-container">
+                <div 
+                  className="slide-background" 
+                  style={{ backgroundImage: `url(${media.src})` }}
+                />
+                <img
+                  src={media.src}
+                  alt={`slide-${index}`}
+                  className="slide-image"
+                  loading="lazy"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -10,6 +10,18 @@ import { useNewsById } from "@/modules/news/hooks/useNewsById";
 import { PageContent, PageHeader } from "@/widgets/WpPost";
 import Slider from "@/widgets/Slider/Slider";
 export const vkWallUrl = "https://vk.com/skbkit?w=wall-172789021";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+export const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
+
+  return null;
+};
 
 function NewsItem() {
   const params = useParams();
@@ -28,6 +40,7 @@ function NewsItem() {
   if (isLoading)
     return (
       <div className="mainContainer">
+        <ScrollToTop />
         {[...Array(1)].map((_, index) => (
           <SkeletonPost key={index} />
         ))}
@@ -38,8 +51,8 @@ function NewsItem() {
       <>
         <Helmet>
           <title>
-            Ошибка загрузки новости | СКБ "Компьютерное инновационное
-            творчество"
+            Ошибка загрузки новости | СКБ «Компьютерное инновационное
+            творчество»
           </title>
           <meta name="robots" content="noindex,nofollow" />
         </Helmet>
@@ -55,8 +68,8 @@ function NewsItem() {
         <>
           <Helmet>
             <title>
-              {news.heading || "Новость"} | СКБ "Компьютерное инновационное
-              творчество"
+              {news.heading || "Новость"} | СКБ «Компьютерное инновационное
+              творчество»
             </title>
             <meta
               name="description"
@@ -67,9 +80,8 @@ function NewsItem() {
             />
             <meta
               name="keywords"
-              content={`СКБ, новости, ${
-                news.heading || ""
-              }, ИКТИБ, ЮФУ, студенческие проекты, инновации`}
+              content={`СКБ, новости, ${news.heading || ""
+                }, ИКТИБ, ЮФУ, студенческие проекты, инновации`}
             />
             <meta name="robots" content="index,follow" />
           </Helmet>
@@ -77,7 +89,15 @@ function NewsItem() {
             <h1>{news.heading}</h1>
           </PageHeader>
           <PageContent className="content" id="news-item-page">
-            {news.photos.length !== 0 && <Slider images={news.photos} category="news"/>}
+            {news.photos.length !== 0 &&
+              (news.photos.length === 1 ? (
+                <div className="single-image-container">
+                  <img src={news.photos[0]} alt={news.heading} />
+                </div>
+              ) : (
+                <Slider images={news.photos} category="news" />
+              ))
+            }
             {news.text.map((textRow, index) => (
               <p key={index} dangerouslySetInnerHTML={{ __html: textRow }} />
             ))}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useMedia } from "@/modules/media/hooks/useMedia";
 import { SkeletonGallery } from "@/shared/Components/SkeletonGallery/SkeletonGallery";
 import "./PhotoGallery.style.scss";
@@ -8,8 +8,37 @@ import HWaC2 from "@/shared/assets/images/hard_work_and_creativity/HWaC2.jpg";
 const PhotoGallery = () => {
   const { data: mediaData, isLoading, isError } = useMedia();
   const [visibleCount, setVisibleCount] = useState(10);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = window.innerWidth <= 768;
 
   const galleryImages = mediaData?.filter((el) => el.category === "photogallery");
+
+  const loadMore = useCallback(() => {
+    if (isLoadingMore || !galleryImages || visibleCount >= galleryImages.length) return;
+    
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount(prev => prev + 10);
+      setIsLoadingMore(false);
+    }, 800);
+  }, [galleryImages, isLoadingMore, visibleCount]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      const threshold = isMobile ? 0.98 : 1; // 50% на мобиле, 98% на десктопе
+      
+      if (scrollTop + clientHeight >= scrollHeight * threshold) {
+        loadMore();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadMore, isMobile]);
 
   if (isLoading) {
     return <SkeletonGallery />;
@@ -20,7 +49,7 @@ const PhotoGallery = () => {
   }
 
   return (
-    <div className="mainContainer">
+    <div className="mainContainer" ref={containerRef}>
       <h1 className="title">Трудолюбие и креативность</h1>
       <div className="creativity-section">
         <div className="creativity-text-top">
@@ -55,8 +84,11 @@ const PhotoGallery = () => {
       </div>
 
       {visibleCount < galleryImages.length && (
-        <div className="btn" onClick={() => setVisibleCount(visibleCount + 10)}>
-          Загрузить ещё
+        <div 
+          className={`btn ${isLoadingMore ? 'loading' : ''}`} 
+          onClick={loadMore}
+        >
+          {isLoadingMore ? 'Загрузка...' : 'Загрузить ещё'}
         </div>
       )}
     </div>
