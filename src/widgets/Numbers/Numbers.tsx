@@ -1,5 +1,5 @@
 import "./Numbers.styles.scss";
-import { Illustration, Illustration2 } from '@/shared/assets/images/numbers';
+import { Illustration } from '@/shared/assets/images/numbers';
 import { useState } from 'react';
 
 const Numbers = () => {
