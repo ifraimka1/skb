@@ -40,17 +40,19 @@ function Contact() {
           <Map
             defaultState={{
               center: [47.20669, 38.929113],
-              zoom: 13,
+              zoom: 17,
               controls: ["zoomControl", "fullscreenControl"],
             }}
             modules={["control.ZoomControl", "control.FullscreenControl"]}
+            width="500px"
+            height="200px"
           >
             <Placemark defaultGeometry={[47.20669, 38.929113]} />
           </Map>
         </YMaps>
       </div >
       <div id="contact-form-anchor"></div>
-        <ContactForm />
+      <ContactForm />
     </div>
   );
 }

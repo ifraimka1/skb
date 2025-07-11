@@ -4,12 +4,19 @@ import { useParams } from "react-router-dom";
 import { ProjectsList } from "@/widgets/CardList/CardList";
 import { SkeletonPost } from "@/shared/Components/SkeletonPost/SkeletonPost";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 
 function WpPostPage() {
   const params = useParams();
   const postId = params.id ? parseInt(params.id, 10) : null;
 
   const { data: post, isLoading, isError } = usePostById(postId || -1);
+
+  useEffect(() => {
+    if (post) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [post]);
 
   if (!postId) {
     return (
@@ -66,9 +73,8 @@ function WpPostPage() {
             />
             <meta
               name="keywords"
-              content={`СКБ, ${post.title || ""}, ${
-                post.categories?.join(", ") || ""
-              }, ИКТИБ, ЮФУ`}
+              content={`СКБ, ${post.title || ""}, ${post.categories?.join(", ") || ""
+                }, ИКТИБ, ЮФУ`}
             />
             <meta name="robots" content="index,follow" />
           </Helmet>

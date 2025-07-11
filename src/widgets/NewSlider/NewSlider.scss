@@ -17,7 +17,8 @@
       }
 
       &__stage {
-        display: flex;
+        display: flex !important;
+        flex-wrap: nowrap;
         gap: 32px;
         padding: 0;
         margin: 0;
@@ -25,7 +26,7 @@
 
       &__stage-item {
         flex: 0 0 auto;
-        box-sizing: border-box;
+        width: auto !important;
       }
     }
 
@@ -55,6 +56,8 @@
 
         &__stage-item {
           padding: 0 5%;
+          box-sizing: border-box;
+          width: 100% !important;
         }
       }
 
@@ -102,4 +105,12 @@
       height: 20px;
     }
   }
+}
+.sliderButton.disabled {
+  display: none;
+}
+
+.slider.centered .alice-carousel__stage {
+  justify-content: center;
+  display: flex;
 }

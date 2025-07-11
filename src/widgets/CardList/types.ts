@@ -18,5 +18,5 @@ export interface CardListProps {
   items: Record<string, CardData>; // Объект объектов
   variant?: "lab" | "news" | "project";
   gridConfig?: GridConfig;
-  title: string;
+  title: string | React.ReactNode;
 }

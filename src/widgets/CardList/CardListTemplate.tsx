@@ -10,7 +10,7 @@ export const CardListTemplate = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
   title = "Наши лаборатории",
 }: CardListProps) => {
-  const itemsArray = Object.values(items);
+  const itemsArray = Object.values(items).reverse();
 
   return (
     <>

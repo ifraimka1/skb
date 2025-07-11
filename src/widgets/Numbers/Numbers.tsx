@@ -23,16 +23,16 @@ const Numbers = () => {
                         <label>выполненных проектов</label>
                     </div>
                     <div className='blocks'>
-                        <p className="namber">{yearsSince2015}</p>
-                        <label>лет успешной работы</label>
+                        <p className="namber">50+</p>
+                        <label>побед в конкурсах</label>
                     </div>
                     <div className='blocks'>
-                        <p className="namber">20+</p>
-                        <label>сотрудников</label>
+                        <p className="namber">100+</p>
+                        <label>обученных школьников</label>
                     </div>
                     <div className='blocks'>
-                        <p className="namber">30+</p>
-                        <label>выполненных проектов</label>
+                        <p className="namber">500+</p>
+                        <label>обученных студентов</label>
                     </div>
                 </div>
                 <img className="visible" src={Illustration} alt="Illustration" />
