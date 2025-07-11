@@ -31,10 +31,6 @@ const Team = () => {
             <div className="joinContent">
               <span className="joinText">Хочу в команду</span>
             </div>
-            <p className="caption">
-              <span className="bold"></span>
-              <br /><br />
-            </p>
           </HashLink>
         </div>
       </div>
