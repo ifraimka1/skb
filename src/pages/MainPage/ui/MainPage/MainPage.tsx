@@ -80,11 +80,11 @@ const MainPage = () => {
         </section>
       </div>
       <div className={styles.mainpageContainer}>
-        <ProjectsList />
+        <ProjectsList limit={6}/>
         <div className={styles.NumbersContainer}>
           <Numbers />
         </div>
-        <NewsList />
+        <NewsList limit={6} />
         <div className={styles.GalleryContainer}>
           <Gallery />
         </div>

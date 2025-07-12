@@ -15,12 +15,16 @@ import { Link } from "react-router-dom";
 interface ListProps {
   gridConfig?: GridConfig;
   tag?: number;
+  limit?: number;
 }
 
 const NewsList = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
+  limit,
 }: ListProps) => {
   const { data: newsData, isLoading, isError } = useNews();
+
+  const limitedNewsData = limit && newsData ? newsData.slice(0, limit) : newsData;
 
   return (
     <>
@@ -31,9 +35,9 @@ const NewsList = ({
         gridConfig={gridConfig}
       >
         <div className={styles.mainContainer}>
-          {newsData && (
+          {limitedNewsData && (
             <CardListTemplate
-              items={transformNewsToCardData(newsData)}
+              items={transformNewsToCardData(limitedNewsData)}
               variant="news"
               gridConfig={gridConfig}
               title={
@@ -82,9 +86,10 @@ const LabsList = ({
 const ProjectsList = ({
   gridConfig = { desktop: 3, tablet: 2, mobile: 1 },
   tag = -1,
+  limit,
 }: ListProps) => {
   const { data, isError, isLoading } = usePostProjects(tag);
-  const projects = data ?? [];
+  const projects = data ? (limit ? data.slice(0, limit) : data) : [];
 
   return (
     <>
@@ -99,7 +104,7 @@ const ProjectsList = ({
             variant="project"
             gridConfig={gridConfig}
             title={
-              <Link to="/projects" className={styles.title} >
+              <Link to="/projects" className={styles.title}>
                 Наши проекты
               </Link>
             }

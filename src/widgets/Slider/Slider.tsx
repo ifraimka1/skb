@@ -22,6 +22,10 @@ interface SliderProps {
   variant?: "default" | "news";
 }
 
+interface SlideData extends MediaItem {
+  is16to9: boolean;
+}
+
 const Slider = ({
   autoPlay = false,
   autoPlayTime = 3000,
@@ -31,12 +35,11 @@ const Slider = ({
   variant = "default",
 }: SliderProps) => {
   const { data: mediaData, isLoading, isError } = useMedia();
-  const [mediaList, setMediaList] = useState<MediaItem[]>([]);
+  const [mediaList, setMediaList] = useState<SlideData[]>([]);
   const [itemsPerSlide, setItemsPerSlide] = useState(2);
   const [enableButtons, setEnableButtons] = useState(false);
 
   const swiperRef = useRef<any>(null);
-
   const [slideNumber, setSlideNumber] = useState(0);
 
   const goToSlide = (num: number) => {
@@ -47,11 +50,34 @@ const Slider = ({
   const slidesCount = mediaList.length;
 
   useEffect(() => {
+    const processMediaItems = async (items: MediaItem[]) => {
+      const processedItems = await Promise.all(
+        items.map(async (item) => {
+          const is16to9 = await checkAspectRatio(item.src);
+          return { ...item, is16to9 };
+        })
+      );
+      setMediaList(processedItems);
+    };
+
+    const checkAspectRatio = (src: string): Promise<boolean> => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          const ratio = img.width / img.height;
+          resolve(Math.abs(ratio - 16/9) < 0.1);
+        };
+        img.onerror = () => resolve(false);
+      });
+    };
+
     const mapped =
       images?.map((src, id) => ({ id, src, category: "", name: "" })) ||
       mediaData?.filter((m) => m.category === category) ||
       [];
-    setMediaList(mapped);
+      
+    processMediaItems(mapped);
   }, [images, mediaData, category]);
 
   useEffect(() => {
@@ -132,18 +158,23 @@ const Slider = ({
               key={media.id}
               className={`swiper-slide ${
                 mediaList.length === 1 ? "single" : ""
-              }`}
+              } ${media.is16to9 ? 'ratio-16-9' : ''}`}
             >
               <div className="slide-container">
-                <div 
-                  className="slide-background" 
-                  style={{ backgroundImage: `url(${media.src})` }}
-                />
+                {!media.is16to9 && (
+                  <div 
+                    className="slide-background" 
+                    style={{ backgroundImage: `url(${media.src})` }}
+                  />
+                )}
                 <img
                   src={media.src}
                   alt={`slide-${index}`}
                   className="slide-image"
                   loading="lazy"
+                  style={{
+                    objectFit: media.is16to9 ? 'cover' : 'contain'
+                  }}
                 />
               </div>
             </SwiperSlide>
