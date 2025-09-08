@@ -97,7 +97,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
             <a href="https://ictis.sfedu.ru" target="_blank" rel="noopener noreferrer">ИКТИБ</a>
           </div>
         </div>
-        <Link className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+        <a className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} target="_blank" rel="noopener noreferrer" href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</a>
       </div>
 
       <div className="footer-content">
@@ -107,7 +107,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
         </div>
       </div>
 
-      <Link className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+      <a className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} target="_blank" rel="noopener noreferrer" href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</a>
       <div className="copyright">
         ©СКБ «КИТ» 2015 – 2025
       </div>
