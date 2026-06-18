@@ -15,7 +15,7 @@ export function useWpMainPageData() {
 
   useEffect(() => {
     // Заменяй slug на нужный слаг твоей главной страницы в WP
-    fetch("https://test.skbkit.ru/wp-json/wp/v2/pages?slug=mainpage&_fields=acf")
+    fetch("http://192.168.100.215/wp-json/wp/v2/pages?slug=main")
       .then((res) => res.json())
       .then((data: WpPage[]) => {
         if (data && data.length > 0) {
