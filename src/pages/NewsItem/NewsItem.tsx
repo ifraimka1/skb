@@ -12,6 +12,7 @@ import Slider from "@/widgets/Slider/Slider";
 export const vkWallUrl = "https://vk.com/skbkit?w=wall-172789021";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { stripHtmlTags } from "@/shared/utils/sanitizeText";
 
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -86,7 +87,7 @@ function NewsItem() {
             <meta name="robots" content="index,follow" />
           </Helmet>
           <PageHeader className="header">
-            <h1>{news.heading}</h1>
+            <h1>{stripHtmlTags(news.heading)}</h1>
           </PageHeader>
           <PageContent className="content" id="news-item-page">
             {news.photos.length !== 0 &&

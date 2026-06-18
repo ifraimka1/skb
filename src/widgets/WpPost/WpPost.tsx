@@ -24,7 +24,7 @@ export default function WpPost({
   const title = post.title;
   const customComponent = getCustomProject(categories);
 
-  const isSpecialTitle = title === "Программно-аппаратный комплекс для мониторинга управления мусорных контейнеров";
+  const isSpecialTitle = title === "Программно-аппаратный комплекс для мониторинга управления мусорных контейнеров" || title === "Цифровой двойник расстановщика SMD-компонентов" || title === "Робот-балансир" || title === "SKB Racing" || title === "Раннер" || title === "Контроллер автоматизированного управления рольставнями";
 
   return (
     <div className={categories.includes("projects") ? "project" : ""}>
@@ -39,7 +39,7 @@ export default function WpPost({
             post.content.map((el, index) => {
               if (el.type === "mediablock") {
                 const media = <MediaBlock key={index} images={el.value} />;
-                return isSpecialTitle ? media : (
+                return (
                   <PageContent key={index} className="content">
                     {media}
                   </PageContent>

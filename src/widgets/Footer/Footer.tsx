@@ -75,6 +75,7 @@ const mockContacts: ContactsType = {
 function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
   // TODO: добавить setMediaList
   const [mediaList] = useState(links);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer id="footer">
@@ -82,7 +83,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
         <div className="logo-container" style={{ alignItems: 'flex-start' }}>
           <img className="logo" alt="logo" src={logo} />
         </div>
-        <label style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }}>©СКБ «КИТ» 2015 – 2025</label>
+        <label style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }}>©СКБ «КИТ» 2015 – {currentYear}</label>
       </div>
       <div className="footer-links-container">
         <div className="footer-links">
@@ -97,7 +98,7 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
             <a href="https://ictis.sfedu.ru" target="_blank" rel="noopener noreferrer">ИКТИБ</a>
           </div>
         </div>
-        <Link className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+        <a className="visible" style={{ color: 'white', fontSize: '14px', alignItems: 'flex-end', lineHeight: 'none' }} target="_blank" rel="noopener noreferrer" href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</a>
       </div>
 
       <div className="footer-content">
@@ -107,9 +108,9 @@ function Footer({ links = mockLinks, contacts = mockContacts }: FooterProps) {
         </div>
       </div>
 
-      <Link className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} to="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</Link>
+      <a className="copyright" style={{ color: 'white', fontSize: '14px', lineHeight: 'none' }} target="_blank" rel="noopener noreferrer" href="https://www.study.sfedu.ru/privacypolicy?ysclid=m8anp507sz44008873">Политика конфиденциальности</a>
       <div className="copyright">
-        ©СКБ «КИТ» 2015 – 2025
+        ©СКБ «КИТ» 2015 – {currentYear}
       </div>
     </footer >
   );
